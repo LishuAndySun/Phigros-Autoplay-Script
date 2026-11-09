@@ -1,3 +1,4 @@
+import lzma
 import os.path
 import pathlib
 from enum import Enum, auto
@@ -1089,7 +1090,7 @@ class FileReader(BinaryReader):
         self.skip(4)
 
         if version >= 22:
-            if file_size < 48:
+            if length < 48:
                 return False
             self.skip(4)
             file_size = self.u64
@@ -1099,6 +1100,22 @@ class FileReader(BinaryReader):
             return False
 
         return True
+
+
+def _decompress_lzma_block(data: bytes, uncompressed_size: int) -> bytes:
+    # Unity block layout: 1 props byte (lc/lp/pb), 4-byte LE dict size, then raw LZMA1 stream.
+    props = data[0]
+    decoder = lzma.LZMADecompressor(format=lzma.FORMAT_RAW, filters=[{
+        'id': lzma.FILTER_LZMA1,
+        'dict_size': int.from_bytes(data[1:5], 'little'),
+        'lc': props % 9,
+        'lp': (props // 9) % 5,
+        'pb': props // 45,
+    }])
+    out = decoder.decompress(data[5:])
+    if not decoder.eof or len(out) != uncompressed_size:
+        raise RuntimeError(f'lzma decompression error: got {len(out)} bytes, expected {uncompressed_size}, eof={decoder.eof}')
+    return out
 
 
 class BundleFile:
@@ -1193,17 +1210,23 @@ class BundleFile:
                     node.path = uc_reader.cstr()
                     self.directory_info.append(node)
 
+            if self.header.flags & 0x200:  # BlockInfoNeedPaddingAtStart
+                reader.align(16)
+
             block_stream = bytearray()
 
             for block in self.blocks_info:
+                chunk = reader.read(block.compressed_size)
                 match block.flags & 0x3f:
                     case 1:  # LZMA
-                        raise RuntimeError('LZMA unsupported')
+                        data = _decompress_lzma_block(chunk, block.uncompressed_size)
                     case 2 | 3:  # LZ4 | LZ4HC
-                        block_stream.extend(lz4.block.decompress(reader.read(block.compressed_size),
-                                                                 uncompressed_size=block.uncompressed_size))
+                        data = lz4.block.decompress(chunk, uncompressed_size=block.uncompressed_size)
                     case _:  # raw
-                        block_stream.extend(reader.read(block.compressed_size))
+                        data = chunk
+                if len(data) != block.uncompressed_size:
+                    raise RuntimeError(f'block decompression error: got {len(data)} bytes, expected {block.uncompressed_size}')
+                block_stream.extend(data)
 
             with BinaryReader(block_stream) as s_reader:
                 self.files = []

@@ -1,7 +1,6 @@
 import configparser
 import json
 import os,threading
-from sre_parse import expand_template
 import sys
 import zipfile
 from ttkbootstrap import Style, ttk
@@ -34,6 +33,24 @@ def stop_thread(thread):
     _async_raise(thread.ident, SystemExit)
 
 
+def catalog_bundle_paths(catalog: Catalog) -> dict[str, str]:
+    """Map bundle file name -> `Assets/...` path of the TextAsset it contains."""
+    def class_name(entry: dict) -> str:
+        rt = entry.get('resourceType')
+        return rt.get('m_ClassName') if isinstance(rt, dict) else str(rt)
+
+    bundles = {e['primaryKey']: e for e in catalog.entries
+               if class_name(e) == 'UnityEngine.ResourceManagement.ResourceProviders.IAssetBundleResource'}
+    paths = {}
+    for e in catalog.entries:
+        if class_name(e) != 'UnityEngine.TextAsset' or not str(e['primaryKey']).startswith('Assets/'):
+            continue
+        bundle = bundles.get(e.get('dependencyKey'))
+        if bundle is not None:
+            paths[os.path.basename(bundle['internalId'])] = e['primaryKey']
+    return paths
+
+
 def extract_apk():
     apk_path = filedialog.askopenfilename(filetypes=[('安装包', '.apk')], title='请选择要解包的游戏安装包')
     if not apk_path:
@@ -51,15 +68,17 @@ def extract_apk():
     for file in apk_file.namelist():
         if not file.startswith('assets/aa/Android'):
             continue
-        with apk_file.open(file) as f:
-            manager.load_file(f)
+        try:
+            with apk_file.open(file) as f:
+                manager.load_file(f)
+        except Exception as e:
+            print(f'skip {file}: {type(e).__name__}: {e}')
     manager.read_assets()
+    bundle_paths = catalog_bundle_paths(catalog)
     for file in manager.asset_files:
         filepath = file.parent.reader.path
-        if filepath.name not in catalog.fname_map:
-            continue
-        asset_name = catalog.fname_map[filepath.name]
-        if not asset_name.startswith('Assets/'):
+        asset_name = bundle_paths.get(filepath.name)
+        if asset_name is None:
             continue
         basedir = os.path.dirname(asset_name)
         if basedir and not os.path.exists(basedir):
@@ -67,7 +86,7 @@ def extract_apk():
 
         for obj in file.objects:
             if isinstance(obj, TextAsset):
-                with open(asset_name, 'w') as out:
+                with open(asset_name, 'w', encoding='utf-8') as out:
                     out.write(obj.text)
             elif isinstance(obj, Texture2D):
                 obj.get_image().save(asset_name)
