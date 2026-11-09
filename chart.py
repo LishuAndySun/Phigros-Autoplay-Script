@@ -16,11 +16,14 @@ class Chart:
     @classmethod
     def from_dict(cls, d: dict):
         version = d['formatVersion']
+        # Newer charts omit numOfNotes; count it from the judge lines instead.
+        notes_count = d.get('numOfNotes', sum(len(line['notesAbove']) + len(line['notesBelow'])
+                                              for line in d['judgeLineList']))
         if version == 1:
-            return cls(version, d['offset'], d['numOfNotes'],
+            return cls(version, d['offset'], notes_count,
                        [*map(JudgeLine.from_dict_v1, d['judgeLineList'])])
         else:
-            return cls(version, d['offset'], d['numOfNotes'],
+            return cls(version, d['offset'], notes_count,
                        [*map(JudgeLine.from_dict, d['judgeLineList'])])
 
 
