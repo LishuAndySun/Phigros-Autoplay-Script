@@ -8,6 +8,8 @@ from chart import Chart
 from note import Note
 from utils import distance_of, recalc_pos
 
+RELEASE_MS = 300  # 空闲指针超过该时长未复用即抬起
+
 
 class Pointer:
     pid: int
@@ -98,13 +100,12 @@ class Pointers:
         for event_id in self.mark_as_released:
             del self.pointers[event_id]
         self.mark_as_released = []
-        if is_keyframe:
-            for ptr in self.unused.values():
-                ptr.occupied += 1
-                if ptr.occupied > 0:
-                    yield ptr.pid, ptr.timestamp + 1, ptr.pos
-                    self._del(ptr.pid)
-                    marked.append(ptr.pid)
+        for ptr in self.unused.values():
+            ptr.occupied += 1
+            if is_keyframe or self.now - ptr.timestamp >= RELEASE_MS:
+                yield ptr.pid, ptr.timestamp + 1, ptr.pos
+                self._del(ptr.pid)
+                marked.append(ptr.pid)
         for pid in marked:
             del self.unused[pid]
         self.unused |= self.unused_now
@@ -142,6 +143,10 @@ def solve(chart: Chart) -> dict[int, list[TouchEvent]]:
         result[milliseconds].append(event)
 
     current_event_id = 0
+    blocks = chart.block_areas
+
+    def safe(pos: tuple[float, float], t_ms: int, sa: float, ca: float) -> tuple[float, float]:
+        return blocks.free_point(recalc_pos(pos, sa, ca), t_ms / 1000, -sa, ca)
 
     def flick_pos(px: float, py: float, offset: int) -> tuple[float, float]:
         return px + math.sin(offset * math.pi / 10) * flick_scale_factor * sa, py + math.sin(
@@ -163,51 +168,51 @@ def solve(chart: Chart) -> dict[int, list[TouchEvent]]:
             if note.typ == Note.TAP:
                 insert(ms, {
                     'a': 'tap',
-                    'p': recalc_pos((px, py), sa, ca),
+                    'p': safe((px, py), ms, sa, ca),
                     'i': current_event_id
                 })
             elif note.typ == Note.DRAG:
                 insert(ms, {
                     'a': 'drag',
-                    'p': recalc_pos((px, py), sa, ca),
+                    'p': safe((px, py), ms, sa, ca),
                     'i': current_event_id
                 })
             elif note.typ == Note.FLICK:
                 insert(ms + flick_start, {
                     'a': 'flick_start',
                     # 'p': flick_pos(*line.pos_of(note, line.time(ms + flick_start) / 1000), flick_start),
-                    'p': recalc_pos(flick_pos(px, py, flick_start), sa, ca),
+                    'p': safe(flick_pos(px, py, flick_start), ms + flick_start, sa, ca),
                     'i': current_event_id
                 })
                 for offset in range(flick_start + 1, flick_end):
                     insert(ms + offset, {
                         'a': 'flick',
                         # 'p': flick_pos(*line.pos_of(note, line.time(ms + offset) / 1000), offset),
-                        'p': recalc_pos(flick_pos(px, py, offset), sa, ca),
+                        'p': safe(flick_pos(px, py, offset), ms + offset, sa, ca),
                         'i': current_event_id
                     })
                 insert(ms + flick_end, {
                     'a': 'flick_end',
                     # 'p': flick_pos(*line.pos_of(note, line.time(ms + flick_end) / 1000), flick_end),
-                    'p': recalc_pos(flick_pos(px, py, flick_end), sa, ca),
+                    'p': safe(flick_pos(px, py, flick_end), ms + flick_end, sa, ca),
                     'i': current_event_id
                 })
             elif note.typ == Note.HOLD:
                 hold_ms = math.ceil(line.seconds(note.hold) * 1000)
                 insert(ms, {
                     'a': 'hold_start',
-                    'p': recalc_pos((px, py), sa, ca),
+                    'p': safe((px, py), ms, sa, ca),
                     'i': current_event_id
                 })
                 for offset in range(1, hold_ms):
                     insert(ms + offset, {
                         'a': 'hold',
-                        'p': recalc_pos(line.pos_of(note, line.time((ms + offset) / 1000)), sa, ca),
+                        'p': safe(line.pos_of(note, line.time((ms + offset) / 1000)), ms + offset, sa, ca),
                         'i': current_event_id
                     })
                 insert(ms + hold_ms, {
                     'a': 'hold_end',
-                    'p': recalc_pos(line.pos_of(note, line.time((ms + hold_ms) / 1000)), sa, ca),
+                    'p': safe(line.pos_of(note, line.time((ms + hold_ms) / 1000)), ms + hold_ms, sa, ca),
                     'i': current_event_id
                 })
             current_event_id += 1

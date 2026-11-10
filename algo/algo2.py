@@ -6,6 +6,7 @@ from sys import stdout
 from typing import Optional, Iterator
 
 from chart import Chart
+from block_area import BlockAreas, MARGIN, MAX_STEPS, STEP, SCREEN_W, SCREEN_H
 from note import Note
 from utils import recalc_pos
 from .algo_base import TouchAction, TouchEvent
@@ -30,14 +31,16 @@ class Frame:
     unallocated: list[list[SimpleNote]]
     allocated: list[list[SimpleNote]]
 
-    def __init__(self, timestamp: int):
+    def __init__(self, timestamp: int, blocks: BlockAreas):
         self.timestamp = timestamp
+        self.blocks = blocks
 
         self.unallocated = [[] for _ in range(4)]
         self.allocated = [[] for _ in range(4)]
 
     def add(self, note_type: int, pos: tuple[float, float], angle: float):
         pos = recalc_pos(pos, math.sin(angle), math.cos(angle))
+        pos = self.blocks.free_point(pos, self.timestamp / 1000, -math.sin(angle), math.cos(angle))
         self.unallocated[note_type - 1].append(SimpleNote(note_type, self.timestamp, pos, angle))
 
     def taps(self) -> Iterator[SimpleNote]:
@@ -59,13 +62,15 @@ class Frame:
 class Frames:
     frames: dict[int, Frame]
 
-    def __init__(self):
+    def __init__(self, blocks: BlockAreas):
         self.frames = {}
+        self.blocks = blocks
 
     def __getitem__(self, timestamp: int) -> Frame:
         if timestamp not in self.frames:
-            self.frames[timestamp] = Frame(timestamp)
+            self.frames[timestamp] = Frame(timestamp, self.blocks)
         return self.frames[timestamp]
+
 
     def __iter__(self) -> Iterator[Frame]:
         return iter(sorted(self.frames.values(), key=lambda f: f.timestamp))
@@ -100,6 +105,34 @@ flick_end = 50
 flick_scale_factor = 100
 flick_step = 5  # flick滑动时每隔多少ms发送一次MOVE
 drag_step = 8  # hold延续时每隔多少ms发送一次MOVE，过密会导致游戏卡顿
+release_ms = 300  # 指针空闲超过该时长即抬起
+
+
+def flick_path_clear(blocks: BlockAreas, t_ms: int, x0: float, y0: float, dx: float, dy: float) -> bool:
+    """滑动轨迹的每个采样点都不在噪域(含边距)内"""
+    duration = flick_end - flick_start
+    for t in range(t_ms, t_ms + duration + 1, flick_step):
+        k = (t - t_ms) / duration
+        if blocks.blocked(x0 + dx * k, y0 + dy * k, t / 1000, MARGIN):
+            return False
+    return True
+
+
+def find_clear_flick(blocks: BlockAreas, t_ms: int, note: 'SimpleNote') -> Optional[tuple[float, float, float, float]]:
+    """沿判定线法向平移起点，并允许反向滑动，返回轨迹不进入噪域的 (x0, y0, dx, dy)"""
+    alpha = note.angle
+    dx, dy = math.sin(alpha) * flick_scale_factor, math.cos(alpha) * flick_scale_factor
+    nx, ny = -math.sin(alpha), math.cos(alpha)
+    bx, by = note.pos
+    for i in range(MAX_STEPS + 1):
+        for offset in ((0,) if i == 0 else (i, -i)):
+            x0, y0 = bx + offset * STEP * nx, by + offset * STEP * ny
+            if not (0 <= x0 <= SCREEN_W and 0 <= y0 <= SCREEN_H):
+                continue
+            for sign in (1, -1):
+                if flick_path_clear(blocks, t_ms, x0, y0, sign * dx, sign * dy):
+                    return x0, y0, sign * dx, sign * dy
+    return None
 
 
 class PointerAllocator:
@@ -146,7 +179,7 @@ class PointerAllocator:
     def _tap(self, pointer: Pointer, note: SimpleNote):
         self._down(pointer, note)
 
-    def _flick(self, pointer: Pointer, note: SimpleNote):
+    def _flick(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas):
         # 在 [now, now + (flick_end - flick_start)] 内单调滑动，每 flick_step ms 发送一次MOVE
         duration = flick_end - flick_start
         if pointer.note is not None:
@@ -154,6 +187,10 @@ class PointerAllocator:
         x0, y0 = note.pos
         alpha = note.angle
         dx, dy = math.sin(alpha) * flick_scale_factor, math.cos(alpha) * flick_scale_factor
+        if not flick_path_clear(blocks, self.now, x0, y0, dx, dy):
+            found = find_clear_flick(blocks, self.now, note)
+            if found is not None:
+                x0, y0, dx, dy = found
         self._insert(self.now, TouchEvent((x0, y0), TouchAction.DOWN, pointer.id))
         for t in range(self.now + flick_step, self.now + duration + 1, flick_step):
             k = (t - self.now) / duration
@@ -182,7 +219,7 @@ class PointerAllocator:
         # 步骤2: 分配flick
         for note in frame.flicks():
             pointer = self.alloc(note)
-            self._flick(pointer, note)
+            self._flick(pointer, note, frame.blocks)
 
         # 步骤3：分配drag
         for note in frame.drags():
@@ -197,6 +234,12 @@ class PointerAllocator:
             pointer = self.alloc(note)
             self._drag(pointer, note)
 
+        # 步骤4：抬起长时间空闲的指针
+        for pointer in self.pointers:
+            if pointer.note is not None and pointer.age >= release_ms:
+                self._insert(self.now - pointer.age + 1, TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
+                pointer.note = None
+
         self.last_timestamp = frame.timestamp
 
     def done(self):
@@ -209,7 +252,7 @@ class PointerAllocator:
 
 
 def solve(chart: Chart) -> dict[int, list[TouchEvent]]:
-    frames = Frames()
+    frames = Frames(chart.block_areas)
 
     print('正在统计帧...', end='')
     stdout.flush()

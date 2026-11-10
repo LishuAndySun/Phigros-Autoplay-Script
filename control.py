@@ -19,6 +19,13 @@ MSG_TYPE_INJECT_TOUCH_EVENT = 2
 GENERIC_FINGER_ID = 0xffffffffffffffff
 # type, action, pointer_id, x, y, screen_w, screen_h, pressure, action_button, buttons (共 32 字节)
 TOUCH_FMT = '!BBQiiHHHII'
+TOUCH_LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'touch_log.tsv')  # 实际发出的触控日志
+
+
+def _kill_stale_servers():
+    '''结束设备上残留的 scrcpy 服务端（上次运行被中断时会遗留，导致触控包尺寸与当前服务端不一致）'''
+    # [c]om 用于避免 pkill 匹配到自己的 shell 命令行
+    subprocess.run(['adb', 'shell', 'pkill -f [c]om.genymobile.scrcpy.Server'])
 
 
 def _recv_exact(sock: socket.socket, n: int) -> bytes:
@@ -44,6 +51,7 @@ class DeviceController:
         server_file = os.path.join(server_dir, SERVER_FILENAME)
         if not os.path.isfile(server_file):
             raise FileNotFoundError(f'找不到 {server_file}，请下载 scrcpy {SERVER_VERSION} 服务端')
+        _kill_stale_servers()
         if push_server:
             subprocess.run(['adb', 'push', server_file, REMOTE_SERVER_PATH], check=True)
         subprocess.run(['adb', 'reverse', f'localabstract:{SOCKET_NAME}', f'tcp:{port}'], check=True)
@@ -123,10 +131,22 @@ class DeviceController:
         self.control_collector.start()
 
 
+    def close(self):
+        self.collector_running = False
+        for sock in (self.video_socket, self.control_socket):
+            try:
+                sock.close()
+            except OSError:
+                pass
+        self.server_process.kill()
+        _kill_stale_servers()
+
     def _send_touch(self, x: int, y: int, action: int, pressure: int, pointer_id: int):
         packet = struct.pack(TOUCH_FMT, MSG_TYPE_INJECT_TOUCH_EVENT, action, pointer_id,
                              x, y, *self.device_size, pressure, 0, 0)
         self.control_socket.sendall(packet)
+        with open(TOUCH_LOG_PATH, 'a') as f:
+            f.write(f'{time.time():.3f}\t{action}\t{pointer_id}\t{x}\t{y}\t{self.device_size[0]}x{self.device_size[1]}\n')
 
     def touch(self, x: int, y: int, action: int, pressure: int = 0xffff, pointer_id: int = GENERIC_FINGER_ID):
         self._send_touch(x, y, action, pressure, pointer_id)

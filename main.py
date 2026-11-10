@@ -386,6 +386,7 @@ class App(ttk.Frame):
                 finally:
                     print('[client] INFO: 自动打歌已结束')
                     time.sleep(0.5)  # 等待server退出
+                    ctl.close()
 
                 self.go['command'] = pre_command
                 self.go['text'] = pre_text
@@ -446,8 +447,7 @@ class App(ttk.Frame):
                     finally:
                         print('[client] INFO: 自动打歌已结束')
                         time.sleep(0.5)  # 等待server退出
-                        stop_thread(ctl.garbage_collector)
-                        stop_thread(ctl.control_collector)
+                        ctl.close()
                     self.go['command'] = pre_command
                     self.go['text'] = pre_text
                     self.info_label['text'] = pre_info
