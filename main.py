@@ -306,6 +306,8 @@ class App(ttk.Frame):
                     pass
                 else:
                     export_to_json(ans, open(ans_file, 'w'))
+            else:
+                raise ValueError(f'未知的规划方式: {algo_method}')
 
             ctl = DeviceController()
             device_size = ctl.device_size

@@ -77,12 +77,14 @@ class Frames:
 class Pointer:
     id: int
     note: Optional[SimpleNote]
-    age: int
+    age: int  # 距离最后一次事件的时间(ms)，为负表示仍在执行flick
+    sent_at: int  # 最后一次发送MOVE的时间(ms)
 
     def __init__(self, pid: int, note: Optional[SimpleNote] = None, age: int = 0):
         self.id = pid
         self.note = note
         self.age = age
+        self.sent_at = -10 ** 9
 
 
 def distance_of(note1: Optional[SimpleNote], note2: SimpleNote) -> float:
@@ -96,6 +98,8 @@ def distance_of(note1: Optional[SimpleNote], note2: SimpleNote) -> float:
 flick_start = -50
 flick_end = 50
 flick_scale_factor = 100
+flick_step = 5  # flick滑动时每隔多少ms发送一次MOVE
+drag_step = 8  # hold延续时每隔多少ms发送一次MOVE，过密会导致游戏卡顿
 
 
 class PointerAllocator:
@@ -108,7 +112,6 @@ class PointerAllocator:
         self.pointers = [Pointer(i + begin_at) for i in range(max_pointers_count)]
         self.events = {}
         self.last_timestamp = None
-
     def alloc(self, note: SimpleNote) -> Pointer:
         usable_pointers = [p for p in self.pointers if p.note is None or p.age > 0]
         assert usable_pointers
@@ -118,7 +121,7 @@ class PointerAllocator:
         ox, oy = note.pos
         ca, sa = math.cos(note.angle), math.sin(note.angle)
         for pointer in self.pointers:
-            if pointer.note is None:  # 闲置指针
+            if pointer.note is None or pointer.age < 0:  # 闲置指针或正在执行flick的指针
                 continue
             # TODO: 考虑flick在移动时的影响
             px, py = pointer.note.pos
@@ -131,38 +134,37 @@ class PointerAllocator:
             self.events[timestamp] = []
         self.events[timestamp].append(event)
 
-    def _tap(self, pointer: Pointer, note: SimpleNote):
+    def _down(self, pointer: Pointer, note: SimpleNote):
+        # 复用指针前，先在其上一次事件之后释放它（alloc保证 age > 0，因此释放时间 <= now）
         if pointer.note is not None:
             self._insert(self.now - pointer.age + 1, TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
         pointer.note = note
         pointer.age = 0
+        pointer.sent_at = self.now
         self._insert(self.now, TouchEvent(note.pos, TouchAction.DOWN, pointer.id))
 
+    def _tap(self, pointer: Pointer, note: SimpleNote):
+        self._down(pointer, note)
+
     def _flick(self, pointer: Pointer, note: SimpleNote):
-        if pointer.note is None:
-            self._insert(self.now, TouchEvent(note.pos, TouchAction.DOWN, pointer.id))
-        else:
-            self._insert(self.now, TouchEvent(note.pos, TouchAction.MOVE, pointer.id))
+        # 在 [now, now + (flick_end - flick_start)] 内单调滑动，每 flick_step ms 发送一次MOVE
+        duration = flick_end - flick_start
+        if pointer.note is not None:
+            self._insert(self.now - pointer.age + 1, TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
+        x0, y0 = note.pos
         alpha = note.angle
-        sa, ca = math.sin(alpha), math.cos(alpha)
-        px, py = note.pos
-        for off in range(flick_end - flick_start):
-            offset = off + flick_start
-            px, py = note.pos[0] + math.sin(offset * math.pi / 10) * flick_scale_factor * sa, note.pos[1] + math.sin(
-                offset * math.pi / 10) * flick_scale_factor * ca
-            self._insert(self.now, TouchEvent((px, py), TouchAction.MOVE, pointer.id))
-        note.pos = (px, py)
+        dx, dy = math.sin(alpha) * flick_scale_factor, math.cos(alpha) * flick_scale_factor
+        self._insert(self.now, TouchEvent((x0, y0), TouchAction.DOWN, pointer.id))
+        for t in range(self.now + flick_step, self.now + duration + 1, flick_step):
+            k = (t - self.now) / duration
+            self._insert(t, TouchEvent((x0 + dx * k, y0 + dy * k), TouchAction.MOVE, pointer.id))
+        # 滑动结束点，供后续 check() 与 UP 使用
+        note.pos = (x0 + dx, y0 + dy)
         pointer.note = note
-        pointer.age = flick_start - flick_end
+        pointer.age = flick_start - flick_end  # 负值：滑动期间该指针不可被分配
 
     def _drag(self, pointer: Pointer, note: SimpleNote):
-        if pointer.note is None:
-            self._insert(self.now, TouchEvent(note.pos, TouchAction.DOWN, pointer.id))
-        else:
-            self._insert(self.now, TouchEvent(note.pos, TouchAction.MOVE, pointer.id))
-        self._insert(self.now, TouchEvent(note.pos, TouchAction.MOVE, pointer.id))
-        pointer.note = note
-        pointer.age = 0
+        self._down(pointer, note)
 
     def allocate(self, frame: Frame):
 
@@ -186,7 +188,11 @@ class PointerAllocator:
         for note in frame.drags():
             pointer = self.check(note)
             if pointer:
+                pointer.note = note
                 pointer.age = 0
+                if self.now - pointer.sent_at >= drag_step:
+                    self._insert(self.now, TouchEvent(note.pos, TouchAction.MOVE, pointer.id))
+                    pointer.sent_at = self.now
                 continue
             pointer = self.alloc(note)
             self._drag(pointer, note)
@@ -194,6 +200,11 @@ class PointerAllocator:
         self.last_timestamp = frame.timestamp
 
     def done(self):
+        # 释放仍按住的指针，避免结束后残留按下状态
+        for pointer in self.pointers:
+            if pointer.note is not None:
+                self._insert(self.now - pointer.age + 1, TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
+                pointer.note = None
         return self.events
 
 
