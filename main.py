@@ -1,10 +1,12 @@
 import configparser
+import atexit
 import json
 import os,threading
 import queue
 import sys
 import time
 import zipfile
+from collections import defaultdict, deque
 from ttkbootstrap import Style, ttk
 from tkinter import  BooleanVar, messagebox, Tk, X, IntVar, StringVar, DoubleVar, filedialog, Toplevel
 from typing import Optional
@@ -30,6 +32,77 @@ def _log(msg: str):
         f.write(f'{time.strftime("%H:%M:%S")} {msg}\n')
 
 
+class PerformanceDiagnostics:
+    def __init__(self, path='performance.log'):
+        self.path = path
+        self.lock = threading.Lock()
+        self.records = deque(maxlen=500000)
+        self.samples = defaultdict(list)
+        self.sample_counts = defaultdict(int)
+        self.sample_max = defaultdict(int)
+        self.second_counts = defaultdict(lambda: [0, 0, 0])
+        self.start_ns = time.perf_counter_ns()
+        atexit.register(self.flush)
+
+    def record(self, kind, **fields):
+        now = time.perf_counter_ns()
+        with self.lock:
+            if kind == 'sample':
+                metric = fields['metric']
+                value = fields['value_ns']
+                self.sample_counts[metric] += 1
+                self.sample_max[metric] = max(self.sample_max[metric], value)
+                if self.sample_counts[metric] % 10 == 0:
+                    self.samples[metric].append(value)
+                return
+            self.records.append((now, kind, fields))
+            if kind == 'submit':
+                self.second_counts[(fields['run'], fields['second'])][0] += 1
+                self.second_counts[(fields['run'], fields['second'])][2] = fields['queue_len']
+            elif kind == 'consume':
+                self.second_counts[(fields['run'], fields['second'])][1] += 1
+                self.second_counts[(fields['run'], fields['second'])][2] = fields['queue_len']
+
+    def flush(self):
+        with self.lock:
+            if not self.records:
+                return
+            records = list(self.records)
+            self.records.clear()
+            samples = {name: values[:] for name, values in self.samples.items()}
+            sample_counts = dict(self.sample_counts)
+            sample_max = dict(self.sample_max)
+            self.samples.clear()
+            self.sample_counts.clear()
+            self.sample_max.clear()
+            seconds = dict(self.second_counts)
+            self.second_counts.clear()
+        try:
+            with open(self.path, 'a', encoding='utf-8') as out:
+                out.write('type\tperf_counter_ns\tfields_json\n')
+                for timestamp, kind, fields in records:
+                    out.write(f'{kind}\t{timestamp}\t{json.dumps(fields, ensure_ascii=False, separators=(",", ":"))}\n')
+                for metric, values in samples.items():
+                    values.sort()
+                    count = len(values)
+                    def percentile(p):
+                        return values[min(count - 1, int((count - 1) * p))] if count else 0
+                    summary = {'metric': metric, 'count': sample_counts.get(metric, 0), 'percentile_sample_count': count,
+                               'p50_ns': percentile(.50),
+                               'p95_ns': percentile(.95), 'p99_ns': percentile(.99),
+                               'max_ns': sample_max.get(metric, 0)}
+                    out.write(f'summary\t{time.perf_counter_ns()}\t{json.dumps(summary, separators=(",", ":"))}\n')
+                for (run, second), counts in seconds.items():
+                    fields = {'run': run, 'second': second, 'submitted_batches': counts[0],
+                              'consumed_batches': counts[1], 'queue_len': counts[2]}
+                    out.write(f'throughput\t{time.perf_counter_ns()}\t{json.dumps(fields, separators=(",", ":"))}\n')
+        except OSError:
+            pass
+
+
+_performance = PerformanceDiagnostics()
+
+
 class TouchSender:
     '''后台线程按计划时间发送触控包，避免 Tk 主线程的刷新开销造成时序漂移；队列积压时丢弃 MOVE'''
 
@@ -44,15 +117,26 @@ class TouchSender:
     def start(self):
         self.thread.start()
 
-    def submit(self, ms: int, events: list):
-        self.queue.put((ms, events))
+    def submit(self, ms: int, events: list, run_id=None, submitted_ns=None, theoretical_ms=None, wall_ms=None):
+        enqueue_ns = time.perf_counter_ns()
+        qsize = self.queue.qsize()
+        self.queue.put((ms, events, enqueue_ns, run_id, submitted_ns, theoretical_ms, wall_ms))
+        submit_cost_ns = time.perf_counter_ns() - enqueue_ns
+        _performance.record('submit', run=run_id, ms=ms, enqueue_ns=enqueue_ns,
+                            submit_cost_ns=submit_cost_ns, actual_lateness_ms=wall_ms - ms if wall_ms is not None else None,
+                            theoretical_ms=theoretical_ms, wall_ms=wall_ms, queue_len=qsize + 1,
+                            second=(enqueue_ns - _performance.start_ns) // 1_000_000_000)
 
     def _loop(self):
         while self.running:
             item = self.queue.get()
             if item is None:
                 return
-            ms, events = item
+            ms, events, enqueue_ns, run_id, submitted_ns, theoretical_ms, wall_ms = item
+            dequeue_ns = time.perf_counter_ns()
+            _performance.record('consume', run=run_id, ms=ms, enqueue_ns=enqueue_ns,
+                                dequeue_ns=dequeue_ns, queue_wait_ns=dequeue_ns - enqueue_ns,
+                                queue_len=self.queue.qsize(), second=(dequeue_ns - _performance.start_ns) // 1_000_000_000)
             wait = self.clock() + ms / 1000 - time.perf_counter()
             if wait > 0:
                 time.sleep(wait)
@@ -61,17 +145,23 @@ class TouchSender:
                 self.dropped += len(events) - len(kept)
                 events = kept
             if wait < -0.1:
+                _performance.record('late_send', run=run_id, ms=ms, lateness_ns=int(-wait * 1_000_000_000),
+                                    queue_len=self.queue.qsize(), event_count=len(events))
+            if wait < -0.1:
                 _log(f'批次 {ms}ms 晚发 {-wait * 1000:.0f}ms，队列剩余 {self.queue.qsize()}')
-            t0 = time.perf_counter()
+            t0 = time.perf_counter_ns()
             for ev in events:
                 try:
                     self.ctl.touch(*ev.pos, ev.action.value, pointer_id=ev.pointer)
                 except OSError:
+                    _performance.record('sender_error', run=run_id, ms=ms, error='OSError')
                     self.running = False
                     return
-            cost = time.perf_counter() - t0
-            if cost > 0.05:
-                _log(f'批次 {ms}ms 发送耗时 {cost * 1000:.0f}ms，{len(events)} 个事件')
+            cost_ns = time.perf_counter_ns() - t0
+            _performance.record('send', run=run_id, ms=ms, send_ns=cost_ns, event_count=len(events),
+                                lateness_ms=(time.perf_counter_ns() - submitted_ns) / 1_000_000 if submitted_ns else None)
+            if cost_ns > 50_000_000:
+                _log(f'批次 {ms}ms 发送耗时 {cost_ns / 1_000_000:.0f}ms，{len(events)} 个事件')
 
     def stop(self):
         self.running = False
@@ -399,6 +489,7 @@ class App(ttk.Frame):
                     evs[i] = ev._replace(pos=(x, y))
 
             ans_iter = iter(sorted(ans.items()))
+            run_id = time.strftime('%Y%m%d-%H%M%S')
 
             pre_info = self.info_label['text']
             pre_command = self.go['command']
@@ -446,19 +537,41 @@ class App(ttk.Frame):
                 sender.start()
 
                 ce_ms, ces = next(ans_iter)
+                previous_loop_ns = None
+                last_sync_ns = 0
                 try:
                     while self.running:
+                        loop_start_ns = time.perf_counter_ns()
+                        if previous_loop_ns is not None:
+                            _performance.record('sample', metric='loop_interval', value_ns=loop_start_ns - previous_loop_ns)
+                        previous_loop_ns = loop_start_ns
+                        update_start_ns = time.perf_counter_ns()
                         self.update()
+                        update_end_ns = time.perf_counter_ns()
+                        _performance.record('sample', metric='update', value_ns=update_end_ns - update_start_ns)
+                        refresh_start_ns = time.perf_counter_ns()
                         self.refresh_timer()
+                        refresh_end_ns = time.perf_counter_ns()
+                        _performance.record('sample', metric='refresh_timer', value_ns=refresh_end_ns - refresh_start_ns)
                         now = round((time.time() - self.start_time) * 1000)
+                        now_ns = time.perf_counter_ns()
+                        if now_ns - last_sync_ns >= 100_000_000:
+                            theoretical_ms = (now_ns / 1_000_000_000 - clock_ref['start']) * 1000
+                            _performance.record('clock_sync', run=run_id, theoretical_chart_ms=theoretical_ms,
+                                                wall_chart_ms=now, offset_ms=now - theoretical_ms)
+                            last_sync_ns = now_ns
                         while now >= ce_ms - LOOKAHEAD_MS:
                             if not begin:
                                 self.info_label['text'] = '开始操作'
                                 begin = True
                                 self.start_timer()
-                            sender.submit(ce_ms, ces)
+                            submit_start_ns = time.perf_counter_ns()
+                            submit_wall_ms = round((time.time() - self.start_time) * 1000)
+                            sender.submit(ce_ms, ces, run_id, submit_start_ns, ce_ms, submit_wall_ms)
+                            _performance.record('sample', metric='submit_call', value_ns=time.perf_counter_ns() - submit_start_ns)
                             ce_ms, ces = next(ans_iter)
                         time.sleep(0.001)
+                        _performance.record('sample', metric='loop_total', value_ns=time.perf_counter_ns() - loop_start_ns)
                 except Exception:
                     pass
                 finally:
@@ -467,6 +580,7 @@ class App(ttk.Frame):
                     time.sleep(0.5)  # 等待server退出
                     sender.stop()
                     ctl.close()
+                    _performance.flush()
 
                 self.go['command'] = pre_command
                 self.go['text'] = pre_text
@@ -516,18 +630,43 @@ class App(ttk.Frame):
                     self.delay_input.bind('<<Increment>>', incremented)
                     self.delay_input.bind('<<Decrement>>', decremented)
 
-                    sender.submit(ce_ms, ces)
+                    submit_start_ns = time.perf_counter_ns()
+                    initial_now = round((time.time() - self.start_time) * 1000)
+                    sender.submit(ce_ms, ces, run_id, submit_start_ns, ce_ms, initial_now)
+                    _performance.record('sample', metric='submit_call', value_ns=time.perf_counter_ns() - submit_start_ns)
                     ce_ms, ces = next(ans_iter)
 
+                    previous_loop_ns = None
+                    last_sync_ns = 0
                     try:
                         while self.running:
+                            loop_start_ns = time.perf_counter_ns()
+                            if previous_loop_ns is not None:
+                                _performance.record('sample', metric='loop_interval', value_ns=loop_start_ns - previous_loop_ns)
+                            previous_loop_ns = loop_start_ns
+                            update_start_ns = time.perf_counter_ns()
                             self.update()
+                            update_end_ns = time.perf_counter_ns()
+                            _performance.record('sample', metric='update', value_ns=update_end_ns - update_start_ns)
+                            refresh_start_ns = time.perf_counter_ns()
                             self.refresh_timer()
+                            refresh_end_ns = time.perf_counter_ns()
+                            _performance.record('sample', metric='refresh_timer', value_ns=refresh_end_ns - refresh_start_ns)
                             now = round((time.time() - self.start_time) * 1000)
+                            now_ns = time.perf_counter_ns()
+                            if now_ns - last_sync_ns >= 100_000_000:
+                                theoretical_ms = (now_ns / 1_000_000_000 - clock_ref['start']) * 1000
+                                _performance.record('clock_sync', run=run_id, theoretical_chart_ms=theoretical_ms,
+                                                    wall_chart_ms=now, offset_ms=now - theoretical_ms)
+                                last_sync_ns = now_ns
                             while now >= ce_ms - LOOKAHEAD_MS:
-                                sender.submit(ce_ms, ces)
+                                submit_start_ns = time.perf_counter_ns()
+                                submit_wall_ms = round((time.time() - self.start_time) * 1000)
+                                sender.submit(ce_ms, ces, run_id, submit_start_ns, ce_ms, submit_wall_ms)
+                                _performance.record('sample', metric='submit_call', value_ns=time.perf_counter_ns() - submit_start_ns)
                                 ce_ms, ces = next(ans_iter)
                             time.sleep(0.001)
+                            _performance.record('sample', metric='loop_total', value_ns=time.perf_counter_ns() - loop_start_ns)
                     except Exception:
                         pass
                     finally:
@@ -536,6 +675,7 @@ class App(ttk.Frame):
                         time.sleep(0.5)  # 等待server退出
                         sender.stop()
                         ctl.close()
+                        _performance.flush()
                     self.go['command'] = pre_command
                     self.go['text'] = pre_text
                     self.info_label['text'] = pre_info
