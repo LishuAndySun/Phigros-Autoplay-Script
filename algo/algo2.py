@@ -6,7 +6,7 @@ from sys import stdout
 from typing import Optional, Iterator
 
 from chart import Chart
-from block_area import BlockAreas, MARGIN, MAX_STEPS, STEP, SCREEN_W, SCREEN_H
+from block_area import BlockAreas, MARGIN, nearby_points
 from note import Note
 from utils import recalc_pos
 from .algo_base import TouchAction, TouchEvent
@@ -84,12 +84,14 @@ class Pointer:
     note: Optional[SimpleNote]
     age: int  # 距离最后一次事件的时间(ms)，为负表示仍在执行flick
     sent_at: int  # 最后一次发送MOVE的时间(ms)
+    pressed_at: int  # 最近一次按下的时间(ms)
 
     def __init__(self, pid: int, note: Optional[SimpleNote] = None, age: int = 0):
         self.id = pid
         self.note = note
         self.age = age
         self.sent_at = -10 ** 9
+        self.pressed_at = -10 ** 9
 
 
 def distance_of(note1: Optional[SimpleNote], note2: SimpleNote) -> float:
@@ -106,6 +108,7 @@ flick_scale_factor = 100
 flick_step = 5  # flick滑动时每隔多少ms发送一次MOVE
 drag_step = 8  # hold延续时每隔多少ms发送一次MOVE，过密会导致游戏卡顿
 release_ms = 300  # 指针空闲超过该时长即抬起
+MIN_PRESS_MS = 40  # 单次按压的最短持续时间，过短的按压游戏可能无法识别
 
 
 def flick_path_clear(blocks: BlockAreas, t_ms: int, x0: float, y0: float, dx: float, dy: float) -> bool:
@@ -118,20 +121,31 @@ def flick_path_clear(blocks: BlockAreas, t_ms: int, x0: float, y0: float, dx: fl
     return True
 
 
+def press_clear(blocks: BlockAreas, t_ms: int, x: float, y: float, duration: int) -> bool:
+    """静止按压的整个持续时段内，触点都不在噪域(含边距)内"""
+    for t in range(t_ms, t_ms + duration + 1, flick_step):
+        if blocks.blocked(x, y, t / 1000, MARGIN):
+            return False
+    return True
+
+
+def find_clear_press(blocks: BlockAreas, t_ms: int, pos: tuple[float, float],
+                     duration: int) -> Optional[tuple[float, float]]:
+    """由近及远搜索静止按压点，返回整个按压期间都不进入噪域的点"""
+    for x0, y0 in nearby_points(*pos):
+        if press_clear(blocks, t_ms, x0, y0, duration):
+            return x0, y0
+    return None
+
+
 def find_clear_flick(blocks: BlockAreas, t_ms: int, note: 'SimpleNote') -> Optional[tuple[float, float, float, float]]:
-    """沿判定线法向平移起点，并允许反向滑动，返回轨迹不进入噪域的 (x0, y0, dx, dy)"""
+    """由近及远搜索起点，并允许反向滑动，返回轨迹不进入噪域的 (x0, y0, dx, dy)"""
     alpha = note.angle
     dx, dy = math.sin(alpha) * flick_scale_factor, math.cos(alpha) * flick_scale_factor
-    nx, ny = -math.sin(alpha), math.cos(alpha)
-    bx, by = note.pos
-    for i in range(MAX_STEPS + 1):
-        for offset in ((0,) if i == 0 else (i, -i)):
-            x0, y0 = bx + offset * STEP * nx, by + offset * STEP * ny
-            if not (0 <= x0 <= SCREEN_W and 0 <= y0 <= SCREEN_H):
-                continue
-            for sign in (1, -1):
-                if flick_path_clear(blocks, t_ms, x0, y0, sign * dx, sign * dy):
-                    return x0, y0, sign * dx, sign * dy
+    for x0, y0 in nearby_points(*note.pos):
+        for sign in (1, -1):
+            if flick_path_clear(blocks, t_ms, x0, y0, sign * dx, sign * dy):
+                return x0, y0, sign * dx, sign * dy
     return None
 
 
@@ -140,13 +154,21 @@ class PointerAllocator:
     events: dict[int, list[TouchEvent]]
     last_timestamp: Optional[int]
     now: int
+    reserved: set[int]
 
     def __init__(self, max_pointers_count: int = 10, begin_at: int = 1000):
         self.pointers = [Pointer(i + begin_at) for i in range(max_pointers_count)]
         self.events = {}
         self.last_timestamp = None
+        self.reserved = set()
+    def _release_at(self, pointer: Pointer) -> int:
+        return min(max(self.now - pointer.age + 1, pointer.pressed_at + MIN_PRESS_MS), self.now)
+
     def alloc(self, note: SimpleNote) -> Pointer:
-        usable_pointers = [p for p in self.pointers if p.note is None or p.age > 0]
+        free = [p for p in self.pointers
+                if p.id not in self.reserved and (p.note is None or p.age > 0)]
+        ready = [p for p in free if p.note is None or p.pressed_at + MIN_PRESS_MS <= self.now]
+        usable_pointers = ready or free  # 优先满足最短按压时长，指针不足时放宽
         assert usable_pointers
         return min(usable_pointers, key=lambda p: distance_of(p.note, note))  # 优先使用废弃的Pointer
 
@@ -162,6 +184,26 @@ class PointerAllocator:
                 return pointer
         return None
 
+    def match(self, notes: list[SimpleNote]) -> list[Optional[Pointer]]:
+        """为每个 drag 音符分配一个不重复的指针：按距离从近到远贪心匹配，同一指针只能对应一个音符"""
+        candidates = []  # (距离平方, 音符序号, 指针)
+        for i, note in enumerate(notes):
+            ox, oy = note.pos
+            ca, sa = math.cos(note.angle), math.sin(note.angle)
+            for pointer in self.pointers:
+                if pointer.note is None or pointer.age < 0:
+                    continue
+                px, py = pointer.note.pos
+                if abs((px - ox) * ca + (py - oy) * sa) < 100:
+                    candidates.append(((px - ox) ** 2 + (py - oy) ** 2, i, pointer))
+        result: list[Optional[Pointer]] = [None] * len(notes)
+        used: set[int] = set()
+        for _, i, pointer in sorted(candidates, key=lambda c: c[0]):
+            if result[i] is None and pointer.id not in used:
+                result[i] = pointer
+                used.add(pointer.id)
+        return result
+
     def _insert(self, timestamp: int, event: TouchEvent):
         if timestamp not in self.events:
             self.events[timestamp] = []
@@ -170,20 +212,26 @@ class PointerAllocator:
     def _down(self, pointer: Pointer, note: SimpleNote):
         # 复用指针前，先在其上一次事件之后释放它（alloc保证 age > 0，因此释放时间 <= now）
         if pointer.note is not None:
-            self._insert(self.now - pointer.age + 1, TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
+            self._insert(self._release_at(pointer), TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
         pointer.note = note
         pointer.age = 0
         pointer.sent_at = self.now
+        pointer.pressed_at = self.now
         self._insert(self.now, TouchEvent(note.pos, TouchAction.DOWN, pointer.id))
 
-    def _tap(self, pointer: Pointer, note: SimpleNote):
+    def _tap(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas):
+        if not press_clear(blocks, self.now, *note.pos, release_ms):
+            found = find_clear_press(blocks, self.now, note.pos, release_ms)
+            if found is not None:
+                note.pos = found
         self._down(pointer, note)
 
     def _flick(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas):
         # 在 [now, now + (flick_end - flick_start)] 内单调滑动，每 flick_step ms 发送一次MOVE
         duration = flick_end - flick_start
         if pointer.note is not None:
-            self._insert(self.now - pointer.age + 1, TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
+            self._insert(self._release_at(pointer), TouchEvent(pointer.note.pos, TouchAction.UP, pointer.id))
+        pointer.pressed_at = self.now
         x0, y0 = note.pos
         alpha = note.angle
         dx, dy = math.sin(alpha) * flick_scale_factor, math.cos(alpha) * flick_scale_factor
@@ -211,20 +259,24 @@ class PointerAllocator:
             for pointer in self.pointers:
                 pointer.age += self.now - self.last_timestamp
 
+        # 本帧仍在按住(hold)的指针不可被 tap/flick 复用
+        drag_notes = frame.unallocated[Note.DRAG - 1]
+        matched = self.match(drag_notes)
+        self.reserved = {p.id for p in matched if p is not None}
+
         # 步骤1：分配tap
         for note in frame.taps():
             pointer = self.alloc(note)
-            self._tap(pointer, note)
+            self._tap(pointer, note, frame.blocks)
 
         # 步骤2: 分配flick
         for note in frame.flicks():
             pointer = self.alloc(note)
             self._flick(pointer, note, frame.blocks)
 
-        # 步骤3：分配drag
-        for note in frame.drags():
-            pointer = self.check(note)
-            if pointer:
+        # 步骤3：分配drag（沿用步骤0的一对一匹配结果；预留指针未被tap/flick占用）
+        for note, pointer in zip(drag_notes, matched):
+            if pointer is not None:
                 pointer.note = note
                 pointer.age = 0
                 if self.now - pointer.sent_at >= drag_step:
@@ -233,6 +285,8 @@ class PointerAllocator:
                 continue
             pointer = self.alloc(note)
             self._drag(pointer, note)
+        frame.unallocated[Note.DRAG - 1] = []
+        self.reserved = set()
 
         # 步骤4：抬起长时间空闲的指针
         for pointer in self.pointers:
@@ -257,6 +311,7 @@ def solve(chart: Chart) -> dict[int, list[TouchEvent]]:
     print('正在统计帧...', end='')
     stdout.flush()
     # 统计frames
+    seen: set[tuple[int, int, float, float]] = set()  # 谱面中同时刻同位置的重复音符只保留一个
     for line in chart.judge_lines:
         for note in line.notes_above + line.notes_below:
             ms = round(line.seconds(note.time) * 1000)
@@ -264,6 +319,10 @@ def solve(chart: Chart) -> dict[int, list[TouchEvent]]:
             x, y = line.pos(note.time)
             alpha = - line.angle(note.time) * math.pi / 180
             pos = x + off_x * math.cos(alpha), y + off_x * math.sin(alpha)
+            key = (ms, note.typ, round(pos[0], 1), round(pos[1], 1))
+            if key in seen:
+                continue
+            seen.add(key)
             if note.typ == Note.HOLD:
                 hold_ms = math.ceil(line.seconds(note.hold) * 1000)
                 frames[ms].add(Note.TAP, pos, alpha)

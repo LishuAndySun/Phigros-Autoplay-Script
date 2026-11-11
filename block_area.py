@@ -8,7 +8,23 @@ BUCKET = 0.5  # 时间索引的分桶宽度(秒)
 MAX_TIME = 3600.0  # 索引时间上限(秒)，避免 disableTime=1e9 之类的值撑爆索引
 STEP = 4  # 避让时沿判定线法向搜索的步长(像素)
 MAX_STEPS = math.ceil(math.hypot(SCREEN_W, SCREEN_H) / STEP)
+MAX_RADIUS = math.hypot(SCREEN_W, SCREEN_H)
 MARGIN = 30  # 避让用的安全边距(像素)，向噪域外侧额外扩张
+USE_SUBTRACT = False  # 游戏中挖空块不生效，设为 True 才启用挖空
+
+
+def nearby_points(x: float, y: float):
+    """以 (x, y) 为中心由近及远输出屏幕内的候选点，首个为自身"""
+    yield x, y
+    r = STEP
+    while r <= MAX_RADIUS:
+        n = max(8, math.ceil(2 * math.pi * r / STEP))
+        for i in range(n):
+            a = 2 * math.pi * i / n
+            px, py = x + r * math.cos(a), y + r * math.sin(a)
+            if 0 <= px <= SCREEN_W and 0 <= py <= SCREEN_H:
+                yield px, py
+        r += STEP
 
 
 def _interp(events: list[tuple[float, tuple[float, ...]]], t: float,
@@ -82,7 +98,9 @@ class BlockAreas:
 
     def blocked(self, x: float, y: float, t: float, margin: float = 0.0) -> bool:
         """噪域 = 普通块的并集 减去 挖空块(isSubtract)的并集"""
-        return self._hit(self.add, x, y, t, margin) and not self._hit(self.sub, x, y, t, margin)
+        if not self._hit(self.add, x, y, t, margin):
+            return False
+        return not (USE_SUBTRACT and self._hit(self.sub, x, y, t, margin))
 
     def free_point(self, pos: tuple[float, float], t: float, nx_dir: float, ny_dir: float) -> tuple[float, float]:
         """若 pos 位于 t 时刻的噪域内，沿法向单位向量 (nx_dir, ny_dir) 搜索；找不到时保持原位"""

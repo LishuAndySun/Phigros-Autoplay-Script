@@ -1,7 +1,9 @@
 import configparser
 import json
 import os,threading
+import queue
 import sys
+import time
 import zipfile
 from ttkbootstrap import Style, ttk
 from tkinter import  BooleanVar, messagebox, Tk, X, IntVar, StringVar, DoubleVar, filedialog, Toplevel
@@ -12,6 +14,67 @@ from chart import Chart
 from control import DeviceController
 from extract import AssetsManager, Texture2D, TextAsset
 from solve import load_from_json, export_to_json
+
+
+def clear_answer_cache(chart_path: str):
+    ans_file = chart_path + '.ans.json'
+    if os.path.exists(ans_file):
+        os.remove(ans_file)
+
+
+LOOKAHEAD_MS = 120  # 主线程提前把事件交给发送线程的毫秒数
+
+
+def _log(msg: str):
+    with open('sender.log', 'a', encoding='utf-8') as f:
+        f.write(f'{time.strftime("%H:%M:%S")} {msg}\n')
+
+
+class TouchSender:
+    '''后台线程按计划时间发送触控包，避免 Tk 主线程的刷新开销造成时序漂移；队列积压时丢弃 MOVE'''
+
+    def __init__(self, ctl: DeviceController, clock):
+        self.ctl = ctl
+        self.clock = clock  # 返回当前计划起点(perf_counter 秒)的可调用对象，微调延时后立即生效
+        self.queue: queue.Queue = queue.Queue()
+        self.thread = threading.Thread(target=self._loop, daemon=True)
+        self.running = True
+        self.dropped = 0
+
+    def start(self):
+        self.thread.start()
+
+    def submit(self, ms: int, events: list):
+        self.queue.put((ms, events))
+
+    def _loop(self):
+        while self.running:
+            item = self.queue.get()
+            if item is None:
+                return
+            ms, events = item
+            wait = self.clock() + ms / 1000 - time.perf_counter()
+            if wait > 0:
+                time.sleep(wait)
+            elif wait < -0.05:  # 已经晚了 50ms 以上，丢弃 MOVE，只补发按住/抬起
+                kept = [e for e in events if e.action.name != 'MOVE']
+                self.dropped += len(events) - len(kept)
+                events = kept
+            if wait < -0.1:
+                _log(f'批次 {ms}ms 晚发 {-wait * 1000:.0f}ms，队列剩余 {self.queue.qsize()}')
+            t0 = time.perf_counter()
+            for ev in events:
+                try:
+                    self.ctl.touch(*ev.pos, ev.action.value, pointer_id=ev.pointer)
+                except OSError:
+                    self.running = False
+                    return
+            cost = time.perf_counter() - t0
+            if cost > 0.05:
+                _log(f'批次 {ms}ms 发送耗时 {cost * 1000:.0f}ms，{len(events)} 个事件')
+
+    def stop(self):
+        self.running = False
 
 import inspect
 import requests
@@ -193,8 +256,30 @@ class App(ttk.Frame):
         self.info_label = ttk.Label(text='请开始游戏，再暂停游戏，然后再点击上面的开始按钮')
         self.info_label.pack()
 
+        self.timer_start = None
+        self.timer_label = ttk.Label(text='计时：00:00.0')
+        self.timer_label.pack()
+
         self.master.minsize(400, 300)
 
+
+    @staticmethod
+    def format_elapsed(seconds):
+        minutes, secs = divmod(seconds, 60)
+        return f'计时：{int(minutes):02d}:{secs:04.1f}'
+
+    def start_timer(self):
+        import time
+        self.timer_start = time.time()
+
+    def refresh_timer(self):
+        import time
+        if self.timer_start is not None:
+            self.timer_label['text'] = self.format_elapsed(time.time() - self.timer_start)
+
+    def stop_timer(self):
+        self.refresh_timer()
+        self.timer_start = None
 
     def sync_mode_changed(self):
         if self.sync_mode.get() == 0:  # delay
@@ -239,11 +324,8 @@ class App(ttk.Frame):
             cache.set('cache', 'songid', '')
 
         try:
-            self.difficulty.set(difficulty := cache.get('cache', 'difficulty'))
-            algos = ['algo1', 'algo2']
-            if os.path.exists(f'./Assets/Tracks/{self.song_id.get()}/Chart_{difficulty}.json.ans.json'):
-                algos.insert(0, '不规划(使用缓存)')
-            self.algo_select['values'] = algos
+            self.difficulty.set(cache.get('cache', 'difficulty'))
+            self.algo_select['values'] = ['algo1', 'algo2']
         except configparser.NoOptionError:
             cache.set('cache', 'difficulty', '')
 
@@ -259,11 +341,7 @@ class App(ttk.Frame):
 
     def difficulty_selected(self, event):
     
-        difficulty = event.widget.get()
-        algos = ['algo1', 'algo2']
-        if os.path.exists(f'./Assets/Tracks/{self.song_id.get()}/Chart_{difficulty}.json.ans.json'):
-            algos.insert(0, '不规划(使用缓存)')
-        self.algo_select['values'] = algos
+        self.algo_select['values'] = ['algo1', 'algo2']
 
 
     def song_selected(self, event):
@@ -287,30 +365,23 @@ class App(ttk.Frame):
             self.cache.set('cache', 'offset', str(self.delay.get()))
             self.cache.write(open(self.cache_path, 'w'))
 
+            clear_answer_cache(chart_path)
             algo_method = self.algo.get()
             ans: dict
-            ans_file = chart_path + '.ans.json'
-            if algo_method == '不规划(使用缓存)':
-                ans = load_from_json(open(ans_file))
-            elif algo_method == 'algo1':
+            if algo_method == 'algo1':
                 import algo.algo1
                 ans = algo.algo1.solve(chart)
-                if self.mirror == True: 
-                    pass
-                else:
-                    export_to_json(ans, open(ans_file, 'w'))
             elif algo_method == 'algo2':
                 import algo.algo2
                 ans = algo.algo2.solve(chart)
-                if self.mirror == True: 
-                    pass
-                else:
-                    export_to_json(ans, open(ans_file, 'w'))
             else:
                 raise ValueError(f'未知的规划方式: {algo_method}')
 
             ctl = DeviceController()
             device_size = ctl.device_size
+
+            # 发送线程的时间参考点(perf_counter 秒)，微调延时后立即可见
+            clock_ref = {'start': 0.0}
 
             height = device_size[1]
             width = height * 16 // 9
@@ -356,36 +427,45 @@ class App(ttk.Frame):
 
                 def incremented(event):
                     self.start_time += 0.01
+                    clock_ref['start'] = time.perf_counter() - (time.time() - self.start_time)
 
                 def decremented(event):
                     self.start_time -= 0.01
+                    clock_ref['start'] = time.perf_counter() - (time.time() - self.start_time)
 
                 self.delay_input.bind('<<Increment>>', incremented)
                 self.delay_input.bind('<<Decrement>>', decremented)
 
                 self.start_time = time.time() + offset
+                clock_ref['start'] = time.perf_counter() - (time.time() - self.start_time)
 
                 begin = False
                 self.running = True
+
+                sender = TouchSender(ctl, lambda: clock_ref['start'])
+                sender.start()
 
                 ce_ms, ces = next(ans_iter)
                 try:
                     while self.running:
                         self.update()
+                        self.refresh_timer()
                         now = round((time.time() - self.start_time) * 1000)
-                        if now >= ce_ms:
+                        while now >= ce_ms - LOOKAHEAD_MS:
                             if not begin:
                                 self.info_label['text'] = '开始操作'
                                 begin = True
-                            for ev in ces:
-                                ctl.touch(*ev.pos, ev.action.value, pointer_id=ev.pointer)
-                                #print(ev)
+                                self.start_timer()
+                            sender.submit(ce_ms, ces)
                             ce_ms, ces = next(ans_iter)
+                        time.sleep(0.001)
                 except Exception:
                     pass
                 finally:
-                    print('[client] INFO: 自动打歌已结束')
+                    print(f'[client] INFO: 自动打歌已结束，因迟到丢弃 MOVE {sender.dropped} 个')
+                    self.stop_timer()
                     time.sleep(0.5)  # 等待server退出
+                    sender.stop()
                     ctl.close()
 
                 self.go['command'] = pre_command
@@ -419,34 +499,42 @@ class App(ttk.Frame):
 
                     ce_ms, ces = next(ans_iter)
                     self.start_time = time.time() - ce_ms / 1000 - 0.01
+                    clock_ref['start'] = time.perf_counter() - (time.time() - self.start_time)
+                    self.start_timer()
+
+                    sender = TouchSender(ctl, lambda: clock_ref['start'])
+                    sender.start()
 
                     def incremented(event):
                         self.start_time += 0.01
+                        clock_ref['start'] = time.perf_counter() - (time.time() - self.start_time)
 
                     def decremented(event):
                         self.start_time -= 0.01
+                        clock_ref['start'] = time.perf_counter() - (time.time() - self.start_time)
 
                     self.delay_input.bind('<<Increment>>', incremented)
                     self.delay_input.bind('<<Decrement>>', decremented)
 
-                    for ev in ces:
-                        ctl.touch(*ev.pos, ev.action.value, pointer_id=ev.pointer)
+                    sender.submit(ce_ms, ces)
                     ce_ms, ces = next(ans_iter)
 
                     try:
                         while self.running:
                             self.update()
+                            self.refresh_timer()
                             now = round((time.time() - self.start_time) * 1000)
-                            if now >= ce_ms:
-                                for ev in ces:
-                                    ctl.touch(*ev.pos, ev.action.value, pointer_id=ev.pointer)
-                                  #  print(ev)
+                            while now >= ce_ms - LOOKAHEAD_MS:
+                                sender.submit(ce_ms, ces)
                                 ce_ms, ces = next(ans_iter)
+                            time.sleep(0.001)
                     except Exception:
                         pass
                     finally:
-                        print('[client] INFO: 自动打歌已结束')
+                        print(f'[client] INFO: 自动打歌已结束，因迟到丢弃 MOVE {sender.dropped} 个')
+                        self.stop_timer()
                         time.sleep(0.5)  # 等待server退出
+                        sender.stop()
                         ctl.close()
                     self.go['command'] = pre_command
                     self.go['text'] = pre_text

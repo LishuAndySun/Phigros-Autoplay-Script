@@ -19,7 +19,6 @@ MSG_TYPE_INJECT_TOUCH_EVENT = 2
 GENERIC_FINGER_ID = 0xffffffffffffffff
 # type, action, pointer_id, x, y, screen_w, screen_h, pressure, action_button, buttons (共 32 字节)
 TOUCH_FMT = '!BBQiiHHHII'
-TOUCH_LOG_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'touch_log.tsv')  # 实际发出的触控日志
 
 
 def _kill_stale_servers():
@@ -145,8 +144,6 @@ class DeviceController:
         packet = struct.pack(TOUCH_FMT, MSG_TYPE_INJECT_TOUCH_EVENT, action, pointer_id,
                              x, y, *self.device_size, pressure, 0, 0)
         self.control_socket.sendall(packet)
-        with open(TOUCH_LOG_PATH, 'a') as f:
-            f.write(f'{time.time():.3f}\t{action}\t{pointer_id}\t{x}\t{y}\t{self.device_size[0]}x{self.device_size[1]}\n')
 
     def touch(self, x: int, y: int, action: int, pressure: int = 0xffff, pointer_id: int = GENERIC_FINGER_ID):
         self._send_touch(x, y, action, pressure, pointer_id)
