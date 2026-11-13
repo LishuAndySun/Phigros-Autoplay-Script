@@ -1,0 +1,355 @@
+{
+  "docId": "527e3065-e76f-4b63-a328-61a8e3b6e94a",
+  "snapshot": {
+    "version": 1,
+    "workspaceUuid": "527e3065-e76f-4b63-a328-61a8e3b6e94a",
+    "name": "PhiAPS Admissions",
+    "isPublic": false,
+    "pagesById": {
+      "9a07458f-7e00-448d-aa70-938a9a5f035e": {
+        "path": "1211202605_ANALYSIS_REPORT.md",
+        "title": "1211202605_ANALYSIS_REPORT",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 0
+      },
+      "dd13910d-4956-4ed4-8d7d-219583995b0b": {
+        "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+        "title": "AUDIO_PLAYBACK_PIPELINE_AUDIT",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 1
+      },
+      "fe1387a5-b557-4377-bd52-9535246465b6": {
+        "path": "AUDIO_START_SIGNAL_INVESTIGATION.md",
+        "title": "AUDIO_START_SIGNAL_INVESTIGATION",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 2
+      },
+      "baafe286-a519-4b44-b1f3-45f438b1f314": {
+        "path": "AutoStartCalibrationPlan.md",
+        "title": "AutoStartCalibrationPlan",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 3
+      },
+      "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e": {
+        "path": "C08_EVENT_DEEP_ANALYSIS.md",
+        "title": "C08_EVENT_DEEP_ANALYSIS",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 4
+      },
+      "2d0924d3-7d3b-4289-a89d-9d83a328e1cc": {
+        "path": "ERROR_AUDIT_REPORT.md",
+        "title": "ERROR_AUDIT_REPORT",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 5
+      },
+      "df6868cd-63e5-4390-894f-17fe39d1bcfc": {
+        "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
+        "title": "MULTI_ROUND_OPERATION_CORRELATION",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 6
+      },
+      "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754": {
+        "path": "PHASE2_FIX_REPORT.md",
+        "title": "PHASE2_FIX_REPORT",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 7
+      },
+      "5bfbe26a-3832-41e0-9aa2-c49e657790d0": {
+        "path": "Plan_AvoidNoiseField.md",
+        "title": "Plan_AvoidNoiseField",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 8
+      },
+      "67e3f243-dc43-4a7d-9f0d-caf01a4feb27": {
+        "path": "ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+        "title": "ROUND3_AUDIO_CONTROL_ANALYSIS",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 9
+      },
+      "2e5556de-752c-411f-9924-eea9c90aa8ae": {
+        "path": "ROUND3_RETEST_COMPARISON.md",
+        "title": "ROUND3_RETEST_COMPARISON",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 10
+      },
+      "a42b4205-cf92-4322-bb23-596a09f7f80b": {
+        "path": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+        "title": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 11
+      },
+      "9419e984-10d9-4235-8116-373c1f971880": {
+        "path": "默认页面.md",
+        "title": "默认页面",
+        "parentUuid": null,
+        "deleted": true,
+        "sort": 0
+      }
+    }
+  },
+  "localVersion": 4,
+  "remoteBaseVersion": 6,
+  "appliedOpsRemoteVersion": 6,
+  "appliedOps": [
+    {
+      "id": "ac044b22-537e-491f-a67c-d6aff4efe94f",
+      "localVersion": 1,
+      "remoteBaseVersion": 2,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "9419e984-10d9-4235-8116-373c1f971880",
+            "createdAt"
+          ],
+          "od": 1794558471350
+        },
+        {
+          "p": [
+            "pagesById",
+            "9419e984-10d9-4235-8116-373c1f971880",
+            "updatedAt"
+          ],
+          "od": 1794558471350
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794560480410,
+      "acked": true,
+      "ackedAt": 1794560483230,
+      "remoteVersion": 3
+    },
+    {
+      "id": "6a39c8d4-9144-42ba-99d5-c432dce45c25",
+      "localVersion": 2,
+      "remoteBaseVersion": 3,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e"
+          ],
+          "oi": {
+            "path": "C08_EVENT_DEEP_ANALYSIS.md",
+            "title": "C08_EVENT_DEEP_ANALYSIS",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "2d0924d3-7d3b-4289-a89d-9d83a328e1cc"
+          ],
+          "oi": {
+            "path": "ERROR_AUDIT_REPORT.md",
+            "title": "ERROR_AUDIT_REPORT",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 5
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "2e5556de-752c-411f-9924-eea9c90aa8ae"
+          ],
+          "oi": {
+            "path": "ROUND3_RETEST_COMPARISON.md",
+            "title": "ROUND3_RETEST_COMPARISON",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 10
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "5bfbe26a-3832-41e0-9aa2-c49e657790d0"
+          ],
+          "oi": {
+            "path": "plan.md",
+            "title": "plan",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 8
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "67e3f243-dc43-4a7d-9f0d-caf01a4feb27"
+          ],
+          "oi": {
+            "path": "ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+            "title": "ROUND3_AUDIO_CONTROL_ANALYSIS",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 9
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "9a07458f-7e00-448d-aa70-938a9a5f035e"
+          ],
+          "oi": {
+            "path": "1211202605_ANALYSIS_REPORT.md",
+            "title": "1211202605_ANALYSIS_REPORT",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "a42b4205-cf92-4322-bb23-596a09f7f80b"
+          ],
+          "oi": {
+            "path": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+            "title": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 11
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "baafe286-a519-4b44-b1f3-45f438b1f314"
+          ],
+          "oi": {
+            "path": "AutoStartCalibrationPlan.md",
+            "title": "AutoStartCalibrationPlan",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "dd13910d-4956-4ed4-8d7d-219583995b0b"
+          ],
+          "oi": {
+            "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+            "title": "AUDIO_PLAYBACK_PIPELINE_AUDIT",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "df6868cd-63e5-4390-894f-17fe39d1bcfc"
+          ],
+          "oi": {
+            "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
+            "title": "MULTI_ROUND_OPERATION_CORRELATION",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 6
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754"
+          ],
+          "oi": {
+            "path": "PHASE2_FIX_REPORT.md",
+            "title": "PHASE2_FIX_REPORT",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 7
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "fe1387a5-b557-4377-bd52-9535246465b6"
+          ],
+          "oi": {
+            "path": "AUDIO_START_SIGNAL_INVESTIGATION.md",
+            "title": "AUDIO_START_SIGNAL_INVESTIGATION",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 2
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794560563388,
+      "acked": true,
+      "ackedAt": 1794560568320,
+      "remoteVersion": 4
+    },
+    {
+      "id": "a13dd316-dd01-4055-8e20-7db6ab6d11ec",
+      "localVersion": 3,
+      "remoteBaseVersion": 4,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "9419e984-10d9-4235-8116-373c1f971880",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794560644418,
+      "acked": true,
+      "ackedAt": 1794560646083,
+      "remoteVersion": 5
+    },
+    {
+      "id": "d57dc197-2022-40f5-998a-d4875a41ef29",
+      "localVersion": 4,
+      "remoteBaseVersion": 5,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "5bfbe26a-3832-41e0-9aa2-c49e657790d0",
+            "path"
+          ],
+          "oi": "Plan_AvoidNoiseField.md",
+          "od": "plan.md"
+        },
+        {
+          "p": [
+            "pagesById",
+            "5bfbe26a-3832-41e0-9aa2-c49e657790d0",
+            "title"
+          ],
+          "oi": "Plan_AvoidNoiseField",
+          "od": "plan"
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794560726356,
+      "acked": true,
+      "ackedAt": 1794560728103,
+      "remoteVersion": 6
+    }
+  ],
+  "pendingOps": []
+}

@@ -1,0 +1,7743 @@
+{
+  "docId": "5bfbe26a-3832-41e0-9aa2-c49e657790d0",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "PhiAPS 噪域避让开发计划"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "一、当前稳定版本与现状"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "1.1 已推送稳定版本"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "GitHub 上已有稳定版本（commit HEAD）。"
+        ],
+        [
+          "LI",
+          {},
+          "基础点按逻辑已修复：即使没有噪域干扰，Tap/Drags/Flicks/Holds 都能正常触发。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "本次任何修改都不能破坏这一已验证功能。"
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "1.2 已完成工作"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "模块"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "状态"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`block",
+                "_area.py` — 时变噪域矩形判定 + `search",
+                "_point` 几何避让"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`algo/algo2.py` — TAP/FLICK 噪域外约束 + HOLD 严格跟随"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "判定线垂直距离约束 (`MIN",
+                "_DIST = 80`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "最大迁移距离限制 (`MAX",
+                "_RELOCATION",
+                "_DISTANCE = 200`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "无解原因枚举 (`PlacementFailure`) + `skipped` 记录"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "审计脚本 `tools/audit",
+                "_noise.py`（7 项指标）"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "跳变追踪脚本 `tools/trace",
+                "_jumps.py`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "✅ 完成"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "1.3 当前参数"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "python"
+      },
+      [
+        "DIV",
+        {},
+        "MARGIN = 30           # 噪域安全边距 (px)"
+      ],
+      [
+        "DIV",
+        {},
+        "MIN_DIST = 80.0       # 触点到判定线垂直距离下限 (px)"
+      ],
+      [
+        "DIV",
+        {},
+        "MAX_RELOCATION_DISTANCE = 200.0  # 触点迁移上限 (px)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "暂不修改这些参数。"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "1.4 审计基线数据（Chart",
+        "_AT.json, 56830 帧）"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "指标"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "值"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "总事件"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "17308"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "按下"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1592"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "MOVE"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "14124"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[1] Tap/Flick 按下噪域违规"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "14"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[2] Hold MOVE 噪域违规"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1229"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[3] Flick MOVE 噪域违规"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[4] 判定线垂直距离违规 (<80px)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[5] 相邻 MOVE 跳变 >50px"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "48 / 13448（最大 998px）"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[6] 最大实际迁移距离"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "200.0px"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "[7] 无解总数"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "54（35 REL + 19 NO",
+                "_VAL）"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "二、998px 跳变根因及证据"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "2.1 诊断结论"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "通过 `tools/trace",
+      "_jumps.py` 完整追踪，确认："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "所有 48 个 >50px 跳变均发生在同一 note"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "_id 的连续 MOVE 之间。"
+          ]
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "时间间隔全部为 8ms，对应 `drag"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "_step = 8`。"
+          ]
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "不是指针复用、跨音符匹配错误或 PointerAllocator bug。"
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "2.2 最大跳变示例"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "Pointer: 1000"
+      ],
+      [
+        "DIV",
+        {},
+        "MOVE[0]: t=92072ms (268.8,648.0) type=2 note_id=1195"
+      ],
+      [
+        "DIV",
+        {},
+        "MOVE[1]: t=92080ms (1267.2,648.0) type=2 note_id=1195"
+      ],
+      [
+        "DIV",
+        {},
+        "距离: 998.4px, 时间差: 8ms"
+      ],
+      [
+        "DIV",
+        {},
+        "前后事件均为同音符连续 MOVE，无指针切换。"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "2.3 根因定位"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "问题出在 `solve()` 中 HOLD 的 DRAG 位置生成："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "python"
+      },
+      [
+        "DIV",
+        {},
+        "# algo/algo2.py solve()"
+      ],
+      [
+        "DIV",
+        {},
+        "for offset in range(1, hold_ms + 1):"
+      ],
+      [
+        "DIV",
+        {},
+        "    frames[ms + offset].add(Note.DRAG,"
+      ],
+      [
+        "DIV",
+        {},
+        "        line.pos_of(note, line.time((ms + offset) / 1000)), ...)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "每帧 DRAG 目标直接取自 `line.pos",
+      "_of()`。如果谱面中判定线在两帧之间快速移动（旋转/平移），相邻帧目标位置差距可达数百甚至近千像素。`PointerAllocator.allocate()` 步骤 3 直接将 `note.pos` 下发为 MOVE，",
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "不做限速或插值"
+      ],
+      "。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "2.4 关键事实"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "基线和修改后最大跳变都是 998px"
+          ],
+          " → 这不是噪域搜索引入的新问题，而是原有代码就存在的行为。"
+        ],
+        [
+          "LI",
+          {},
+          "HOLD 必须严格跟随判定线 → 不能为了减少跳变而擅自改变 HOLD 轨迹。"
+        ],
+        [
+          "LI",
+          {},
+          "PointerAllocator 只是忠实地将 `note.pos` 下发 → 问题在上游坐标生成。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "三、HOLD 轨迹连续性检测方案"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "3.1 核心约束"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "HOLD 必须严格跟随判定线，不能为了减少 MOVE 跳变而擅自改变 HOLD 轨迹。"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "因此，不允许直接加入固定的每帧最大位移限制让触点落后于判定线。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "3.2 调查步骤"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H4",
+        {},
+        "Step 1: 判定线轨迹连续性检测"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "读取 `chart.py` 中 `JudgeLine.pos()`、`pos",
+      "_of()`、`angle()`、`seconds()` 的实现，确认："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`pos(t)` 是否对任意时刻 t 返回有限值。"
+        ],
+        [
+          "LI",
+          {},
+          "在谱面快速旋转/平移时段，`pos(t)` 的变化率是否合理。"
+        ],
+        [
+          "LI",
+          {},
+          "`line.time(t)` 和 `line.seconds(t)` 的转换公式是否与谱面 JSON 一致。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H4",
+        {},
+        "Step 2: 极端位移识别与分类"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "使用 `tools/trace",
+      "_jumps.py` 的输出，对每个 >50px 跳变："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "提取 note",
+          "_id、时间戳、前后坐标。"
+        ],
+        [
+          "LI",
+          {},
+          "计算两帧间判定线中心位移 `d = hypot(dx, dy)`。"
+        ],
+        [
+          "LI",
+          {},
+          "检查该时间段内是否有 `rotateEvents` 或 `moveEvents` 导致判定线剧烈变化。"
+        ],
+        [
+          "LI",
+          {},
+          "分类为：",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "A类：谱面真实快速运动"
+              ],
+              "（判定线本身在两帧间移动了 >50px）。"
+            ],
+            [
+              "LI",
+              {},
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "B类：计算异常"
+              ],
+              "（判定线变化平缓但 `pos",
+              "_of()` 返回了错误坐标）。"
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H4",
+        {},
+        "Step 3: 检查 `line.pos",
+        "_of()` 正确性"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "阅读 `chart.py` 中 `JudgeLine.pos",
+      "_of()` 实现，重点检查："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`note.x` 偏移量是否正确应用。"
+        ],
+        [
+          "LI",
+          {},
+          "`line.angle()` 在 HOLD 持续期间是否被正确更新。"
+        ],
+        [
+          "LI",
+          {},
+          "是否存在浮点精度累积误差。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H4",
+        {},
+        "Step 4: 研究坐标转换与采样"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "确认 `line.seconds(note.time)` 和 `line.time(ms/1000)` 的转换系数（1.875/bpm）是否正确。"
+        ],
+        [
+          "LI",
+          {},
+          "确认 `alpha = -line.angle(...) ",
+          "* pi/180` 的角度方向是否正确。"
+        ],
+        [
+          "LI",
+          {},
+          "确认 `off",
+          "_x = note.x ",
+          "* 72` 的缩放因子是否正确。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H4",
+        {},
+        "Step 5: 输出报告"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "对每个 >50px 跳变输出："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "note_id=N, t0=T0ms, t1=T1ms, p0=(X0,Y0), p1=(X1,Y1), d=D px"
+      ],
+      [
+        "DIV",
+        {},
+        "判定线中心位移: dx=X, dy=Y, d_line=L px"
+      ],
+      [
+        "DIV",
+        {},
+        "该时段 rotateEvents: [...]"
+      ],
+      [
+        "DIV",
+        {},
+        "该时段 moveEvents: [...]"
+      ],
+      [
+        "DIV",
+        {},
+        "分类: A/B"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "3.3 预期结果"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "如果全部归类为 A 类（谱面真实快速运动）→ 保留原始轨迹，记录为合法高速运动，无需修复。"
+        ],
+        [
+          "LI",
+          {},
+          "如果发现 B 类（计算异常）→ 针对性修复 `pos",
+          "_of()` 或相关转换函数。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "四、14 个按下噪域违规的调查方案"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "4.1 违规列表（来自审计脚本）"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "74851ms type=2 (149,323)"
+      ],
+      [
+        "DIV",
+        {},
+        "75223ms type=2 (159,268)"
+      ],
+      [
+        "DIV",
+        {},
+        "75297ms type=2 (84,337)"
+      ],
+      [
+        "DIV",
+        {},
+        "75371ms type=2 (153,264)"
+      ],
+      [
+        "DIV",
+        {},
+        "75446ms type=2 (80,333)"
+      ],
+      [
+        "DIV",
+        {},
+        "81238ms type=2 (259,156)"
+      ],
+      [
+        "DIV",
+        {},
+        "81980ms type=2 (1024,216)"
+      ],
+      [
+        "DIV",
+        {},
+        "82351ms type=2 (1044,201)"
+      ],
+      [
+        "DIV",
+        {},
+        "82426ms type=2 (976,127)"
+      ],
+      [
+        "DIV",
+        {},
+        "82500ms type=2 (1050,196)"
+      ],
+      [
+        "DIV",
+        {},
+        "82574ms type=2 (982,123)"
+      ],
+      [
+        "DIV",
+        {},
+        "82723ms type=2 (1093,227)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "共 14 个，全部是 `type=2`（DRAG 音符走 `",
+      "_tap` 路径）。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "4.2 调查步骤"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "对每个违规点："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "原始坐标 vs 最终坐标"
+          ],
+          "：对比 `note.pos`（原始）和下发坐标。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "噪域边界距离"
+          ],
+          "：计算下发点到最近噪域边缘的距离。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "判定线垂直距离"
+          ],
+          "：调用 `point",
+          "_line",
+          "_distance(下发坐标, line)`。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "实际迁移距离"
+          ],
+          "：`hypot(下发x-原始x, 下发y-原始y)`。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "search"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "_point 过程"
+          ],
+          "：模拟 `search",
+          "_point` 的执行流程，确认：",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "法向搜索是否遍历了所有候选。"
+            ],
+            [
+              "LI",
+              {},
+              "nearby",
+              "_points 兜底是否被触发。"
+            ],
+            [
+              "LI",
+              {},
+              "fallback 是否找到了合法点但未正确下发。"
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "下发一致性"
+          ],
+          "：确认 `",
+          "_insert` 收到的坐标与 `note.pos` 一致。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "4.3 重点关注"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "为什么 `type=2`（DRAG 音符）会走 `",
+          "_tap` 路径？检查 `solve()` 中的分支逻辑。"
+        ],
+        [
+          "LI",
+          {},
+          "这些违规点的噪域是否在 `",
+          "[t, t+release",
+          "_ms]` 区间内动态变化导致\"按下时合法、执行时非法\"。"
+        ],
+        [
+          "LI",
+          {},
+          "是否存在 `sample",
+          "_step=5` 采样遗漏的情况。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "五、54 个无解事件的分类审查方案"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "5.1 当前分类"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "RELOCATION",
+          "_LIMIT",
+          "_EXCEEDED (REL): 35"
+        ],
+        [
+          "LI",
+          {},
+          "NO",
+          "_VALID",
+          "_POSITION (NO",
+          "_VAL): 19"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "5.2 审查步骤"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "对每个无解事件："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "原始坐标"
+          ],
+          "：`(ox, oy)`。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "搜索方向"
+          ],
+          "：`(nx",
+          "_dir, ny",
+          "_dir)`。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "判定线端点"
+          ],
+          "：`line`。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "迁移距离"
+          ],
+          "：`hypot(ox-candidate",
+          "_x, oy-candidate",
+          "_y)`（如果有接近的候选）。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "噪域覆盖分析"
+          ],
+          "：在 `",
+          "[t, t+duration]` 区间内，逐桶检查哪些 BlockArea 覆盖了屏幕。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "判定线距离约束影响"
+          ],
+          "：移除 `min",
+          "_dist` 约束后重新运行 `search",
+          "_point`，看是否能找到解。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "5.3 分类标准"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "类别"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "条件"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "整屏噪域覆盖"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "全屏不存在满足噪域约束的点"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "超出迁移距离"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "存在合法点但全在 200px 之外"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "min",
+                "_dist 约束"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "合法点在 80px 距离约束下被排除"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "搜索遗漏"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "理论上存在合法点但 `search",
+                "_point` 未找到"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "几何异常"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "判定线退化、坐标非有限等"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "5.4 验证方法"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "对每个无解事件，手动调用 `search",
+      "_point` 并打印中间状态："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "python"
+      },
+      [
+        "DIV",
+        {},
+        "print(f\"search_point: pos={pos}, t={t:.3f}, dir=({nx},{ny})\")"
+      ],
+      [
+        "DIV",
+        {},
+        "print(f\"  ok(pos)? {ok(*pos)}\")"
+      ],
+      [
+        "DIV",
+        {},
+        "print(f\"  法向搜索范围: 1..{min(MAX_STEPS, int(max_relocation//STEP)+1)}\")"
+      ],
+      [
+        "DIV",
+        {},
+        "print(f\"  nearby_points 命中数: N\")"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "六、噪域避让算法的进一步验证"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "6.1 `search",
+        "_point` 正确性验证"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "法向搜索完整性"
+          ],
+          "：确认 `(nx",
+          "_dir, ny",
+          "_dir)` 始终指向远离判定线的方向。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "nearby"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "_points 均匀性"
+          ],
+          "：确认半径 r 上的采样点数 `n = max(8, ceil(2πr/STEP))` 足够密集。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "duration 检查"
+          ],
+          "：确认 `",
+          "[t, t+duration]` 区间的采样步长 `sample",
+          "_step=5` 不会遗漏瞬态噪域。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "6.2 边界情况测试"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "场景"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "预期行为"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "噪域完全覆盖屏幕"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "NO",
+                "_VALID",
+                "_POSITION"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "噪域刚好接触触点"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "blocked 返回 True（margin 生效）"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "判定线角度 0°/90°"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "point",
+                "_line",
+                "_distance 正确"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "判定线两端点重合"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ValueError → INVALID",
+                "_GEOMETRY"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "pos 包含 NaN/Inf"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "INVALID",
+                "_GEOMETRY"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "七、回归测试方案"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "7.1 测试矩阵"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "测试组"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "内容"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过标准"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "T1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "无噪域时 Tap/Drags/Flicks/Holds"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "全部正常点击，无跳过"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "T2"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "静态噪域"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "所有音符落在噪域外"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "T3"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "动态噪域（move/rotate/scale）"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "同上"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "T4"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "极限迁移距离"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "不超过 200px，无解时正确记录"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "T5"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "判定线快速旋转"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "HOLD 严格跟随，无偏离"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "T6"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "完整谱面 Chart",
+                "_AT.json"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "审计脚本 7 项指标可复现"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "7.2 自动化检查"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "每次修改后运行："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "bash"
+      },
+      [
+        "DIV",
+        {},
+        "venv/bin/python tools/audit_noise.py"
+      ],
+      [
+        "DIV",
+        {},
+        "venv/bin/python tools/trace_jumps.py"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "对比输出确保："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "无解数量不增加。"
+        ],
+        [
+          "LI",
+          {},
+          "按下噪域违规不增加。"
+        ],
+        [
+          "LI",
+          {},
+          "跳变数量不增加。"
+        ],
+        [
+          "LI",
+          {},
+          "已修复的 TAP/FLICK 点按能力保持。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "八、分阶段开发路线"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Phase 0：保存稳定版本和审计基线（已完成）"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "✅ GitHub 推送稳定版本。"
+        ],
+        [
+          "LI",
+          {},
+          "✅ 审计脚本产出基线数据。"
+        ],
+        [
+          "LI",
+          {},
+          "✅ 跳变追踪脚本产出诊断数据。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Phase 1：HOLD 轨迹连续性调查（只诊断，不修改）"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "目标"
+      ],
+      "：确认 998px 跳变是谱面真实运动还是计算异常。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "交付物"
+      ],
+      "："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "每个 >50px 跳变的详细报告（note",
+          "_id、时间、坐标、判定线位移、分类）。"
+        ],
+        [
+          "LI",
+          {},
+          "结论：是否需要修复，以及修复方向。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "不修改的代码"
+      ],
+      "：`algo/algo2.py`、`chart.py`、`block",
+      "_area.py`。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Phase 2：调查 14 个按下噪域违规"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "目标"
+      ],
+      "：逐个确认违规原因。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "交付物"
+      ],
+      "："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "14 个违规点的详细分析报告。"
+        ],
+        [
+          "LI",
+          {},
+          "结论：是 search",
+          "_point 漏找、fallback 错误、还是噪域定义本身的问题。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Phase 3：审查 54 个无解事件"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "目标"
+      ],
+      "：确认分类准确性，找出可修复的误判。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "交付物"
+      ],
+      "："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "54 个事件的分类表（整屏覆盖/超出距离/min",
+          "_dist/搜索遗漏/几何异常）。"
+        ],
+        [
+          "LI",
+          {},
+          "可修复事件清单及修复建议。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Phase 4：小范围修复"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "前提"
+      ],
+      "：Phase 1-3 有明确证据支持。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "可能的修复方向"
+      ],
+      "："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "如果 Phase 1 发现 `pos",
+          "_of()` 计算异常 → 修复 `chart.py`。"
+        ],
+        [
+          "LI",
+          {},
+          "如果 Phase 2 发现 search",
+          "_point 漏找 → 改进 `block",
+          "_area.py` 搜索策略。"
+        ],
+        [
+          "LI",
+          {},
+          "如果 Phase 3 发现误判 → 调整 `PlacementFailure` 分类逻辑。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "严格限制"
+      ],
+      "："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "每次修复只改一个函数。"
+        ],
+        [
+          "LI",
+          {},
+          "修复后运行完整回归测试。"
+        ],
+        [
+          "LI",
+          {},
+          "不修改 MARGIN/MIN",
+          "_DIST/MAX",
+          "_RELOCATION",
+          "_DISTANCE。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Phase 5：完整谱面回归测试"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "目标"
+      ],
+      "：确认所有修复未破坏已有功能。"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "通过标准"
+      ],
+      "："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "T1-T6 全部通过。"
+        ],
+        [
+          "LI",
+          {},
+          "审计指标无恶化。"
+        ],
+        [
+          "LI",
+          {},
+          "点按功能正常。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "九、风险与未解决问题"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "9.1 已知风险"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "风险"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "影响"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "缓解措施"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "HOLD 轨迹修复可能影响跟随精度"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "高"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "先诊断再修复，不盲目加限速"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "search",
+                "_point 改进可能引入性能问题"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "中"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "监控规划耗时"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "参数调整可能掩盖真正问题"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "高"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "暂不修改参数"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "9.2 未解决问题"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "14 个按下噪域违规"
+          ],
+          "：尚未确认是 search",
+          "_point 漏找还是其他原因。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "54 个无解事件"
+          ],
+          "：尚未确认分类准确性。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "998px 跳变"
+          ],
+          "：确认为谱面真实快速运动还是计算异常待 Phase 1 确认。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "type=2 走 "
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "_tap 路径"
+          ],
+          "：DRAG 音符为何走 TAP 路径需确认设计意图。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "十、验收标准"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "10.1 Phase 1 验收"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "todo"
+      },
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "所有 >50px 跳变均有详细报告。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "每个跳变已分类为 A（谱面真实运动）或 B（计算异常）。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "结论明确：需要修复或不需要修复。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "10.2 Phase 2 验收"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "todo"
+      },
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "14 个按下噪域违规全部有分析报告。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "每个违规的原因已确认。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "修复建议明确（如有）。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "10.3 Phase 3 验收"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "todo"
+      },
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "54 个无解事件全部有分类。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "分类准确性已验证（至少抽样 10 个）。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "可修复事件清单已列出。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "10.4 Phase 4 验收"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "todo"
+      },
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "每次修复只改一个函数。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "修复后 T1-T6 全部通过。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "审计指标无恶化。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "10.5 Phase 5 验收"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "todo"
+      },
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "完整谱面无回归问题。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "点按功能正常。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "HOLD 严格跟随判定线。"
+        ]
+      ],
+      [
+        "DIV",
+        {
+          "class": "todo-item"
+        },
+        [
+          "SPAN",
+          {
+            "contenteditable": "false"
+          },
+          [
+            "INPUT",
+            {
+              "type": "checkbox",
+              "value": "on"
+            }
+          ]
+        ],
+        [
+          "DIV",
+          {},
+          "噪域避让正常工作。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "建议的第一项实施任务"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "Phase 1：HOLD 轨迹连续性调查"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "理由："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "998px 跳变是当前最显著的异常指标，且已有完整诊断数据支撑。"
+        ],
+        [
+          "LI",
+          {},
+          "这是只读调查，不修改任何代码，风险为零。"
+        ],
+        [
+          "LI",
+          {},
+          "调查结果将决定后续是否需要修复 `chart.py` 或 `algo/algo2.py`。"
+        ],
+        [
+          "LI",
+          {},
+          "如果确认为谱面真实快速运动，则无需修复，可将精力集中在 14 个按下违规和 54 个无解事件上。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "具体行动："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "读取 `chart.py` 中 `JudgeLine.pos()`、`pos",
+          "_of()`、`angle()` 的实现。"
+        ],
+        [
+          "LI",
+          {},
+          "扩展 `tools/trace",
+          "_jumps.py`，对每个 >50px 跳变输出判定线位移和噪域事件信息。"
+        ],
+        [
+          "LI",
+          {},
+          "运行扩展后的脚本，生成完整报告。"
+        ],
+        [
+          "LI",
+          {},
+          "根据报告得出结论。"
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "a13b884a-82a9-47c8-8df6-4e0820b0ef0d",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "PhiAPS 噪域避让开发计划"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "一、当前稳定版本与现状"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "1.1 已推送稳定版本"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "GitHub 上已有稳定版本（commit HEAD）。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "基础点按逻辑已修复：即使没有噪域干扰，Tap/Drags/Flicks/Holds 都能正常触发。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "本次任何修改都不能破坏这一已验证功能。"
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "1.2 已完成工作"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "模块"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "状态"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`block",
+                        "_area.py` — 时变噪域矩形判定 + `search",
+                        "_point` 几何避让"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`algo/algo2.py` — TAP/FLICK 噪域外约束 + HOLD 严格跟随"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "判定线垂直距离约束 (`MIN",
+                        "_DIST = 80`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "最大迁移距离限制 (`MAX",
+                        "_RELOCATION",
+                        "_DISTANCE = 200`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "无解原因枚举 (`PlacementFailure`) + `skipped` 记录"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "审计脚本 `tools/audit",
+                        "_noise.py`（7 项指标）"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "跳变追踪脚本 `tools/trace",
+                        "_jumps.py`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "✅ 完成"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "1.3 当前参数"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "python"
+              },
+              [
+                "DIV",
+                {},
+                "MARGIN = 30           # 噪域安全边距 (px)"
+              ],
+              [
+                "DIV",
+                {},
+                "MIN_DIST = 80.0       # 触点到判定线垂直距离下限 (px)"
+              ],
+              [
+                "DIV",
+                {},
+                "MAX_RELOCATION_DISTANCE = 200.0  # 触点迁移上限 (px)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "暂不修改这些参数。"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "1.4 审计基线数据（Chart",
+                "_AT.json, 56830 帧）"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "指标"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "值"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "总事件"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "17308"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "按下"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1592"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "MOVE"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "14124"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[1] Tap/Flick 按下噪域违规"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "14"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[2] Hold MOVE 噪域违规"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1229"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[3] Flick MOVE 噪域违规"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[4] 判定线垂直距离违规 (<80px)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[5] 相邻 MOVE 跳变 >50px"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "48 / 13448（最大 998px）"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[6] 最大实际迁移距离"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "200.0px"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "[7] 无解总数"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "54（35 REL + 19 NO",
+                        "_VAL）"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "二、998px 跳变根因及证据"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "2.1 诊断结论"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "通过 `tools/trace",
+              "_jumps.py` 完整追踪，确认："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "所有 48 个 >50px 跳变均发生在同一 note"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "_id 的连续 MOVE 之间。"
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "时间间隔全部为 8ms，对应 `drag"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "_step = 8`。"
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "不是指针复用、跨音符匹配错误或 PointerAllocator bug。"
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "2.2 最大跳变示例"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "Pointer: 1000"
+              ],
+              [
+                "DIV",
+                {},
+                "MOVE[0]: t=92072ms (268.8,648.0) type=2 note_id=1195"
+              ],
+              [
+                "DIV",
+                {},
+                "MOVE[1]: t=92080ms (1267.2,648.0) type=2 note_id=1195"
+              ],
+              [
+                "DIV",
+                {},
+                "距离: 998.4px, 时间差: 8ms"
+              ],
+              [
+                "DIV",
+                {},
+                "前后事件均为同音符连续 MOVE，无指针切换。"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "2.3 根因定位"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "问题出在 `solve()` 中 HOLD 的 DRAG 位置生成："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "python"
+              },
+              [
+                "DIV",
+                {},
+                "# algo/algo2.py solve()"
+              ],
+              [
+                "DIV",
+                {},
+                "for offset in range(1, hold_ms + 1):"
+              ],
+              [
+                "DIV",
+                {},
+                "    frames[ms + offset].add(Note.DRAG,"
+              ],
+              [
+                "DIV",
+                {},
+                "        line.pos_of(note, line.time((ms + offset) / 1000)), ...)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "每帧 DRAG 目标直接取自 `line.pos",
+              "_of()`。如果谱面中判定线在两帧之间快速移动（旋转/平移），相邻帧目标位置差距可达数百甚至近千像素。`PointerAllocator.allocate()` 步骤 3 直接将 `note.pos` 下发为 MOVE，",
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "不做限速或插值"
+              ],
+              "。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "2.4 关键事实"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "基线和修改后最大跳变都是 998px"
+                  ],
+                  " → 这不是噪域搜索引入的新问题，而是原有代码就存在的行为。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "HOLD 必须严格跟随判定线 → 不能为了减少跳变而擅自改变 HOLD 轨迹。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "PointerAllocator 只是忠实地将 `note.pos` 下发 → 问题在上游坐标生成。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "三、HOLD 轨迹连续性检测方案"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "3.1 核心约束"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "HOLD 必须严格跟随判定线，不能为了减少 MOVE 跳变而擅自改变 HOLD 轨迹。"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "因此，不允许直接加入固定的每帧最大位移限制让触点落后于判定线。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "3.2 调查步骤"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H4",
+                {},
+                "Step 1: 判定线轨迹连续性检测"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "读取 `chart.py` 中 `JudgeLine.pos()`、`pos",
+              "_of()`、`angle()`、`seconds()` 的实现，确认："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`pos(t)` 是否对任意时刻 t 返回有限值。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "在谱面快速旋转/平移时段，`pos(t)` 的变化率是否合理。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`line.time(t)` 和 `line.seconds(t)` 的转换公式是否与谱面 JSON 一致。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H4",
+                {},
+                "Step 2: 极端位移识别与分类"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "使用 `tools/trace",
+              "_jumps.py` 的输出，对每个 >50px 跳变："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "提取 note",
+                  "_id、时间戳、前后坐标。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "计算两帧间判定线中心位移 `d = hypot(dx, dy)`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "检查该时间段内是否有 `rotateEvents` 或 `moveEvents` 导致判定线剧烈变化。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "分类为：",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      [
+                        "SPAN",
+                        {
+                          "style": "font-weight: bold"
+                        },
+                        "A类：谱面真实快速运动"
+                      ],
+                      "（判定线本身在两帧间移动了 >50px）。"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      [
+                        "SPAN",
+                        {
+                          "style": "font-weight: bold"
+                        },
+                        "B类：计算异常"
+                      ],
+                      "（判定线变化平缓但 `pos",
+                      "_of()` 返回了错误坐标）。"
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H4",
+                {},
+                "Step 3: 检查 `line.pos",
+                "_of()` 正确性"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "阅读 `chart.py` 中 `JudgeLine.pos",
+              "_of()` 实现，重点检查："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`note.x` 偏移量是否正确应用。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`line.angle()` 在 HOLD 持续期间是否被正确更新。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "是否存在浮点精度累积误差。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H4",
+                {},
+                "Step 4: 研究坐标转换与采样"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "确认 `line.seconds(note.time)` 和 `line.time(ms/1000)` 的转换系数（1.875/bpm）是否正确。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "确认 `alpha = -line.angle(...) ",
+                  "* pi/180` 的角度方向是否正确。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "确认 `off",
+                  "_x = note.x ",
+                  "* 72` 的缩放因子是否正确。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H4",
+                {},
+                "Step 5: 输出报告"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "对每个 >50px 跳变输出："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "note_id=N, t0=T0ms, t1=T1ms, p0=(X0,Y0), p1=(X1,Y1), d=D px"
+              ],
+              [
+                "DIV",
+                {},
+                "判定线中心位移: dx=X, dy=Y, d_line=L px"
+              ],
+              [
+                "DIV",
+                {},
+                "该时段 rotateEvents: [...]"
+              ],
+              [
+                "DIV",
+                {},
+                "该时段 moveEvents: [...]"
+              ],
+              [
+                "DIV",
+                {},
+                "分类: A/B"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "3.3 预期结果"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "如果全部归类为 A 类（谱面真实快速运动）→ 保留原始轨迹，记录为合法高速运动，无需修复。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "如果发现 B 类（计算异常）→ 针对性修复 `pos",
+                  "_of()` 或相关转换函数。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "四、14 个按下噪域违规的调查方案"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "4.1 违规列表（来自审计脚本）"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "74851ms type=2 (149,323)"
+              ],
+              [
+                "DIV",
+                {},
+                "75223ms type=2 (159,268)"
+              ],
+              [
+                "DIV",
+                {},
+                "75297ms type=2 (84,337)"
+              ],
+              [
+                "DIV",
+                {},
+                "75371ms type=2 (153,264)"
+              ],
+              [
+                "DIV",
+                {},
+                "75446ms type=2 (80,333)"
+              ],
+              [
+                "DIV",
+                {},
+                "81238ms type=2 (259,156)"
+              ],
+              [
+                "DIV",
+                {},
+                "81980ms type=2 (1024,216)"
+              ],
+              [
+                "DIV",
+                {},
+                "82351ms type=2 (1044,201)"
+              ],
+              [
+                "DIV",
+                {},
+                "82426ms type=2 (976,127)"
+              ],
+              [
+                "DIV",
+                {},
+                "82500ms type=2 (1050,196)"
+              ],
+              [
+                "DIV",
+                {},
+                "82574ms type=2 (982,123)"
+              ],
+              [
+                "DIV",
+                {},
+                "82723ms type=2 (1093,227)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "共 14 个，全部是 `type=2`（DRAG 音符走 `",
+              "_tap` 路径）。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "4.2 调查步骤"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "对每个违规点："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "原始坐标 vs 最终坐标"
+                  ],
+                  "：对比 `note.pos`（原始）和下发坐标。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "噪域边界距离"
+                  ],
+                  "：计算下发点到最近噪域边缘的距离。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "判定线垂直距离"
+                  ],
+                  "：调用 `point",
+                  "_line",
+                  "_distance(下发坐标, line)`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "实际迁移距离"
+                  ],
+                  "：`hypot(下发x-原始x, 下发y-原始y)`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "search"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "_point 过程"
+                  ],
+                  "：模拟 `search",
+                  "_point` 的执行流程，确认：",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "法向搜索是否遍历了所有候选。"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "nearby",
+                      "_points 兜底是否被触发。"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "fallback 是否找到了合法点但未正确下发。"
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "下发一致性"
+                  ],
+                  "：确认 `",
+                  "_insert` 收到的坐标与 `note.pos` 一致。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "4.3 重点关注"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "为什么 `type=2`（DRAG 音符）会走 `",
+                  "_tap` 路径？检查 `solve()` 中的分支逻辑。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "这些违规点的噪域是否在 `",
+                  "[t, t+release",
+                  "_ms]` 区间内动态变化导致\"按下时合法、执行时非法\"。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "是否存在 `sample",
+                  "_step=5` 采样遗漏的情况。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "五、54 个无解事件的分类审查方案"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "5.1 当前分类"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "RELOCATION",
+                  "_LIMIT",
+                  "_EXCEEDED (REL): 35"
+                ],
+                [
+                  "LI",
+                  {},
+                  "NO",
+                  "_VALID",
+                  "_POSITION (NO",
+                  "_VAL): 19"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "5.2 审查步骤"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "对每个无解事件："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "原始坐标"
+                  ],
+                  "：`(ox, oy)`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "搜索方向"
+                  ],
+                  "：`(nx",
+                  "_dir, ny",
+                  "_dir)`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "判定线端点"
+                  ],
+                  "：`line`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "迁移距离"
+                  ],
+                  "：`hypot(ox-candidate",
+                  "_x, oy-candidate",
+                  "_y)`（如果有接近的候选）。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "噪域覆盖分析"
+                  ],
+                  "：在 `",
+                  "[t, t+duration]` 区间内，逐桶检查哪些 BlockArea 覆盖了屏幕。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "判定线距离约束影响"
+                  ],
+                  "：移除 `min",
+                  "_dist` 约束后重新运行 `search",
+                  "_point`，看是否能找到解。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "5.3 分类标准"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "类别"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "条件"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "整屏噪域覆盖"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "全屏不存在满足噪域约束的点"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "超出迁移距离"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "存在合法点但全在 200px 之外"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "min",
+                        "_dist 约束"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "合法点在 80px 距离约束下被排除"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "搜索遗漏"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "理论上存在合法点但 `search",
+                        "_point` 未找到"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "几何异常"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "判定线退化、坐标非有限等"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "5.4 验证方法"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "对每个无解事件，手动调用 `search",
+              "_point` 并打印中间状态："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "python"
+              },
+              [
+                "DIV",
+                {},
+                "print(f\"search_point: pos={pos}, t={t:.3f}, dir=({nx},{ny})\")"
+              ],
+              [
+                "DIV",
+                {},
+                "print(f\"  ok(pos)? {ok(*pos)}\")"
+              ],
+              [
+                "DIV",
+                {},
+                "print(f\"  法向搜索范围: 1..{min(MAX_STEPS, int(max_relocation//STEP)+1)}\")"
+              ],
+              [
+                "DIV",
+                {},
+                "print(f\"  nearby_points 命中数: N\")"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "六、噪域避让算法的进一步验证"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "6.1 `search",
+                "_point` 正确性验证"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "法向搜索完整性"
+                  ],
+                  "：确认 `(nx",
+                  "_dir, ny",
+                  "_dir)` 始终指向远离判定线的方向。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "nearby"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "_points 均匀性"
+                  ],
+                  "：确认半径 r 上的采样点数 `n = max(8, ceil(2πr/STEP))` 足够密集。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "duration 检查"
+                  ],
+                  "：确认 `",
+                  "[t, t+duration]` 区间的采样步长 `sample",
+                  "_step=5` 不会遗漏瞬态噪域。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "6.2 边界情况测试"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "场景"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "预期行为"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "噪域完全覆盖屏幕"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "NO",
+                        "_VALID",
+                        "_POSITION"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "噪域刚好接触触点"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "blocked 返回 True（margin 生效）"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "判定线角度 0°/90°"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "point",
+                        "_line",
+                        "_distance 正确"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "判定线两端点重合"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ValueError → INVALID",
+                        "_GEOMETRY"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "pos 包含 NaN/Inf"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "INVALID",
+                        "_GEOMETRY"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "七、回归测试方案"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "7.1 测试矩阵"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "测试组"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "内容"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过标准"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "T1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "无噪域时 Tap/Drags/Flicks/Holds"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "全部正常点击，无跳过"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "T2"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "静态噪域"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "所有音符落在噪域外"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "T3"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "动态噪域（move/rotate/scale）"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "同上"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "T4"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "极限迁移距离"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "不超过 200px，无解时正确记录"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "T5"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "判定线快速旋转"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "HOLD 严格跟随，无偏离"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "T6"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "完整谱面 Chart",
+                        "_AT.json"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "审计脚本 7 项指标可复现"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "7.2 自动化检查"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "每次修改后运行："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "bash"
+              },
+              [
+                "DIV",
+                {},
+                "venv/bin/python tools/audit_noise.py"
+              ],
+              [
+                "DIV",
+                {},
+                "venv/bin/python tools/trace_jumps.py"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "对比输出确保："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "无解数量不增加。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "按下噪域违规不增加。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "跳变数量不增加。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "已修复的 TAP/FLICK 点按能力保持。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "八、分阶段开发路线"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Phase 0：保存稳定版本和审计基线（已完成）"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "✅ GitHub 推送稳定版本。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "✅ 审计脚本产出基线数据。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "✅ 跳变追踪脚本产出诊断数据。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Phase 1：HOLD 轨迹连续性调查（只诊断，不修改）"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "目标"
+              ],
+              "：确认 998px 跳变是谱面真实运动还是计算异常。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "交付物"
+              ],
+              "："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "每个 >50px 跳变的详细报告（note",
+                  "_id、时间、坐标、判定线位移、分类）。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "结论：是否需要修复，以及修复方向。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "不修改的代码"
+              ],
+              "：`algo/algo2.py`、`chart.py`、`block",
+              "_area.py`。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Phase 2：调查 14 个按下噪域违规"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "目标"
+              ],
+              "：逐个确认违规原因。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "交付物"
+              ],
+              "："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "14 个违规点的详细分析报告。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "结论：是 search",
+                  "_point 漏找、fallback 错误、还是噪域定义本身的问题。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Phase 3：审查 54 个无解事件"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "目标"
+              ],
+              "：确认分类准确性，找出可修复的误判。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "交付物"
+              ],
+              "："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "54 个事件的分类表（整屏覆盖/超出距离/min",
+                  "_dist/搜索遗漏/几何异常）。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "可修复事件清单及修复建议。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Phase 4：小范围修复"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "前提"
+              ],
+              "：Phase 1-3 有明确证据支持。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "可能的修复方向"
+              ],
+              "："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "如果 Phase 1 发现 `pos",
+                  "_of()` 计算异常 → 修复 `chart.py`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "如果 Phase 2 发现 search",
+                  "_point 漏找 → 改进 `block",
+                  "_area.py` 搜索策略。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "如果 Phase 3 发现误判 → 调整 `PlacementFailure` 分类逻辑。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "严格限制"
+              ],
+              "："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "每次修复只改一个函数。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "修复后运行完整回归测试。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "不修改 MARGIN/MIN",
+                  "_DIST/MAX",
+                  "_RELOCATION",
+                  "_DISTANCE。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Phase 5：完整谱面回归测试"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "目标"
+              ],
+              "：确认所有修复未破坏已有功能。"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "通过标准"
+              ],
+              "："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "T1-T6 全部通过。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "审计指标无恶化。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "点按功能正常。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "九、风险与未解决问题"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "9.1 已知风险"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "风险"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "影响"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "缓解措施"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "HOLD 轨迹修复可能影响跟随精度"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "高"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "先诊断再修复，不盲目加限速"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "search",
+                        "_point 改进可能引入性能问题"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "中"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "监控规划耗时"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "参数调整可能掩盖真正问题"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "高"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "暂不修改参数"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "9.2 未解决问题"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "14 个按下噪域违规"
+                  ],
+                  "：尚未确认是 search",
+                  "_point 漏找还是其他原因。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "54 个无解事件"
+                  ],
+                  "：尚未确认分类准确性。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "998px 跳变"
+                  ],
+                  "：确认为谱面真实快速运动还是计算异常待 Phase 1 确认。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "type=2 走 "
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "_tap 路径"
+                  ],
+                  "：DRAG 音符为何走 TAP 路径需确认设计意图。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "十、验收标准"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "10.1 Phase 1 验收"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "todo"
+              },
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "所有 >50px 跳变均有详细报告。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "每个跳变已分类为 A（谱面真实运动）或 B（计算异常）。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "结论明确：需要修复或不需要修复。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "10.2 Phase 2 验收"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "todo"
+              },
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "14 个按下噪域违规全部有分析报告。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "每个违规的原因已确认。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "修复建议明确（如有）。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "10.3 Phase 3 验收"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "todo"
+              },
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "54 个无解事件全部有分类。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "分类准确性已验证（至少抽样 10 个）。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "可修复事件清单已列出。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "10.4 Phase 4 验收"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "todo"
+              },
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "每次修复只改一个函数。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "修复后 T1-T6 全部通过。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "审计指标无恶化。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "10.5 Phase 5 验收"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "todo"
+              },
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "完整谱面无回归问题。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "点按功能正常。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "HOLD 严格跟随判定线。"
+                ]
+              ],
+              [
+                "DIV",
+                {
+                  "class": "todo-item"
+                },
+                [
+                  "SPAN",
+                  {
+                    "contenteditable": "false"
+                  },
+                  [
+                    "INPUT",
+                    {
+                      "type": "checkbox",
+                      "value": "on"
+                    }
+                  ]
+                ],
+                [
+                  "DIV",
+                  {},
+                  "噪域避让正常工作。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "建议的第一项实施任务"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "Phase 1：HOLD 轨迹连续性调查"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "理由："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "998px 跳变是当前最显著的异常指标，且已有完整诊断数据支撑。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "这是只读调查，不修改任何代码，风险为零。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "调查结果将决定后续是否需要修复 `chart.py` 或 `algo/algo2.py`。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "如果确认为谱面真实快速运动，则无需修复，可将精力集中在 14 个按下违规和 54 个无解事件上。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "具体行动："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "读取 `chart.py` 中 `JudgeLine.pos()`、`pos",
+                  "_of()`、`angle()` 的实现。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "扩展 `tools/trace",
+                  "_jumps.py`，对每个 >50px 跳变输出判定线位移和噪域事件信息。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "运行扩展后的脚本，生成完整报告。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "根据报告得出结论。"
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794560563474,
+      "acked": true,
+      "ackedAt": 1794560598519,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

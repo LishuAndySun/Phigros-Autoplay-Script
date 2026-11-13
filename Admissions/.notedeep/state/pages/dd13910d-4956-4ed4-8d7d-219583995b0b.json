@@ -1,0 +1,1319 @@
+{
+  "docId": "dd13910d-4956-4ed4-8d7d-219583995b0b",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "Audio Playback Pipeline Audit"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Read-only audit of Round 1 (`1211202605`), Round 2 (`1211202606`), and Round 3 (`1311202603`) raw logs. No raw logs, events.json, report.txt, statistics.csv, sessions.json, source code, or PhiAPS were modified. No experiments were run."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. Scope and Definitions"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Class"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Meaning"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Can it mark playback start?"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Creation"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioFlinger creates a track (`AfPlaybackCommon: creating track`) or client creates AudioTrack"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "No"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Start request"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioTrack start (not observed as a distinct log line in these rounds)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Submission"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Client writes/obtains buffers (`obtainBuffer`, `releaseBuffer`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "No"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Mixing output"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Mixer/output-thread activity (`mixer throttle`, `interceptBuffer`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Proxy only"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Sound output"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Audible sound at the speaker"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN (no log proves this)"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Key rule: AudioTrack creation is not playback start. Buffer operations are not sound output."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Marks and Round Mapping"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Round 2 Play Start: 22:08:03.5 local (UTC+9). Play End: UNKNOWN from this review."
+        ],
+        [
+          "LI",
+          {},
+          "Round 3 Game Start mark: 04:13:33Z = 13:13:33 local."
+        ],
+        [
+          "LI",
+          {},
+          "Round 1 Play Start 12:17:13.9Z, Play End 12:19:21.0Z (UTC marks, per session notes)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. Per-Round Evidence"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Round 2 (1211202606)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Creation: `AfPlaybackCommon: creating track` at 22:07:29.495 (PID 500, TID 543). This is 34 s before Play Start. Classified as creation only."
+        ],
+        [
+          "LI",
+          {},
+          "Client warnings in window before play: 21:16:45 (PID 4063) and other pre-play lines. Not in play window."
+        ],
+        [
+          "LI",
+          {},
+          "Play window 22:08:03–22:08:58: no audio-tagged lines in raw",
+          "_logs."
+        ],
+        [
+          "LI",
+          {},
+          "C08 pair: `obtainBuffer benign 'Try again'` at 22:10:10.786 and 22:10:58.229 (PID 500 TID 576 releaseBuffer dropped wake at identical ms). Classified as buffer operations only, not sound output."
+        ],
+        [
+          "LI",
+          {},
+          "Round 2 totals (raw",
+          "_logs): stop 22, notificationFrames 22, creating track 22, mismatch 17, releaseBuffer dropped 8, obtainBuffer benign 8, deprecation 7+7, mixer throttle 4, unfrozen 4."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Round 3 (1311202603)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Only Phigros-process audio event in the start window: PID 3355 TID 3412. Deprecation at 13:13:31.432; `stop(35): called with 6144 frames delivered` at 13:13:31.630; deprecation at 13:13:31.642 (TID 3417)."
+        ],
+        [
+          "LI",
+          {},
+          "Process creation at 13:13:31.113 precedes the Game Start mark (13:13:33), so the alignment is UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "Raw logs end at 13:14:06.608. No audio lines in 13:13:31.7–13:14:30. Total audio-tagged lines: 120 (timestamped)."
+        ],
+        [
+          "LI",
+          {},
+          "No C08 lines in R3."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "Round 1 (1211202605)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Raw template counts (100 audio-matching lines): stop 18, notificationFrames 18, creating track 18, mismatch 14, releaseBuffer dropped 6, obtainBuffer benign 6, deprecation 6+6, mixer throttle 3, unfrozen 2, restartIfDisabled 1, BUFFER TIMEOUT 1, interceptBuffer 1."
+        ],
+        [
+          "LI",
+          {},
+          "PIDs: 3307 (11), 3730 (21), 4063 (5), 500 (6)."
+        ],
+        [
+          "LI",
+          {},
+          "events.json parses as strings only in this review; no audio entries could be matched with receive",
+          "_time. R1 timing against Play Start/End: UNKNOWN."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. Candidate Summary"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "See ",
+      [
+        "A",
+        {
+          "href": "AUDIO_PLAYBACK_PIPELINE_CANDIDATES.csv"
+        },
+        "AUDIO",
+        "_PLAYBACK",
+        "_PIPELINE",
+        "_CANDIDATES.csv"
+      ],
+      "."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Candidates closest to real audio start (ranked, with limits):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "C-03 (R3, PID 3355, 13:13:31.630)"
+          ],
+          ": `stop(35)` with 6144 frames delivered. Shows the client had submitted audio frames. Alignment to Game Start is UNKNOWN; the process was created 2 s before the mark."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "C-07 (R2 mixer throttle)"
+          ],
+          ": mixing-path proxy, but no timestamped hit in the play window."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "C-05/C-06 (R2 C08, 22:10:10.786 and 22:10:58.229)"
+          ],
+          ": buffer operations with an underrun-like drop. Closer to in-play activity, but not sound output."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "C08 is therefore not the best candidate for playback start; the R3 frame delivery at 13:13:31.630 is earlier and carries frame count evidence."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Verdict"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Can the logs identify the true playback start? ",
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "No, not with confidence."
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Creation (R2 22:07:29.495) is 34 s before Play Start, so it cannot mark playback start."
+        ],
+        [
+          "LI",
+          {},
+          "Frame delivery (R3 stop 6144 frames) shows submitted data, not sound output."
+        ],
+        [
+          "LI",
+          {},
+          "No log in the play window (R2 22:08:03–22:08:58) shows audio activity; the only in-window events are the two C08 buffer pairs."
+        ],
+        [
+          "LI",
+          {},
+          "No log proves sound at the speaker. Any playback-start time is UNKNOWN from these logs."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. UNKNOWN List"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "R1 timing of all audio lines vs Play Start/End (events.json unreadable as dicts)."
+        ],
+        [
+          "LI",
+          {},
+          "R2 Play End time."
+        ],
+        [
+          "LI",
+          {},
+          "R3 alignment of PID 3355 audio to Game Start (process created before mark)."
+        ],
+        [
+          "LI",
+          {},
+          "R2 play-window mixer activity (no timestamped hit)."
+        ],
+        [
+          "LI",
+          {},
+          "Sound output at the speaker in every round."
+        ],
+        [
+          "LI",
+          {},
+          "AudioTrack start request as a distinct log line (not seen in these rounds)."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "d40b127f-ef94-4ef1-b823-60b103d9591f",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "Audio Playback Pipeline Audit"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Read-only audit of Round 1 (`1211202605`), Round 2 (`1211202606`), and Round 3 (`1311202603`) raw logs. No raw logs, events.json, report.txt, statistics.csv, sessions.json, source code, or PhiAPS were modified. No experiments were run."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. Scope and Definitions"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Class"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Meaning"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Can it mark playback start?"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Creation"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioFlinger creates a track (`AfPlaybackCommon: creating track`) or client creates AudioTrack"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "No"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Start request"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioTrack start (not observed as a distinct log line in these rounds)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Submission"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Client writes/obtains buffers (`obtainBuffer`, `releaseBuffer`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "No"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Mixing output"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Mixer/output-thread activity (`mixer throttle`, `interceptBuffer`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Proxy only"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Sound output"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Audible sound at the speaker"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN (no log proves this)"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Key rule: AudioTrack creation is not playback start. Buffer operations are not sound output."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Marks and Round Mapping"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Round 2 Play Start: 22:08:03.5 local (UTC+9). Play End: UNKNOWN from this review."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 3 Game Start mark: 04:13:33Z = 13:13:33 local."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 1 Play Start 12:17:13.9Z, Play End 12:19:21.0Z (UTC marks, per session notes)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. Per-Round Evidence"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Round 2 (1211202606)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Creation: `AfPlaybackCommon: creating track` at 22:07:29.495 (PID 500, TID 543). This is 34 s before Play Start. Classified as creation only."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Client warnings in window before play: 21:16:45 (PID 4063) and other pre-play lines. Not in play window."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Play window 22:08:03–22:08:58: no audio-tagged lines in raw",
+                  "_logs."
+                ],
+                [
+                  "LI",
+                  {},
+                  "C08 pair: `obtainBuffer benign 'Try again'` at 22:10:10.786 and 22:10:58.229 (PID 500 TID 576 releaseBuffer dropped wake at identical ms). Classified as buffer operations only, not sound output."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 2 totals (raw",
+                  "_logs): stop 22, notificationFrames 22, creating track 22, mismatch 17, releaseBuffer dropped 8, obtainBuffer benign 8, deprecation 7+7, mixer throttle 4, unfrozen 4."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Round 3 (1311202603)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Only Phigros-process audio event in the start window: PID 3355 TID 3412. Deprecation at 13:13:31.432; `stop(35): called with 6144 frames delivered` at 13:13:31.630; deprecation at 13:13:31.642 (TID 3417)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Process creation at 13:13:31.113 precedes the Game Start mark (13:13:33), so the alignment is UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Raw logs end at 13:14:06.608. No audio lines in 13:13:31.7–13:14:30. Total audio-tagged lines: 120 (timestamped)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No C08 lines in R3."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "Round 1 (1211202605)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Raw template counts (100 audio-matching lines): stop 18, notificationFrames 18, creating track 18, mismatch 14, releaseBuffer dropped 6, obtainBuffer benign 6, deprecation 6+6, mixer throttle 3, unfrozen 2, restartIfDisabled 1, BUFFER TIMEOUT 1, interceptBuffer 1."
+                ],
+                [
+                  "LI",
+                  {},
+                  "PIDs: 3307 (11), 3730 (21), 4063 (5), 500 (6)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "events.json parses as strings only in this review; no audio entries could be matched with receive",
+                  "_time. R1 timing against Play Start/End: UNKNOWN."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. Candidate Summary"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "See ",
+              [
+                "A",
+                {
+                  "href": "AUDIO_PLAYBACK_PIPELINE_CANDIDATES.csv"
+                },
+                "AUDIO",
+                "_PLAYBACK",
+                "_PIPELINE",
+                "_CANDIDATES.csv"
+              ],
+              "."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Candidates closest to real audio start (ranked, with limits):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "C-03 (R3, PID 3355, 13:13:31.630)"
+                  ],
+                  ": `stop(35)` with 6144 frames delivered. Shows the client had submitted audio frames. Alignment to Game Start is UNKNOWN; the process was created 2 s before the mark."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "C-07 (R2 mixer throttle)"
+                  ],
+                  ": mixing-path proxy, but no timestamped hit in the play window."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "C-05/C-06 (R2 C08, 22:10:10.786 and 22:10:58.229)"
+                  ],
+                  ": buffer operations with an underrun-like drop. Closer to in-play activity, but not sound output."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "C08 is therefore not the best candidate for playback start; the R3 frame delivery at 13:13:31.630 is earlier and carries frame count evidence."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Verdict"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Can the logs identify the true playback start? ",
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "No, not with confidence."
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Creation (R2 22:07:29.495) is 34 s before Play Start, so it cannot mark playback start."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Frame delivery (R3 stop 6144 frames) shows submitted data, not sound output."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No log in the play window (R2 22:08:03–22:08:58) shows audio activity; the only in-window events are the two C08 buffer pairs."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No log proves sound at the speaker. Any playback-start time is UNKNOWN from these logs."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. UNKNOWN List"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "R1 timing of all audio lines vs Play Start/End (events.json unreadable as dicts)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "R2 Play End time."
+                ],
+                [
+                  "LI",
+                  {},
+                  "R3 alignment of PID 3355 audio to Game Start (process created before mark)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "R2 play-window mixer activity (no timestamped hit)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Sound output at the speaker in every round."
+                ],
+                [
+                  "LI",
+                  {},
+                  "AudioTrack start request as a distinct log line (not seen in these rounds)."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794560563412,
+      "acked": true,
+      "ackedAt": 1794560572849,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

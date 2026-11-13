@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "workspaceTreeHash": "7c27b813",
+  "pages": {
+    "9a07458f-7e00-448d-aa70-938a9a5f035e": {
+      "path": "1211202605_ANALYSIS_REPORT.md",
+      "size": 13391,
+      "mtimeMs": 1794487040258.98,
+      "contentHash": "998b2739"
+    },
+    "dd13910d-4956-4ed4-8d7d-219583995b0b": {
+      "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+      "size": 4562,
+      "mtimeMs": 1794544295434.2178,
+      "contentHash": "77784113"
+    },
+    "fe1387a5-b557-4377-bd52-9535246465b6": {
+      "path": "AUDIO_START_SIGNAL_INVESTIGATION.md",
+      "size": 10816,
+      "mtimeMs": 1794537660874.0918,
+      "contentHash": "b9caa076"
+    },
+    "baafe286-a519-4b44-b1f3-45f438b1f314": {
+      "path": "AutoStartCalibrationPlan.md",
+      "size": 24123,
+      "mtimeMs": 1794397854260.9329,
+      "contentHash": "2317a05e"
+    },
+    "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e": {
+      "path": "C08_EVENT_DEEP_ANALYSIS.md",
+      "size": 9862,
+      "mtimeMs": 1794544028264.1665,
+      "contentHash": "24afd290"
+    },
+    "2d0924d3-7d3b-4289-a89d-9d83a328e1cc": {
+      "path": "ERROR_AUDIT_REPORT.md",
+      "size": 19810,
+      "mtimeMs": 1794527431365.3438,
+      "contentHash": "c99a0c4f"
+    },
+    "df6868cd-63e5-4390-894f-17fe39d1bcfc": {
+      "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
+      "size": 6211,
+      "mtimeMs": 1794534243014.3533,
+      "contentHash": "d6fa3633"
+    },
+    "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754": {
+      "path": "PHASE2_FIX_REPORT.md",
+      "size": 3268,
+      "mtimeMs": 1794488361894.5945,
+      "contentHash": "d9b1cbb5"
+    },
+    "5bfbe26a-3832-41e0-9aa2-c49e657790d0": {
+      "path": "Plan_AvoidNoiseField.md",
+      "size": 13857,
+      "mtimeMs": 1794395210507.8274,
+      "contentHash": "1d60fa7a"
+    },
+    "67e3f243-dc43-4a7d-9f0d-caf01a4feb27": {
+      "path": "ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+      "size": 10287,
+      "mtimeMs": 1794543060919.1284,
+      "contentHash": "aedc85c3"
+    },
+    "2e5556de-752c-411f-9924-eea9c90aa8ae": {
+      "path": "ROUND3_RETEST_COMPARISON.md",
+      "size": 5574,
+      "mtimeMs": 1794543605425.8774,
+      "contentHash": "a153fad5"
+    },
+    "a42b4205-cf92-4322-bb23-596a09f7f80b": {
+      "path": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+      "size": 7662,
+      "mtimeMs": 1794543843462.346,
+      "contentHash": "49be755d"
+    }
+  }
+}
