@@ -1,0 +1,525 @@
+{
+  "exported_at": "2026-11-12T12:15:59.570527+00:00",
+  "session_id": "session_20261112_211537",
+  "total_events": 74,
+  "events": [
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.983715+00:00",
+      "raw_line": "D(  643) updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=6 freq=2437 RxLinkSpeed=2  (WifiClientModeImpl[3069:wlan0])",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.983782+00:00",
+      "raw_line": "D(  643) reported txKbps 12000 rxKbps 30000  (WifiClientModeImpl[3069:wlan0])",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.985829+00:00",
+      "raw_line": "D(  643) tx tput in kbps: 37000  (WifiDataStall)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.985864+00:00",
+      "raw_line": "D(  643) rx tput in kbps: 37000  (WifiDataStall)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.985898+00:00",
+      "raw_line": "V(  643) Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for \"AndroidWifi\"NONE  (WifiConfigManager)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.985930+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.985960+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.985988+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986016+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986044+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986072+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986106+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986134+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986162+00:00",
+      "raw_line": "I(  643) Wi-Fi network available  (AdbWifiNetworkMonitor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986189+00:00",
+      "raw_line": "I(  643) Received the same Wi-Fi SSID. Ignoring.  (AdbWifiNetworkMonitor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986217+00:00",
+      "raw_line": "I(  643) bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]  (HalDevMgr)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986245+00:00",
+      "raw_line": "I(  643) getWifiEnabledState uid=10121 state=3  (WifiService)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986273+00:00",
+      "raw_line": "D(  643) BSSID update SIGNAL_POLL ID: 1819648505 SSID: \"AndroidWifi\", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 6Mbps, Tx Link speed: 6Mbps, Max Supported Tx Link speed: 54Mbps, Calculated Tx : 0Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Calculated Rx : 0Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 100, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>\"AndroidWifi\"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>  (WifiScoreCard)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986302+00:00",
+      "raw_line": "D(  643) txRate: 5 txSpeed: 6  (WifiScoreCard)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986330+00:00",
+      "raw_line": "D(  643) network update SIGNAL_POLL \"AndroidWifi\" ID: 304677268 RSSI -50 txSpeed 6  (WifiScoreCard)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:37.986358+00:00",
+      "raw_line": "D(  643)  ClientModeImpl$L2ConnectedState screen=on 19 0 \"AndroidWifi\" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=100 link=6 tx=4.1, 0.0, 0.0 rx=3.7 bcn=0 [on:0 tx:0 rx:0 period:3004] from screen [on:0 period:450862] score=100  (WifiClientModeImpl[3069:wlan0])",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.834231+00:00",
+      "raw_line": "D( 1071) isInCarrierRoamingNbIotNtn: satellite is disabled  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.838826+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectType: Checking connect type from PLMN config for subId: 1  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.838907+00:00",
+      "raw_line": "D( 1071) getConfigParser: domain=satellite  (TelephonyConfigUpdateInstallReceiver)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.838978+00:00",
+      "raw_line": "V( 1071) satelliteConfigParser is not ready  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.839700+00:00",
+      "raw_line": "D( 1071) isSatelliteAttachSupportedViaConfigupdater: return null (satelliteConfig is null)  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840705+00:00",
+      "raw_line": "D( 1071) getSatellitePerPlmnConfiguration: invalid subId or not supported via carrier.  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840757+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectType: config: null  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840800+00:00",
+      "raw_line": "D( 1071) getConfigParser: domain=satellite  (TelephonyConfigUpdateInstallReceiver)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840842+00:00",
+      "raw_line": "V( 1071) satelliteConfigParser is not ready  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840878+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectTypeViaConfigUpdater: return null (satelliteConfig is null)  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840903+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840926+00:00",
+      "raw_line": "D( 1071) getConfigParser: domain=satellite  (TelephonyConfigUpdateInstallReceiver)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840953+00:00",
+      "raw_line": "V( 1071) satelliteConfigParser is not ready  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.840979+00:00",
+      "raw_line": "D( 1071) isSatelliteAttachSupportedViaConfigupdater: return null (satelliteConfig is null)  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841012+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectType: Checking connect type from PLMN config for subId: 1  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841036+00:00",
+      "raw_line": "D( 1071) getConfigParser: domain=satellite  (TelephonyConfigUpdateInstallReceiver)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841061+00:00",
+      "raw_line": "V( 1071) satelliteConfigParser is not ready  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841084+00:00",
+      "raw_line": "D( 1071) isSatelliteAttachSupportedViaConfigupdater: return null (satelliteConfig is null)  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841105+00:00",
+      "raw_line": "D( 1071) getSatellitePerPlmnConfiguration: invalid subId or not supported via carrier.  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841128+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectType: config: null  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841149+00:00",
+      "raw_line": "D( 1071) getConfigParser: domain=satellite  (TelephonyConfigUpdateInstallReceiver)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841171+00:00",
+      "raw_line": "V( 1071) satelliteConfigParser is not ready  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841192+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectTypeViaConfigUpdater: return null (satelliteConfig is null)  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841213+00:00",
+      "raw_line": "D( 1071) getCarrierRoamingNtnConnectType: Falling back to global carrier config connect type: 0  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841236+00:00",
+      "raw_line": "D( 1071) getConfigParser: domain=satellite  (TelephonyConfigUpdateInstallReceiver)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841259+00:00",
+      "raw_line": "V( 1071) satelliteConfigParser is not ready  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:38.841283+00:00",
+      "raw_line": "D( 1071) isSatelliteAttachSupportedViaConfigupdater: return null (satelliteConfig is null)  (SatelliteController)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.948163+00:00",
+      "raw_line": "D(  643) Rounded bytes from 16743530496 to 32000000000  (FileUtils)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.950474+00:00",
+      "raw_line": "I( 3730) java.lang.SecurityException: getDataNetworkTypeForSubscriber  (System.out)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.954382+00:00",
+      "raw_line": "I(  444) GetAddrInfoHandler::run: {101 101 101 983141 10156 0}  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.954428+00:00",
+      "raw_line": "I(  444) res_nmkquery: (QUERY, IN, A)  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.955963+00:00",
+      "raw_line": "I(  444) res_nmkquery: (QUERY, IN, AAAA)  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.956063+00:00",
+      "raw_line": "I(  444) resolv_cache_lookup: FOUND IN CACHE entry=0xb400007cd180b390  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:39.956155+00:00",
+      "raw_line": "I(  444) doQuery: rcode=0, ancount=1, return value=167  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.001403+00:00",
+      "raw_line": "I(  444) res_nsend: used send_dg 228 terrno: 0  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.002778+00:00",
+      "raw_line": "I(  444) doQuery: rcode=0, ancount=9, return value=228  (resolv)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.987715+00:00",
+      "raw_line": "D(  643) updateLinkLayerStatsRssiSpeedFrequencyCapabilities rssi=-50 TxLinkspeed=6 freq=2437 RxLinkSpeed=2  (WifiClientModeImpl[3069:wlan0])",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989196+00:00",
+      "raw_line": "D(  643) tx tput in kbps: 37000  (WifiDataStall)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989285+00:00",
+      "raw_line": "D(  643) rx tput in kbps: 37000  (WifiDataStall)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989334+00:00",
+      "raw_line": "V(  643) Updating scan detail cache freq=2437 BSSID=02:15:b2:00:00:01 RSSI=-50 for \"AndroidWifi\"NONE  (WifiConfigManager)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989371+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989407+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989440+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989475+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989511+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989545+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.989918+00:00",
+      "raw_line": "D(  643)  utilization (LLS) 80 isBluetoothConnected: false final utilization: 80  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.990760+00:00",
+      "raw_line": "D(  643)  BW: 0 RSSI: -50 Nss: 1 Mode: 1 symDur: 4000 snrDb 30 bitPerTone: 4500 rate: 54 throughput: 37  (WifiThroughputPredictor)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.992073+00:00",
+      "raw_line": "I(  643) bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]  (HalDevMgr)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.992103+00:00",
+      "raw_line": "D(  643) BSSID update SIGNAL_POLL ID: 1819648505 SSID: \"AndroidWifi\", BSSID: 02:15:b2:00:00:01, MAC: 02:15:b2:00:00:00, IP: /10.0.2.16, Security type: 0, Supplicant state: COMPLETED, Wi-Fi standard: legacy, RSSI: -50, Link speed: 6Mbps, Tx Link speed: 6Mbps, Max Supported Tx Link speed: 54Mbps, Calculated Tx : 0Mbps, Rx Link speed: 2Mbps, Max Supported Rx Link speed: 54Mbps, Calculated Rx : 0Mbps, Frequency: 2437MHz, Net ID: 0, Metered hint: false, score: 100, isUsable: true, CarrierMerged: false, SubscriptionId: -1, IsPrimary: 1, Trusted: true, Restricted: false, Ephemeral: false, OEM paid: false, OEM private: false, OSU AP: false, FQDN: <none>, Provider friendly name: <none>, Requesting package name: <none>\"AndroidWifi\"openMLO Information: , Is TID-To-Link negotiation supported by the AP: false, AP MLD Address: <none>, AP MLO Link Id: <none>, AP MLO Affiliated links: <none>, Vendor Data: <none>  (WifiScoreCard)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.992127+00:00",
+      "raw_line": "D(  643) txRate: 5 txSpeed: 6  (WifiScoreCard)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.992149+00:00",
+      "raw_line": "D(  643) network update SIGNAL_POLL \"AndroidWifi\" ID: 304677268 RSSI -50 txSpeed 6  (WifiScoreCard)",
+      "details": {}
+    },
+    {
+      "event_type": "Unknown",
+      "timestamp": null,
+      "receive_time": "2026-11-12T12:15:40.992171+00:00",
+      "raw_line": "D(  643)  ClientModeImpl$L2ConnectedState screen=on 19 0 \"AndroidWifi\" 02:15:b2:00:00:01 rssi=-50 f=2437 sc=100 link=6 tx=4.0, 0.0, 0.0 rx=3.6 bcn=0 [on:0 tx:0 rx:0 period:3006] from screen [on:0 period:453868] score=100  (WifiClientModeImpl[3069:wlan0])",
+      "details": {}
+    }
+  ]
+}

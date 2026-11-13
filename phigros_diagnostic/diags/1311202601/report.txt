@@ -1,0 +1,48 @@
+================================================================================
+PHIGROS DIAGNOSTIC TOOL - EXPERIMENT REPORT
+================================================================================
+
+SESSION INFORMATION
+----------------------------------------
+Session ID:       session_20261113_114453
+Created:          2026-11-13T02:44:53.036456+00:00
+Description:      13112601
+Device:           emulator-5554
+Device Model:     Android SDK built for arm64
+Android Version:  17
+PID Filter:       None
+Total Events:     50661
+Manual Marks:     0
+
+EVENT SUMMARY
+----------------------------------------
+Unknown                              23178  ( 45.8%) ######################
+Debug                                20508  ( 40.5%) ####################
+Warning                               5089  ( 10.0%) #####
+Error                                 1544  (  3.0%) #
+Exception                              218  (  0.4%) 
+ApplicationInfo                        102  (  0.2%) 
+offset                                   8  (  0.0%) 
+PlayerBase::PlayerBase()                 6  (  0.0%) 
+TrackPlayerBase::TrackPlayerBase()       6  (  0.0%) 
+GC                                       2  (  0.0%) 
+TOTAL                                50661
+
+LIFECYCLE ANALYSIS
+----------------------------------------
+Matched PlayerBase pairs (same PID):           0
+Matched TrackPlayerBase pairs (same PID):     0
+Constructors without observed destructor:     12
+Destructors without observed constructor:     0
+Note: unpaired counts are observations, not leak claims.
+
+KEY OBSERVATIONS
+----------------------------------------
+- Found 6 PlayerBase creation(s)
+- Found 6 TrackPlayerBase creation(s)
+- NOTE: PlayerBase construction time is NOT assumed to be music playback start
+- NOTE: Log timestamps are distinguished from log reception times
+
+================================================================================
+Report generated at: 2026-11-13T02:45:45.795767+00:00
+================================================================================

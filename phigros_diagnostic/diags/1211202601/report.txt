@@ -1,0 +1,40 @@
+================================================================================
+PHIGROS DIAGNOSTIC TOOL - EXPERIMENT REPORT
+================================================================================
+
+SESSION INFORMATION
+----------------------------------------
+Session ID:       session_20261112_210124
+Created:          2026-11-12T12:01:24.037862+00:00
+Description:      12112601
+Device:           
+PID Filter:       None
+Total Events:     0
+Manual Marks:     6
+
+EVENT SUMMARY
+----------------------------------------
+TOTAL                                    0
+
+LIFECYCLE ANALYSIS
+----------------------------------------
+PlayerBase Create/Destruct Pairs: 0
+TrackPlayerBase Create/Destruct Pairs: 0
+
+MANUAL EXPERIMENT MARKS
+----------------------------------------
+1. [Game Start] at 2026-11-12T12:01:35.463852+00:00
+2. [Map Load Start] at 2026-11-12T12:02:00.047111+00:00
+3. [Map Load End] at 2026-11-12T12:02:04.997693+00:00
+4. [Play Start] at 2026-11-12T12:02:11.521976+00:00
+5. [Play End] at 2026-11-12T12:04:11.113819+00:00
+6. [Score Screen] at 2026-11-12T12:04:17.446782+00:00
+
+KEY OBSERVATIONS
+----------------------------------------
+- No PlayerBase or TrackPlayerBase events found in this session
+- Ensure ADB logcat is capturing Phigros process logs
+
+================================================================================
+Report generated at: 2026-11-12T12:04:46.151278+00:00
+================================================================================

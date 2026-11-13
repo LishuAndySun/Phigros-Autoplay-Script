@@ -1,0 +1,14 @@
+Event Type,Count
+Unknown,27967
+Error,43
+PlayerBase::PlayerBase(),12
+TrackPlayerBase::TrackPlayerBase(),12
+TrackPlayerBase::~TrackPlayerBase(),3
+PlayerBase::~PlayerBase(),3
+ApplicationInfo,2
+
+Metric,Value
+PlayerBase Pairs,0
+TrackPlayerBase Pairs,0
+
+Track Interval Analysis

@@ -1,0 +1,52 @@
+{
+  "exported_at": "2026-11-13T04:14:36.163266+00:00",
+  "total_sessions": 1,
+  "sessions": [
+    {
+      "session_id": "session_20261113_131324",
+      "created_at": "2026-11-13T04:13:24.129126+00:00",
+      "description": "13112603",
+      "device_name": "emulator-5554",
+      "device_info": {
+        "serial": "emulator-5554",
+        "model": "Android SDK built for arm64",
+        "android_version": "17",
+        "errors": []
+      },
+      "pid_filter": "",
+      "notes": "",
+      "manual_marks": [
+        {
+          "id": "manual_1",
+          "notes": "",
+          "timestamp": "2026-11-13T04:13:33.306391+00:00",
+          "type": "Game Start",
+          "session_id": "session_20261113_131324"
+        },
+        {
+          "id": "manual_2",
+          "notes": "",
+          "timestamp": "2026-11-13T04:13:48.174800+00:00",
+          "type": "Song Select",
+          "session_id": "session_20261113_131324"
+        },
+        {
+          "id": "manual_3",
+          "notes": "",
+          "timestamp": "2026-11-13T04:13:57.608381+00:00",
+          "type": "Song Select",
+          "session_id": "session_20261113_131324"
+        },
+        {
+          "id": "manual_4",
+          "notes": "",
+          "timestamp": "2026-11-13T04:14:01.821734+00:00",
+          "type": "Song Select",
+          "session_id": "session_20261113_131324"
+        }
+      ],
+      "parsed_event_count": 98361,
+      "manual_mark_count": 4
+    }
+  ]
+}

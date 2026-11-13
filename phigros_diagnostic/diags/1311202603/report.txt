@@ -1,0 +1,55 @@
+================================================================================
+PHIGROS DIAGNOSTIC TOOL - EXPERIMENT REPORT
+================================================================================
+
+SESSION INFORMATION
+----------------------------------------
+Session ID:       session_20261113_131324
+Created:          2026-11-13T04:13:24.129126+00:00
+Description:      13112603
+Device:           emulator-5554
+Device Model:     Android SDK built for arm64
+Android Version:  17
+PID Filter:       None
+Total Events:     98361
+Manual Marks:     4
+
+EVENT SUMMARY
+----------------------------------------
+Debug                                48929  ( 49.7%) ########################
+Warning                              24186  ( 24.6%) ############
+Unknown                              23845  ( 24.2%) ############
+Error                                 1114  (  1.1%) 
+Exception                              199  (  0.2%) 
+ApplicationInfo                         53  (  0.1%) 
+PlayerBase::PlayerBase()                15  (  0.0%) 
+TrackPlayerBase::TrackPlayerBase()      15  (  0.0%) 
+offset                                   4  (  0.0%) 
+GC                                       1  (  0.0%) 
+TOTAL                                98361
+
+LIFECYCLE ANALYSIS
+----------------------------------------
+Matched PlayerBase pairs (same PID):           0
+Matched TrackPlayerBase pairs (same PID):     0
+Constructors without observed destructor:     30
+Destructors without observed constructor:     0
+Note: unpaired counts are observations, not leak claims.
+
+MANUAL EXPERIMENT MARKS
+----------------------------------------
+1. [Game Start] at 2026-11-13T04:13:33.306391+00:00
+2. [Song Select] at 2026-11-13T04:13:48.174800+00:00
+3. [Song Select] at 2026-11-13T04:13:57.608381+00:00
+4. [Song Select] at 2026-11-13T04:14:01.821734+00:00
+
+KEY OBSERVATIONS
+----------------------------------------
+- Found 15 PlayerBase creation(s)
+- Found 15 TrackPlayerBase creation(s)
+- NOTE: PlayerBase construction time is NOT assumed to be music playback start
+- NOTE: Log timestamps are distinguished from log reception times
+
+================================================================================
+Report generated at: 2026-11-13T04:14:30.181707+00:00
+================================================================================

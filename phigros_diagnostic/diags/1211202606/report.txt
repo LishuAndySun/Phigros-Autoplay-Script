@@ -1,0 +1,59 @@
+================================================================================
+PHIGROS DIAGNOSTIC TOOL - EXPERIMENT REPORT
+================================================================================
+
+SESSION INFORMATION
+----------------------------------------
+Session ID:       session_20261112_220742
+Created:          2026-11-12T13:07:42.112920+00:00
+Description:      12112606
+Device:           emulator-5554
+Device Model:     Android SDK built for arm64
+Android Version:  17
+PID Filter:       None
+Total Events:     39298
+Manual Marks:     8
+
+EVENT SUMMARY
+----------------------------------------
+Debug                                25545  ( 65.0%) ################################
+Unknown                              10202  ( 26.0%) ############
+Warning                               3120  (  7.9%) ###
+Error                                  343  (  0.9%) 
+Exception                               50  (  0.1%) 
+PlayerBase::PlayerBase()                15  (  0.0%) 
+TrackPlayerBase::TrackPlayerBase()      15  (  0.0%) 
+TrackPlayerBase::~TrackPlayerBase()      3  (  0.0%) 
+PlayerBase::~PlayerBase()                3  (  0.0%) 
+ApplicationInfo                          2  (  0.0%) 
+TOTAL                                39298
+
+LIFECYCLE ANALYSIS
+----------------------------------------
+Matched PlayerBase pairs (same PID):           0
+Matched TrackPlayerBase pairs (same PID):     0
+Constructors without observed destructor:     30
+Destructors without observed constructor:     6
+Note: unpaired counts are observations, not leak claims.
+
+MANUAL EXPERIMENT MARKS
+----------------------------------------
+1. [Map Load Start] at 2026-11-12T13:07:55.897063+00:00
+2. [Map Load End] at 2026-11-12T13:08:00.433972+00:00
+3. [Play Start] at 2026-11-12T13:08:03.521706+00:00
+4. [Map Load Start] at 2026-11-12T13:08:50.906184+00:00
+5. [Map Load End] at 2026-11-12T13:08:55.567654+00:00
+6. [Play Start] at 2026-11-12T13:08:58.817175+00:00
+7. [Play End] at 2026-11-12T13:11:03.872674+00:00
+8. [Score Screen] at 2026-11-12T13:11:06.267344+00:00
+
+KEY OBSERVATIONS
+----------------------------------------
+- Found 15 PlayerBase creation(s)
+- Found 15 TrackPlayerBase creation(s)
+- NOTE: PlayerBase construction time is NOT assumed to be music playback start
+- NOTE: Log timestamps are distinguished from log reception times
+
+================================================================================
+Report generated at: 2026-11-12T13:11:33.896113+00:00
+================================================================================
