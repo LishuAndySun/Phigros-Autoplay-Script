@@ -4,6 +4,7 @@ Provides PySide6 UI components for real-time event display,
 timeline visualization, sorting, filtering, and interval calculation.
 """
 
+import uuid
 from datetime import datetime
 
 from PySide6.QtWidgets import (
@@ -248,6 +249,10 @@ class ExperimentMarkWidget(QWidget):
         "Resume",
         "Play End",
         "Score Screen",
+        "PREVIEW_PLAYING",
+        "START_TRIGGER",
+        "PREVIEW_STOPPED",
+        "GAMEPLAY_AUDIO_STARTED",
         "Other"
     ]
     
@@ -300,7 +305,7 @@ class ExperimentMarkWidget(QWidget):
             'type': self.type_combo.currentText(),
             'notes': self.notes_input.text(),
             'timestamp': datetime.now(timezone.utc).isoformat(),
-            'id': f"manual_{self.mark_counter}"
+            'id': f"manual_{uuid.uuid4().hex}"
         }
         
         self.mark_added.emit(mark)

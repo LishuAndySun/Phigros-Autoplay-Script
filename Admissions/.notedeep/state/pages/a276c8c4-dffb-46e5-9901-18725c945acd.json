@@ -1,0 +1,1175 @@
+{
+  "docId": "a276c8c4-dffb-46e5-9901-18725c945acd",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "当前状态总结"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "日期：2026-11-14"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. 已完成"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "四种新 Marker 已加入 UI 下拉列表：`PREVIEW",
+          "_PLAYING`、`START",
+          "_TRIGGER`、`PREVIEW",
+          "_STOPPED`、`GAMEPLAY",
+          "_AUDIO",
+          "_STARTED`。原有 10 种保持不变。",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "位置：",
+              [
+                "A",
+                {
+                  "href": "phigros_diagnostic/timeline.py#L241"
+                },
+                "timeline.py"
+              ],
+              "（`ExperimentMarkWidget.EXPERIMENT",
+              "_TYPES`）"
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "Marker id 由 `manual",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "{计数器}` 改为 `manual"
+          ],
+          "{uuid4}`，避免应用重启后计数器归零导致 id 重复。",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "位置：",
+              [
+                "A",
+                {
+                  "href": "phigros_diagnostic/timeline.py#L303"
+                },
+                "timeline.py"
+              ]
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "`sessions.json` schema 未改变。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. 已验证的链路（临时脚本，已删除，未生成实验数据）"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "环节"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "结果"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UI 下拉选择"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过：14 项，原 10 项保留"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "数据模型（type/notes/timestamp/id/session",
+                "_id）"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "保存到当前 session 的 `manual",
+                "_marks`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "写入 `sessions.json`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过（顶层字段与原 schema 一致）"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "管理器层面重载 `load",
+                "_sessions",
+                "_from",
+                "_json`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`get",
+                "_timeline()` 生成 `",
+                "[TYPE]` 标签"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过（仅数据层）"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "按精确 type 筛选并计算时间差"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "通过"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "调用链："
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "`ExperimentMarkWidget.add",
+          "_mark()` → 发出 `mark",
+          "_added`"
+        ],
+        [
+          "LI",
+          {},
+          "`MainWindow.on",
+          "_manual",
+          "_mark",
+          "_added()` → `ExperimentSession.add",
+          "_manual",
+          "_mark()`"
+        ],
+        [
+          "LI",
+          {},
+          "`MainWindow.closeEvent()`（选择 Yes）→ `ExperimentManager.save",
+          "_sessions",
+          "_to",
+          "_json()`"
+        ],
+        [
+          "LI",
+          {},
+          "重载：`ExperimentManager.load",
+          "_sessions",
+          "_from",
+          "_json()`（UI 中无调用入口）"
+        ],
+        [
+          "LI",
+          {},
+          "导出：`ReportExporter.export",
+          "_formatted",
+          "_report()` 的 TXT 报告包含 marks"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. 未完成"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "时间线展示（未接通）"
+          ],
+          "：UI 从未调用 `get",
+          "_timeline()`，`TimelineView` 只显示 logcat 解析事件，Marker 不会出现在时间线中。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "UI 重载（未接通）"
+          ],
+          "：应用启动时不会读取 `sessions.json`，重新打开应用后 session 不会恢复。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "events JSON 导出"
+          ],
+          "：`export",
+          "_events",
+          "_json()` 不包含 marks，仅 TXT 报告包含。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "保存时机"
+          ],
+          "：`sessions.json` 仅在关闭窗口并选择 Yes 时写入，异常退出会丢失 marks。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "时间对齐"
+          ],
+          "：mark 时间戳为主机 UTC；logcat `log",
+          "_time` 为设备本地时间（Asia/Tokyo）。对齐应以 `receive",
+          "_time` 为准。"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "正式实验"
+          ],
+          "：尚未运行，未生成任何实验数据。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. 修改范围"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "仅修改 ",
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/timeline.py"
+            },
+            "timeline.py"
+          ],
+          "（新增 `import uuid`，扩展类型列表，修改 id 生成）。"
+        ],
+        [
+          "LI",
+          {},
+          "未修改自动开始逻辑、未修改 `experiment.py`、`main",
+          "_window.py`、`report",
+          "_exporter.py`。"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. 待决定"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "是否接通时间线展示（步骤 6）和 UI 启动时的 session 重载（步骤 5）。这两项是正式实验前的必要条件。"
+        ],
+        [
+          "LI",
+          {},
+          "events JSON 是否需要包含 marks。"
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "5f69b407-561b-4653-a01d-1cef1d421be1",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "当前状态总结"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "日期：2026-11-14"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. 已完成"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "四种新 Marker 已加入 UI 下拉列表：`PREVIEW",
+                  "_PLAYING`、`START",
+                  "_TRIGGER`、`PREVIEW",
+                  "_STOPPED`、`GAMEPLAY",
+                  "_AUDIO",
+                  "_STARTED`。原有 10 种保持不变。",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "位置：",
+                      [
+                        "A",
+                        {
+                          "href": "phigros_diagnostic/timeline.py#L241"
+                        },
+                        "timeline.py"
+                      ],
+                      "（`ExperimentMarkWidget.EXPERIMENT",
+                      "_TYPES`）"
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "Marker id 由 `manual",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "{计数器}` 改为 `manual"
+                  ],
+                  "{uuid4}`，避免应用重启后计数器归零导致 id 重复。",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "位置：",
+                      [
+                        "A",
+                        {
+                          "href": "phigros_diagnostic/timeline.py#L303"
+                        },
+                        "timeline.py"
+                      ]
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "`sessions.json` schema 未改变。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. 已验证的链路（临时脚本，已删除，未生成实验数据）"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "环节"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "结果"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UI 下拉选择"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过：14 项，原 10 项保留"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "数据模型（type/notes/timestamp/id/session",
+                        "_id）"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "保存到当前 session 的 `manual",
+                        "_marks`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "写入 `sessions.json`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过（顶层字段与原 schema 一致）"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "管理器层面重载 `load",
+                        "_sessions",
+                        "_from",
+                        "_json`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`get",
+                        "_timeline()` 生成 `",
+                        "[TYPE]` 标签"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过（仅数据层）"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "按精确 type 筛选并计算时间差"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "通过"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "调用链："
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`ExperimentMarkWidget.add",
+                  "_mark()` → 发出 `mark",
+                  "_added`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`MainWindow.on",
+                  "_manual",
+                  "_mark",
+                  "_added()` → `ExperimentSession.add",
+                  "_manual",
+                  "_mark()`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`MainWindow.closeEvent()`（选择 Yes）→ `ExperimentManager.save",
+                  "_sessions",
+                  "_to",
+                  "_json()`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "重载：`ExperimentManager.load",
+                  "_sessions",
+                  "_from",
+                  "_json()`（UI 中无调用入口）"
+                ],
+                [
+                  "LI",
+                  {},
+                  "导出：`ReportExporter.export",
+                  "_formatted",
+                  "_report()` 的 TXT 报告包含 marks"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. 未完成"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "时间线展示（未接通）"
+                  ],
+                  "：UI 从未调用 `get",
+                  "_timeline()`，`TimelineView` 只显示 logcat 解析事件，Marker 不会出现在时间线中。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "UI 重载（未接通）"
+                  ],
+                  "：应用启动时不会读取 `sessions.json`，重新打开应用后 session 不会恢复。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "events JSON 导出"
+                  ],
+                  "：`export",
+                  "_events",
+                  "_json()` 不包含 marks，仅 TXT 报告包含。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "保存时机"
+                  ],
+                  "：`sessions.json` 仅在关闭窗口并选择 Yes 时写入，异常退出会丢失 marks。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "时间对齐"
+                  ],
+                  "：mark 时间戳为主机 UTC；logcat `log",
+                  "_time` 为设备本地时间（Asia/Tokyo）。对齐应以 `receive",
+                  "_time` 为准。"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "正式实验"
+                  ],
+                  "：尚未运行，未生成任何实验数据。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. 修改范围"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "仅修改 ",
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/timeline.py"
+                    },
+                    "timeline.py"
+                  ],
+                  "（新增 `import uuid`，扩展类型列表，修改 id 生成）。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "未修改自动开始逻辑、未修改 `experiment.py`、`main",
+                  "_window.py`、`report",
+                  "_exporter.py`。"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. 待决定"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "是否接通时间线展示（步骤 6）和 UI 启动时的 session 重载（步骤 5）。这两项是正式实验前的必要条件。"
+                ],
+                [
+                  "LI",
+                  {},
+                  "events JSON 是否需要包含 marks。"
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794625211935,
+      "acked": true,
+      "ackedAt": 1794625214915,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}
