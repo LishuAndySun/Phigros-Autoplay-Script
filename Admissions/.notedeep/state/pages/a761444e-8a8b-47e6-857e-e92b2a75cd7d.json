@@ -1,0 +1,1707 @@
+{
+  "docId": "a761444e-8a8b-47e6-857e-e92b2a75cd7d",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "OpenSL ES Realize and Play-State Audit"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Read-only analysis. No PhiAPS source, experiment data, session records, emulator state, or APK/Phigros native libraries were modified or inspected. No new experiment was run and no packages were installed. AOSP main was not used as evidence."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Scope and Identity"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Device: emulator-5554, Android 17 (API 37), fingerprint `Android/sdk",
+          "_phone64",
+          "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`."
+        ],
+        [
+          "LI",
+          {},
+          "Analyzed binaries (hash-verified scratch copies in `$TMPDIR/android17",
+          "_libs`):",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "libwilhelm.so `9a630485f4e8e13e94103983f2e9eb0818fd71e5b47df515f8a2c42687b7266b`"
+            ],
+            [
+              "LI",
+              {},
+              "libaudioclient.so `0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1`"
+            ],
+            [
+              "LI",
+              {},
+              "libOpenSLES.so `771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc`"
+            ],
+            [
+              "LI",
+              {},
+              "libaudiobase.so `633890a33aea6497264fd38a130030bb632b22975171b8b79ab7c9608d0b59fe`"
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "libmedia.so was not device-verified and was not used."
+        ],
+        [
+          "LI",
+          {},
+          "Tools: llvm-objdump, llvm-nm (Apple LLVM 14.0.3), Python 3 ELF parsing."
+        ],
+        [
+          "LI",
+          {},
+          "Output-file absence was checked before writing. `sessions.json` SHA-256 `1d201f71f0fd8bd77b4d95294457e3e6fde0c6c5b3d45b069b02ad52fbc0cd2f` was checked and unchanged."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Corrections to Earlier Notes"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`IEngine",
+          "_CreateAudioPlayer` is a local symbol in libwilhelm.so, not a dynamic export."
+        ],
+        [
+          "LI",
+          {},
+          "The `TrackPlayerBase` init bound used earlier (0x75ce8) is wrong. That address is `SelfAudioDeviceCallback::onAudioDeviceUpdate`. The authoritative bound comes from `.dynsym`: `",
+          "_ZN7android15TrackPlayerBase4initE...` at value 0x756ec, size 0x390, end 0x75a7c."
+        ],
+        [
+          "LI",
+          {},
+          "The `blr x9` at 0x76248 is outside `TrackPlayerBase::init`. It is not part of init."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task A: libwilhelm.so offset 0x43278"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "The `.rela.dyn` section uses APS2 packing. It was decoded with the declared entry count (359) and exact section end. No entries fall in 0x40000-0x44000."
+        ],
+        [
+          "LI",
+          {},
+          "The `.relr.dyn` section uses RELR packing. Decoding it gives:",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "Slot 0x43278 is RELR-relocated. Its stored value is 0x34e58, which is `IEngine",
+              "_CreateAudioPlayer`."
+            ],
+            [
+              "LI",
+              {},
+              "0x34e58 appears only once in `.data.rel.ro`, at this slot."
+            ],
+            [
+              "LI",
+              {},
+              "The slot is part of a RELR run from 0x42f98 to 0x43760 (slot index 92 in the run)."
+            ],
+            [
+              "LI",
+              {},
+              "Neighbors include `IEngine",
+              "_CreateAudioRecorder` (0x35158) and `IVolume",
+              "_GetStereoPosition` (0x3c4dc, near run end). The run is shared with unrelated subsystems."
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "No ADRP/ADD or direct address computation produces 0x43278 (zero exact hits)."
+        ],
+        [
+          "LI",
+          {},
+          "The indexed reader of this slot was not identified."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdicts:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Slot content (points to `IEngine",
+          "_CreateAudioPlayer`): VERIFIED."
+        ],
+        [
+          "LI",
+          {},
+          "Slot is part of an engine dispatch table: UNKNOWN. The run is shared, and no reader was found."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task B: IEngine to Realize Path"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verified direct `bl` edges:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`IEngine",
+          "_CreateAudioPlayer` to `android",
+          "_audioPlayer",
+          "_create` at 0x350dc."
+        ],
+        [
+          "LI",
+          {},
+          "`android",
+          "_audioPlayer",
+          "_create` to the TrackPlayerBase constructor at 0x203cc."
+        ],
+        [
+          "LI",
+          {},
+          "`android",
+          "_audioPlayer",
+          "_realize` to AudioTrack C1 at 0x21170."
+        ],
+        [
+          "LI",
+          {},
+          "`android",
+          "_audioPlayer",
+          "_realize` to `TrackPlayerBase::init` at 0x21348."
+        ],
+        [
+          "LI",
+          {},
+          "`android",
+          "_audioPlayer",
+          "_realize` to `TrackPlayerBase::getAudioTrack` at 0x21494."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Not verified:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "No direct `bl` or `b` from the IEngine chain to `android",
+          "_audioPlayer",
+          "_realize` was found."
+        ],
+        [
+          "LI",
+          {},
+          "A full `.text` search for all callers of `android",
+          "_audioPlayer",
+          "_realize` was not completed."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdicts:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "IEngine reaches Realize through a verified direct path: UNKNOWN. No direct edge was found."
+        ],
+        [
+          "LI",
+          {},
+          "Any indirect path from IEngine to Realize: HYPOTHESIS."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task C: TrackPlayerBase::init (libaudioclient.so)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Bounds (from `.dynsym`): 0x756ec to 0x75a7c, size 0x390. The debug table does not contain this function (its entry near 0x756ec is a `ThN96` thunk)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Calls inside init (228 instructions):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Direct `bl`: `PlayerBase::init` (PLT 0x7b850)."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`: `std::mutex::lock` and `unlock`."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`: `sp<AudioTrack>::operator=` at 0x75a7c (the address just past init)."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`: `sp<IAudioTrackCallback>::operator=` at 0x75b98."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`: `operator new` (0x7a6a0), `RefBase::RefBase` (0x7a670), `RefBase::incStrong` and `decStrong`."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`: `AudioTrack::addAudioDeviceCallback` (0x7b1f0) and `AudioTrack::setPlayerIId` (0x7b1e0)."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`: `",
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "cfi"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "_slowpath` and `"
+          ],
+          "stack",
+          "_chk",
+          "_fail`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Indirect calls (`blr`/`br`): none inside init."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The `blr x9` at 0x76248 is outside init. Its preceding instructions load `",
+      "[x21]` and an offset. Its containing function is not verified."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdicts:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Init contains no indirect calls: VERIFIED."
+        ],
+        [
+          "LI",
+          {},
+          "Init reaches an AudioTrack constructor directly: NOT FOUND. Only `AudioTrack` member calls and `sp` operators appear."
+        ],
+        [
+          "LI",
+          {},
+          "Init reaches an AudioTrack constructor indirectly: UNKNOWN."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task D: android",
+        "_audioPlayer",
+        "_setPlayState (libwilhelm.so 0x22458)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Direct calls:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`PlayerBase::baseUpdateDeviceIds` at 0x226f8."
+        ],
+        [
+          "LI",
+          {},
+          "`PlayerBase::reportEvent` at 0x22708."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Field writes:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`str wzr, ",
+          "[x19, #2616]` at 0x225e4, 0x22640, 0x226a0."
+        ],
+        [
+          "LI",
+          {},
+          "`strb w8, ",
+          "[x19, #2672]` at 0x22710 (after `reportEvent`)."
+        ],
+        [
+          "LI",
+          {},
+          "Stack writes at 0x224a4, 0x224f4 are local."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Indirect calls (vtable loads, targets not resolved):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`blr x9` at 0x224dc: `",
+          "[x8, #296]` of an object loaded from `",
+          "[sp, #64]`."
+        ],
+        [
+          "LI",
+          {},
+          "`blr x9` at 0x22660: `",
+          "[x8, #40]` of object `",
+          "[x19, #2632]`."
+        ],
+        [
+          "LI",
+          {},
+          "`blr x8` at 0x226b4: `",
+          "[x8, #64]` of object `",
+          "[x19, #2648]`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdicts:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`setPlayState` calls `PlayerBase` event reporting and device-ID updates: VERIFIED."
+        ],
+        [
+          "LI",
+          {},
+          "`setPlayState` stores to a play-state field at offset 2672 (0x2a0): VERIFIED as a write. Its semantic meaning is UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "`setPlayState` calls AudioTrack start, pause, or stop: UNKNOWN. The virtual call targets are not resolved."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task D (Realize Indirect Calls)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Six `blr` sites in `android",
+      "_audioPlayer",
+      "_realize` load vtable slots from objects whose types are not established:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "0x20fbc: `",
+          "[x8, #40]`, `x0 = x20`, `w1 = 12`."
+        ],
+        [
+          "LI",
+          {},
+          "0x213a8: `",
+          "[x8, #328]`, object from `",
+          "[sp, #184]`."
+        ],
+        [
+          "LI",
+          {},
+          "0x21444: `",
+          "[x8, #48]`."
+        ],
+        [
+          "LI",
+          {},
+          "0x2146c: `",
+          "[x8, #264]`, `x0 = x21`."
+        ],
+        [
+          "LI",
+          {},
+          "0x21484: `",
+          "[x8, #136]`, `x0 = x21`."
+        ],
+        [
+          "LI",
+          {},
+          "0x214d4: `",
+          "[x8, #1824]`, `x0 = x21`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Targets cannot be named from the binary alone without object-type evidence. Verdict: UNKNOWN for each target."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task E: Summary Verdicts"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Is 0x43278 part of a verified engine dispatch table? Slot content is VERIFIED (RELR, value 0x34e58). Dispatch role is UNKNOWN (shared run, reader not found)."
+        ],
+        [
+          "LI",
+          {},
+          "Is there a verified IEngine to Realize path? UNKNOWN. No direct edge found; a HYPOTHESIS remains for an indirect path."
+        ],
+        [
+          "LI",
+          {},
+          "What are the Realize callers? UNKNOWN. A full `.text` caller search was not completed."
+        ],
+        [
+          "LI",
+          {},
+          "What are the indirect calls in TrackPlayerBase::init? VERIFIED: none inside init. The `blr` at 0x76248 is outside init."
+        ],
+        [
+          "LI",
+          {},
+          "What does `setPlayState` do? VERIFIED: device-ID update, `PlayerBase` event report, and a write to offset 2672. UNKNOWN: AudioTrack start/stop/pause."
+        ],
+        [
+          "LI",
+          {},
+          "Is there a reliable gameplay-audio-start signal? UNKNOWN. No signal was established. A `PlayerBase` event is not evidence that audio became audible."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Limitations"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Analysis used scratch copies, not device-side reads at runtime."
+        ],
+        [
+          "LI",
+          {},
+          "Only direct `bl` edges are treated as verified calls. All `blr` targets are unresolved."
+        ],
+        [
+          "LI",
+          {},
+          "Debug-symbol names are not runtime proof. The libaudioclient debug table is incomplete for init."
+        ],
+        [
+          "LI",
+          {},
+          "APS2 `.rela.dyn` was decoded by count validation, not by an independent parser."
+        ],
+        [
+          "LI",
+          {},
+          "No runtime observation was made. Realize is not assumed to mean Play, and a PlayerBase event is not assumed to mean audible audio."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Next Steps"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Resolve the object types behind the `blr` sites by tracing construction and layout."
+        ],
+        [
+          "LI",
+          {},
+          "Run a full `.text` search for callers of `android",
+          "_audioPlayer",
+          "_realize`."
+        ],
+        [
+          "LI",
+          {},
+          "Identify the function containing 0x76248 and its bounds."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "24baa79a-e363-410b-8f16-3fc3c2a22c13",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "OpenSL ES Realize and Play-State Audit"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Read-only analysis. No PhiAPS source, experiment data, session records, emulator state, or APK/Phigros native libraries were modified or inspected. No new experiment was run and no packages were installed. AOSP main was not used as evidence."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Scope and Identity"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Device: emulator-5554, Android 17 (API 37), fingerprint `Android/sdk",
+                  "_phone64",
+                  "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Analyzed binaries (hash-verified scratch copies in `$TMPDIR/android17",
+                  "_libs`):",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "libwilhelm.so `9a630485f4e8e13e94103983f2e9eb0818fd71e5b47df515f8a2c42687b7266b`"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "libaudioclient.so `0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1`"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "libOpenSLES.so `771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc`"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "libaudiobase.so `633890a33aea6497264fd38a130030bb632b22975171b8b79ab7c9608d0b59fe`"
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "libmedia.so was not device-verified and was not used."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Tools: llvm-objdump, llvm-nm (Apple LLVM 14.0.3), Python 3 ELF parsing."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Output-file absence was checked before writing. `sessions.json` SHA-256 `1d201f71f0fd8bd77b4d95294457e3e6fde0c6c5b3d45b069b02ad52fbc0cd2f` was checked and unchanged."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Corrections to Earlier Notes"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`IEngine",
+                  "_CreateAudioPlayer` is a local symbol in libwilhelm.so, not a dynamic export."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The `TrackPlayerBase` init bound used earlier (0x75ce8) is wrong. That address is `SelfAudioDeviceCallback::onAudioDeviceUpdate`. The authoritative bound comes from `.dynsym`: `",
+                  "_ZN7android15TrackPlayerBase4initE...` at value 0x756ec, size 0x390, end 0x75a7c."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The `blr x9` at 0x76248 is outside `TrackPlayerBase::init`. It is not part of init."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task A: libwilhelm.so offset 0x43278"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "The `.rela.dyn` section uses APS2 packing. It was decoded with the declared entry count (359) and exact section end. No entries fall in 0x40000-0x44000."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The `.relr.dyn` section uses RELR packing. Decoding it gives:",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "Slot 0x43278 is RELR-relocated. Its stored value is 0x34e58, which is `IEngine",
+                      "_CreateAudioPlayer`."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "0x34e58 appears only once in `.data.rel.ro`, at this slot."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "The slot is part of a RELR run from 0x42f98 to 0x43760 (slot index 92 in the run)."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "Neighbors include `IEngine",
+                      "_CreateAudioRecorder` (0x35158) and `IVolume",
+                      "_GetStereoPosition` (0x3c4dc, near run end). The run is shared with unrelated subsystems."
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "No ADRP/ADD or direct address computation produces 0x43278 (zero exact hits)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The indexed reader of this slot was not identified."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdicts:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Slot content (points to `IEngine",
+                  "_CreateAudioPlayer`): VERIFIED."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Slot is part of an engine dispatch table: UNKNOWN. The run is shared, and no reader was found."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task B: IEngine to Realize Path"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verified direct `bl` edges:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`IEngine",
+                  "_CreateAudioPlayer` to `android",
+                  "_audioPlayer",
+                  "_create` at 0x350dc."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`android",
+                  "_audioPlayer",
+                  "_create` to the TrackPlayerBase constructor at 0x203cc."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`android",
+                  "_audioPlayer",
+                  "_realize` to AudioTrack C1 at 0x21170."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`android",
+                  "_audioPlayer",
+                  "_realize` to `TrackPlayerBase::init` at 0x21348."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`android",
+                  "_audioPlayer",
+                  "_realize` to `TrackPlayerBase::getAudioTrack` at 0x21494."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Not verified:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "No direct `bl` or `b` from the IEngine chain to `android",
+                  "_audioPlayer",
+                  "_realize` was found."
+                ],
+                [
+                  "LI",
+                  {},
+                  "A full `.text` search for all callers of `android",
+                  "_audioPlayer",
+                  "_realize` was not completed."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdicts:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "IEngine reaches Realize through a verified direct path: UNKNOWN. No direct edge was found."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Any indirect path from IEngine to Realize: HYPOTHESIS."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task C: TrackPlayerBase::init (libaudioclient.so)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Bounds (from `.dynsym`): 0x756ec to 0x75a7c, size 0x390. The debug table does not contain this function (its entry near 0x756ec is a `ThN96` thunk)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Calls inside init (228 instructions):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `PlayerBase::init` (PLT 0x7b850)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `std::mutex::lock` and `unlock`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `sp<AudioTrack>::operator=` at 0x75a7c (the address just past init)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `sp<IAudioTrackCallback>::operator=` at 0x75b98."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `operator new` (0x7a6a0), `RefBase::RefBase` (0x7a670), `RefBase::incStrong` and `decStrong`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `AudioTrack::addAudioDeviceCallback` (0x7b1f0) and `AudioTrack::setPlayerIId` (0x7b1e0)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`: `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "cfi"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "_slowpath` and `"
+                  ],
+                  "stack",
+                  "_chk",
+                  "_fail`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Indirect calls (`blr`/`br`): none inside init."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The `blr x9` at 0x76248 is outside init. Its preceding instructions load `",
+              "[x21]` and an offset. Its containing function is not verified."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdicts:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Init contains no indirect calls: VERIFIED."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Init reaches an AudioTrack constructor directly: NOT FOUND. Only `AudioTrack` member calls and `sp` operators appear."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Init reaches an AudioTrack constructor indirectly: UNKNOWN."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task D: android",
+                "_audioPlayer",
+                "_setPlayState (libwilhelm.so 0x22458)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Direct calls:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`PlayerBase::baseUpdateDeviceIds` at 0x226f8."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`PlayerBase::reportEvent` at 0x22708."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Field writes:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`str wzr, ",
+                  "[x19, #2616]` at 0x225e4, 0x22640, 0x226a0."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`strb w8, ",
+                  "[x19, #2672]` at 0x22710 (after `reportEvent`)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Stack writes at 0x224a4, 0x224f4 are local."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Indirect calls (vtable loads, targets not resolved):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`blr x9` at 0x224dc: `",
+                  "[x8, #296]` of an object loaded from `",
+                  "[sp, #64]`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`blr x9` at 0x22660: `",
+                  "[x8, #40]` of object `",
+                  "[x19, #2632]`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`blr x8` at 0x226b4: `",
+                  "[x8, #64]` of object `",
+                  "[x19, #2648]`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdicts:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`setPlayState` calls `PlayerBase` event reporting and device-ID updates: VERIFIED."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`setPlayState` stores to a play-state field at offset 2672 (0x2a0): VERIFIED as a write. Its semantic meaning is UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`setPlayState` calls AudioTrack start, pause, or stop: UNKNOWN. The virtual call targets are not resolved."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task D (Realize Indirect Calls)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Six `blr` sites in `android",
+              "_audioPlayer",
+              "_realize` load vtable slots from objects whose types are not established:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "0x20fbc: `",
+                  "[x8, #40]`, `x0 = x20`, `w1 = 12`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "0x213a8: `",
+                  "[x8, #328]`, object from `",
+                  "[sp, #184]`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "0x21444: `",
+                  "[x8, #48]`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "0x2146c: `",
+                  "[x8, #264]`, `x0 = x21`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "0x21484: `",
+                  "[x8, #136]`, `x0 = x21`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "0x214d4: `",
+                  "[x8, #1824]`, `x0 = x21`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Targets cannot be named from the binary alone without object-type evidence. Verdict: UNKNOWN for each target."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task E: Summary Verdicts"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Is 0x43278 part of a verified engine dispatch table? Slot content is VERIFIED (RELR, value 0x34e58). Dispatch role is UNKNOWN (shared run, reader not found)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is there a verified IEngine to Realize path? UNKNOWN. No direct edge found; a HYPOTHESIS remains for an indirect path."
+                ],
+                [
+                  "LI",
+                  {},
+                  "What are the Realize callers? UNKNOWN. A full `.text` caller search was not completed."
+                ],
+                [
+                  "LI",
+                  {},
+                  "What are the indirect calls in TrackPlayerBase::init? VERIFIED: none inside init. The `blr` at 0x76248 is outside init."
+                ],
+                [
+                  "LI",
+                  {},
+                  "What does `setPlayState` do? VERIFIED: device-ID update, `PlayerBase` event report, and a write to offset 2672. UNKNOWN: AudioTrack start/stop/pause."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is there a reliable gameplay-audio-start signal? UNKNOWN. No signal was established. A `PlayerBase` event is not evidence that audio became audible."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Limitations"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Analysis used scratch copies, not device-side reads at runtime."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Only direct `bl` edges are treated as verified calls. All `blr` targets are unresolved."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Debug-symbol names are not runtime proof. The libaudioclient debug table is incomplete for init."
+                ],
+                [
+                  "LI",
+                  {},
+                  "APS2 `.rela.dyn` was decoded by count validation, not by an independent parser."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No runtime observation was made. Realize is not assumed to mean Play, and a PlayerBase event is not assumed to mean audible audio."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Next Steps"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Resolve the object types behind the `blr` sites by tracing construction and layout."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Run a full `.text` search for callers of `android",
+                  "_audioPlayer",
+                  "_realize`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Identify the function containing 0x76248 and its bounds."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794701241303,
+      "acked": true,
+      "ackedAt": 1794701244599,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

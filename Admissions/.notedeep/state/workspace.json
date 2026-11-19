@@ -13,6 +13,20 @@
         "deleted": false,
         "sort": 0
       },
+      "c576e854-651b-49b2-b0ea-d4f0b84e3b8c": {
+        "path": "android17_audio_creation_path.md",
+        "title": "android17_audio_creation_path",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 1
+      },
+      "6e253d00-7074-4286-baba-303fd805bf42": {
+        "path": "android17_build_identity.md",
+        "title": "android17_build_identity",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 1
+      },
       "dd13910d-4956-4ed4-8d7d-219583995b0b": {
         "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
         "title": "AUDIO_PLAYBACK_PIPELINE_AUDIT",
@@ -26,6 +40,20 @@
         "parentUuid": null,
         "deleted": false,
         "sort": 2
+      },
+      "053712cf-976c-47b2-a384-09f04f40cadb": {
+        "path": "AudioPlaybackCaptureGameplayValidation.md",
+        "title": "AudioPlaybackCaptureGameplayValidation",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 5
+      },
+      "881e6f8f-05ae-4746-86b4-a6d84f5f529d": {
+        "path": "AudioPlaybackStartSignalAudit.md",
+        "title": "AudioPlaybackStartSignalAudit",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 5
       },
       "baafe286-a519-4b44-b1f3-45f438b1f314": {
         "path": "AutoStartCalibrationPlan.md",
@@ -48,12 +76,47 @@
         "deleted": false,
         "sort": 5
       },
+      "9408b76d-52ae-40f9-9a18-60baa5a66ccf": {
+        "path": "FirstAudioPeakSubBlockAudit.md",
+        "title": "FirstAudioPeakSubBlockAudit",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 10
+      },
       "df6868cd-63e5-4390-894f-17fe39d1bcfc": {
         "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
         "title": "MULTI_ROUND_OPERATION_CORRELATION",
         "parentUuid": null,
         "deleted": false,
         "sort": 6
+      },
+      "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993": {
+        "path": "OpenSLESDispatchAndRealizeCallerAudit.md",
+        "title": "OpenSLESDispatchAndRealizeCallerAudit",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 9
+      },
+      "a761444e-8a8b-47e6-857e-e92b2a75cd7d": {
+        "path": "OpenSLESRealizeAndPlayStateAudit.md",
+        "title": "OpenSLESRealizeAndPlayStateAudit",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 9
+      },
+      "e4e7d287-3869-4ceb-90c0-053f0438f6ad": {
+        "path": "OpenSLESRealizeDispatchTrace.md",
+        "title": "OpenSLESRealizeDispatchTrace",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 11
+      },
+      "7310e95d-527f-4047-94a6-91dc5f9fe0c0": {
+        "path": "OpenSLESRelocationCallsiteAudit.md",
+        "title": "OpenSLESRelocationCallsiteAudit",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 9
       },
       "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754": {
         "path": "PHASE2_FIX_REPORT.md",
@@ -90,6 +153,20 @@
         "deleted": false,
         "sort": 11
       },
+      "4a29fd9c-3779-4a91-923e-4a515020fc69": {
+        "path": "TrackPlayerbaseCallsiteInvestigation.md",
+        "title": "TrackPlayerbaseCallsiteInvestigation",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 12
+      },
+      "11768871-b672-4dd2-b290-a56afb40b317": {
+        "path": "TrackPlayerBaseOpenSLESFollowup.md",
+        "title": "TrackPlayerBaseOpenSLESFollowup",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 15
+      },
       "a276c8c4-dffb-46e5-9901-18725c945acd": {
         "path": "UnityOutPortalStatus.md",
         "title": "UnityOutPortalStatus",
@@ -106,9 +183,9 @@
       }
     }
   },
-  "localVersion": 5,
-  "remoteBaseVersion": 7,
-  "appliedOpsRemoteVersion": 7,
+  "localVersion": 16,
+  "remoteBaseVersion": 18,
+  "appliedOpsRemoteVersion": 18,
   "appliedOps": [
     {
       "id": "ac044b22-537e-491f-a67c-d6aff4efe94f",
@@ -381,6 +458,281 @@
       "acked": true,
       "ackedAt": 1794625214326,
       "remoteVersion": 7
+    },
+    {
+      "id": "9b3e3bb0-b002-4dec-9be6-ecd1a5608a94",
+      "localVersion": 6,
+      "remoteBaseVersion": 7,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "4a29fd9c-3779-4a91-923e-4a515020fc69"
+          ],
+          "oi": {
+            "path": "TrackPlayerbaseCallsiteInvestigation.md",
+            "title": "TrackPlayerbaseCallsiteInvestigation",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 12
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794659900069,
+      "acked": true,
+      "ackedAt": 1794659902522,
+      "remoteVersion": 8
+    },
+    {
+      "id": "5593c2b0-e2c5-49d4-aaf9-c4704d19a649",
+      "localVersion": 7,
+      "remoteBaseVersion": 8,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "6e253d00-7074-4286-baba-303fd805bf42"
+          ],
+          "oi": {
+            "path": "android17_build_identity.md",
+            "title": "android17_build_identity",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 1
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794660503080,
+      "acked": true,
+      "ackedAt": 1794660505672,
+      "remoteVersion": 9
+    },
+    {
+      "id": "faf121a9-7f96-4ae6-8ca3-d430e85f5838",
+      "localVersion": 8,
+      "remoteBaseVersion": 9,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "c576e854-651b-49b2-b0ea-d4f0b84e3b8c"
+          ],
+          "oi": {
+            "path": "android17_audio_creation_path.md",
+            "title": "android17_audio_creation_path",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 1
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794661011025,
+      "acked": true,
+      "ackedAt": 1794661013833,
+      "remoteVersion": 10
+    },
+    {
+      "id": "f86ad07b-9ccf-4778-85ea-77f80da6f638",
+      "localVersion": 9,
+      "remoteBaseVersion": 10,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "11768871-b672-4dd2-b290-a56afb40b317"
+          ],
+          "oi": {
+            "path": "TrackPlayerBaseOpenSLESFollowup.md",
+            "title": "TrackPlayerBaseOpenSLESFollowup",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 15
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794661421103,
+      "acked": true,
+      "ackedAt": 1794661424829,
+      "remoteVersion": 11
+    },
+    {
+      "id": "68c021f6-9517-4e7c-9d09-2048c83576e4",
+      "localVersion": 10,
+      "remoteBaseVersion": 11,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "7310e95d-527f-4047-94a6-91dc5f9fe0c0"
+          ],
+          "oi": {
+            "path": "OpenSLESRelocationCallsiteAudit.md",
+            "title": "OpenSLESRelocationCallsiteAudit",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 9
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794661785068,
+      "acked": true,
+      "ackedAt": 1794661786759,
+      "remoteVersion": 12
+    },
+    {
+      "id": "bdcf2b22-2164-4fe9-9776-0d5751b4e70a",
+      "localVersion": 11,
+      "remoteBaseVersion": 12,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "a761444e-8a8b-47e6-857e-e92b2a75cd7d"
+          ],
+          "oi": {
+            "path": "OpenSLESRealizeAndPlayStateAudit.md",
+            "title": "OpenSLESRealizeAndPlayStateAudit",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 9
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794701241273,
+      "acked": true,
+      "ackedAt": 1794701243676,
+      "remoteVersion": 13
+    },
+    {
+      "id": "b5a9c3fc-8b56-45d0-b026-f11adcfecc16",
+      "localVersion": 12,
+      "remoteBaseVersion": 13,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993"
+          ],
+          "oi": {
+            "path": "OpenSLESDispatchAndRealizeCallerAudit.md",
+            "title": "OpenSLESDispatchAndRealizeCallerAudit",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 9
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794701520277,
+      "acked": true,
+      "ackedAt": 1794701522403,
+      "remoteVersion": 14
+    },
+    {
+      "id": "0ee1bc04-382a-492d-9b1d-b91b58318ee2",
+      "localVersion": 13,
+      "remoteBaseVersion": 14,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "e4e7d287-3869-4ceb-90c0-053f0438f6ad"
+          ],
+          "oi": {
+            "path": "OpenSLESRealizeDispatchTrace.md",
+            "title": "OpenSLESRealizeDispatchTrace",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 11
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794701696286,
+      "acked": true,
+      "ackedAt": 1794701699211,
+      "remoteVersion": 15
+    },
+    {
+      "id": "bddbcb15-de7b-4cb7-a62f-d0fa9bdcedd8",
+      "localVersion": 14,
+      "remoteBaseVersion": 15,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "881e6f8f-05ae-4746-86b4-a6d84f5f529d"
+          ],
+          "oi": {
+            "path": "AudioPlaybackStartSignalAudit.md",
+            "title": "AudioPlaybackStartSignalAudit",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 5
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794701980340,
+      "acked": true,
+      "ackedAt": 1794701982295,
+      "remoteVersion": 16
+    },
+    {
+      "id": "36d43018-3bac-481c-8590-5de94650dbf9",
+      "localVersion": 15,
+      "remoteBaseVersion": 16,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "053712cf-976c-47b2-a384-09f04f40cadb"
+          ],
+          "oi": {
+            "path": "AudioPlaybackCaptureGameplayValidation.md",
+            "title": "AudioPlaybackCaptureGameplayValidation",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 5
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794704928310,
+      "acked": true,
+      "ackedAt": 1794704930109,
+      "remoteVersion": 17
+    },
+    {
+      "id": "a22f5146-9e53-466a-a521-124ef7ba4dab",
+      "localVersion": 16,
+      "remoteBaseVersion": 17,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "9408b76d-52ae-40f9-9a18-60baa5a66ccf"
+          ],
+          "oi": {
+            "path": "FirstAudioPeakSubBlockAudit.md",
+            "title": "FirstAudioPeakSubBlockAudit",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 10
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794705333305,
+      "acked": true,
+      "ackedAt": 1794705335666,
+      "remoteVersion": 18
     }
   ],
   "pendingOps": []

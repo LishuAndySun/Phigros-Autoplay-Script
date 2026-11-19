@@ -60,6 +60,50 @@
     "a276c8c4-dffb-46e5-9901-18725c945acd": {
       "path": "UnityOutPortalStatus.md",
       "sort": 12
+    },
+    "4a29fd9c-3779-4a91-923e-4a515020fc69": {
+      "path": "TrackPlayerbaseCallsiteInvestigation.md",
+      "sort": 12
+    },
+    "6e253d00-7074-4286-baba-303fd805bf42": {
+      "path": "android17_build_identity.md",
+      "sort": 1
+    },
+    "c576e854-651b-49b2-b0ea-d4f0b84e3b8c": {
+      "path": "android17_audio_creation_path.md",
+      "sort": 1
+    },
+    "11768871-b672-4dd2-b290-a56afb40b317": {
+      "path": "TrackPlayerBaseOpenSLESFollowup.md",
+      "sort": 15
+    },
+    "7310e95d-527f-4047-94a6-91dc5f9fe0c0": {
+      "path": "OpenSLESRelocationCallsiteAudit.md",
+      "sort": 9
+    },
+    "a761444e-8a8b-47e6-857e-e92b2a75cd7d": {
+      "path": "OpenSLESRealizeAndPlayStateAudit.md",
+      "sort": 9
+    },
+    "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993": {
+      "path": "OpenSLESDispatchAndRealizeCallerAudit.md",
+      "sort": 9
+    },
+    "e4e7d287-3869-4ceb-90c0-053f0438f6ad": {
+      "path": "OpenSLESRealizeDispatchTrace.md",
+      "sort": 11
+    },
+    "881e6f8f-05ae-4746-86b4-a6d84f5f529d": {
+      "path": "AudioPlaybackStartSignalAudit.md",
+      "sort": 5
+    },
+    "053712cf-976c-47b2-a384-09f04f40cadb": {
+      "path": "AudioPlaybackCaptureGameplayValidation.md",
+      "sort": 5
+    },
+    "9408b76d-52ae-40f9-9a18-60baa5a66ccf": {
+      "path": "FirstAudioPeakSubBlockAudit.md",
+      "sort": 10
     }
   },
   "name": "PhiAPS Admissions",

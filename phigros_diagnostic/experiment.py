@@ -6,6 +6,7 @@ for multiple independent experiments.
 
 import json
 import os
+import tempfile
 from datetime import datetime, timezone
 
 
@@ -206,8 +207,20 @@ class ExperimentManager:
             'sessions': [session.to_dict() for session in self.sessions.values()]
         }
         
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+        # Atomic write: write to a temp file in the same directory, then replace.
+        # In-memory sessions are never modified here, so a failure leaves them intact.
+        directory = os.path.dirname(os.path.abspath(filepath))
+        fd, tmp_path = tempfile.mkstemp(dir=directory, prefix='.sessions_', suffix='.tmp')
+        try:
+            with os.fdopen(fd, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp_path, filepath)
+        except BaseException:
+            if os.path.exists(tmp_path):
+                os.remove(tmp_path)
+            raise
         
         return filepath
     
@@ -218,16 +231,32 @@ class ExperimentManager:
             filepath: Path to JSON file
             
         Returns:
-            int: Number of sessions loaded
+            int: Number of sessions loaded. 0 if the file is missing.
+            
+        Raises:
+            ValueError: If the file exists but is not valid session data.
+                The file is not modified and in-memory sessions are unchanged.
         """
         if not os.path.exists(filepath):
             return 0
         
-        with open(filepath, 'r', encoding='utf-8') as f:
-            data = json.load(f)
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            raise ValueError(f"Session file is corrupt: {filepath} ({e})")
+        
+        if not isinstance(data, dict) or not isinstance(data.get('sessions', []), list):
+            raise ValueError(f"Session file has unexpected structure: {filepath}")
+        
+        loaded = []
+        for session_data in data.get('sessions', []):
+            if not isinstance(session_data, dict) or not session_data.get('session_id'):
+                raise ValueError(f"Session entry without session_id in: {filepath}")
+            loaded.append(session_data)
         
         count = 0
-        for session_data in data.get('sessions', []):
+        for session_data in loaded:
             session = ExperimentSession(session_data.get('session_id'))
             session.description = session_data.get('description', '')
             session.device_name = session_data.get('device_name', '')

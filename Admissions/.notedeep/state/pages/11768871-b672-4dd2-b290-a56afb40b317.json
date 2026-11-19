@@ -1,0 +1,3295 @@
+{
+  "docId": "11768871-b672-4dd2-b290-a56afb40b317",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "TrackPlayerBase Identity and OpenSL ES Path: Follow-up Audit"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Scope: read-only. No PhiAPS source, experiment data, or session exports were modified. The experiment was not rerun. The emulator was not restarted or reconfigured. No APK analysis was performed."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Evidence tags:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "DEVICE: read from emulator-5554 with the device's own `readelf`, `sha256sum`, `stat`."
+        ],
+        [
+          "LI",
+          {},
+          "LOCAL: read from scratch copies in `$TMPDIR/android17",
+          "_libs/` on the Mac (copies pulled from the device; sha256 matched the device for every file checked)."
+        ],
+        [
+          "LI",
+          {},
+          "SOURCE: public Android source. No new source was fetched for this report. The earlier AudioTrack.cpp fetch was `refs/heads/main`, not a build revision, and is not used as evidence here."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "0. Correction to the previous report"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The previous report stated that `libwilhelm.so` exports `IEngine",
+      "_CreateAudioPlayer`. This is wrong."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf --dyn-syms -W /system/lib64/libwilhelm.so | grep -E \"slCreateEngine|IEngine|CreateAudioPlayer\"` returned no lines."
+        ],
+        [
+          "LI",
+          {},
+          "LOCAL: `grep -a -b -o IEngine",
+          "_CreateAudioPlayer libwilhelm.so` finds two byte offsets (51199 and 53752). The name is present as a string (likely a debug or log string or a symbol-name table), not as a dynamic export."
+        ],
+        [
+          "LI",
+          {},
+          "Consequence: the OpenSL ES entry point is not established as a dynamic export in this library."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. ELF build identity (Task 1)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command used for build IDs (device): `adb -s emulator-5554 shell \"readelf -n <path>\"`",
+      [
+        "BR",
+        {}
+      ],
+      "Command used for hashes and sizes (device): `adb -s emulator-5554 shell \"sha256sum <path>; stat -c %s <path>\"`"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Device path"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Size (bytes)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "GNU Build ID"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "SHA-256"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Source"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libwilhelm.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "307672"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "b2b8be766a0bb4d0a575e3ae640c6275"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "9a630485f4e8e13e94103983f2e9eb0818fd71e5b47df515f8a2c42687b7266b"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_datapath.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "51872"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2b4b99e2cf5e8fee45ee3f4189821be7"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "6a1de1587f80f712a03c3dfc6077468e03781a925fcaf63886a79b1bdf703f87"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_fastpath.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "85528"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "63c908c1d2cfae83d378dc003ee0964d"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "c08bfdde566a91b938802f5112177e36b42d70fad2bb29b16a2997e6c259c4c2"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_timing.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "35368"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "c846e22386f73a26794acc2ec8627ff8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "89836d166079d4b332c8f9a6b7f3282a85a2fae72952feb45feaca78446e9155"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_utils.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "52648"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "d55974b0cc4559001e8dfe4424aea036"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "b5ea235e691125a878e652e7ae1ff3ea6286f74500d8f4dbe0fe395e5f0906ad"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioclient.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "553160"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "d5e03623b0ca530f899f320ba7c9811d"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libOpenSLES.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "35896"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "4f9b436de4a0a3b0a1f1886a2c6e44d0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudiobase.so (new)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "676520"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "3b929bf3dc3d990f4709bedc77f808a9"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "633890a33aea6497264fd38a130030bb632b22975171b8b79ab7c9608d0b59fe"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE (sha); LOCAL copy sha matches"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Local-copy hashes (LOCAL) match the device for every file that was hashed locally. The five libaudioflinger modules were hashed on the device; their local copies were not re-hashed in this session."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Limitation: the device `readelf` has no `--relocs` or `-r` option (`readelf: Unknown option`). Relocation records (`.rela.plt`, `.rela.dyn`) could not be listed with it. Host `readelf` is absent. Relocation-level linkage is therefore NOT CHECKED."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Class identity and inheritance (Task 2)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "2.1 Where each class is defined"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf --dyn-syms -W /system/lib64/libaudioclient.so`. `",
+          "_ZN7android10PlayerBaseC2Ev`, `PlayerBaseD2Ev`, `PlayerBase4init...`, and related PlayerBase members are `UND` (imported) in libaudioclient.so."
+        ],
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf --dyn-syms -W /system/lib64/libaudiobase.so`. These same PlayerBase symbols are defined (section index 15 for code, 17 for vtables). `",
+          "_ZTVN7android10PlayerBaseE` is defined at 0x99428."
+        ],
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf -d /system/lib64/libaudioclient.so | grep NEEDED` includes `",
+          "[libaudiobase.so]`."
+        ],
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf --dyn-syms -W /system/lib64/libaudioclient.so`. `",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "ZN7android15TrackPlayerBaseC2Ev` (0x73264), `C1Ev` (0x732d0), `D0Ev`, `D1Ev`, `D2Ev`, `init`, `destroy`, `doDestroy`, and `"
+          ],
+          "ZTVN7android15TrackPlayerBaseE` (0x7e7b8) are all defined (section index 15 or 17)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Conclusion: `PlayerBase` is defined in `libaudiobase.so`. `TrackPlayerBase` is defined in `libaudioclient.so`. The `TrackPlayerBase` definitions are in libaudioclient.so, not in libaudiobase.so."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "2.2 Typeinfo and construction vtables"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf --dyn-syms -W` on libaudioclient.so and libaudiobase.so, filtered for `",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "ZTI` and `"
+          ],
+          "ZTS`, returned no PlayerBase or TrackPlayerBase matches."
+        ],
+        [
+          "LI",
+          {},
+          "DEVICE: `",
+          "_ZTCN7android15TrackPlayerBaseE0",
+          "_NS",
+          "_10PlayerBaseE` is defined in libaudioclient.so at 0x7e978 (section 17)."
+        ],
+        [
+          "LI",
+          {},
+          "DEVICE: other construction vtables for TrackPlayerBase are defined at 0x80898, 0x7db18, 0x7eb38, 0x7ee58, 0x7ecd8, 0x7ef38, and 0x80cd8."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Interpretation:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "The Itanium C++ ABI emits a construction vtable `",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "ZTC<Derived>0"
+          ],
+          "<Base>` for each base-class subobject of `Derived`. The presence of `",
+          "_ZTCN7android15TrackPlayerBaseE0",
+          "_NS",
+          "_10PlayerBaseE` therefore strongly indicates that TrackPlayerBase has PlayerBase as a base subobject. This is SUPPORTED by ABI convention, not directly proven."
+        ],
+        [
+          "LI",
+          {},
+          "Typeinfo (`",
+          "_ZTI`) for either class is not exported. The typeinfo's base-class entry, which would directly prove inheritance, cannot be read from the dynamic table."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdict for question 1 (exact inheritance): SUPPORTED that TrackPlayerBase derives from PlayerBase (construction vtable). NOT VERIFIED. The exact inheritance chain and any multiple-inheritance layout beyond the construction vtable are UNKNOWN."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "What would prove it: an unstripped copy of libaudioclient.so with `.symtab` or DWARF (only `.gnu",
+      "_debugdata` is present on device, MiniDebugInfo), or the `",
+      "_ZTI` typeinfo exported from the device, or disassembly of the TrackPlayerBase constructor showing the base-class vtable store."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Not used as evidence: `libwilhelm.so` referencing PlayerBase methods (`baseUpdateDeviceIds`, `reportEvent`) does not by itself establish inheritance."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. OpenSL ES relationship (Task 3)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "3.1 What libwilhelm.so imports (DYNAMIC, DEVICE)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command: `readelf --dyn-syms -W /system/lib64/libwilhelm.so | grep -E \"UND.",
+      "*(PlayerBase|TrackPlayerBase|AudioTrack|createTrack)\"`"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The `UND` (imported) symbols include:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`",
+          "_ZN7android15TrackPlayerBaseC1Ev` (TrackPlayerBase base-complete constructor)"
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          "_ZN7android15TrackPlayerBase4initERKNS",
+          "_2spINS",
+          "_10AudioTrackEEERKNS1",
+          "_INS2",
+          "_19IAudioTrackCallbackEEENS",
+          "_13player",
+          "_type",
+          "_tE13audio",
+          "_usage",
+          "_t15audio",
+          "_session",
+          "_t`"
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          "_ZN7android15TrackPlayerBase15setPlayerVolumeEff`"
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "ZN7android10PlayerBase19baseUpdateDeviceIdsERKNSt3"
+          ],
+          "_16vectorIiNS1",
+          "_9allocatorIiEEEE`"
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "ZN7android10PlayerBase11reportEventENS"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "_14player"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "_state"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "_tERKNSt3"
+          ],
+          "_16vectorIiNS2",
+          "_9allocatorIiEEEE`"
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          "_ZN7android10AudioTrackC1E19audio",
+          "_stream",
+          "_type",
+          "_tj14audio",
+          "_format",
+          "_t20audio",
+          "_channel",
+          "_mask",
+          "_tm20audio",
+          "_output",
+          "_flags",
+          "_t...` (AudioTrack constructor)"
+        ],
+        [
+          "LI",
+          {},
+          "`gClsAudioTrackRoutingProxy`, `gMidAudioTrackRoutingProxy",
+          "_ctor`, `gMidAudioTrackRoutingProxy",
+          "_release` (JNI-related imports)"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Nine dynamic symbols match this filter. The library's dynamic symbol table has no `createTrack",
+      "_l` import."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "3.2 What libwilhelm.so defines"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "DEVICE: `readelf --dyn-syms -W /system/lib64/libwilhelm.so | grep -E \"slCreateEngine|IEngine|CreateAudioPlayer\"` returned no lines. No OpenSL ES entry point is exported."
+        ],
+        [
+          "LI",
+          {},
+          "LOCAL: the string `IEngine",
+          "_CreateAudioPlayer` appears twice in the file (offsets 51199 and 53752). A symbol-table or debug string is likely, but the binding is not established."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H3",
+        {},
+        "3.3 Relationship table"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Relationship"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Status"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Evidence"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libwilhelm imports TrackPlayerBase constructor and init"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED (import)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE dynsym UND"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libwilhelm imports AudioTrack constructor"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED (import)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE dynsym UND"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libwilhelm imports AudioTrack::createTrack",
+                "_l"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "NOT FOUND"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DEVICE dynsym has no such import"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libwilhelm's OpenSL entry point calls TrackPlayerBase::init"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "No defined OpenSL export; no relocation or disassembly available"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libwilhelm uses the import from within IEngine",
+                "_CreateAudioPlayer"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Same reason; the calling function is not identified"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioTrack::createTrack",
+                "_l is reached from TrackPlayerBase::init"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Needs disassembly or a call graph; not established"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "TrackPlayerBase constructor is called from libwilhelm"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "SUPPORTED that libwilhelm can call it (imports C1Ev); call site not identified"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Relocations (`.rela.plt`) were not inspected because of the device `readelf` limitation in section 1. The import table shows the names exist, not which code site uses them."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Interpretation: the symbol-level relationship is that libwilhelm.so imports TrackPlayerBase and AudioTrack constructors and TrackPlayerBase::init. A direct call chain from the OpenSL ES entry point to TrackPlayerBase::init or to createTrack",
+      "_l is NOT established."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. Flag uncertainty (Task 4)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Observed values, unchanged from the raw log:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "flags requested = 0x104"
+        ],
+        [
+          "LI",
+          {},
+          "output = 0x2"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "No meaning is assigned in this report. The matching-build headers were not located, and no binary evidence in this session establishes the flag bits. The earlier source-level reading of `input.flags = mFlags` came from main, not from this build, and is not used here."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Status: UNKNOWN."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Evidence classification (Task 5)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Is the exact TrackPlayerBase inheritance relationship known?",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "SUPPORTED that TrackPlayerBase derives from PlayerBase (construction vtable `",
+              "_ZTCN7android15TrackPlayerBaseE0",
+              "_NS",
+              "_10PlayerBaseE` in libaudioclient.so). Not VERIFIED. Typeinfo is not exported, so the exact base chain is UNKNOWN."
+            ],
+            [
+              "LI",
+              {},
+              "NO. libwilhelm.so imports `TrackPlayerBase::init` (DEVICE dynsym UND). No defined OpenSL ES export exists, and no disassembly or relocation evidence links the two. Status: UNKNOWN for the call; the import is VERIFIED."
+            ],
+            [
+              "LI",
+              {},
+              "PARTIAL. libwilhelm imports `AudioTrack` constructors (VERIFIED import). libaudioclient exports `AudioTrack::createTrack",
+              "_l` (VERIFIED export). The link from the OpenSL path to `createTrack",
+              "_l` is UNKNOWN. Flag meanings are UNKNOWN."
+            ],
+            [
+              "LI",
+              {},
+              "NO. The Phigros-side caller is UNKNOWN. This report did not analyze the APK, per the constraints."
+            ],
+            [
+              "LI",
+              {},
+              "NO. The log strings \"PlayerBase::PlayerBase\" and \"TrackPlayerBase::TrackPlayerBase\" were not found in any pulled library (libwilhelm, libaudioclient, libaudiobase, libOpenSLES, libaudioflinger modules). The emitter of these log lines is therefore unknown. The constructors exist as symbols, but the events cannot be tied to gameplay start without the caller and emitter. The constructor events are also not timestamped against the game's own frame or scene events. Do not use them as a gameplay-start signal."
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "Is the OpenSL ES to TrackPlayerBase::init relationship directly established?",
+          [
+            "UL",
+            {}
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "Is the AudioTrack creation path established?",
+          [
+            "UL",
+            {}
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "Is the Phigros-side constructor caller known?",
+          [
+            "UL",
+            {}
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "Can any observed constructor event be used as a gameplay-start signal?",
+          [
+            "UL",
+            {}
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. Limitations"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Device `readelf` lacks relocation listing and full symbol tables; only `.gnu",
+          "_debugdata` (MiniDebugInfo) is present on device for these libraries."
+        ],
+        [
+          "LI",
+          {},
+          "No host `readelf`, `nm`, or `objdump` gives a complete answer; `nm` on the Mac does not handle these Android ELF binaries for the purpose of this check."
+        ],
+        [
+          "LI",
+          {},
+          "No disassembly was performed, so no direct call edges are established."
+        ],
+        [
+          "LI",
+          {},
+          "The Android build revision for `CE2A.260420.051.A3 / 16571990` is still not verified against any public source. Symbols here describe the device build, not a source revision."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "7. Recommended next steps"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Obtain relocation data: pull libwilhelm.so and libaudioclient.so and inspect `.rela.plt` with a host ELF tool that supports Android binaries, or use `llvm-readelf` if available. This would show which code sites reference the TrackPlayerBase and AudioTrack imports."
+        ],
+        [
+          "LI",
+          {},
+          "Obtain an unstripped libaudioclient.so with `.symtab` or DWARF from the matching build, if one exists, to read the typeinfo base-class entry."
+        ],
+        [
+          "LI",
+          {},
+          "Disassemble only the library code around the imports in libwilhelm.so to locate the calling function, if this is acceptable under the constraints."
+        ],
+        [
+          "LI",
+          {},
+          "Verify the flag bits against the headers for build `16571990`, not main."
+        ],
+        [
+          "LI",
+          {},
+          "Correlate log lines with PIDs and TIDs before attributing any constructor event to a caller."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "64119e88-a0a8-4817-94d5-95b83f9191e1",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "TrackPlayerBase Identity and OpenSL ES Path: Follow-up Audit"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Scope: read-only. No PhiAPS source, experiment data, or session exports were modified. The experiment was not rerun. The emulator was not restarted or reconfigured. No APK analysis was performed."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Evidence tags:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "DEVICE: read from emulator-5554 with the device's own `readelf`, `sha256sum`, `stat`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "LOCAL: read from scratch copies in `$TMPDIR/android17",
+                  "_libs/` on the Mac (copies pulled from the device; sha256 matched the device for every file checked)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "SOURCE: public Android source. No new source was fetched for this report. The earlier AudioTrack.cpp fetch was `refs/heads/main`, not a build revision, and is not used as evidence here."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "0. Correction to the previous report"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The previous report stated that `libwilhelm.so` exports `IEngine",
+              "_CreateAudioPlayer`. This is wrong."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf --dyn-syms -W /system/lib64/libwilhelm.so | grep -E \"slCreateEngine|IEngine|CreateAudioPlayer\"` returned no lines."
+                ],
+                [
+                  "LI",
+                  {},
+                  "LOCAL: `grep -a -b -o IEngine",
+                  "_CreateAudioPlayer libwilhelm.so` finds two byte offsets (51199 and 53752). The name is present as a string (likely a debug or log string or a symbol-name table), not as a dynamic export."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Consequence: the OpenSL ES entry point is not established as a dynamic export in this library."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. ELF build identity (Task 1)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command used for build IDs (device): `adb -s emulator-5554 shell \"readelf -n <path>\"`",
+              [
+                "BR",
+                {}
+              ],
+              "Command used for hashes and sizes (device): `adb -s emulator-5554 shell \"sha256sum <path>; stat -c %s <path>\"`"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Device path"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Size (bytes)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "GNU Build ID"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "SHA-256"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Source"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libwilhelm.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "307672"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "b2b8be766a0bb4d0a575e3ae640c6275"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "9a630485f4e8e13e94103983f2e9eb0818fd71e5b47df515f8a2c42687b7266b"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_datapath.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "51872"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2b4b99e2cf5e8fee45ee3f4189821be7"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "6a1de1587f80f712a03c3dfc6077468e03781a925fcaf63886a79b1bdf703f87"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_fastpath.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "85528"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "63c908c1d2cfae83d378dc003ee0964d"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "c08bfdde566a91b938802f5112177e36b42d70fad2bb29b16a2997e6c259c4c2"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_timing.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "35368"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "c846e22386f73a26794acc2ec8627ff8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "89836d166079d4b332c8f9a6b7f3282a85a2fae72952feb45feaca78446e9155"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_utils.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "52648"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "d55974b0cc4559001e8dfe4424aea036"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "b5ea235e691125a878e652e7ae1ff3ea6286f74500d8f4dbe0fe395e5f0906ad"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioclient.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "553160"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "d5e03623b0ca530f899f320ba7c9811d"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libOpenSLES.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "35896"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "4f9b436de4a0a3b0a1f1886a2c6e44d0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudiobase.so (new)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "676520"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "3b929bf3dc3d990f4709bedc77f808a9"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "633890a33aea6497264fd38a130030bb632b22975171b8b79ab7c9608d0b59fe"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE (sha); LOCAL copy sha matches"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Local-copy hashes (LOCAL) match the device for every file that was hashed locally. The five libaudioflinger modules were hashed on the device; their local copies were not re-hashed in this session."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Limitation: the device `readelf` has no `--relocs` or `-r` option (`readelf: Unknown option`). Relocation records (`.rela.plt`, `.rela.dyn`) could not be listed with it. Host `readelf` is absent. Relocation-level linkage is therefore NOT CHECKED."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Class identity and inheritance (Task 2)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "2.1 Where each class is defined"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf --dyn-syms -W /system/lib64/libaudioclient.so`. `",
+                  "_ZN7android10PlayerBaseC2Ev`, `PlayerBaseD2Ev`, `PlayerBase4init...`, and related PlayerBase members are `UND` (imported) in libaudioclient.so."
+                ],
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf --dyn-syms -W /system/lib64/libaudiobase.so`. These same PlayerBase symbols are defined (section index 15 for code, 17 for vtables). `",
+                  "_ZTVN7android10PlayerBaseE` is defined at 0x99428."
+                ],
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf -d /system/lib64/libaudioclient.so | grep NEEDED` includes `",
+                  "[libaudiobase.so]`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf --dyn-syms -W /system/lib64/libaudioclient.so`. `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "ZN7android15TrackPlayerBaseC2Ev` (0x73264), `C1Ev` (0x732d0), `D0Ev`, `D1Ev`, `D2Ev`, `init`, `destroy`, `doDestroy`, and `"
+                  ],
+                  "ZTVN7android15TrackPlayerBaseE` (0x7e7b8) are all defined (section index 15 or 17)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Conclusion: `PlayerBase` is defined in `libaudiobase.so`. `TrackPlayerBase` is defined in `libaudioclient.so`. The `TrackPlayerBase` definitions are in libaudioclient.so, not in libaudiobase.so."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "2.2 Typeinfo and construction vtables"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf --dyn-syms -W` on libaudioclient.so and libaudiobase.so, filtered for `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "ZTI` and `"
+                  ],
+                  "ZTS`, returned no PlayerBase or TrackPlayerBase matches."
+                ],
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `",
+                  "_ZTCN7android15TrackPlayerBaseE0",
+                  "_NS",
+                  "_10PlayerBaseE` is defined in libaudioclient.so at 0x7e978 (section 17)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "DEVICE: other construction vtables for TrackPlayerBase are defined at 0x80898, 0x7db18, 0x7eb38, 0x7ee58, 0x7ecd8, 0x7ef38, and 0x80cd8."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Interpretation:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "The Itanium C++ ABI emits a construction vtable `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "ZTC<Derived>0"
+                  ],
+                  "<Base>` for each base-class subobject of `Derived`. The presence of `",
+                  "_ZTCN7android15TrackPlayerBaseE0",
+                  "_NS",
+                  "_10PlayerBaseE` therefore strongly indicates that TrackPlayerBase has PlayerBase as a base subobject. This is SUPPORTED by ABI convention, not directly proven."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Typeinfo (`",
+                  "_ZTI`) for either class is not exported. The typeinfo's base-class entry, which would directly prove inheritance, cannot be read from the dynamic table."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdict for question 1 (exact inheritance): SUPPORTED that TrackPlayerBase derives from PlayerBase (construction vtable). NOT VERIFIED. The exact inheritance chain and any multiple-inheritance layout beyond the construction vtable are UNKNOWN."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "What would prove it: an unstripped copy of libaudioclient.so with `.symtab` or DWARF (only `.gnu",
+              "_debugdata` is present on device, MiniDebugInfo), or the `",
+              "_ZTI` typeinfo exported from the device, or disassembly of the TrackPlayerBase constructor showing the base-class vtable store."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Not used as evidence: `libwilhelm.so` referencing PlayerBase methods (`baseUpdateDeviceIds`, `reportEvent`) does not by itself establish inheritance."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. OpenSL ES relationship (Task 3)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "3.1 What libwilhelm.so imports (DYNAMIC, DEVICE)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command: `readelf --dyn-syms -W /system/lib64/libwilhelm.so | grep -E \"UND.",
+              "*(PlayerBase|TrackPlayerBase|AudioTrack|createTrack)\"`"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The `UND` (imported) symbols include:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`",
+                  "_ZN7android15TrackPlayerBaseC1Ev` (TrackPlayerBase base-complete constructor)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  "_ZN7android15TrackPlayerBase4initERKNS",
+                  "_2spINS",
+                  "_10AudioTrackEEERKNS1",
+                  "_INS2",
+                  "_19IAudioTrackCallbackEEENS",
+                  "_13player",
+                  "_type",
+                  "_tE13audio",
+                  "_usage",
+                  "_t15audio",
+                  "_session",
+                  "_t`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  "_ZN7android15TrackPlayerBase15setPlayerVolumeEff`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "ZN7android10PlayerBase19baseUpdateDeviceIdsERKNSt3"
+                  ],
+                  "_16vectorIiNS1",
+                  "_9allocatorIiEEEE`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "ZN7android10PlayerBase11reportEventENS"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "_14player"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "_state"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "_tERKNSt3"
+                  ],
+                  "_16vectorIiNS2",
+                  "_9allocatorIiEEEE`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  "_ZN7android10AudioTrackC1E19audio",
+                  "_stream",
+                  "_type",
+                  "_tj14audio",
+                  "_format",
+                  "_t20audio",
+                  "_channel",
+                  "_mask",
+                  "_tm20audio",
+                  "_output",
+                  "_flags",
+                  "_t...` (AudioTrack constructor)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`gClsAudioTrackRoutingProxy`, `gMidAudioTrackRoutingProxy",
+                  "_ctor`, `gMidAudioTrackRoutingProxy",
+                  "_release` (JNI-related imports)"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Nine dynamic symbols match this filter. The library's dynamic symbol table has no `createTrack",
+              "_l` import."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "3.2 What libwilhelm.so defines"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "DEVICE: `readelf --dyn-syms -W /system/lib64/libwilhelm.so | grep -E \"slCreateEngine|IEngine|CreateAudioPlayer\"` returned no lines. No OpenSL ES entry point is exported."
+                ],
+                [
+                  "LI",
+                  {},
+                  "LOCAL: the string `IEngine",
+                  "_CreateAudioPlayer` appears twice in the file (offsets 51199 and 53752). A symbol-table or debug string is likely, but the binding is not established."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H3",
+                {},
+                "3.3 Relationship table"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Relationship"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Status"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Evidence"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libwilhelm imports TrackPlayerBase constructor and init"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED (import)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE dynsym UND"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libwilhelm imports AudioTrack constructor"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED (import)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE dynsym UND"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libwilhelm imports AudioTrack::createTrack",
+                        "_l"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "NOT FOUND"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DEVICE dynsym has no such import"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libwilhelm's OpenSL entry point calls TrackPlayerBase::init"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "No defined OpenSL export; no relocation or disassembly available"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libwilhelm uses the import from within IEngine",
+                        "_CreateAudioPlayer"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Same reason; the calling function is not identified"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioTrack::createTrack",
+                        "_l is reached from TrackPlayerBase::init"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Needs disassembly or a call graph; not established"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "TrackPlayerBase constructor is called from libwilhelm"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "SUPPORTED that libwilhelm can call it (imports C1Ev); call site not identified"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Relocations (`.rela.plt`) were not inspected because of the device `readelf` limitation in section 1. The import table shows the names exist, not which code site uses them."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Interpretation: the symbol-level relationship is that libwilhelm.so imports TrackPlayerBase and AudioTrack constructors and TrackPlayerBase::init. A direct call chain from the OpenSL ES entry point to TrackPlayerBase::init or to createTrack",
+              "_l is NOT established."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. Flag uncertainty (Task 4)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Observed values, unchanged from the raw log:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "flags requested = 0x104"
+                ],
+                [
+                  "LI",
+                  {},
+                  "output = 0x2"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "No meaning is assigned in this report. The matching-build headers were not located, and no binary evidence in this session establishes the flag bits. The earlier source-level reading of `input.flags = mFlags` came from main, not from this build, and is not used here."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Status: UNKNOWN."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Evidence classification (Task 5)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Is the exact TrackPlayerBase inheritance relationship known?",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "SUPPORTED that TrackPlayerBase derives from PlayerBase (construction vtable `",
+                      "_ZTCN7android15TrackPlayerBaseE0",
+                      "_NS",
+                      "_10PlayerBaseE` in libaudioclient.so). Not VERIFIED. Typeinfo is not exported, so the exact base chain is UNKNOWN."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "NO. libwilhelm.so imports `TrackPlayerBase::init` (DEVICE dynsym UND). No defined OpenSL ES export exists, and no disassembly or relocation evidence links the two. Status: UNKNOWN for the call; the import is VERIFIED."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "PARTIAL. libwilhelm imports `AudioTrack` constructors (VERIFIED import). libaudioclient exports `AudioTrack::createTrack",
+                      "_l` (VERIFIED export). The link from the OpenSL path to `createTrack",
+                      "_l` is UNKNOWN. Flag meanings are UNKNOWN."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "NO. The Phigros-side caller is UNKNOWN. This report did not analyze the APK, per the constraints."
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "NO. The log strings \"PlayerBase::PlayerBase\" and \"TrackPlayerBase::TrackPlayerBase\" were not found in any pulled library (libwilhelm, libaudioclient, libaudiobase, libOpenSLES, libaudioflinger modules). The emitter of these log lines is therefore unknown. The constructors exist as symbols, but the events cannot be tied to gameplay start without the caller and emitter. The constructor events are also not timestamped against the game's own frame or scene events. Do not use them as a gameplay-start signal."
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is the OpenSL ES to TrackPlayerBase::init relationship directly established?",
+                  [
+                    "UL",
+                    {}
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is the AudioTrack creation path established?",
+                  [
+                    "UL",
+                    {}
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is the Phigros-side constructor caller known?",
+                  [
+                    "UL",
+                    {}
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "Can any observed constructor event be used as a gameplay-start signal?",
+                  [
+                    "UL",
+                    {}
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. Limitations"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Device `readelf` lacks relocation listing and full symbol tables; only `.gnu",
+                  "_debugdata` (MiniDebugInfo) is present on device for these libraries."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No host `readelf`, `nm`, or `objdump` gives a complete answer; `nm` on the Mac does not handle these Android ELF binaries for the purpose of this check."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No disassembly was performed, so no direct call edges are established."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The Android build revision for `CE2A.260420.051.A3 / 16571990` is still not verified against any public source. Symbols here describe the device build, not a source revision."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "7. Recommended next steps"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Obtain relocation data: pull libwilhelm.so and libaudioclient.so and inspect `.rela.plt` with a host ELF tool that supports Android binaries, or use `llvm-readelf` if available. This would show which code sites reference the TrackPlayerBase and AudioTrack imports."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Obtain an unstripped libaudioclient.so with `.symtab` or DWARF from the matching build, if one exists, to read the typeinfo base-class entry."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Disassemble only the library code around the imports in libwilhelm.so to locate the calling function, if this is acceptable under the constraints."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Verify the flag bits against the headers for build `16571990`, not main."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Correlate log lines with PIDs and TIDs before attributing any constructor event to a caller."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794661421133,
+      "acked": true,
+      "ackedAt": 1794661426489,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

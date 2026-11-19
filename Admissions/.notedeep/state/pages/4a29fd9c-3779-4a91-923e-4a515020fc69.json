@@ -1,0 +1,4551 @@
+{
+  "docId": "4a29fd9c-3779-4a91-923e-4a515020fc69",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "TrackPlayerBase Call-site Investigation"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Date: 2026-11-14",
+      [
+        "BR",
+        {}
+      ],
+      "Experiment: `phigros",
+      "_diagnostic/diags/1411202601/` (session `session",
+      "_20261114",
+      "_211923`, device `emulator-5554`, Android 17)",
+      [
+        "BR",
+        {}
+      ],
+      "Scope: read-only. No application code, experiment data, sessions, markers, or configuration was modified. No experiment was rerun."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Labels: VERIFIED (directly observed in the cited file), SUPPORTED (consistent with the evidence, not proven), HYPOTHESIS (plausible, untested), UNKNOWN (cannot be determined from available material)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. Executive Summary"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "VERIFIED: The three constructor pairs are real log lines at ",
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24600-L24615"
+            },
+            "raw",
+            "_logs.txt"
+          ],
+          ". They come from PID 2219, TID 2235, tag `onGames.Phigros`, and are not Android framework lines."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: Each pair is followed within about 1 ms by a `libOpenSLES` line and then by an AudioFlinger `createTrack",
+          "_l()` line in the audio server (PID 506, TID 738). The three `createTrack",
+          "_l()` lines carry flags `0x104`."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: The matching Android source is not in the workspace, and the emulator is not connected to `adb`. The build fingerprint cannot be read, so no AOSP call site can be checked."
+        ],
+        [
+          "LI",
+          {},
+          "UNKNOWN: The exact caller of `TrackPlayerBase::TrackPlayerBase()` inside the Phigros process. The constructor name is printed by the app's own tag, so the emitting code is not in Android. The game binary or an injected hook would have to be examined, which is out of scope here."
+        ],
+        [
+          "LI",
+          {},
+          "SUPPORTED: The three bursts are three separate track-creation events by the game's audio layer, each generating one AudioFlinger track. They occur at scene entry, about 0.27 s after Game Start and about 24 s before PREVIEW",
+          "_PLAYING."
+        ],
+        [
+          "LI",
+          {},
+          "SUPPORTED: The constructions are initialization, not playback. Nothing in the log shows that audio was audible at the time."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Experiment Evidence"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Source: ",
+      [
+        "A",
+        {
+          "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt"
+        },
+        "raw",
+        "_logs.txt"
+      ],
+      " (lines 24600 to 24615), read with `grep -n` and `sed -n`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The raw lines below are the six constructor entries, with the following audio lines."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Line"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Device time (21:19:42.xxx local, UTC+9)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Level"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "PID/TID"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Tag"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Message"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24600"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".072"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "onGames.Phigros"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`PlayerBase::PlayerBase()`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24601"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".072"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "onGames.Phigros"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`TrackPlayerBase::TrackPlayerBase()`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24602"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".072"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "I"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libOpenSLES"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24603"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".073"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "W"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "506/738"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioFlinger"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`createTrack",
+                "_l(): mismatch between requested flags (00000104) and output flags (00000002)`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24603"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".073"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "506/738"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioFlinger"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Client defaulted notificationFrames to 960 for frameCount 4360`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24603"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".073"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "I"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "506/738"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AF::AfPlaybackCommon"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`creating track with enforcement level 1 reason TARGET",
+                "_SDK shouldHarden 1`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24606"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".077"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "onGames.Phigros"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`PlayerBase::PlayerBase()`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24607"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".077"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "onGames.Phigros"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`TrackPlayerBase::TrackPlayerBase()`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24608"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".077"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "I"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libOpenSLES"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "channel mask emulation (same text)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24609"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".077"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "W"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "506/738"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioFlinger"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`createTrack",
+                "_l()` flag mismatch `00000104`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24612"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".080"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "onGames.Phigros"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`PlayerBase::PlayerBase()`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24613"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".080"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "D"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "onGames.Phigros"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`TrackPlayerBase::TrackPlayerBase()`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24614"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".080"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "I"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2219/2235"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libOpenSLES"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "channel mask emulation (same text)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "24615"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                ".081"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "W"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "506/738"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioFlinger"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`createTrack",
+                "_l()` flag mismatch `00000104`"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Note: the grep output lists lines 24602, 24603, 24608, 24609, 24614, and 24615 as the audio lines. The per-line AudioFlinger `Client defaulted` and `creating track` lines are the continuation of line 24603 and 24609, as shown in the `sed` context output."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: Earlier AudioFlinger track creations appear before the constructions and before Game Start (12:19:41.851Z):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L23846"
+            },
+            "raw",
+            "_logs.txt"
+          ],
+          ": 21:19:40.727 (12:19:40.727Z), `createTrack",
+          "_l()` flags `00000004`, PID 506"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24491"
+            },
+            "raw",
+            "_logs.txt"
+          ],
+          ": 21:19:41.741 (12:19:41.741Z), `createTrack",
+          "_l()` flags `00000008`, PID 506"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "These two have no `onGames.Phigros` constructor next to them. Their owner is unknown."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The constructor lines carry no object address, no audio session ID, and no track name. The AudioFlinger lines carry no client PID, so the link between a game constructor and an AudioFlinger track is by timing only."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: Clock domains. Device local time is UTC+9. Converted to UTC, the bursts are at 12:19:42.072Z, .077Z, and .080Z. The `receive",
+      "_time` values from the earlier audit were 12:19:42.121Z to .130Z, a lag of about 49 to 50 ms for these live lines."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Excerpt from ",
+      [
+        "A",
+        {
+          "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24600-L24603"
+        },
+        "raw",
+        "_logs.txt"
+      ],
+      ":"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "[11-14 21:19:42.072  2219  2235 D onGames.Phigros: PlayerBase::PlayerBase()]"
+      ],
+      [
+        "DIV",
+        {},
+        "[11-14 21:19:42.072  2219  2235 D onGames.Phigros: TrackPlayerBase::TrackPlayerBase()]"
+      ],
+      [
+        "DIV",
+        {},
+        "[11-14 21:19:42.072  2219  2235 I libOpenSLES: Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)]"
+      ],
+      [
+        "DIV",
+        {},
+        "[11-14 21:19:42.073   506   738 W AudioFlinger: createTrack_l(): mismatch between requested flags (00000104) and output flags (00000002)]"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. Android Build Information"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The emulator is not reachable. `adb devices` returns an empty list, and `adb -s emulator-5554 shell getprop ro.build.fingerprint` returns `device 'emulator-5554' not found`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: No AOSP tree or Android source is present under the home directory (`~/aosp` and `~/android` do not exist) or in the workspace."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The build information recorded in the experiment is limited to:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Device model `Android SDK built for arm64`, Android 17, from `sessions.json` (session metadata)."
+        ],
+        [
+          "LI",
+          {},
+          "The audio server dump ",
+          [
+            "A",
+            {
+              "href": "audio_flinger.txt#L1-L10"
+            },
+            "audio",
+            "_flinger.txt"
+          ],
+          " was captured from a different process set. Its notification client is PID 2215 (`com.PigeonGames.Phigros`, uid 10156) and its timestamp is 12:52 local, not the 21:19 run. It is not the same process as PID 2219, so it is not used as evidence for this run."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "UNKNOWN: The exact fingerprint (`ro.build.fingerprint`) and the system library build (`libaudioflinger.so`, `libOpenSLES.so`) for the run. These need to be read from the emulator or from its system image."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Decision: no substitute Android version source was used. Android 17 AudioFlinger behavior is not assumed."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. PlayerBase / TrackPlayerBase Class Relationship"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED (repo, not Android source): The repo treats these as the app's own debug markers. ",
+      [
+        "A",
+        {
+          "href": "phigros_diagnostic/event_parser.py#L14-L17"
+        },
+        "event",
+        "_parser.py"
+      ],
+      ":"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "PLAYER_BASE_CREATED = \"PlayerBase::PlayerBase()\""
+      ],
+      [
+        "DIV",
+        {},
+        "PLAYER_BASE_DESTROYED = \"PlayerBase::~PlayerBase()\""
+      ],
+      [
+        "DIV",
+        {},
+        "TRACK_PLAYER_BASE_CREATED = \"TrackPlayerBase::TrackPlayerBase()\""
+      ],
+      [
+        "DIV",
+        {},
+        "TRACK_PLAYER_BASE_DESTROYED = \"TrackPlayerBase::~TrackPlayerBase()\""
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The regexes at ",
+      [
+        "A",
+        {
+          "href": "phigros_diagnostic/event_parser.py#L78-L81"
+        },
+        "event",
+        "_parser.py"
+      ],
+      " match the same strings. The parser does not define inheritance, namespace, or the `android::` prefix. The name `android::TrackPlayerBase` in the task statement is not present in the repo or in the log. The log shows `TrackPlayerBase::TrackPlayerBase()` with no namespace."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "UNKNOWN: Whether `TrackPlayerBase` derives from `PlayerBase`, and whether the `android::` namespace is correct. The Android source is needed to confirm this. The log does not say."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "HYPOTHESIS: Both names are symbols or debug strings inside the game's native audio layer, which is not the Android framework. The `android::` prefix in the task is likely a guess or taken from AOSP naming, and should not be used without evidence."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Constructor and destructor implementations: UNKNOWN. No destructor line exists in the log (see section 9)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Constructor Call-site Search"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: Searches run in the workspace (excluding `venv` and `diags`) for `TrackPlayerBase`, `PlayerBase`, and `onGames` returned only:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/event_parser.py"
+            },
+            "event",
+            "_parser.py"
+          ],
+          " (marker definitions)"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/timeline.py#L360-L361"
+            },
+            "timeline.py"
+          ],
+          " (pair statistics: `pb",
+          "_pairs` and `tp",
+          "_pairs`, label \"Create/Destruct cycles\")"
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/tests/test_phase2.py"
+            },
+            "test",
+            "_phase2.py"
+          ],
+          " (test fixtures, not production call sites)"
+        ],
+        [
+          "LI",
+          {},
+          "Admissions notes (previous reports that mention these names)"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: No `new TrackPlayerBase`, no factory function, and no C++ definition were found in the workspace. No source file in the repo creates these objects."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "UNKNOWN: The immediate caller, source file, and line number. These would be in the Phigros binary or an injected hook, neither of which is in the workspace. Finding them would require either:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "the game's debug symbols or a rebuilt debug binary, or"
+        ],
+        [
+          "LI",
+          {},
+          "a disassembly of the APK's native library (`libil2cpp.so` or equivalent). This is reverse engineering and was not started, because it is outside the read-only scope and the log alone has not shown that it is needed to answer the question."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. Reconstructed Call Chain"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED (from the log only):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "[Phigros process PID 2219, TID 2235]"
+      ],
+      [
+        "DIV",
+        {},
+        "  PlayerBase::PlayerBase()"
+      ],
+      [
+        "DIV",
+        {},
+        "  TrackPlayerBase::TrackPlayerBase()"
+      ],
+      [
+        "DIV",
+        {},
+        "  libOpenSLES: channel mask emulation       (same thread, +0 to +0.001 s)"
+      ],
+      [
+        "DIV",
+        {},
+        "        |"
+      ],
+      [
+        "DIV",
+        {},
+        "        v"
+      ],
+      [
+        "DIV",
+        {},
+        "[audioserver PID 506, TID 738]"
+      ],
+      [
+        "DIV",
+        {},
+        "  AudioFlinger createTrack_l(): flags 0x104 vs output 0x2   (+1 ms)"
+      ],
+      [
+        "DIV",
+        {},
+        "  notificationFrames 960, frameCount 4360"
+      ],
+      [
+        "DIV",
+        {},
+        "  AF::AfPlaybackCommon: creating track, enforcement 1, reason TARGET_SDK"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "SUPPORTED: The OpenSL ES library (`libOpenSLES`) sits between the constructor and the AudioFlinger track request, and it is in the same thread as the constructor. This makes OpenSL ES the most likely audio API path for these objects. It is not proven, because the log does not show the call from `libOpenSLES` into AudioFlinger."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Path classification (task item 3):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "AudioTrack: SUPPORTED as the AudioFlinger track type, based on the `AudioTrack`-style `createTrack",
+          "_l` and `notificationFrames` lines. The log does not name the AudioTrack client."
+        ],
+        [
+          "LI",
+          {},
+          "AudioRecord: NOT SUPPORTED. The flags describe a playback track (output flags `0x2`, `AUDIO",
+          "_DEVICE",
+          "_OUT",
+          "_SPEAKER`), and no capture line appears."
+        ],
+        [
+          "LI",
+          {},
+          "AudioFlinger: VERIFIED as the server-side component that creates the track."
+        ],
+        [
+          "LI",
+          {},
+          "Another audio subsystem (OpenSL ES, Unity, or the game's own engine): SUPPORTED as the client layer, UNKNOWN in detail."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Caller chain above the constructor (game entry point, scene loader, song preview): UNKNOWN."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "7. Interpretation of the Three Constructor Bursts"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: Three bursts occur, each with a `PlayerBase` line followed by a `TrackPlayerBase` line, each followed by a `libOpenSLES` line and a `createTrack",
+      "_l` line. The gaps are:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "burst 1: 12:19:42.072Z"
+        ],
+        [
+          "LI",
+          {},
+          "burst 2: 12:19:42.077Z (+5 ms)"
+        ],
+        [
+          "LI",
+          {},
+          "burst 3: 12:19:42.080Z (+3 ms)"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: Within a burst, the `PlayerBase` and `TrackPlayerBase` lines differ by 0 ms at millisecond resolution. The pair is a single creation step, not two independent events."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "SUPPORTED: The three bursts are three separate `TrackPlayerBase` object constructions, each creating one AudioFlinger track. The evidence is the one-to-one sequence of constructor, OpenSL ES line, and track creation for each burst, with the same flags."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Alternative (HYPOTHESIS): One object is constructed three times in a retry or re-initialization loop, for example if a track creation fails and is retried. This is not supported here, because all three AudioFlinger requests have the same flags and succeed in the log, and no error or failure line follows them."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Alternative (HYPOTHESIS): The three bursts are three audio objects of different roles (for example preview, gameplay, and effects). Their flags are identical, so this cannot be checked from the log."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Relation to the experiment: the bursts are at 12:19:42Z. Game Start is 12:19:41.851Z (+0.22 s to +0.23 s before the first burst). The earlier audit gave +0.27 s using the `receive",
+      "_time` figures, which is the difference in clock domain. The earlier pre-Game-Start AudioFlinger track creation at 12:19:41.741Z is 110 ms before Game Start."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "8. Initialization vs Actual Playback Analysis"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED timing relative to the manual marks (host UTC):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Game Start: 12:19:41.851358"
+        ],
+        [
+          "LI",
+          {},
+          "Bursts: 12:19:42.072 to .080 (about 0.22 to 0.23 s after Game Start)"
+        ],
+        [
+          "LI",
+          {},
+          "PREVIEW",
+          "_PLAYING: 12:20:05.772488 (about 23.7 s after the last burst)"
+        ],
+        [
+          "LI",
+          {},
+          "START",
+          "_TRIGGER: 12:20:24.275281"
+        ],
+        [
+          "LI",
+          {},
+          "FIRST",
+          "_AUDIO",
+          "_PEAK: 12:20:32.284097"
+        ],
+        [
+          "LI",
+          {},
+          "Play End: 12:22:31.867098"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Playback-related evidence in this window: none that identifies playback. The log between the bursts and PREVIEW",
+      "_PLAYING contains no `libOpenSLES` play or start call, no AudioFlinger `start` or `setVolume` line, and no output-thread write that can be attributed to the game. The AudioFlinger output thread in ",
+      [
+        "A",
+        {
+          "href": "audio_flinger.txt#L1-L10"
+        },
+        "audio",
+        "_flinger.txt"
+      ],
+      " shows `Standby: yes` in the dump, but that dump is from a different process set and time (see section 3)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The `receive",
+      "_time` field has about 50 ms latency for these lines. The `FIRST",
+      "_AUDIO",
+      "_PEAK` marker was recorded by a human and is not an audio measurement, so no direct audio-to-log comparison is possible."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Conclusion: SUPPORTED. The bursts are initialization of audio objects at scene entry. They are not the start of audible playback. Audible playback is not shown in the log at the time of the bursts, and the constructors alone do not show that sound was produced."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "9. Limitations and Confidence Assessment"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Limitations:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "No Android source or emulator access. The build fingerprint and framework version are unknown."
+        ],
+        [
+          "LI",
+          {},
+          "The constructor messages are app-level debug strings. Their emitter (game code or injected hook) is unknown."
+        ],
+        [
+          "LI",
+          {},
+          "No destructor lines: the lifecycle matcher returns 0 pairs. The capture ends at 12:22:46.7Z, 7.7 s after Score Screen, so destructors after scene exit are outside the capture or not logged."
+        ],
+        [
+          "LI",
+          {},
+          "AudioFlinger lines carry no client PID. The link between game constructors and AudioFlinger tracks is by 1 to 5 ms timing only, which is strong for co-occurrence but not proof of causation."
+        ],
+        [
+          "LI",
+          {},
+          "The `android::` namespace in the request is not present in any available source or log."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Confidence:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Three separate constructions, each with one AudioFlinger track: SUPPORTED (medium-high)."
+        ],
+        [
+          "LI",
+          {},
+          "Path via OpenSL ES to AudioFlinger: SUPPORTED (medium)."
+        ],
+        [
+          "LI",
+          {},
+          "Exact caller, file, and line: UNKNOWN (no source)."
+        ],
+        [
+          "LI",
+          {},
+          "Initialization, not playback: SUPPORTED (high for \"construction is not audible playback\"; medium for the timing claim)."
+        ],
+        [
+          "LI",
+          {},
+          "Lifecycle matcher explanation: SUPPORTED that the logs lack destructors and keys, but the matcher source was not reviewed (UNKNOWN for the matcher key)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "10. Recommended Next Investigation"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Reconnect the emulator (`emulator-5554`) and record `ro.build.fingerprint`, `ro.build.version.release`, and the `libaudioflinger.so` and `libOpenSLES.so` build IDs."
+        ],
+        [
+          "LI",
+          {},
+          "Obtain the Android source tag or system image that matches the fingerprint, then check `AudioFlinger::createTrack",
+          "_l`, `AfPlaybackCommon`, and the OpenSL ES player creation path for the caller chain."
+        ],
+        [
+          "LI",
+          {},
+          "Locate the game's native library in the installed APK (`com.PigeonGames.Phigros`). Confirm whether the `PlayerBase` and `TrackPlayerBase` strings come from the game or from an injected hook. Only do this with explicit approval, because it is reverse engineering."
+        ],
+        [
+          "LI",
+          {},
+          "Capture a log that includes destructors and track start or stop calls, with a longer tail after Score Screen, to test the lifecycle explanation."
+        ],
+        [
+          "LI",
+          {},
+          "Add client identifiers (PID or session ID) to AudioFlinger lines in a controlled capture, to link tracks to constructors without relying on timing."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "11. Sources and File References"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L23846"
+            },
+            "raw",
+            "_logs.txt"
+          ],
+          ": `createTrack",
+          "_l()` flags `00000004`, 12:19:40.727Z, before Game Start."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24491"
+            },
+            "raw",
+            "_logs.txt"
+          ],
+          ": `createTrack",
+          "_l()` flags `00000008`, 12:19:41.741Z, before Game Start."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24600-L24615"
+            },
+            "raw",
+            "_logs.txt"
+          ],
+          ": six constructor lines, three `libOpenSLES` lines, three `createTrack",
+          "_l()` lines."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/event_parser.py#L14-L17"
+            },
+            "event",
+            "_parser.py"
+          ],
+          ": marker names for PlayerBase and TrackPlayerBase."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/event_parser.py#L78-L81"
+            },
+            "event",
+            "_parser.py"
+          ],
+          ": regex patterns for the same markers."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "phigros_diagnostic/timeline.py#L360-L361"
+            },
+            "timeline.py"
+          ],
+          ": pair counters labeled \"Create/Destruct cycles\"."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "audio_flinger.txt#L1-L10"
+            },
+            "audio",
+            "_flinger.txt"
+          ],
+          ": audio server dump from a different time and PID (2215), not used as run evidence."
+        ],
+        [
+          "LI",
+          {},
+          [
+            "A",
+            {
+              "href": "experiment_data/sessions.json"
+            },
+            "sessions.json"
+          ],
+          ": session metadata (device model and Android version)."
+        ],
+        [
+          "LI",
+          {},
+          "Terminal: `adb devices` returned no device; `adb -s emulator-5554 shell getprop ro.build.fingerprint` returned `device 'emulator-5554' not found`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Android source files (AudioFlinger, OpenSL ES, Phigros native code): not available in the workspace; no excerpts can be given."
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "d1f1bb11-5df7-4e68-bcb0-a06e93a7311d",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "TrackPlayerBase Call-site Investigation"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Date: 2026-11-14",
+              [
+                "BR",
+                {}
+              ],
+              "Experiment: `phigros",
+              "_diagnostic/diags/1411202601/` (session `session",
+              "_20261114",
+              "_211923`, device `emulator-5554`, Android 17)",
+              [
+                "BR",
+                {}
+              ],
+              "Scope: read-only. No application code, experiment data, sessions, markers, or configuration was modified. No experiment was rerun."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Labels: VERIFIED (directly observed in the cited file), SUPPORTED (consistent with the evidence, not proven), HYPOTHESIS (plausible, untested), UNKNOWN (cannot be determined from available material)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. Executive Summary"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: The three constructor pairs are real log lines at ",
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24600-L24615"
+                    },
+                    "raw",
+                    "_logs.txt"
+                  ],
+                  ". They come from PID 2219, TID 2235, tag `onGames.Phigros`, and are not Android framework lines."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: Each pair is followed within about 1 ms by a `libOpenSLES` line and then by an AudioFlinger `createTrack",
+                  "_l()` line in the audio server (PID 506, TID 738). The three `createTrack",
+                  "_l()` lines carry flags `0x104`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: The matching Android source is not in the workspace, and the emulator is not connected to `adb`. The build fingerprint cannot be read, so no AOSP call site can be checked."
+                ],
+                [
+                  "LI",
+                  {},
+                  "UNKNOWN: The exact caller of `TrackPlayerBase::TrackPlayerBase()` inside the Phigros process. The constructor name is printed by the app's own tag, so the emitting code is not in Android. The game binary or an injected hook would have to be examined, which is out of scope here."
+                ],
+                [
+                  "LI",
+                  {},
+                  "SUPPORTED: The three bursts are three separate track-creation events by the game's audio layer, each generating one AudioFlinger track. They occur at scene entry, about 0.27 s after Game Start and about 24 s before PREVIEW",
+                  "_PLAYING."
+                ],
+                [
+                  "LI",
+                  {},
+                  "SUPPORTED: The constructions are initialization, not playback. Nothing in the log shows that audio was audible at the time."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Experiment Evidence"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Source: ",
+              [
+                "A",
+                {
+                  "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt"
+                },
+                "raw",
+                "_logs.txt"
+              ],
+              " (lines 24600 to 24615), read with `grep -n` and `sed -n`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The raw lines below are the six constructor entries, with the following audio lines."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Line"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Device time (21:19:42.xxx local, UTC+9)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Level"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "PID/TID"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Tag"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Message"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24600"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".072"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "onGames.Phigros"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`PlayerBase::PlayerBase()`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24601"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".072"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "onGames.Phigros"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`TrackPlayerBase::TrackPlayerBase()`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24602"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".072"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "I"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libOpenSLES"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24603"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".073"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "W"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "506/738"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioFlinger"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`createTrack",
+                        "_l(): mismatch between requested flags (00000104) and output flags (00000002)`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24603"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".073"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "506/738"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioFlinger"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Client defaulted notificationFrames to 960 for frameCount 4360`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24603"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".073"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "I"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "506/738"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AF::AfPlaybackCommon"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`creating track with enforcement level 1 reason TARGET",
+                        "_SDK shouldHarden 1`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24606"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".077"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "onGames.Phigros"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`PlayerBase::PlayerBase()`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24607"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".077"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "onGames.Phigros"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`TrackPlayerBase::TrackPlayerBase()`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24608"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".077"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "I"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libOpenSLES"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "channel mask emulation (same text)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24609"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".077"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "W"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "506/738"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioFlinger"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`createTrack",
+                        "_l()` flag mismatch `00000104`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24612"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".080"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "onGames.Phigros"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`PlayerBase::PlayerBase()`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24613"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".080"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "D"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "onGames.Phigros"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`TrackPlayerBase::TrackPlayerBase()`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24614"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".080"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "I"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2219/2235"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libOpenSLES"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "channel mask emulation (same text)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "24615"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        ".081"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "W"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "506/738"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioFlinger"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`createTrack",
+                        "_l()` flag mismatch `00000104`"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Note: the grep output lists lines 24602, 24603, 24608, 24609, 24614, and 24615 as the audio lines. The per-line AudioFlinger `Client defaulted` and `creating track` lines are the continuation of line 24603 and 24609, as shown in the `sed` context output."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: Earlier AudioFlinger track creations appear before the constructions and before Game Start (12:19:41.851Z):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L23846"
+                    },
+                    "raw",
+                    "_logs.txt"
+                  ],
+                  ": 21:19:40.727 (12:19:40.727Z), `createTrack",
+                  "_l()` flags `00000004`, PID 506"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24491"
+                    },
+                    "raw",
+                    "_logs.txt"
+                  ],
+                  ": 21:19:41.741 (12:19:41.741Z), `createTrack",
+                  "_l()` flags `00000008`, PID 506"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "These two have no `onGames.Phigros` constructor next to them. Their owner is unknown."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The constructor lines carry no object address, no audio session ID, and no track name. The AudioFlinger lines carry no client PID, so the link between a game constructor and an AudioFlinger track is by timing only."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: Clock domains. Device local time is UTC+9. Converted to UTC, the bursts are at 12:19:42.072Z, .077Z, and .080Z. The `receive",
+              "_time` values from the earlier audit were 12:19:42.121Z to .130Z, a lag of about 49 to 50 ms for these live lines."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Excerpt from ",
+              [
+                "A",
+                {
+                  "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24600-L24603"
+                },
+                "raw",
+                "_logs.txt"
+              ],
+              ":"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "[11-14 21:19:42.072  2219  2235 D onGames.Phigros: PlayerBase::PlayerBase()]"
+              ],
+              [
+                "DIV",
+                {},
+                "[11-14 21:19:42.072  2219  2235 D onGames.Phigros: TrackPlayerBase::TrackPlayerBase()]"
+              ],
+              [
+                "DIV",
+                {},
+                "[11-14 21:19:42.072  2219  2235 I libOpenSLES: Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)]"
+              ],
+              [
+                "DIV",
+                {},
+                "[11-14 21:19:42.073   506   738 W AudioFlinger: createTrack_l(): mismatch between requested flags (00000104) and output flags (00000002)]"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. Android Build Information"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The emulator is not reachable. `adb devices` returns an empty list, and `adb -s emulator-5554 shell getprop ro.build.fingerprint` returns `device 'emulator-5554' not found`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: No AOSP tree or Android source is present under the home directory (`~/aosp` and `~/android` do not exist) or in the workspace."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The build information recorded in the experiment is limited to:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Device model `Android SDK built for arm64`, Android 17, from `sessions.json` (session metadata)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The audio server dump ",
+                  [
+                    "A",
+                    {
+                      "href": "audio_flinger.txt#L1-L10"
+                    },
+                    "audio",
+                    "_flinger.txt"
+                  ],
+                  " was captured from a different process set. Its notification client is PID 2215 (`com.PigeonGames.Phigros`, uid 10156) and its timestamp is 12:52 local, not the 21:19 run. It is not the same process as PID 2219, so it is not used as evidence for this run."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "UNKNOWN: The exact fingerprint (`ro.build.fingerprint`) and the system library build (`libaudioflinger.so`, `libOpenSLES.so`) for the run. These need to be read from the emulator or from its system image."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Decision: no substitute Android version source was used. Android 17 AudioFlinger behavior is not assumed."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. PlayerBase / TrackPlayerBase Class Relationship"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED (repo, not Android source): The repo treats these as the app's own debug markers. ",
+              [
+                "A",
+                {
+                  "href": "phigros_diagnostic/event_parser.py#L14-L17"
+                },
+                "event",
+                "_parser.py"
+              ],
+              ":"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "PLAYER_BASE_CREATED = \"PlayerBase::PlayerBase()\""
+              ],
+              [
+                "DIV",
+                {},
+                "PLAYER_BASE_DESTROYED = \"PlayerBase::~PlayerBase()\""
+              ],
+              [
+                "DIV",
+                {},
+                "TRACK_PLAYER_BASE_CREATED = \"TrackPlayerBase::TrackPlayerBase()\""
+              ],
+              [
+                "DIV",
+                {},
+                "TRACK_PLAYER_BASE_DESTROYED = \"TrackPlayerBase::~TrackPlayerBase()\""
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The regexes at ",
+              [
+                "A",
+                {
+                  "href": "phigros_diagnostic/event_parser.py#L78-L81"
+                },
+                "event",
+                "_parser.py"
+              ],
+              " match the same strings. The parser does not define inheritance, namespace, or the `android::` prefix. The name `android::TrackPlayerBase` in the task statement is not present in the repo or in the log. The log shows `TrackPlayerBase::TrackPlayerBase()` with no namespace."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "UNKNOWN: Whether `TrackPlayerBase` derives from `PlayerBase`, and whether the `android::` namespace is correct. The Android source is needed to confirm this. The log does not say."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "HYPOTHESIS: Both names are symbols or debug strings inside the game's native audio layer, which is not the Android framework. The `android::` prefix in the task is likely a guess or taken from AOSP naming, and should not be used without evidence."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Constructor and destructor implementations: UNKNOWN. No destructor line exists in the log (see section 9)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Constructor Call-site Search"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: Searches run in the workspace (excluding `venv` and `diags`) for `TrackPlayerBase`, `PlayerBase`, and `onGames` returned only:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/event_parser.py"
+                    },
+                    "event",
+                    "_parser.py"
+                  ],
+                  " (marker definitions)"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/timeline.py#L360-L361"
+                    },
+                    "timeline.py"
+                  ],
+                  " (pair statistics: `pb",
+                  "_pairs` and `tp",
+                  "_pairs`, label \"Create/Destruct cycles\")"
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/tests/test_phase2.py"
+                    },
+                    "test",
+                    "_phase2.py"
+                  ],
+                  " (test fixtures, not production call sites)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "Admissions notes (previous reports that mention these names)"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: No `new TrackPlayerBase`, no factory function, and no C++ definition were found in the workspace. No source file in the repo creates these objects."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "UNKNOWN: The immediate caller, source file, and line number. These would be in the Phigros binary or an injected hook, neither of which is in the workspace. Finding them would require either:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "the game's debug symbols or a rebuilt debug binary, or"
+                ],
+                [
+                  "LI",
+                  {},
+                  "a disassembly of the APK's native library (`libil2cpp.so` or equivalent). This is reverse engineering and was not started, because it is outside the read-only scope and the log alone has not shown that it is needed to answer the question."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. Reconstructed Call Chain"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED (from the log only):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "[Phigros process PID 2219, TID 2235]"
+              ],
+              [
+                "DIV",
+                {},
+                "  PlayerBase::PlayerBase()"
+              ],
+              [
+                "DIV",
+                {},
+                "  TrackPlayerBase::TrackPlayerBase()"
+              ],
+              [
+                "DIV",
+                {},
+                "  libOpenSLES: channel mask emulation       (same thread, +0 to +0.001 s)"
+              ],
+              [
+                "DIV",
+                {},
+                "        |"
+              ],
+              [
+                "DIV",
+                {},
+                "        v"
+              ],
+              [
+                "DIV",
+                {},
+                "[audioserver PID 506, TID 738]"
+              ],
+              [
+                "DIV",
+                {},
+                "  AudioFlinger createTrack_l(): flags 0x104 vs output 0x2   (+1 ms)"
+              ],
+              [
+                "DIV",
+                {},
+                "  notificationFrames 960, frameCount 4360"
+              ],
+              [
+                "DIV",
+                {},
+                "  AF::AfPlaybackCommon: creating track, enforcement 1, reason TARGET_SDK"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "SUPPORTED: The OpenSL ES library (`libOpenSLES`) sits between the constructor and the AudioFlinger track request, and it is in the same thread as the constructor. This makes OpenSL ES the most likely audio API path for these objects. It is not proven, because the log does not show the call from `libOpenSLES` into AudioFlinger."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Path classification (task item 3):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "AudioTrack: SUPPORTED as the AudioFlinger track type, based on the `AudioTrack`-style `createTrack",
+                  "_l` and `notificationFrames` lines. The log does not name the AudioTrack client."
+                ],
+                [
+                  "LI",
+                  {},
+                  "AudioRecord: NOT SUPPORTED. The flags describe a playback track (output flags `0x2`, `AUDIO",
+                  "_DEVICE",
+                  "_OUT",
+                  "_SPEAKER`), and no capture line appears."
+                ],
+                [
+                  "LI",
+                  {},
+                  "AudioFlinger: VERIFIED as the server-side component that creates the track."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Another audio subsystem (OpenSL ES, Unity, or the game's own engine): SUPPORTED as the client layer, UNKNOWN in detail."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Caller chain above the constructor (game entry point, scene loader, song preview): UNKNOWN."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "7. Interpretation of the Three Constructor Bursts"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: Three bursts occur, each with a `PlayerBase` line followed by a `TrackPlayerBase` line, each followed by a `libOpenSLES` line and a `createTrack",
+              "_l` line. The gaps are:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "burst 1: 12:19:42.072Z"
+                ],
+                [
+                  "LI",
+                  {},
+                  "burst 2: 12:19:42.077Z (+5 ms)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "burst 3: 12:19:42.080Z (+3 ms)"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: Within a burst, the `PlayerBase` and `TrackPlayerBase` lines differ by 0 ms at millisecond resolution. The pair is a single creation step, not two independent events."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "SUPPORTED: The three bursts are three separate `TrackPlayerBase` object constructions, each creating one AudioFlinger track. The evidence is the one-to-one sequence of constructor, OpenSL ES line, and track creation for each burst, with the same flags."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Alternative (HYPOTHESIS): One object is constructed three times in a retry or re-initialization loop, for example if a track creation fails and is retried. This is not supported here, because all three AudioFlinger requests have the same flags and succeed in the log, and no error or failure line follows them."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Alternative (HYPOTHESIS): The three bursts are three audio objects of different roles (for example preview, gameplay, and effects). Their flags are identical, so this cannot be checked from the log."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Relation to the experiment: the bursts are at 12:19:42Z. Game Start is 12:19:41.851Z (+0.22 s to +0.23 s before the first burst). The earlier audit gave +0.27 s using the `receive",
+              "_time` figures, which is the difference in clock domain. The earlier pre-Game-Start AudioFlinger track creation at 12:19:41.741Z is 110 ms before Game Start."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "8. Initialization vs Actual Playback Analysis"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED timing relative to the manual marks (host UTC):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Game Start: 12:19:41.851358"
+                ],
+                [
+                  "LI",
+                  {},
+                  "Bursts: 12:19:42.072 to .080 (about 0.22 to 0.23 s after Game Start)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "PREVIEW",
+                  "_PLAYING: 12:20:05.772488 (about 23.7 s after the last burst)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "START",
+                  "_TRIGGER: 12:20:24.275281"
+                ],
+                [
+                  "LI",
+                  {},
+                  "FIRST",
+                  "_AUDIO",
+                  "_PEAK: 12:20:32.284097"
+                ],
+                [
+                  "LI",
+                  {},
+                  "Play End: 12:22:31.867098"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Playback-related evidence in this window: none that identifies playback. The log between the bursts and PREVIEW",
+              "_PLAYING contains no `libOpenSLES` play or start call, no AudioFlinger `start` or `setVolume` line, and no output-thread write that can be attributed to the game. The AudioFlinger output thread in ",
+              [
+                "A",
+                {
+                  "href": "audio_flinger.txt#L1-L10"
+                },
+                "audio",
+                "_flinger.txt"
+              ],
+              " shows `Standby: yes` in the dump, but that dump is from a different process set and time (see section 3)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The `receive",
+              "_time` field has about 50 ms latency for these lines. The `FIRST",
+              "_AUDIO",
+              "_PEAK` marker was recorded by a human and is not an audio measurement, so no direct audio-to-log comparison is possible."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Conclusion: SUPPORTED. The bursts are initialization of audio objects at scene entry. They are not the start of audible playback. Audible playback is not shown in the log at the time of the bursts, and the constructors alone do not show that sound was produced."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "9. Limitations and Confidence Assessment"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Limitations:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "No Android source or emulator access. The build fingerprint and framework version are unknown."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The constructor messages are app-level debug strings. Their emitter (game code or injected hook) is unknown."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No destructor lines: the lifecycle matcher returns 0 pairs. The capture ends at 12:22:46.7Z, 7.7 s after Score Screen, so destructors after scene exit are outside the capture or not logged."
+                ],
+                [
+                  "LI",
+                  {},
+                  "AudioFlinger lines carry no client PID. The link between game constructors and AudioFlinger tracks is by 1 to 5 ms timing only, which is strong for co-occurrence but not proof of causation."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The `android::` namespace in the request is not present in any available source or log."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Confidence:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Three separate constructions, each with one AudioFlinger track: SUPPORTED (medium-high)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Path via OpenSL ES to AudioFlinger: SUPPORTED (medium)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Exact caller, file, and line: UNKNOWN (no source)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Initialization, not playback: SUPPORTED (high for \"construction is not audible playback\"; medium for the timing claim)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Lifecycle matcher explanation: SUPPORTED that the logs lack destructors and keys, but the matcher source was not reviewed (UNKNOWN for the matcher key)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "10. Recommended Next Investigation"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Reconnect the emulator (`emulator-5554`) and record `ro.build.fingerprint`, `ro.build.version.release`, and the `libaudioflinger.so` and `libOpenSLES.so` build IDs."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Obtain the Android source tag or system image that matches the fingerprint, then check `AudioFlinger::createTrack",
+                  "_l`, `AfPlaybackCommon`, and the OpenSL ES player creation path for the caller chain."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Locate the game's native library in the installed APK (`com.PigeonGames.Phigros`). Confirm whether the `PlayerBase` and `TrackPlayerBase` strings come from the game or from an injected hook. Only do this with explicit approval, because it is reverse engineering."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Capture a log that includes destructors and track start or stop calls, with a longer tail after Score Screen, to test the lifecycle explanation."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Add client identifiers (PID or session ID) to AudioFlinger lines in a controlled capture, to link tracks to constructors without relying on timing."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "11. Sources and File References"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L23846"
+                    },
+                    "raw",
+                    "_logs.txt"
+                  ],
+                  ": `createTrack",
+                  "_l()` flags `00000004`, 12:19:40.727Z, before Game Start."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24491"
+                    },
+                    "raw",
+                    "_logs.txt"
+                  ],
+                  ": `createTrack",
+                  "_l()` flags `00000008`, 12:19:41.741Z, before Game Start."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/diags/1411202601/raw_logs.txt#L24600-L24615"
+                    },
+                    "raw",
+                    "_logs.txt"
+                  ],
+                  ": six constructor lines, three `libOpenSLES` lines, three `createTrack",
+                  "_l()` lines."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/event_parser.py#L14-L17"
+                    },
+                    "event",
+                    "_parser.py"
+                  ],
+                  ": marker names for PlayerBase and TrackPlayerBase."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/event_parser.py#L78-L81"
+                    },
+                    "event",
+                    "_parser.py"
+                  ],
+                  ": regex patterns for the same markers."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "phigros_diagnostic/timeline.py#L360-L361"
+                    },
+                    "timeline.py"
+                  ],
+                  ": pair counters labeled \"Create/Destruct cycles\"."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "audio_flinger.txt#L1-L10"
+                    },
+                    "audio",
+                    "_flinger.txt"
+                  ],
+                  ": audio server dump from a different time and PID (2215), not used as run evidence."
+                ],
+                [
+                  "LI",
+                  {},
+                  [
+                    "A",
+                    {
+                      "href": "experiment_data/sessions.json"
+                    },
+                    "sessions.json"
+                  ],
+                  ": session metadata (device model and Android version)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Terminal: `adb devices` returned no device; `adb -s emulator-5554 shell getprop ro.build.fingerprint` returned `device 'emulator-5554' not found`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Android source files (AudioFlinger, OpenSL ES, Phigros native code): not available in the workspace; no excerpts can be given."
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794659900101,
+      "acked": true,
+      "ackedAt": 1794659904910,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

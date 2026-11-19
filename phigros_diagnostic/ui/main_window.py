@@ -12,7 +12,8 @@ from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter,
     QTabWidget, QPushButton, QLabel, QComboBox, QStatusBar,
     QFileDialog, QMessageBox, QGroupBox, QFormLayout, QTextEdit,
-    QCheckBox, QSpinBox, QFrame, QSystemTrayIcon, QToolTip
+    QCheckBox, QSpinBox, QFrame, QSystemTrayIcon, QToolTip,
+    QTableWidget, QTableWidgetItem, QAbstractItemView
 )
 from PySide6.QtCore import Qt, Signal, QTimer, QThread
 from PySide6.QtGui import QIcon, QAction, QColor
@@ -41,6 +42,12 @@ class MainWindow(QMainWindow):
         self.experiment_mgr = ExperimentManager()
         self.exporter = None  # Created when needed
         
+        # Restore previously saved sessions before any UI is built
+        self.sessions_path = os.path.join(os.getcwd(), "experiment_data", "sessions.json")
+        self.restore_error = None
+        self.experiment_mgr.set_data_dir(os.path.dirname(self.sessions_path))
+        self.restore_sessions()
+        
         # Data model
         self.event_model = EventTableModel()
         self.all_events = []  # For persistence across sessions
@@ -55,8 +62,13 @@ class MainWindow(QMainWindow):
         
         # Setup UI
         self.setup_ui()
+        self.update_session_combo()
+        self.refresh_timeline_marks()
         self.update_exporter()
         self.check_adb_connection()
+        if getattr(self, 'restore_error', None):
+            QMessageBox.warning(self, "Session Restore Failed",
+                                f"{self.restore_error}\n\nThe file was not modified.")
         
         # Auto-connect if device available (disabled to avoid conflicts)
         # self.auto_connect()
@@ -135,6 +147,7 @@ class MainWindow(QMainWindow):
         
         self.session_combo = QComboBox()
         self.update_session_combo()
+        self.session_combo.currentIndexChanged.connect(self._on_session_combo_changed)
         
         self.new_session_btn = QPushButton("New Session")
         self.new_session_btn.clicked.connect(self.create_new_session)
@@ -169,6 +182,15 @@ class MainWindow(QMainWindow):
         self.timeline_view = TimelineView()
         self.timeline_view.populate_from_model(self.event_model)
         layout.addWidget(self.timeline_view)
+        
+        # Manual marks table (separate from Logcat events so sorting/columns stay intact)
+        self.marks_table = QTableWidget(0, 4)
+        self.marks_table.setHorizontalHeaderLabels(['Timestamp (UTC)', 'Type', 'Notes', 'ID'])
+        self.marks_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.marks_table.horizontalHeader().setStretchLastSection(True)
+        self.marks_table.setMaximumHeight(160)
+        layout.addWidget(QLabel("Manual Marks (current session):"))
+        layout.addWidget(self.marks_table)
         
         # Event count label
         self.event_count_label = QLabel(f"Events: {self.event_model.event_count}")
@@ -358,30 +380,93 @@ class MainWindow(QMainWindow):
     
     def update_session_combo(self):
         """Update the session combo box with all sessions."""
-        self.session_combo.clear()
-        
-        for sid, session in self.experiment_mgr.get_all_sessions().items():
-            display = f"{sid[:12]}... ({len(session.manual_marks)} marks)"
-            if session.description:
-                display += f" - {session.description}"
-            self.session_combo.addItem(display, sid)
-        
-        # Switch to current session if it exists
-        current = self.experiment_mgr.get_current_session()
-        if current:
-            for i, sid in enumerate(self.experiment_mgr.sessions.keys()):
-                if sid == current.session_id:
-                    self.session_combo.setCurrentIndex(i)
-                    break
+        self._rebuilding_combo = True
+        try:
+            self.session_combo.clear()
+            
+            for sid, session in self.experiment_mgr.get_all_sessions().items():
+                display = f"{sid[:12]}... ({len(session.manual_marks)} marks)"
+                if session.description:
+                    display += f" - {session.description}"
+                self.session_combo.addItem(display, sid)
+            
+            # Switch to current session if it exists
+            current = self.experiment_mgr.get_current_session()
+            if current:
+                for i, sid in enumerate(self.experiment_mgr.sessions.keys()):
+                    if sid == current.session_id:
+                        self.session_combo.setCurrentIndex(i)
+                        break
+        finally:
+            self._rebuilding_combo = False
     
     def switch_session(self, session_id):
         """Switch to a different experiment session."""
         session = self.experiment_mgr.switch_session(session_id)
         if session:
             self.update_exporter()
+            self.refresh_timeline_marks()
             self.show_status(f"Switched to session: {session.session_id}", "info")
         else:
             self.show_status("Failed to switch session", "error")
+    
+    def _on_session_combo_changed(self, index):
+        """Route combo selection to switch_session (ignores the rebuild in update_session_combo)."""
+        if index < 0 or getattr(self, '_rebuilding_combo', False):
+            return
+        sid = self.session_combo.itemData(index)
+        if sid and sid != (self.experiment_mgr.current_session.session_id
+                           if self.experiment_mgr.current_session else None):
+            self.switch_session(sid)
+    
+    def restore_sessions(self):
+        """Load saved sessions from disk at startup. Corrupt files are left untouched."""
+        try:
+            count = self.experiment_mgr.load_sessions_from_json(self.sessions_path)
+        except ValueError as e:
+            self.restore_error = str(e)
+            return
+        self.restore_error = None
+        if count and self.experiment_mgr.current_session is None:
+            first_id = next(iter(self.experiment_mgr.sessions))
+            self.experiment_mgr.switch_session(first_id)
+    
+    def _warn_save_blocked(self):
+        """Tell the user that writes are blocked because the original file could not be restored."""
+        QMessageBox.warning(
+            self, "Save Blocked",
+            f"sessions.json could not be restored:\n{self.restore_error}\n\n"
+            "The original file is protected and has not been modified. "
+            "Sessions created during this run will NOT be written to that file."
+        )
+
+    def save_sessions_now(self):
+        """Atomically save all sessions. On failure, memory is kept and the user is told."""
+        if self.restore_error:
+            self._warn_save_blocked()
+            return False
+        try:
+            self.experiment_mgr.save_sessions_to_json(self.sessions_path)
+            return True
+        except OSError as e:
+            QMessageBox.warning(
+                self, "Save Failed",
+                f"Could not save sessions to {self.sessions_path}:\n{e}\n\n"
+                "Data is still held in memory."
+            )
+            return False
+    
+    def refresh_timeline_marks(self):
+        """Rebuild the manual marks table from the current session (no duplicates)."""
+        session = self.experiment_mgr.get_current_session()
+        marks = session.manual_marks if session else []
+        self.marks_table.setRowCount(0)
+        for mark in marks:
+            row = self.marks_table.rowCount()
+            self.marks_table.insertRow(row)
+            for col, key in enumerate(['timestamp', 'type', 'notes', 'id']):
+                self.marks_table.setItem(row, col, QTableWidgetItem(str(mark.get(key, ''))))
+        self.marks_table.resizeColumnsToContents()
     
     def update_exporter(self):
         """Recreate the exporter with current experiment manager."""
@@ -392,10 +477,12 @@ class MainWindow(QMainWindow):
         session = self.experiment_mgr.get_current_session()
         if session:
             session.add_manual_mark(mark_data)
+            self.save_sessions_now()
             self.show_status(f"Added mark: {mark_data['type']}", "success")
         
-        # Update session combo to reflect new mark count
+        # Update session combo and marks table to reflect new mark
         self.update_session_combo()
+        self.refresh_timeline_marks()
     
     def export_all_data(self):
         """Export all data from current session."""
@@ -460,7 +547,10 @@ class MainWindow(QMainWindow):
             )
             
             if reply == QMessageBox.Yes:
-                self.experiment_mgr.save_sessions_to_json()
+                if self.restore_error:
+                    self._warn_save_blocked()
+                else:
+                    self.save_sessions_now()
             elif reply == QMessageBox.Cancel:
                 event.ignore()
                 return

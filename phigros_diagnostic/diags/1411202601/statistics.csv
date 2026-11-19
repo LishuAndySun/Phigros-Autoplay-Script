@@ -1,0 +1,19 @@
+Event Type,Count
+Unknown,12344
+Debug,10751
+Warning,2681
+Error,1322
+Exception,109
+ApplicationInfo,52
+offset,3
+PlayerBase::PlayerBase(),3
+TrackPlayerBase::TrackPlayerBase(),3
+GC,2
+
+Metric,Value
+PlayerBase Pairs (same PID),0
+TrackPlayerBase Pairs (same PID),0
+Unpaired Constructors,6
+Unpaired Destructors,0
+
+Track Interval Analysis

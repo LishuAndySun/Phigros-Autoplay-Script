@@ -82,11 +82,14 @@ class ReportExporter:
                 event_dict.pop('raw_line', None)
             events_data.append(event_dict)
         
+        manual_marks = [dict(m) for m in getattr(session, 'manual_marks', [])]
+
         report_data = {
             'exported_at': datetime.now(timezone.utc).isoformat(),
             'session_id': session.session_id,
             'total_events': len(events_data),
-            'events': events_data
+            'events': events_data,
+            'manual_marks': manual_marks
         }
         
         with open(filepath, 'w', encoding='utf-8') as f:

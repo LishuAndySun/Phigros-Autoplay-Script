@@ -253,6 +253,7 @@ class ExperimentMarkWidget(QWidget):
         "START_TRIGGER",
         "PREVIEW_STOPPED",
         "GAMEPLAY_AUDIO_STARTED",
+        "FIRST_AUDIO_PEAK",
         "Other"
     ]
     

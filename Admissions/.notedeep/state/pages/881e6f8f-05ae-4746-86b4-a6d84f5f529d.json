@@ -1,0 +1,4791 @@
+{
+  "docId": "881e6f8f-05ae-4746-86b4-a6d84f5f529d",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "Audio Playback Start Signal Audit"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Read-only audit. No PhiAPS source, experiment record, session file, WAV file, or diagnostic data was modified. No experiment was run. The Android Studio emulator was not started, ADB was not used, the physical Pixel 8 was not connected, no package was installed, and the APK and Phigros native libraries were not inspected. AOSP main was not used as evidence."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Inputs and hashes"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Scratch libraries in `$TMPDIR/android17",
+      "_libs/` were present and hashed this turn (SHA-256):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`libwilhelm.so`: `9a630485f4e8e13e94103983f2e9eb0818fd71e5b47df515f8a2c42687b7266b` (matches the prior turn)"
+        ],
+        [
+          "LI",
+          {},
+          "`libOpenSLES.so`: `771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc`"
+        ],
+        [
+          "LI",
+          {},
+          "`libaudioclient.so`: `0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1`"
+        ],
+        [
+          "LI",
+          {},
+          "`libaudiobase.so`: `633890a33aea6497264fd38a130030bb632b22975171b8b79ab7c9608d0b59fe`"
+        ],
+        [
+          "LI",
+          {},
+          "`libaudioflinger",
+          "_datapath.so`: `6a1de1587f80f712a03c3dfc6077468e03781a925fcaf63886a79b1bdf703f87`"
+        ],
+        [
+          "LI",
+          {},
+          "`libaudioflinger",
+          "_fastpath.so`, `libaudioflinger",
+          "_timing.so`, `libaudioflinger",
+          "_utils.so`: hashed, present (not analyzed further)"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The requested report `Android17BuildIdentityAudit.md` does not exist in `Admissions/`. The closest file is `Admissions/android17",
+      "_build",
+      "_identity.md`, which was not used as a source for any finding here."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output path `Admissions/AudioPlaybackStartSignalAudit.md` was confirmed absent before writing."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Existing reports consulted:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`Admissions/AUDIO",
+          "_START",
+          "_SIGNAL",
+          "_INVESTIGATION.md` (candidates C01 to C10, rounds 1 and 2)"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/AUDIO",
+          "_PLAYBACK",
+          "_PIPELINE",
+          "_AUDIT.md` (rounds 1, 2, and 3)"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/C08",
+          "_EVENT",
+          "_DEEP",
+          "_ANALYSIS.md`"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/OpenSLESRealizeDispatchTrace.md` and `Admissions/OpenSLESDispatchAndRealizeCallerAudit.md` (prior binary work)"
+        ],
+        [
+          "LI",
+          {},
+          "`phigros",
+          "_diagnostic/diags/AUDIO",
+          "_START",
+          "_SIGNAL",
+          "_CANDIDATES.csv` and `phigros",
+          "_diagnostic/diags/AUDIO",
+          "_PLAYBACK",
+          "_PIPELINE",
+          "_CANDIDATES.csv`"
+        ],
+        [
+          "LI",
+          {},
+          "`experiment",
+          "_data/sessions.json` (manual marks)"
+        ],
+        [
+          "LI",
+          {},
+          "`phigros",
+          "_diagnostic/timeline.py` (marker labels)"
+        ],
+        [
+          "LI",
+          {},
+          "`audio",
+          "_flinger.txt` and `audio",
+          "_policy.txt` (dumpsys snapshots at the repo root)"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. Executive conclusion"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "No practical gameplay audio-start signal is established."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "No candidate is detected automatically by PhiAPS today. The existing markers `PREVIEW",
+          "_PLAYING`, `START",
+          "_TRIGGER`, `FIRST",
+          "_AUDIO",
+          "_PEAK`, `PREVIEW",
+          "_STOPPED`, and `GAMEPLAY",
+          "_AUDIO",
+          "_STARTED` are label strings in `phigros",
+          "_diagnostic/timeline.py` (lines 252 to 256). Their only occurrences in code are in that list and in `phigros",
+          "_diagnostic/tests/test",
+          "_experiment",
+          "_records.py`. No code path emits them from audio data."
+        ],
+        [
+          "LI",
+          {},
+          "`FIRST",
+          "_AUDIO",
+          "_PEAK` in session `session",
+          "_20261114",
+          "_211923` is a manual mark at 12:20:32.284 UTC. It is not a PCM measurement."
+        ],
+        [
+          "LI",
+          {},
+          "The existing AudioFlinger and AudioTrack log lines show track creation, buffer operations, and frame counts. None of them is shown to correspond to audible sound at the speaker."
+        ],
+        [
+          "LI",
+          {},
+          "The best existing candidate, C08 (`AudioTrackShared` `obtainBuffer` benign \"Try again\" plus `releaseBuffer` dropped wake), is not present at Play Start 1 in round 2 and first appears about 127 s after it."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdict: NO PRACTICAL SIGNAL ESTABLISHED."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Target event definition"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The target is the first instant at which gameplay music (not preview, not a sound effect, not a system sound) is audible at the device output, measured on a clock that can be aligned with the PhiAPS session timeline."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The target is not any of the following:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Object construction, `Realize`, `SetPlayState(PLAYING)`, or PlayerBase events. These are initialization or state changes (see the prior OpenSL ES reports)."
+        ],
+        [
+          "LI",
+          {},
+          "AudioTrack creation or the deprecation warning. These occur at scene load."
+        ],
+        [
+          "LI",
+          {},
+          "Buffer submission (`obtainBuffer` or `releaseBuffer`). These show that the client is active, not that sound is produced."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. Candidate observable signals"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Each row is tied to existing evidence. \"Observable by ordinary app\" is classified only from what is verified in the repo, not from Android permission documentation (not checked here)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ID"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Candidate"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Evidence source"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Process"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Notes"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Actual PCM data available to a diagnostic app"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not present in any existing log"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "No existing record contains sample data."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S2"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioTrack submission of non-silent data"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Frame counts only (C07 `stop(N)`, C-03 6144 frames)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "App"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Frame count shows submission, not non-silence."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S3"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "AudioFlinger processing of the track stream"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "C08 buffer ops, C09 underrun, C06 mixer throttle"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "500 (AudioFlinger)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "C08 and C09 are buffer-level signals."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S4"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Playback-state transition (`PlayerBase` / `SetPlayState`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Prior OpenSL ES reports; not a log line"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "App"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not confirmed to correlate with output."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S5"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`dumpsys audio` active-track snapshot"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`audio",
+                "_flinger.txt` line 125: \"Tracks of which 0 are active\""
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Host-side ADB dump"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Snapshot, not an event stream; requires ADB or device shell."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S6"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Track creation (C01 to C04)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Round 2 at 22:07:29 device time"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "App and 500"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Scene load; not playback."
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. Candidate comparison"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Candidate"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "What it proves"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Automatically observable by PhiAPS?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Required privilege"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Timestamp quality"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Main false-positive risk"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Rank"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S1 PCM availability"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Audio samples exist"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not established"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Unknown (likely system or instrumentation)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Unknown"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Would include preview and silence"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not evaluable"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S2 Frame submission (`stop` frame count)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Client delivered frames"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Only from logcat (requires logcat access)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Log read"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Stop-time only; no start time"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Frames include silence; 6144-frame stops are too short for music"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "3"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S3 C08 buffer retry"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Track is being pulled by mixer"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Only from logcat"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Log read"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Round 2 timestamps only; round 1 batched"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Retry does not prove sound; not at PS1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S4 `PlayerBase` / `SetPlayState`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Playback state changed"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not via public log in repo"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Unknown"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Known to precede or be unrelated to output (scene load)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "4"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S5 `dumpsys` active count"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Track active at snapshot time"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Only by polling"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ADB or shell"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Poll interval only"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Preview and UI sounds can make a track active"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "5"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "S6 Track creation"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Track object exists"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Logcat"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Log read"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "High, but wrong event"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Occurs 34 s before PS1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Rejected"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Ranking rationale: no candidate satisfies the acceptance criteria. S3 and S2 are ranked above S4 and S5 only because they are the only candidates that appear inside an active playback window in the existing logs, and they are not confirmed as audible."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Best candidate and justification"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Best available candidate: S3, using C08 (`AudioTrackShared` buffer retry) as the first test candidate."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Justification:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "It is the only candidate with an event inside the round 2 playback interval (22:10:10.786 and 22:10:58.229 device time; 22:10:58.229 is 5.6 s before Play End)."
+        ],
+        [
+          "LI",
+          {},
+          "It is not present at PS1 (round 2) and does not appear in round 1 after 12:16:45.70 UTC."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Limits, which block it from being declared a practical signal:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "It does not coincide with PS1 or PS2 (see section 6)."
+        ],
+        [
+          "LI",
+          {},
+          "No log proves audible output at those times."
+        ],
+        [
+          "LI",
+          {},
+          "Round 1 receive times are batched within one minute, so offsets cannot be measured there."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "This is a candidate for validation only, not a signal."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. Reassessment of existing evidence"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Question"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Finding"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Verdict"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Which timestamps can serve as references?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Round 2 Play Start 1 at 13:08:03.522 UTC (22:08:03.522 device); Play Start 2 at 13:08:58.817 UTC; Play End at 13:11:03.873 UTC (from `AUDIO",
+                "_START",
+                "_SIGNAL",
+                "_INVESTIGATION.md`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED (as cited in the prior report)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Can `START",
+                "_TRIGGER` be distinguished from gameplay audio onset?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`START",
+                "_TRIGGER` is a manual mark at 12:20:24.275 UTC in session `session",
+                "_20261114",
+                "_211923`, 8 s before `FIRST",
+                "_AUDIO",
+                "_PEAK` (12:20:32.284). It is not measured against audio."
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED that it is manual; UNKNOWN relation to audio onset"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Can `FIRST",
+                "_AUDIO",
+                "_PEAK` be replaced by an automatic observation?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "No automatic detector exists in the repo. The manual mark is the only evidence for this label."
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN (no automatic source found)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Do logs contain evidence of the first gameplay audio data?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "No. No sample data, no PCM peak, and no timestamped audio line is aligned to a verified gameplay onset in any round. Round 2 play window 22:08:03 to 22:08:58 has no audio-tagged line except C08 at 22:10:10 (outside)."
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED (absence in the inspected logs)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Can preview playback produce false positives?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`PREVIEW",
+                "_PLAYING` at 12:20:05.772 UTC precedes `START",
+                "_TRIGGER` and `FIRST",
+                "_AUDIO",
+                "_PEAK` in session `session",
+                "_20261114",
+                "_211923`. Any audio event in that interval would be preview, not gameplay. The repo has no record separating preview from gameplay audio events."
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "SUPPORTED (ordering verified; per-event attribution UNKNOWN)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Do `PREVIEW",
+                "_STOPPED` and `GAMEPLAY",
+                "_AUDIO",
+                "_STARTED` exist?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Absent in the examined session. Session `session",
+                "_20261114",
+                "_211923` marks are: Game Start, PREVIEW",
+                "_PLAYING, START",
+                "_TRIGGER, FIRST",
+                "_AUDIO",
+                "_PEAK, Play End, Score Screen."
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Is `audio",
+                "_flinger.txt` a usable event source?"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "It is a single dumpsys snapshot (Start 11-14 11:50:21, Now 12:52:29). It shows \"Tracks of which 0 are active\" at line 125 and track tables. It is not a timestamped stream."
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "VERIFIED (format); not a playback-start source"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Other prior findings relied on:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Round 2 PS1 has no audio event between 22:07:29.50 and 22:10:10.79 (`AUDIO",
+          "_START",
+          "_SIGNAL",
+          "_INVESTIGATION.md`, section 4)."
+        ],
+        [
+          "LI",
+          {},
+          "C08 at 22:10:10.786 and 22:10:58.229 are paired with PID 500 `releaseBuffer dropped wake` at identical milliseconds (`AUDIO",
+          "_PLAYBACK",
+          "_PIPELINE",
+          "_CANDIDATES.csv`)."
+        ],
+        [
+          "LI",
+          {},
+          "Round 3 (1311202603) has one client stop with 6144 frames at 13:13:31.630 UTC, about 2 s after process creation and before the Game Start mark at 13:13:33 (`AUDIO",
+          "_PLAYBACK",
+          "_PIPELINE",
+          "_AUDIT.md`). Alignment is UNKNOWN."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "7. Practical capture feasibility for PhiAPS"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Capability"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Status"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Automatic detection of gameplay audio in PhiAPS"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not implemented. No code emits any audio marker automatically."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Read AudioFlinger and AudioTrack log lines"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Feasible in principle through the existing logcat path (`phigros",
+                "_diagnostic/logcat",
+                "_monitor.py` exists). Not verified for these tags in the repo."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Read PCM samples from the output"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not established. No existing component is shown to do this."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Read active-track state"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Requires polling `dumpsys audio` over ADB or shell. Polling cannot give an onset timestamp."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Root or system instrumentation"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Not required for logcat. Not determined for PCM capture or `dumpsys`."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Usable timestamp"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Logcat lines have timestamps, but the round 1 receive times are batched. Device-clock alignment works only for round 2 (device time minus 9 h equals UTC, verified in the prior report)."
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "8. Known limitations and false-positive risks"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "No audible-output measurement exists in any round. All \"playback\" claims are unverified."
+        ],
+        [
+          "LI",
+          {},
+          "Round 1 receive times are batched in one minute, so offsets cannot be measured there."
+        ],
+        [
+          "LI",
+          {},
+          "Round 2 replay caveat: logcat backlog was received at 13:08:24 UTC, so only device timestamps are valid."
+        ],
+        [
+          "LI",
+          {},
+          "C08 buffer retries can come from any audio stream in the same process (for example preview, UI, or SFX). The process attribution is not sufficient."
+        ],
+        [
+          "LI",
+          {},
+          "S2 frame counts include silence and cannot separate music from other audio."
+        ],
+        [
+          "LI",
+          {},
+          "The round 3 6144-frame stop is attributed to a process created 2 s earlier; its relation to Game Start is UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "The manual `FIRST",
+          "_AUDIO",
+          "_PEAK` marks are operator judgments, and their timing error is not measured."
+        ],
+        [
+          "LI",
+          {},
+          "Sample rate is not logged, so frame counts cannot be converted to duration."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "9. Minimum future validation experiment"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "This section is a proposal. It was not executed."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Required hardware and tools:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Android Studio emulator: must be started for this experiment (the device under study is emulator-5554, Android 17). Not yet started in this audit."
+        ],
+        [
+          "LI",
+          {},
+          "ADB: required, for logcat capture and `adb shell date` for device-clock alignment."
+        ],
+        [
+          "LI",
+          {},
+          "Physical Pixel 8: not required."
+        ],
+        [
+          "LI",
+          {},
+          "Host-side loopback or audio capture of the emulator output: required as the independent reference. This is not established in the repo and must be set up before the run."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Procedure (one candidate, one variable):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Start the emulator and Phigros in a controlled state. Record the device clock offset."
+        ],
+        [
+          "LI",
+          {},
+          "Start one gameplay song with a known chart. Record the manual Play Start from the operator (reference only)."
+        ],
+        [
+          "LI",
+          {},
+          "Capture the host-side audio recording and the logcat stream with device timestamps for the same window."
+        ],
+        [
+          "LI",
+          {},
+          "Record the first C08 event (and, separately, the first S2 frame-submission event) and the audible onset from the host recording. Compute the difference."
+        ],
+        [
+          "LI",
+          {},
+          "Repeat for at least 5 starts. Include negative controls: launch Phigros with no song (C08 must not appear with audible output), and open the song with volume muted (events must still be logged; audible onset must be absent)."
+        ],
+        [
+          "LI",
+          {},
+          "Include a preview-only run, to measure whether C08 fires for preview alone."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "What PhiAPS must record: candidate event timestamp (device clock), host audio onset (host clock), and the device-to-host offset."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Success criteria:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "The candidate fires within a fixed window (for example under 200 ms, to be set before the run) of every audible gameplay onset across 5 or more starts."
+        ],
+        [
+          "LI",
+          {},
+          "The candidate does not fire during preview-only or muted negative controls."
+        ],
+        [
+          "LI",
+          {},
+          "Standard deviation of the offset is small enough to be useful for PhiAPS (to be set before the run)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Disqualifying results:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Timing error or variance outside the pre-set window in any start."
+        ],
+        [
+          "LI",
+          {},
+          "Any firing during preview-only or muted controls that cannot be separated from gameplay."
+        ],
+        [
+          "LI",
+          {},
+          "No firing at gameplay onset."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "10. Verdicts"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "VERIFIED: No automatic PhiAPS detector for any audio-start marker exists in the repo (only label strings in `timeline.py` and tests)."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: `FIRST",
+          "_AUDIO",
+          "_PEAK` in session `session",
+          "_20261114",
+          "_211923` is a manual mark at 12:20:32.284 UTC."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: `PREVIEW",
+          "_STOPPED` and `GAMEPLAY",
+          "_AUDIO",
+          "_STARTED` are absent in that session."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: No inspected log contains sample data, PCM peak data, or an audible-output measurement."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: C08 is absent at round 2 Play Start 1 and first appears at 22:10:10.786 device time."
+        ],
+        [
+          "LI",
+          {},
+          "VERIFIED: Track creation (C01 to C04) occurs about 34 s before round 2 Play Start 1 (prior report)."
+        ],
+        [
+          "LI",
+          {},
+          "SUPPORTED: C08 is the strongest in-playback candidate, but only as a buffer-level signal."
+        ],
+        [
+          "LI",
+          {},
+          "SUPPORTED: Preview playback precedes the gameplay marks in the examined session, so preview audio is a false-positive risk."
+        ],
+        [
+          "LI",
+          {},
+          "HYPOTHESIS: A logcat-based detector on C08 (or S2 frame submission) could be built and could align with audible onset. Requires the validation experiment."
+        ],
+        [
+          "LI",
+          {},
+          "UNKNOWN: Whether any candidate corresponds to audible gameplay onset."
+        ],
+        [
+          "LI",
+          {},
+          "UNKNOWN: Whether PhiAPS can read PCM samples or AudioFlinger state without ADB or elevated privileges."
+        ],
+        [
+          "LI",
+          {},
+          "UNKNOWN: Round 1 timing of audio events (batched receive times)."
+        ],
+        [
+          "LI",
+          {},
+          "UNKNOWN: Round 3 alignment of the 6144-frame stop to Game Start."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Final verdict"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "NO PRACTICAL SIGNAL ESTABLISHED"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Missing evidence: a timestamped audio-output reference (host audio capture or PCM measurement) aligned to a verified gameplay onset, and an automatically observed event that fires at that onset and not during preview. C08 is the first candidate to test, but it does not currently meet the acceptance criteria."
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "4c68e8db-819b-4b6f-b90d-a5ab59358c80",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "Audio Playback Start Signal Audit"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Read-only audit. No PhiAPS source, experiment record, session file, WAV file, or diagnostic data was modified. No experiment was run. The Android Studio emulator was not started, ADB was not used, the physical Pixel 8 was not connected, no package was installed, and the APK and Phigros native libraries were not inspected. AOSP main was not used as evidence."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Inputs and hashes"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Scratch libraries in `$TMPDIR/android17",
+              "_libs/` were present and hashed this turn (SHA-256):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`libwilhelm.so`: `9a630485f4e8e13e94103983f2e9eb0818fd71e5b47df515f8a2c42687b7266b` (matches the prior turn)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libOpenSLES.so`: `771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libaudioclient.so`: `0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libaudiobase.so`: `633890a33aea6497264fd38a130030bb632b22975171b8b79ab7c9608d0b59fe`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libaudioflinger",
+                  "_datapath.so`: `6a1de1587f80f712a03c3dfc6077468e03781a925fcaf63886a79b1bdf703f87`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libaudioflinger",
+                  "_fastpath.so`, `libaudioflinger",
+                  "_timing.so`, `libaudioflinger",
+                  "_utils.so`: hashed, present (not analyzed further)"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The requested report `Android17BuildIdentityAudit.md` does not exist in `Admissions/`. The closest file is `Admissions/android17",
+              "_build",
+              "_identity.md`, which was not used as a source for any finding here."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output path `Admissions/AudioPlaybackStartSignalAudit.md` was confirmed absent before writing."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Existing reports consulted:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`Admissions/AUDIO",
+                  "_START",
+                  "_SIGNAL",
+                  "_INVESTIGATION.md` (candidates C01 to C10, rounds 1 and 2)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/AUDIO",
+                  "_PLAYBACK",
+                  "_PIPELINE",
+                  "_AUDIT.md` (rounds 1, 2, and 3)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/C08",
+                  "_EVENT",
+                  "_DEEP",
+                  "_ANALYSIS.md`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/OpenSLESRealizeDispatchTrace.md` and `Admissions/OpenSLESDispatchAndRealizeCallerAudit.md` (prior binary work)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`phigros",
+                  "_diagnostic/diags/AUDIO",
+                  "_START",
+                  "_SIGNAL",
+                  "_CANDIDATES.csv` and `phigros",
+                  "_diagnostic/diags/AUDIO",
+                  "_PLAYBACK",
+                  "_PIPELINE",
+                  "_CANDIDATES.csv`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`experiment",
+                  "_data/sessions.json` (manual marks)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`phigros",
+                  "_diagnostic/timeline.py` (marker labels)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`audio",
+                  "_flinger.txt` and `audio",
+                  "_policy.txt` (dumpsys snapshots at the repo root)"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. Executive conclusion"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "No practical gameplay audio-start signal is established."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "No candidate is detected automatically by PhiAPS today. The existing markers `PREVIEW",
+                  "_PLAYING`, `START",
+                  "_TRIGGER`, `FIRST",
+                  "_AUDIO",
+                  "_PEAK`, `PREVIEW",
+                  "_STOPPED`, and `GAMEPLAY",
+                  "_AUDIO",
+                  "_STARTED` are label strings in `phigros",
+                  "_diagnostic/timeline.py` (lines 252 to 256). Their only occurrences in code are in that list and in `phigros",
+                  "_diagnostic/tests/test",
+                  "_experiment",
+                  "_records.py`. No code path emits them from audio data."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`FIRST",
+                  "_AUDIO",
+                  "_PEAK` in session `session",
+                  "_20261114",
+                  "_211923` is a manual mark at 12:20:32.284 UTC. It is not a PCM measurement."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The existing AudioFlinger and AudioTrack log lines show track creation, buffer operations, and frame counts. None of them is shown to correspond to audible sound at the speaker."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The best existing candidate, C08 (`AudioTrackShared` `obtainBuffer` benign \"Try again\" plus `releaseBuffer` dropped wake), is not present at Play Start 1 in round 2 and first appears about 127 s after it."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdict: NO PRACTICAL SIGNAL ESTABLISHED."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Target event definition"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The target is the first instant at which gameplay music (not preview, not a sound effect, not a system sound) is audible at the device output, measured on a clock that can be aligned with the PhiAPS session timeline."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The target is not any of the following:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Object construction, `Realize`, `SetPlayState(PLAYING)`, or PlayerBase events. These are initialization or state changes (see the prior OpenSL ES reports)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "AudioTrack creation or the deprecation warning. These occur at scene load."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Buffer submission (`obtainBuffer` or `releaseBuffer`). These show that the client is active, not that sound is produced."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. Candidate observable signals"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Each row is tied to existing evidence. \"Observable by ordinary app\" is classified only from what is verified in the repo, not from Android permission documentation (not checked here)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ID"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Candidate"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Evidence source"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Process"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Notes"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Actual PCM data available to a diagnostic app"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not present in any existing log"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "No existing record contains sample data."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S2"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioTrack submission of non-silent data"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Frame counts only (C07 `stop(N)`, C-03 6144 frames)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "App"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Frame count shows submission, not non-silence."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S3"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "AudioFlinger processing of the track stream"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "C08 buffer ops, C09 underrun, C06 mixer throttle"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "500 (AudioFlinger)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "C08 and C09 are buffer-level signals."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S4"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Playback-state transition (`PlayerBase` / `SetPlayState`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Prior OpenSL ES reports; not a log line"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "App"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not confirmed to correlate with output."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S5"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`dumpsys audio` active-track snapshot"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`audio",
+                        "_flinger.txt` line 125: \"Tracks of which 0 are active\""
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Host-side ADB dump"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Snapshot, not an event stream; requires ADB or device shell."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S6"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Track creation (C01 to C04)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Round 2 at 22:07:29 device time"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "App and 500"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Scene load; not playback."
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. Candidate comparison"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Candidate"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "What it proves"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Automatically observable by PhiAPS?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Required privilege"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Timestamp quality"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Main false-positive risk"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Rank"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S1 PCM availability"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Audio samples exist"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not established"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Unknown (likely system or instrumentation)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Unknown"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Would include preview and silence"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not evaluable"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S2 Frame submission (`stop` frame count)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Client delivered frames"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Only from logcat (requires logcat access)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Log read"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Stop-time only; no start time"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Frames include silence; 6144-frame stops are too short for music"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "3"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S3 C08 buffer retry"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Track is being pulled by mixer"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Only from logcat"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Log read"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Round 2 timestamps only; round 1 batched"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Retry does not prove sound; not at PS1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S4 `PlayerBase` / `SetPlayState`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Playback state changed"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not via public log in repo"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Unknown"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Known to precede or be unrelated to output (scene load)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "4"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S5 `dumpsys` active count"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Track active at snapshot time"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Only by polling"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ADB or shell"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Poll interval only"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Preview and UI sounds can make a track active"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "5"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "S6 Track creation"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Track object exists"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Logcat"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Log read"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "High, but wrong event"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Occurs 34 s before PS1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Rejected"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Ranking rationale: no candidate satisfies the acceptance criteria. S3 and S2 are ranked above S4 and S5 only because they are the only candidates that appear inside an active playback window in the existing logs, and they are not confirmed as audible."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Best candidate and justification"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Best available candidate: S3, using C08 (`AudioTrackShared` buffer retry) as the first test candidate."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Justification:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "It is the only candidate with an event inside the round 2 playback interval (22:10:10.786 and 22:10:58.229 device time; 22:10:58.229 is 5.6 s before Play End)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "It is not present at PS1 (round 2) and does not appear in round 1 after 12:16:45.70 UTC."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Limits, which block it from being declared a practical signal:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "It does not coincide with PS1 or PS2 (see section 6)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No log proves audible output at those times."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 1 receive times are batched within one minute, so offsets cannot be measured there."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "This is a candidate for validation only, not a signal."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. Reassessment of existing evidence"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Question"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Finding"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Verdict"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Which timestamps can serve as references?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Round 2 Play Start 1 at 13:08:03.522 UTC (22:08:03.522 device); Play Start 2 at 13:08:58.817 UTC; Play End at 13:11:03.873 UTC (from `AUDIO",
+                        "_START",
+                        "_SIGNAL",
+                        "_INVESTIGATION.md`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED (as cited in the prior report)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Can `START",
+                        "_TRIGGER` be distinguished from gameplay audio onset?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`START",
+                        "_TRIGGER` is a manual mark at 12:20:24.275 UTC in session `session",
+                        "_20261114",
+                        "_211923`, 8 s before `FIRST",
+                        "_AUDIO",
+                        "_PEAK` (12:20:32.284). It is not measured against audio."
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED that it is manual; UNKNOWN relation to audio onset"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Can `FIRST",
+                        "_AUDIO",
+                        "_PEAK` be replaced by an automatic observation?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "No automatic detector exists in the repo. The manual mark is the only evidence for this label."
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN (no automatic source found)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Do logs contain evidence of the first gameplay audio data?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "No. No sample data, no PCM peak, and no timestamped audio line is aligned to a verified gameplay onset in any round. Round 2 play window 22:08:03 to 22:08:58 has no audio-tagged line except C08 at 22:10:10 (outside)."
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED (absence in the inspected logs)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Can preview playback produce false positives?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`PREVIEW",
+                        "_PLAYING` at 12:20:05.772 UTC precedes `START",
+                        "_TRIGGER` and `FIRST",
+                        "_AUDIO",
+                        "_PEAK` in session `session",
+                        "_20261114",
+                        "_211923`. Any audio event in that interval would be preview, not gameplay. The repo has no record separating preview from gameplay audio events."
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "SUPPORTED (ordering verified; per-event attribution UNKNOWN)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Do `PREVIEW",
+                        "_STOPPED` and `GAMEPLAY",
+                        "_AUDIO",
+                        "_STARTED` exist?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Absent in the examined session. Session `session",
+                        "_20261114",
+                        "_211923` marks are: Game Start, PREVIEW",
+                        "_PLAYING, START",
+                        "_TRIGGER, FIRST",
+                        "_AUDIO",
+                        "_PEAK, Play End, Score Screen."
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Is `audio",
+                        "_flinger.txt` a usable event source?"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "It is a single dumpsys snapshot (Start 11-14 11:50:21, Now 12:52:29). It shows \"Tracks of which 0 are active\" at line 125 and track tables. It is not a timestamped stream."
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "VERIFIED (format); not a playback-start source"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Other prior findings relied on:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Round 2 PS1 has no audio event between 22:07:29.50 and 22:10:10.79 (`AUDIO",
+                  "_START",
+                  "_SIGNAL",
+                  "_INVESTIGATION.md`, section 4)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "C08 at 22:10:10.786 and 22:10:58.229 are paired with PID 500 `releaseBuffer dropped wake` at identical milliseconds (`AUDIO",
+                  "_PLAYBACK",
+                  "_PIPELINE",
+                  "_CANDIDATES.csv`)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 3 (1311202603) has one client stop with 6144 frames at 13:13:31.630 UTC, about 2 s after process creation and before the Game Start mark at 13:13:33 (`AUDIO",
+                  "_PLAYBACK",
+                  "_PIPELINE",
+                  "_AUDIT.md`). Alignment is UNKNOWN."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "7. Practical capture feasibility for PhiAPS"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Capability"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Status"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Automatic detection of gameplay audio in PhiAPS"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not implemented. No code emits any audio marker automatically."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Read AudioFlinger and AudioTrack log lines"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Feasible in principle through the existing logcat path (`phigros",
+                        "_diagnostic/logcat",
+                        "_monitor.py` exists). Not verified for these tags in the repo."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Read PCM samples from the output"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not established. No existing component is shown to do this."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Read active-track state"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Requires polling `dumpsys audio` over ADB or shell. Polling cannot give an onset timestamp."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Root or system instrumentation"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Not required for logcat. Not determined for PCM capture or `dumpsys`."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Usable timestamp"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Logcat lines have timestamps, but the round 1 receive times are batched. Device-clock alignment works only for round 2 (device time minus 9 h equals UTC, verified in the prior report)."
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "8. Known limitations and false-positive risks"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "No audible-output measurement exists in any round. All \"playback\" claims are unverified."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 1 receive times are batched in one minute, so offsets cannot be measured there."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Round 2 replay caveat: logcat backlog was received at 13:08:24 UTC, so only device timestamps are valid."
+                ],
+                [
+                  "LI",
+                  {},
+                  "C08 buffer retries can come from any audio stream in the same process (for example preview, UI, or SFX). The process attribution is not sufficient."
+                ],
+                [
+                  "LI",
+                  {},
+                  "S2 frame counts include silence and cannot separate music from other audio."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The round 3 6144-frame stop is attributed to a process created 2 s earlier; its relation to Game Start is UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The manual `FIRST",
+                  "_AUDIO",
+                  "_PEAK` marks are operator judgments, and their timing error is not measured."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Sample rate is not logged, so frame counts cannot be converted to duration."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "9. Minimum future validation experiment"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "This section is a proposal. It was not executed."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Required hardware and tools:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Android Studio emulator: must be started for this experiment (the device under study is emulator-5554, Android 17). Not yet started in this audit."
+                ],
+                [
+                  "LI",
+                  {},
+                  "ADB: required, for logcat capture and `adb shell date` for device-clock alignment."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Physical Pixel 8: not required."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Host-side loopback or audio capture of the emulator output: required as the independent reference. This is not established in the repo and must be set up before the run."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Procedure (one candidate, one variable):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Start the emulator and Phigros in a controlled state. Record the device clock offset."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Start one gameplay song with a known chart. Record the manual Play Start from the operator (reference only)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Capture the host-side audio recording and the logcat stream with device timestamps for the same window."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Record the first C08 event (and, separately, the first S2 frame-submission event) and the audible onset from the host recording. Compute the difference."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Repeat for at least 5 starts. Include negative controls: launch Phigros with no song (C08 must not appear with audible output), and open the song with volume muted (events must still be logged; audible onset must be absent)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Include a preview-only run, to measure whether C08 fires for preview alone."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "What PhiAPS must record: candidate event timestamp (device clock), host audio onset (host clock), and the device-to-host offset."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Success criteria:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "The candidate fires within a fixed window (for example under 200 ms, to be set before the run) of every audible gameplay onset across 5 or more starts."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The candidate does not fire during preview-only or muted negative controls."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Standard deviation of the offset is small enough to be useful for PhiAPS (to be set before the run)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Disqualifying results:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Timing error or variance outside the pre-set window in any start."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Any firing during preview-only or muted controls that cannot be separated from gameplay."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No firing at gameplay onset."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "10. Verdicts"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: No automatic PhiAPS detector for any audio-start marker exists in the repo (only label strings in `timeline.py` and tests)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: `FIRST",
+                  "_AUDIO",
+                  "_PEAK` in session `session",
+                  "_20261114",
+                  "_211923` is a manual mark at 12:20:32.284 UTC."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: `PREVIEW",
+                  "_STOPPED` and `GAMEPLAY",
+                  "_AUDIO",
+                  "_STARTED` are absent in that session."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: No inspected log contains sample data, PCM peak data, or an audible-output measurement."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: C08 is absent at round 2 Play Start 1 and first appears at 22:10:10.786 device time."
+                ],
+                [
+                  "LI",
+                  {},
+                  "VERIFIED: Track creation (C01 to C04) occurs about 34 s before round 2 Play Start 1 (prior report)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "SUPPORTED: C08 is the strongest in-playback candidate, but only as a buffer-level signal."
+                ],
+                [
+                  "LI",
+                  {},
+                  "SUPPORTED: Preview playback precedes the gameplay marks in the examined session, so preview audio is a false-positive risk."
+                ],
+                [
+                  "LI",
+                  {},
+                  "HYPOTHESIS: A logcat-based detector on C08 (or S2 frame submission) could be built and could align with audible onset. Requires the validation experiment."
+                ],
+                [
+                  "LI",
+                  {},
+                  "UNKNOWN: Whether any candidate corresponds to audible gameplay onset."
+                ],
+                [
+                  "LI",
+                  {},
+                  "UNKNOWN: Whether PhiAPS can read PCM samples or AudioFlinger state without ADB or elevated privileges."
+                ],
+                [
+                  "LI",
+                  {},
+                  "UNKNOWN: Round 1 timing of audio events (batched receive times)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "UNKNOWN: Round 3 alignment of the 6144-frame stop to Game Start."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Final verdict"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "NO PRACTICAL SIGNAL ESTABLISHED"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Missing evidence: a timestamped audio-output reference (host audio capture or PCM measurement) aligned to a verified gameplay onset, and an automatically observed event that fires at that onset and not during preview. C08 is the first candidate to test, but it does not currently meet the acceptance criteria."
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1794701980372,
+      "acked": true,
+      "ackedAt": 1794701983860,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}
