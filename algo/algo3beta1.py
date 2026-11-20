@@ -407,22 +407,41 @@ class PointerAllocator:
         pointer.age = flick_start - flick_end  # 负值：滑动期间该指针不可被分配
         return True
 
-    def _drag(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas):
-        """拖动按压的新起点：经局部绕行后按下"""
-        self._down(pointer, note, self._drag_pos(note, blocks, None))
+    def _drag(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas) -> bool:
+        """Start a DRAG only when a safe initial position exists."""
+        pos = self._drag_pos(note, blocks, None)
+        if pos is None:
+            self._skip(note, PlacementFailure.NO_VALID_POSITION)
+            return False
+        self._down(pointer, note, pos)
+        return True
 
     def _drag_pos(self, note: SimpleNote, blocks: BlockAreas,
-                  prev: Optional[tuple[int, float, float]]) -> tuple[float, float]:
-        """拖动点：优先判定线目标；不合法则在小范围内取与上一发送点连线不穿过 NF 的最近点，否则记录失败"""
+                  prev: Optional[tuple[int, float, float]]) -> Optional[tuple[float, float]]:
+        """Choose the nearest locally reachable NF-clear point without a full-screen sort."""
         tx, ty = note.pos
-        candidates = [(tx, ty)] + sorted(_SCREEN_GRID, key=lambda q: (q[0] - tx) ** 2 + (q[1] - ty) ** 2)
-        for x, y in candidates:
+        previous = (prev[1], prev[2]) if prev is not None else None
+
+        # nearby_points yields candidates by increasing radius, avoiding an O(screen log screen)
+        # sort on every DRAG frame. The bounded search also prevents large HOLD teleports.
+        for x, y in nearby_points(tx, ty, max_radius=DRAG_MAX_RELOCATION,
+                                  step=DRAG_SEARCH_STEP):
             if not _point_clear(blocks, self.now, x, y):
                 continue
-            if prev is None or _segment_clear(blocks, prev[0], (prev[1], prev[2]), self.now, (x, y)):
-                return x, y
+            if prev is not None and not _segment_clear(
+                    blocks, prev[0], previous, self.now, (x, y)):
+                continue
+            return x, y
+
+        # If no new point is reachable, keep the previous touch stationary only when it
+        # remains clear at this timestamp. Never silently move through an NF region.
+        if previous is not None and _point_clear(blocks, self.now, previous[0], previous[1]):
+            self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
+            return previous
+
+        # No safe continuation exists. Do not emit a point inside an NF region.
         self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
-        return tx, ty
+        return None
 
     def allocate(self, frame: Frame):
         # 更新pointer age
@@ -451,9 +470,10 @@ class PointerAllocator:
                 pointer.age = 0
                 if self.now - pointer.sent_at >= drag_step:
                     pos = self._drag_pos(note, frame.blocks, self.last_pos.get(pointer.id))
-                    self._insert(self.now, TouchEvent(pos, TouchAction.MOVE, pointer.id))
-                    pointer.sent_at = self.now
-                    self.last_pos[pointer.id] = (self.now, pos[0], pos[1])
+                    if pos is not None:
+                        self._insert(self.now, TouchEvent(pos, TouchAction.MOVE, pointer.id))
+                        pointer.sent_at = self.now
+                        self.last_pos[pointer.id] = (self.now, pos[0], pos[1])
                 continue
             pointer = self.alloc(note)
             if pointer is None:
@@ -481,9 +501,8 @@ class PointerAllocator:
         return self.events
 
 
-DRAG_SEARCH_STEP = 4  # 拖动避让候选网格步长(px)，仅在目标点不可用时搜索
-_SCREEN_GRID = [(float(x), float(y)) for x in range(0, 1281, DRAG_SEARCH_STEP)
-                for y in range(0, 721, DRAG_SEARCH_STEP)]
+DRAG_SEARCH_STEP = 8  # Local candidate spacing in pixels
+DRAG_MAX_RELOCATION = 80.0  # Keep HOLD movement local to the judge-line target
 
 
 def _point_clear(blocks: BlockAreas, t_ms: int, x: float, y: float) -> bool:
