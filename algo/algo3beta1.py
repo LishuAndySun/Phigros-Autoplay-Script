@@ -418,38 +418,80 @@ class PointerAllocator:
 
     def _drag_pos(self, note: SimpleNote, blocks: BlockAreas,
                   prev: Optional[tuple[int, float, float]]) -> Optional[tuple[float, float]]:
-        """Find a locally reachable DRAG point outside NF and outside the judge-line band."""
+        """Use a judge-line-aligned binary mask to find the nearest NF-free DRAG point.
+
+        The original hit path is preserved along the judge-line tangent. NF cells are
+        encoded as 1, inverted into a safe-cell mask, then intersected with an expanding
+        target mask. Unlike the old relocation code, this does not push HOLD points
+        away from the judge line using MIN_DIST.
+        """
         tx, ty = note.pos
+
+        if note.line is not None:
+            (x1, y1), (x2, y2) = note.line
+            dx, dy = x2 - x1, y2 - y1
+            length = math.hypot(dx, dy)
+            if length > 1e-9:
+                tangent_x, tangent_y = dx / length, dy / length
+            else:
+                tangent_x, tangent_y = math.cos(note.angle), math.sin(note.angle)
+        else:
+            tangent_x, tangent_y = math.cos(note.angle), math.sin(note.angle)
+
+        step = DRAG_MASK_STEP
+        radius = min(DRAG_MASK_RADIUS, MAX_RELOCATION_DISTANCE)
+        count = int(radius // step)
+        offsets = list(range(-count, count + 1))
+        cell_count = len(offsets)
+        full_mask = (1 << cell_count) - 1
+        nf_mask = 0
+        valid_mask = 0
         previous = (prev[1], prev[2]) if prev is not None else None
 
-        def candidate_clear(x: float, y: float) -> bool:
-            if not _point_clear(blocks, self.now, x, y):
-                return False
-            if note.line is not None:
-                try:
-                    if point_line_distance((x, y), note.line) < MIN_DIST:
-                        return False
-                except ValueError:
-                    return False
-            return True
-
-        # Search the full configured relocation radius, not the old 80 px local cap.
-        # Candidate order remains near-to-far; no full-screen sorting is performed.
-        for x, y in nearby_points(tx, ty, max_radius=MAX_RELOCATION_DISTANCE,
-                                  step=DRAG_SEARCH_STEP):
-            if not candidate_clear(x, y):
+        # Rasterize the candidate strip into a one-dimensional binary NF mask.
+        for index, offset in enumerate(offsets):
+            x = tx + tangent_x * offset * step
+            y = ty + tangent_y * offset * step
+            if not (0 <= x <= 1280 and 0 <= y <= 720):
+                nf_mask |= 1 << index
                 continue
-            if prev is not None and not _segment_clear(
+            if blocks.blocked(x, y, self.now / 1000, margin_at(self.now / 1000)):
+                nf_mask |= 1 << index
+                continue
+            if previous is not None and not _segment_clear(
                     blocks, prev[0], previous, self.now, (x, y)):
+                nf_mask |= 1 << index
                 continue
-            return x, y
+            valid_mask |= 1 << index
 
-        # A stationary continuation is valid only if it still satisfies both constraints.
-        if previous is not None and candidate_clear(previous[0], previous[1]):
+        # Bitwise complement is bounded to the candidate strip. Keep a separate
+        # valid mask so out-of-screen and unreachable cells cannot become candidates.
+        safe_mask = (full_mask ^ nf_mask) & valid_mask
+        if safe_mask == 0:
             self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
-            return previous
+            return None
 
-        # Never emit the raw judge-line target as an unsafe fallback.
+        # Start with the exact target cell, then expand symmetrically along the line.
+        # The first non-empty intersection is the closest reachable safe cell.
+        target_mask = 1 << count
+        for _ in range(count + 1):
+            matches = target_mask & safe_mask
+            if matches:
+                indices = [i for i in range(cell_count) if matches & (1 << i)]
+                if previous is not None:
+                    # Prefer the side that continues the previous movement direction.
+                    prev_projection = ((previous[0] - tx) * tangent_x
+                                       + (previous[1] - ty) * tangent_y)
+                    preferred = 1 if prev_projection >= 0 else -1
+                    indices.sort(key=lambda i: (0 if (offsets[i] * preferred) >= 0 else 1,
+                                                abs(offsets[i])))
+                else:
+                    indices.sort(key=lambda i: abs(offsets[i]))
+                index = indices[0]
+                offset = offsets[index] * step
+                return tx + tangent_x * offset, ty + tangent_y * offset
+            target_mask = ((target_mask << 1) | (target_mask >> 1)) & full_mask
+
         self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
         return None
 
@@ -511,8 +553,8 @@ class PointerAllocator:
         return self.events
 
 
-DRAG_SEARCH_STEP = 8  # Local candidate spacing in pixels
-DRAG_MAX_RELOCATION = 80.0  # Keep HOLD movement local to the judge-line target
+DRAG_MASK_STEP = 4  # Binary-mask grid resolution along the judge line
+DRAG_MASK_RADIUS = 200.0  # Search both directions along the judge-line tangent
 
 
 def _point_clear(blocks: BlockAreas, t_ms: int, x: float, y: float) -> bool:
