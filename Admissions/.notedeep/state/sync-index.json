@@ -1,150 +1,252 @@
 {
   "version": 1,
-  "workspaceTreeHash": "b97d28a5",
+  "workspaceTreeHash": "aa91abfb",
   "pages": {
-    "9a07458f-7e00-448d-aa70-938a9a5f035e": {
-      "path": "1211202605_ANALYSIS_REPORT.md",
-      "size": 13391,
-      "mtimeMs": 1794487040258.98,
-      "contentHash": "998b2739"
+    "ddcda366-8f20-4c93-86ae-20dde79978d8": {
+      "path": "20261111",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
     },
-    "dd13910d-4956-4ed4-8d7d-219583995b0b": {
-      "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
-      "size": 4562,
-      "mtimeMs": 1794544295434.2178,
-      "contentHash": "77784113"
-    },
-    "fe1387a5-b557-4377-bd52-9535246465b6": {
-      "path": "AUDIO_START_SIGNAL_INVESTIGATION.md",
-      "size": 10816,
-      "mtimeMs": 1794537660874.0918,
-      "contentHash": "b9caa076"
-    },
-    "baafe286-a519-4b44-b1f3-45f438b1f314": {
-      "path": "AutoStartCalibrationPlan.md",
+    "02c58139-790f-427a-925a-f1fb5c5a0b0f": {
+      "path": "20261111/AutoStartCalibrationPlan.md",
       "size": 24123,
       "mtimeMs": 1794397854260.9329,
       "contentHash": "2317a05e"
     },
-    "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e": {
-      "path": "C08_EVENT_DEEP_ANALYSIS.md",
-      "size": 9862,
-      "mtimeMs": 1794544028264.1665,
-      "contentHash": "24afd290"
-    },
-    "2d0924d3-7d3b-4289-a89d-9d83a328e1cc": {
-      "path": "ERROR_AUDIT_REPORT.md",
-      "size": 19810,
-      "mtimeMs": 1794527431365.3438,
-      "contentHash": "c99a0c4f"
-    },
-    "df6868cd-63e5-4390-894f-17fe39d1bcfc": {
-      "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
-      "size": 6211,
-      "mtimeMs": 1794534243014.3533,
-      "contentHash": "d6fa3633"
-    },
-    "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754": {
-      "path": "PHASE2_FIX_REPORT.md",
-      "size": 3268,
-      "mtimeMs": 1794488361894.5945,
-      "contentHash": "d9b1cbb5"
-    },
-    "5bfbe26a-3832-41e0-9aa2-c49e657790d0": {
-      "path": "Plan_AvoidNoiseField.md",
+    "680540a6-e437-4f1d-828e-67b67841ab29": {
+      "path": "20261111/Plan_AvoidNoiseField.md",
       "size": 13857,
       "mtimeMs": 1794395210507.8274,
       "contentHash": "1d60fa7a"
     },
-    "67e3f243-dc43-4a7d-9f0d-caf01a4feb27": {
-      "path": "ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+    "0f44d959-4ab8-4714-89f2-7416c9ce1912": {
+      "path": "20261112",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "1c9110e8-241e-4a7b-a437-241573496b94": {
+      "path": "20261112/1211202605_ANALYSIS_REPORT.md",
+      "size": 13391,
+      "mtimeMs": 1794487040258.98,
+      "contentHash": "998b2739"
+    },
+    "2ce0294e-adbd-4275-b6a9-06a4c5756edc": {
+      "path": "20261112/PHASE2_FIX_REPORT.md",
+      "size": 3268,
+      "mtimeMs": 1794488361894.5945,
+      "contentHash": "d9b1cbb5"
+    },
+    "d9caae65-de07-4c42-a4c1-d7909ef29894": {
+      "path": "20261113",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "da21e9a2-7acc-45a0-ba32-313e20c44dc2": {
+      "path": "20261113/AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+      "size": 4562,
+      "mtimeMs": 1794544295434.2178,
+      "contentHash": "77784113"
+    },
+    "c55cef74-e086-4f23-886e-30b7e5059f06": {
+      "path": "20261113/AUDIO_START_SIGNAL_INVESTIGATION.md",
+      "size": 10816,
+      "mtimeMs": 1794537660874.0918,
+      "contentHash": "b9caa076"
+    },
+    "e4030f5a-58c0-45b6-afcd-754c421cbbf5": {
+      "path": "20261113/C08_EVENT_DEEP_ANALYSIS.md",
+      "size": 9862,
+      "mtimeMs": 1794544028264.1665,
+      "contentHash": "24afd290"
+    },
+    "0eda7854-4f96-4bcd-a140-ad6e49dcb75d": {
+      "path": "20261113/ERROR_AUDIT_REPORT.md",
+      "size": 19810,
+      "mtimeMs": 1794527431365.3438,
+      "contentHash": "c99a0c4f"
+    },
+    "4ed6e1e6-4c06-4dc6-a18f-6c5e45b745c6": {
+      "path": "20261113/MULTI_ROUND_OPERATION_CORRELATION.md",
+      "size": 6211,
+      "mtimeMs": 1794534243014.3533,
+      "contentHash": "d6fa3633"
+    },
+    "79955ceb-fe15-4086-b0c7-a82ca50b46f3": {
+      "path": "20261113/ROUND3_AUDIO_CONTROL_ANALYSIS.md",
       "size": 10287,
       "mtimeMs": 1794543060919.1284,
       "contentHash": "aedc85c3"
     },
-    "2e5556de-752c-411f-9924-eea9c90aa8ae": {
-      "path": "ROUND3_RETEST_COMPARISON.md",
+    "c8c985fd-8cc6-46c7-94ff-6ee61b587aff": {
+      "path": "20261113/ROUND3_RETEST_COMPARISON.md",
       "size": 5574,
       "mtimeMs": 1794543605425.8774,
       "contentHash": "a153fad5"
     },
-    "a42b4205-cf92-4322-bb23-596a09f7f80b": {
-      "path": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+    "b28ab0b4-049e-4513-94e3-c1961ad39d21": {
+      "path": "20261113/SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
       "size": 7662,
       "mtimeMs": 1794543843462.346,
       "contentHash": "49be755d"
     },
-    "a276c8c4-dffb-46e5-9901-18725c945acd": {
-      "path": "UnityOutPortalStatus.md",
-      "size": 13856,
-      "mtimeMs": 1794660760446.8606,
-      "contentHash": "19f19738"
+    "85407095-7efe-428e-b2a9-4b403ea58d16": {
+      "path": "20261114",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
     },
-    "4a29fd9c-3779-4a91-923e-4a515020fc69": {
-      "path": "TrackPlayerbaseCallsiteInvestigation.md",
-      "size": 17108,
-      "mtimeMs": 1794660184309.0342,
-      "contentHash": "2630a9f2"
-    },
-    "6e253d00-7074-4286-baba-303fd805bf42": {
-      "path": "android17_build_identity.md",
-      "size": 7996,
-      "mtimeMs": 1794660422434.5532,
-      "contentHash": "d414d648"
-    },
-    "c576e854-651b-49b2-b0ea-d4f0b84e3b8c": {
-      "path": "android17_audio_creation_path.md",
+    "50913dd4-e5a2-42de-82fb-d6edc90bd002": {
+      "path": "20261114/android17_audio_creation_path.md",
       "size": 8841,
       "mtimeMs": 1794660949608.3906,
       "contentHash": "d298e834"
     },
-    "11768871-b672-4dd2-b290-a56afb40b317": {
-      "path": "TrackPlayerBaseOpenSLESFollowup.md",
+    "04a84f08-eb84-4667-8950-b7dc526288fe": {
+      "path": "20261114/android17_build_identity.md",
+      "size": 7996,
+      "mtimeMs": 1794660422434.5532,
+      "contentHash": "d414d648"
+    },
+    "b007b92c-012e-4359-94fc-034e86753961": {
+      "path": "20261114/TrackPlayerbaseCallsiteInvestigation.md",
+      "size": 17108,
+      "mtimeMs": 1794660184309.0342,
+      "contentHash": "2630a9f2"
+    },
+    "bfba0805-a2e7-429b-ad48-cbb3a4612ef6": {
+      "path": "20261114/TrackPlayerBaseOpenSLESFollowup.md",
       "size": 12358,
       "mtimeMs": 1794661420516.79,
       "contentHash": "d3b3f36e"
     },
-    "7310e95d-527f-4047-94a6-91dc5f9fe0c0": {
-      "path": "OpenSLESRelocationCallsiteAudit.md",
-      "size": 11491,
-      "mtimeMs": 1794700551859.4653,
-      "contentHash": "4b9b3d83"
+    "db62be5e-ffce-4ab4-9c10-caba2447b88d": {
+      "path": "20261114/UnityOutPortalStatus.md",
+      "size": 13856,
+      "mtimeMs": 1794660760446.8606,
+      "contentHash": "19f19738"
     },
-    "a761444e-8a8b-47e6-857e-e92b2a75cd7d": {
-      "path": "OpenSLESRealizeAndPlayStateAudit.md",
-      "size": 7578,
-      "mtimeMs": 1794701179588.8103,
-      "contentHash": "8d3dd04a"
+    "29866692-7aa9-4d6e-b381-3d9fe78d1181": {
+      "path": "20261115",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
     },
-    "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993": {
-      "path": "OpenSLESDispatchAndRealizeCallerAudit.md",
-      "size": 7064,
-      "mtimeMs": 1794701458583.285,
-      "contentHash": "3a8458d4"
-    },
-    "e4e7d287-3869-4ceb-90c0-053f0438f6ad": {
-      "path": "OpenSLESRealizeDispatchTrace.md",
-      "size": 6093,
-      "mtimeMs": 1794701634018.3462,
-      "contentHash": "93f5ec2d"
-    },
-    "881e6f8f-05ae-4746-86b4-a6d84f5f529d": {
-      "path": "AudioPlaybackStartSignalAudit.md",
-      "size": 15408,
-      "mtimeMs": 1794701919380.2908,
-      "contentHash": "abe0a92c"
-    },
-    "053712cf-976c-47b2-a384-09f04f40cadb": {
-      "path": "AudioPlaybackCaptureGameplayValidation.md",
+    "fa2f206c-1f42-4033-bcb6-79a7339c08c2": {
+      "path": "20261115/AudioPlaybackCaptureGameplayValidation.md",
       "size": 6701,
       "mtimeMs": 1794704866141.335,
       "contentHash": "566f1e08"
     },
-    "9408b76d-52ae-40f9-9a18-60baa5a66ccf": {
-      "path": "FirstAudioPeakSubBlockAudit.md",
+    "b03aa838-0c8c-4540-897c-86a9477e50bb": {
+      "path": "20261115/AudioPlaybackStartSignalAudit.md",
+      "size": 15408,
+      "mtimeMs": 1794701919380.2908,
+      "contentHash": "abe0a92c"
+    },
+    "3f09a044-1121-4cc0-bcef-35b360803549": {
+      "path": "20261115/FirstAudioPeakSubBlockAudit.md",
       "size": 6482,
       "mtimeMs": 1794705271372.479,
       "contentHash": "2ff095a7"
+    },
+    "23b8b299-35bb-43ae-a7ab-2c20ac8143de": {
+      "path": "20261115/OpenSLESDispatchAndRealizeCallerAudit.md",
+      "size": 7064,
+      "mtimeMs": 1794701458583.285,
+      "contentHash": "3a8458d4"
+    },
+    "5906761a-1b57-4ed9-be59-e0543bcca2b1": {
+      "path": "20261115/OpenSLESRealizeAndPlayStateAudit.md",
+      "size": 7578,
+      "mtimeMs": 1794701179588.8103,
+      "contentHash": "8d3dd04a"
+    },
+    "35480c2b-bbaa-4b06-84d9-2ae09a557c0b": {
+      "path": "20261115/OpenSLESRealizeDispatchTrace.md",
+      "size": 6093,
+      "mtimeMs": 1794701634018.3462,
+      "contentHash": "93f5ec2d"
+    },
+    "bbcd9b56-66d3-4ed7-9b99-659105e53a6e": {
+      "path": "20261115/OpenSLESRelocationCallsiteAudit.md",
+      "size": 11491,
+      "mtimeMs": 1794700551859.4653,
+      "contentHash": "4b9b3d83"
+    },
+    "237cd599-19fc-41a8-9432-32ff6ce5f458": {
+      "path": "20261120",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "590d135e-c30e-43fe-8370-e5fc23c7c7e0": {
+      "path": "20261120/P1_2_Touch_Dispatch_Coordinate_Trace_Audit.md",
+      "size": 18106,
+      "mtimeMs": 1795166189804.3794,
+      "contentHash": "93cbf9d2"
+    },
+    "38f00970-f1d9-426a-a8f5-f1ca79204130": {
+      "path": "__pycache__",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "9f032d24-5e80-4a05-af03-fd2601672580": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "9ccc7ebb-4026-4e54-b32b-5fb88a0662d4": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/captures",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "6d8a3d23-72de-4afc-8375-495014039368": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/scripts",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "a3d6ae55-e90b-489b-befe-0101f4ed2c31": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Execution_Path.md",
+      "size": 3358,
+      "mtimeMs": 1795166918621.393,
+      "contentHash": "d66b5714"
+    },
+    "76ce6006-d31c-4d61-bd10-ec471394b1a8": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Pathfinding_Root_Cause_Investigation.md",
+      "size": 5511,
+      "mtimeMs": 1795167064608.5283,
+      "contentHash": "c858e1bf"
+    },
+    "328f42ab-7bc8-4077-925b-f56e684913d1": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Validation_Results.md",
+      "size": 2060,
+      "mtimeMs": 1795166918649.31,
+      "contentHash": "853fac7c"
+    },
+    "a168dd63-eaa8-4e67-b092-e52f08f9a121": {
+      "path": "20261120/NF Phase 2 Continue",
+      "size": 0,
+      "mtimeMs": 0,
+      "contentHash": "811c9dc5"
+    },
+    "15248543-5ff4-4931-a65a-c7a89ffbc974": {
+      "path": "20261120/NF Phase 2 Continue/NF_Phase2_Access_and_Attribution_Audit.md",
+      "size": 7907,
+      "mtimeMs": 1795167743086.8245,
+      "contentHash": "52218e66"
+    },
+    "1a526695-da91-43d5-83e2-39e5d335cc31": {
+      "path": "20261120/NF Phase 2 Continue/Access_and_Integrity_Audit.md",
+      "size": 3667,
+      "mtimeMs": 1795168149592.4387,
+      "contentHash": "3316b67c"
     }
   }
 }

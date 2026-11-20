@@ -1,0 +1,10 @@
+{
+  "chart": "Assets/Tracks/DesultorySignals.technoplanet.0/Chart_AT.json",
+  "total_events": 17286,
+  "skipped_notes": 55,
+  "nf_violation_records": 13220,
+  "nf_violation_event_records": 1261,
+  "nf_violation_segment_records": 11959,
+  "peak_active_pointers": 8,
+  "solve_seconds": 24.41
+}

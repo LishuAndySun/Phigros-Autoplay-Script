@@ -1,0 +1,82 @@
+{
+  "total_events": 17308,
+  "violating_events_margin0": 896,
+  "violating_by_action": {
+    "MOVE": 867,
+    "DOWN": 14,
+    "UP": 15
+  },
+  "violating_by_origin_method": {
+    "allocate:drag_continuation_or_release": 870,
+    "_down:type2": 25,
+    "_down:type1": 1
+  },
+  "violating_by_origin_and_action": {
+    "allocate:drag_continuation_or_release|MOVE": 867,
+    "_down:type2|DOWN": 14,
+    "allocate:drag_continuation_or_release|UP": 3,
+    "_down:type2|UP": 11,
+    "_down:type1|UP": 1
+  },
+  "violating_by_pointer": {
+    "1000": 455,
+    "1001": 273,
+    "1005": 149,
+    "1004": 1,
+    "1003": 8,
+    "1002": 10
+  },
+  "violating_margin30_total": 1261,
+  "episodes_pointer_runs": 56,
+  "episodes_longest_events": 149,
+  "violating_time_range_ms": [
+    10409,
+    139469
+  ],
+  "top_violating_nf_ids": [
+    [
+      "69",
+      299
+    ],
+    [
+      "159",
+      236
+    ],
+    [
+      "71",
+      101
+    ],
+    [
+      "74",
+      92
+    ],
+    [
+      "45",
+      74
+    ],
+    [
+      "4",
+      62
+    ],
+    [
+      "84",
+      10
+    ],
+    [
+      "76",
+      8
+    ],
+    [
+      "88",
+      8
+    ],
+    [
+      "85",
+      3
+    ],
+    [
+      "157",
+      3
+    ]
+  ]
+}

@@ -1,0 +1,1825 @@
+{
+  "docId": "76ce6006-d31c-4d61-bd10-ec471394b1a8",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "NF Pathfinding Root Cause Investigation (DesultorySignals AT)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. Executive summary"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "On the AT chart, Algo3 emits 896 touch events (margin 0) and 1261 events (margin 30) that fall inside active NF regions. The cross-check confirms the independent validator and production `BlockAreas.blocked()` agree on all 17,308 events."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Attribution shows that the violations do not come from the NF-checked placement paths (`",
+      [
+        "SPAN",
+        {
+          "style": "font-style: italic"
+        },
+        "tap`, `"
+      ],
+      "flick`), which produce zero DOWN/MOVE violations. They come from paths that emit positions without any NF check: HOLD/DRAG continuation (`allocate` step 3), DRAG/HOLD onset (`",
+      "_down` for type 2), and the UP of those pointers."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Root cause (source-confirmed): the NF check exists only in `",
+      [
+        "SPAN",
+        {
+          "style": "font-style: italic"
+        },
+        "tap` and `"
+      ],
+      "flick` placement. HOLD body positions, DRAG `",
+      "_drag` positions, and `allocate` step 3 continuation MOVEs bypass it. `Frame.add` also clamps positions through `recalc",
+      "_pos`, which is not NF-aware."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Chart"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Path: `Assets/Tracks/DesultorySignals.technoplanet.0/Chart",
+          "_AT.json`"
+        ],
+        [
+          "LI",
+          {},
+          "SHA-256: `c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c`"
+        ],
+        [
+          "LI",
+          {},
+          "160 blockAreas, 24 judge lines. No blocker; the chart loaded."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. Execution path"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "See ",
+      [
+        "A",
+        {
+          "href": "NF_Execution_Path.md"
+        },
+        "NF",
+        "_Execution",
+        "_Path.md"
+      ],
+      "."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. Violation statistics"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Total events: 17,308."
+        ],
+        [
+          "LI",
+          {},
+          "Margin 0: 896 violations (MOVE 867, DOWN 14, UP 15)."
+        ],
+        [
+          "LI",
+          {},
+          "Margin 30: 1261 violations (MOVE 1229, DOWN 14, UP 18)."
+        ],
+        [
+          "LI",
+          {},
+          "Per pointer (margin 0): 1000: 455; 1001: 273; 1005: 149; 1002: 10; 1003: 8; 1004: 1."
+        ],
+        [
+          "LI",
+          {},
+          "Top NF IDs (margin 0): 69 (299), 159 (236), 71 (101), 74 (92), 45 (74), 4 (62)."
+        ],
+        [
+          "LI",
+          {},
+          "Time range: 10,409–139,469 ms; 56 pointer runs; longest run 149 events."
+        ],
+        [
+          "LI",
+          {},
+          "Full data: ",
+          [
+            "A",
+            {
+              "href": "NF_Violation_Dataset.csv"
+            },
+            "NF",
+            "_Violation",
+            "_Dataset.csv"
+          ],
+          "."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Representative traces"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Largest run: pointer 1000, 149 consecutive MOVE events inside NF region, all from `allocate:drag",
+          "_continuation",
+          "_or",
+          "_release`. Use the dataset to extract exact timestamps."
+        ],
+        [
+          "LI",
+          {},
+          "Only TAP-origin violation: UP at 82763 ms, pointer 1000, `",
+          "_down:type1`, which closes a HOLD."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. Root-cause classification"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "#"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Cause"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Status"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Evidence"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "RC1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`allocate` step 3 emits DRAG continuation MOVEs with no NF check"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Confirmed"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "867 margin-0 MOVE violations, all from this origin"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "RC2"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "HOLD branch in `solve` emits DRAG positions via `line.pos",
+                "_of` with no NF check"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Confirmed (source); violations match origin"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "14 DOWN + 11 UP from `",
+                "_down:type2`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "RC3"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-style: italic"
+                  },
+                  "drag` calls `"
+                ],
+                "down` and deliberately skips NF"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Confirmed (source)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DOWN violations from type 2"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "RC4"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Frame.add` → `recalc",
+                "_pos` is not NF-aware"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Confirmed (source); no violations attributed to it in data"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN whether it moves any point into NF"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "RC5"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UP at `",
+                "_release",
+                "_at` after NF-clean placement"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Suspected"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "3 UP from `allocate`, 1 from `",
+                "_down:type1`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "RC6"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-style: italic"
+                  },
+                  "tap`/`"
+                ],
+                "flick` NF checks are correct"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Confirmed by data"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0 DOWN/MOVE violations from these origins"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "7. Geometry"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The NF test is verified against production and independent code. Coordinate convention (y up, `(x, 720-y)`) is an assumption shared by both implementations and is not independently verified against the game. UNKNOWN whether the convention is correct on device."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "8. Timing"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`BlockAreas` uses 0.5 s buckets. Interval test uses `enable <= t <= disable`."
+        ],
+        [
+          "LI",
+          {},
+          "MOVE violations occur at 8 ms drag steps; timing of NF entry versus DRAG onset is UNKNOWN in detail."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "9. Continuous trajectory"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The trajectory is generated per 8 ms (DRAG) and per 1 ms (HOLD) without verifying the segment between samples. A segment could cross an NF region between two checked samples. Not measured in this investigation (UNKNOWN)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "10. Pointer lifecycle"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`PointerAllocator.alloc` reuses only pointers with `age>0` and pressed",
+          "_at + 40 ms."
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "down` inserts UP of the previous note at `"
+          ],
+          "release",
+          "_at`."
+        ],
+        [
+          "LI",
+          {},
+          "Violating pointers 1000 and 1001 account for 728 of 896 margin-0 events."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "11. Validator methodology and results"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "See ",
+      [
+        "A",
+        {
+          "href": "NF_Validation_Results.md"
+        },
+        "NF",
+        "_Validation",
+        "_Results.md"
+      ],
+      ". Production vs independent: 17,308 agree at both margins."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "12. Architecture recommendations (not implemented)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Apply the same NF check to HOLD/DRAG positions before emission, or constrain the HOLD path to NF-clear points."
+        ],
+        [
+          "LI",
+          {},
+          "Make `recalc",
+          "_pos` NF-aware, or re-check after clamping."
+        ],
+        [
+          "LI",
+          {},
+          "Check the segment between consecutive samples, not only the samples."
+        ],
+        [
+          "LI",
+          {},
+          "Add a regression gate that runs the independent validator on every chart with blockAreas."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "13. Regression plan (for review; not executed as a fix)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Re-run `capture",
+          "_algo3",
+          "_desultory",
+          "_at.py`, then `validate",
+          "_nf",
+          "_independent.py`, then `crosscheck",
+          "_nf",
+          "_production.py`."
+        ],
+        [
+          "LI",
+          {},
+          "Expected: zero margin-0 violations for the AT chart after any fix. Current baseline: 896."
+        ],
+        [
+          "LI",
+          {},
+          "Do not change the Beta1 baseline or historical records."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "14. Confirmed vs UNKNOWN"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Confirmed: chart load, event counts, violation counts, origin attribution, production/independent agreement, which paths lack NF checks."
+        ],
+        [
+          "LI",
+          {},
+          "UNKNOWN: device-side effect of violations; whether the game judges these as misses; whether the margin-30 band reflects the game's real NF edge; whether the coordinate convention matches the device; segment-crossing violations between samples."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "15. Question list"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The 12 questions from the original request were not captured in full in the working summary, so they cannot be answered verbatim here. Answers to the questions that map to the findings above are given in sections 4–10. Please provide the question text to complete this section."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Stopping here for review, as requested. No production source was changed."
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "06843f74-cb3c-4f2e-b594-ee678356f2f6",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "NF Pathfinding Root Cause Investigation (DesultorySignals AT)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. Executive summary"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "On the AT chart, Algo3 emits 896 touch events (margin 0) and 1261 events (margin 30) that fall inside active NF regions. The cross-check confirms the independent validator and production `BlockAreas.blocked()` agree on all 17,308 events."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Attribution shows that the violations do not come from the NF-checked placement paths (`",
+              [
+                "SPAN",
+                {
+                  "style": "font-style: italic"
+                },
+                "tap`, `"
+              ],
+              "flick`), which produce zero DOWN/MOVE violations. They come from paths that emit positions without any NF check: HOLD/DRAG continuation (`allocate` step 3), DRAG/HOLD onset (`",
+              "_down` for type 2), and the UP of those pointers."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Root cause (source-confirmed): the NF check exists only in `",
+              [
+                "SPAN",
+                {
+                  "style": "font-style: italic"
+                },
+                "tap` and `"
+              ],
+              "flick` placement. HOLD body positions, DRAG `",
+              "_drag` positions, and `allocate` step 3 continuation MOVEs bypass it. `Frame.add` also clamps positions through `recalc",
+              "_pos`, which is not NF-aware."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Chart"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Path: `Assets/Tracks/DesultorySignals.technoplanet.0/Chart",
+                  "_AT.json`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "SHA-256: `c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "160 blockAreas, 24 judge lines. No blocker; the chart loaded."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. Execution path"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "See ",
+              [
+                "A",
+                {
+                  "href": "NF_Execution_Path.md"
+                },
+                "NF",
+                "_Execution",
+                "_Path.md"
+              ],
+              "."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. Violation statistics"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Total events: 17,308."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Margin 0: 896 violations (MOVE 867, DOWN 14, UP 15)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Margin 30: 1261 violations (MOVE 1229, DOWN 14, UP 18)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Per pointer (margin 0): 1000: 455; 1001: 273; 1005: 149; 1002: 10; 1003: 8; 1004: 1."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Top NF IDs (margin 0): 69 (299), 159 (236), 71 (101), 74 (92), 45 (74), 4 (62)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Time range: 10,409–139,469 ms; 56 pointer runs; longest run 149 events."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Full data: ",
+                  [
+                    "A",
+                    {
+                      "href": "NF_Violation_Dataset.csv"
+                    },
+                    "NF",
+                    "_Violation",
+                    "_Dataset.csv"
+                  ],
+                  "."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Representative traces"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Largest run: pointer 1000, 149 consecutive MOVE events inside NF region, all from `allocate:drag",
+                  "_continuation",
+                  "_or",
+                  "_release`. Use the dataset to extract exact timestamps."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Only TAP-origin violation: UP at 82763 ms, pointer 1000, `",
+                  "_down:type1`, which closes a HOLD."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. Root-cause classification"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "#"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Cause"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Status"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Evidence"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "RC1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`allocate` step 3 emits DRAG continuation MOVEs with no NF check"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Confirmed"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "867 margin-0 MOVE violations, all from this origin"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "RC2"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "HOLD branch in `solve` emits DRAG positions via `line.pos",
+                        "_of` with no NF check"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Confirmed (source); violations match origin"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "14 DOWN + 11 UP from `",
+                        "_down:type2`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "RC3"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-style: italic"
+                          },
+                          "drag` calls `"
+                        ],
+                        "down` and deliberately skips NF"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Confirmed (source)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DOWN violations from type 2"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "RC4"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Frame.add` → `recalc",
+                        "_pos` is not NF-aware"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Confirmed (source); no violations attributed to it in data"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN whether it moves any point into NF"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "RC5"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UP at `",
+                        "_release",
+                        "_at` after NF-clean placement"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Suspected"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "3 UP from `allocate`, 1 from `",
+                        "_down:type1`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "RC6"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-style: italic"
+                          },
+                          "tap`/`"
+                        ],
+                        "flick` NF checks are correct"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Confirmed by data"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0 DOWN/MOVE violations from these origins"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "7. Geometry"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The NF test is verified against production and independent code. Coordinate convention (y up, `(x, 720-y)`) is an assumption shared by both implementations and is not independently verified against the game. UNKNOWN whether the convention is correct on device."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "8. Timing"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`BlockAreas` uses 0.5 s buckets. Interval test uses `enable <= t <= disable`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "MOVE violations occur at 8 ms drag steps; timing of NF entry versus DRAG onset is UNKNOWN in detail."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "9. Continuous trajectory"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The trajectory is generated per 8 ms (DRAG) and per 1 ms (HOLD) without verifying the segment between samples. A segment could cross an NF region between two checked samples. Not measured in this investigation (UNKNOWN)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "10. Pointer lifecycle"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`PointerAllocator.alloc` reuses only pointers with `age>0` and pressed",
+                  "_at + 40 ms."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "down` inserts UP of the previous note at `"
+                  ],
+                  "release",
+                  "_at`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Violating pointers 1000 and 1001 account for 728 of 896 margin-0 events."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "11. Validator methodology and results"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "See ",
+              [
+                "A",
+                {
+                  "href": "NF_Validation_Results.md"
+                },
+                "NF",
+                "_Validation",
+                "_Results.md"
+              ],
+              ". Production vs independent: 17,308 agree at both margins."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "12. Architecture recommendations (not implemented)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Apply the same NF check to HOLD/DRAG positions before emission, or constrain the HOLD path to NF-clear points."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Make `recalc",
+                  "_pos` NF-aware, or re-check after clamping."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Check the segment between consecutive samples, not only the samples."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Add a regression gate that runs the independent validator on every chart with blockAreas."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "13. Regression plan (for review; not executed as a fix)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Re-run `capture",
+                  "_algo3",
+                  "_desultory",
+                  "_at.py`, then `validate",
+                  "_nf",
+                  "_independent.py`, then `crosscheck",
+                  "_nf",
+                  "_production.py`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Expected: zero margin-0 violations for the AT chart after any fix. Current baseline: 896."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Do not change the Beta1 baseline or historical records."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "14. Confirmed vs UNKNOWN"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Confirmed: chart load, event counts, violation counts, origin attribution, production/independent agreement, which paths lack NF checks."
+                ],
+                [
+                  "LI",
+                  {},
+                  "UNKNOWN: device-side effect of violations; whether the game judges these as misses; whether the margin-30 band reflects the game's real NF edge; whether the coordinate convention matches the device; segment-crossing violations between samples."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "15. Question list"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The 12 questions from the original request were not captured in full in the working summary, so they cannot be answered verbatim here. Answers to the questions that map to the findings above are given in sections 4–10. Please provide the question text to complete this section."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Stopping here for review, as requested. No production source was changed."
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795167329913,
+      "acked": true,
+      "ackedAt": 1795167339386,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

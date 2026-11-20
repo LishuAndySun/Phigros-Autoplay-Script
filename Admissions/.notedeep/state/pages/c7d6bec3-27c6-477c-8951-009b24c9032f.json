@@ -1,0 +1,59 @@
+{
+  "docId": "c7d6bec3-27c6-477c-8951-009b24c9032f",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      [
+        "BR",
+        {}
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "141aae6a-670e-46c7-81f6-d5c189766bb4",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              [
+                "BR",
+                {}
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795166896975,
+      "acked": true,
+      "ackedAt": 1795166904916,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

@@ -1,0 +1,839 @@
+{
+  "docId": "1a526695-da91-43d5-83e2-39e5d335cc31",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "Access and Integrity Audit: NF Phase 2 Continuation (partial)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Status: Partial. Only baseline, source reading, and dataset verification are done. Tasks A–F and the final synthesis are NOT started. Stopped for review."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. Access scope"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "All reads and writes were inside `/Users/lishuandysun/Documents/Phigros-Autoplay-Script/`."
+        ],
+        [
+          "LI",
+          {},
+          "Out-of-scope command: an earlier `find /` (from the prior round) was run and reported by the user. Its output is not visible in this session, so its scope is UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "Out-of-root write: `/tmp/",
+          "_phase2",
+          "_status",
+          "_initial.txt` was created during the baseline check. It was deleted in this session. Its content was identical to `.initial",
+          "_git",
+          "_status",
+          "_snapshot.txt` in this directory, which was generated from the same `git status --short` call."
+        ],
+        [
+          "LI",
+          {},
+          "No `mdfind`, iCloud, NAS, or symlink access was performed in this session."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Git baseline"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Branch: `main`. HEAD: `754ff32d2fe468a2ba5f005413e68d1981a619a4`."
+        ],
+        [
+          "LI",
+          {},
+          "Initial `git status --short`: 85 lines, saved verbatim in `.initial",
+          "_git",
+          "_status",
+          "_snapshot.txt` (this directory)."
+        ],
+        [
+          "LI",
+          {},
+          "Pre-existing uncommitted changes were not touched. No `git reset`, `clean`, `checkout`, `restore`, or `stash` was run."
+        ],
+        [
+          "LI",
+          {},
+          "`git diff --stat` for `algo/algo3.py`, `block",
+          "_area.py`, `judge",
+          "_line.py`, `chart.py`, `note.py`, `utils.py`, `main.py`, `control.py` returned empty, so these production files have no diff."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. File hashes (SHA-256, baseline)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`Chart",
+          "_AT.json` (DesultorySignals): `c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c` (matches run meta)."
+        ],
+        [
+          "LI",
+          {},
+          "`algo/algo3.py`: `51615c77…1002` (recorded in the earlier baseline)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. Source reading (no edits)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`block",
+          "_area.py`: `search",
+          "_point` (line ~154), `PlacementFailure` (line 22), `MARGIN=30` (line 16), `USE",
+          "_SUBTRACT=False` (line 18), `BlockAreas.",
+          "_hit` / `blocked` (lines ~144–152)."
+        ],
+        [
+          "LI",
+          {},
+          "`judge",
+          "_line.py`: `JudgeLine.pos` (line 114), `angle` (line 122), `pos",
+          "_of` (line 132). Note `pos()` returns `(0,0)` when no move event covers `t`."
+        ],
+        [
+          "LI",
+          {},
+          "`algo/algo3.py`: `alloc` 254, `check` 280, `match` 292, `",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "down` 317, `"
+          ],
+          "tap` 328, `",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "flick` 345, `"
+          ],
+          "drag` 375, `allocate` 379, `done` 426, `solve` 435. HOLD DRAG frames are added at line 465 with no clearance check."
+        ],
+        [
+          "LI",
+          {},
+          "`chart.py`: `Chart.from",
+          "_dict` builds `BlockAreas` from `blockAreaList`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Dataset verification"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`captures/algo3",
+          "_desultory",
+          "_at",
+          "_skipped.csv`: 54 data rows. Breakdown:",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "type 1 (TAP): NO",
+              "_VALID",
+              "_POSITION 16, RELOCATION",
+              "_LIMIT",
+              "_EXCEEDED 34 (total 50)"
+            ],
+            [
+              "LI",
+              {},
+              "type 4 (FLICK): NO",
+              "_VALID",
+              "_POSITION 3, RELOCATION",
+              "_LIMIT",
+              "_EXCEEDED 1 (total 4)"
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "DISCREPANCY: the prior summary stated type 1 = 34 (RELOCATION 18 + NO",
+          "_VALID 16). The file shows type 1 = 50 (RELOCATION 34 + NO",
+          "_VALID 16). The total of 54 is correct. The file is treated as authoritative; the earlier summary figure is wrong."
+        ],
+        [
+          "LI",
+          {},
+          "`NF",
+          "_Event",
+          "_Note",
+          "_Attribution.csv`: 896 data rows (897 lines with header), as expected."
+        ],
+        [
+          "LI",
+          {},
+          "`NF",
+          "_Violation",
+          "_Dataset.csv`: 896 data rows (897 lines with header), as expected."
+        ],
+        [
+          "LI",
+          {},
+          "`captures/algo3",
+          "_desultory",
+          "_at",
+          "_run",
+          "_meta.json`: 17,308 events, 11,894 timestamps, 160 block areas, 24 judge lines, 54 skipped."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. Origin-count discrepancy (carried from prior round)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Prompt says 870/25/1. Verified 867 MOVE / 14+12 DOWN (from `",
+          "_down`) / 3 UP (from `allocate`). Reported as a discrepancy."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "7. Outputs"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Written only to this directory: `Access",
+          "_and",
+          "_Integrity",
+          "_Audit.md`, `.initial",
+          "_git",
+          "_status",
+          "_snapshot.txt`, and the prior `NF",
+          "_Phase2",
+          "_Access",
+          "_and",
+          "_Attribution",
+          "_Audit.md`."
+        ],
+        [
+          "LI",
+          {},
+          "No existing dataset, capture, or Round 1 file was modified or overwritten."
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/",
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "pycache"
+          ],
+          "/` was not deleted."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "8. Not done"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Tasks A–F, `NF",
+          "_Phase2",
+          "_Final",
+          "_Analysis.md`, and the final validation (Section 12) remain. These require a separate pass."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "cfd4db43-c85d-410e-ba39-fe9fc0642885",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "Access and Integrity Audit: NF Phase 2 Continuation (partial)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Status: Partial. Only baseline, source reading, and dataset verification are done. Tasks A–F and the final synthesis are NOT started. Stopped for review."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. Access scope"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "All reads and writes were inside `/Users/lishuandysun/Documents/Phigros-Autoplay-Script/`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Out-of-scope command: an earlier `find /` (from the prior round) was run and reported by the user. Its output is not visible in this session, so its scope is UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Out-of-root write: `/tmp/",
+                  "_phase2",
+                  "_status",
+                  "_initial.txt` was created during the baseline check. It was deleted in this session. Its content was identical to `.initial",
+                  "_git",
+                  "_status",
+                  "_snapshot.txt` in this directory, which was generated from the same `git status --short` call."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No `mdfind`, iCloud, NAS, or symlink access was performed in this session."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Git baseline"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Branch: `main`. HEAD: `754ff32d2fe468a2ba5f005413e68d1981a619a4`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Initial `git status --short`: 85 lines, saved verbatim in `.initial",
+                  "_git",
+                  "_status",
+                  "_snapshot.txt` (this directory)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Pre-existing uncommitted changes were not touched. No `git reset`, `clean`, `checkout`, `restore`, or `stash` was run."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`git diff --stat` for `algo/algo3.py`, `block",
+                  "_area.py`, `judge",
+                  "_line.py`, `chart.py`, `note.py`, `utils.py`, `main.py`, `control.py` returned empty, so these production files have no diff."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. File hashes (SHA-256, baseline)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`Chart",
+                  "_AT.json` (DesultorySignals): `c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c` (matches run meta)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`algo/algo3.py`: `51615c77…1002` (recorded in the earlier baseline)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. Source reading (no edits)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`block",
+                  "_area.py`: `search",
+                  "_point` (line ~154), `PlacementFailure` (line 22), `MARGIN=30` (line 16), `USE",
+                  "_SUBTRACT=False` (line 18), `BlockAreas.",
+                  "_hit` / `blocked` (lines ~144–152)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`judge",
+                  "_line.py`: `JudgeLine.pos` (line 114), `angle` (line 122), `pos",
+                  "_of` (line 132). Note `pos()` returns `(0,0)` when no move event covers `t`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`algo/algo3.py`: `alloc` 254, `check` 280, `match` 292, `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "down` 317, `"
+                  ],
+                  "tap` 328, `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "flick` 345, `"
+                  ],
+                  "drag` 375, `allocate` 379, `done` 426, `solve` 435. HOLD DRAG frames are added at line 465 with no clearance check."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`chart.py`: `Chart.from",
+                  "_dict` builds `BlockAreas` from `blockAreaList`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Dataset verification"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`captures/algo3",
+                  "_desultory",
+                  "_at",
+                  "_skipped.csv`: 54 data rows. Breakdown:",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "type 1 (TAP): NO",
+                      "_VALID",
+                      "_POSITION 16, RELOCATION",
+                      "_LIMIT",
+                      "_EXCEEDED 34 (total 50)"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "type 4 (FLICK): NO",
+                      "_VALID",
+                      "_POSITION 3, RELOCATION",
+                      "_LIMIT",
+                      "_EXCEEDED 1 (total 4)"
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "DISCREPANCY: the prior summary stated type 1 = 34 (RELOCATION 18 + NO",
+                  "_VALID 16). The file shows type 1 = 50 (RELOCATION 34 + NO",
+                  "_VALID 16). The total of 54 is correct. The file is treated as authoritative; the earlier summary figure is wrong."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`NF",
+                  "_Event",
+                  "_Note",
+                  "_Attribution.csv`: 896 data rows (897 lines with header), as expected."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`NF",
+                  "_Violation",
+                  "_Dataset.csv`: 896 data rows (897 lines with header), as expected."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`captures/algo3",
+                  "_desultory",
+                  "_at",
+                  "_run",
+                  "_meta.json`: 17,308 events, 11,894 timestamps, 160 block areas, 24 judge lines, 54 skipped."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. Origin-count discrepancy (carried from prior round)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Prompt says 870/25/1. Verified 867 MOVE / 14+12 DOWN (from `",
+                  "_down`) / 3 UP (from `allocate`). Reported as a discrepancy."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "7. Outputs"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Written only to this directory: `Access",
+                  "_and",
+                  "_Integrity",
+                  "_Audit.md`, `.initial",
+                  "_git",
+                  "_status",
+                  "_snapshot.txt`, and the prior `NF",
+                  "_Phase2",
+                  "_Access",
+                  "_and",
+                  "_Attribution",
+                  "_Audit.md`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No existing dataset, capture, or Round 1 file was modified or overwritten."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "pycache"
+                  ],
+                  "/` was not deleted."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "8. Not done"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Tasks A–F, `NF",
+                  "_Phase2",
+                  "_Final",
+                  "_Analysis.md`, and the final validation (Section 12) remain. These require a separate pass."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795168211989,
+      "acked": true,
+      "ackedAt": 1795168215334,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

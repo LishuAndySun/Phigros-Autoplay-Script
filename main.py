@@ -415,7 +415,7 @@ class App(ttk.Frame):
 
         try:
             self.difficulty.set(cache.get('cache', 'difficulty'))
-            self.algo_select['values'] = ['algo1', 'algo2', 'algo3']
+            self.algo_select['values'] = ['algo1', 'algo2', 'algo3', 'algo3beta1']
         except configparser.NoOptionError:
             cache.set('cache', 'difficulty', '')
 
@@ -431,7 +431,7 @@ class App(ttk.Frame):
 
     def difficulty_selected(self, event):
     
-        self.algo_select['values'] = ['algo1', 'algo2', 'algo3']
+        self.algo_select['values'] = ['algo1', 'algo2', 'algo3', 'algo3beta1']
 
 
     def song_selected(self, event):
@@ -467,6 +467,9 @@ class App(ttk.Frame):
             elif algo_method == 'algo3':
                 import algo.algo3
                 ans = algo.algo3.solve(chart)
+            elif algo_method == 'algo3beta1':
+                import algo.algo3beta1
+                ans = algo.algo3beta1.solve(chart)
             else:
                 raise ValueError(f'未知的规划方式: {algo_method}')
 

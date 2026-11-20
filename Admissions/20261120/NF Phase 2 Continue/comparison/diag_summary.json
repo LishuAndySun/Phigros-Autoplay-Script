@@ -1,0 +1,22 @@
+{
+  "algo3": {
+    "total": 13224,
+    "by_kind": {
+      "EVENT": 1261,
+      "SEGMENT": 11963
+    },
+    "lifecycles_with_violation": 34,
+    "events": 17308,
+    "skipped": 54
+  },
+  "algo3beta1": {
+    "total": 13220,
+    "by_kind": {
+      "EVENT": 1261,
+      "SEGMENT": 11959
+    },
+    "lifecycles_with_violation": 33,
+    "events": 17286,
+    "skipped": 55
+  }
+}

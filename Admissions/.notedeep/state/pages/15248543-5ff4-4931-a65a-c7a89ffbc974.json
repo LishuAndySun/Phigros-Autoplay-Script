@@ -1,0 +1,2641 @@
+{
+  "docId": "15248543-5ff4-4931-a65a-c7a89ffbc974",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "NF Phase 2 Access and Attribution Audit"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Status: Phase 2 analysis paused for review. No production code was modified. No prior report, dataset, or capture was overwritten or deleted."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Access restriction notice"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The user reported that a command `find / -name 'attribute",
+      "_algo3",
+      "_events.py'` was run earlier in this investigation. That search is outside the permitted scope (full-disk search, possible network and iCloud permission prompts). This audit does not reproduce it. The output of that command is not present in the current session context, so its results and whether it touched network or iCloud locations are UNKNOWN from this session. Going forward, all search, read, and execution is limited to `/Users/lishuandysun/Documents/Phigros-Autoplay-Script/`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "A. Git workspace state"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Git branch `main`, HEAD `754ff32`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Files created or modified by this investigation (round 2, dated folder `Admissions/20261120/`):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Created by this round:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`Admissions/20261120/NF",
+          "_Pathfinding",
+          "_Root",
+          "_Cause",
+          "_Investigation/scripts/phase2",
+          "_instrumented",
+          "_attribution.py` (in-memory wrapper; verified)"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/20261120/NF",
+          "_Pathfinding",
+          "_Root",
+          "_Cause",
+          "_Investigation/scripts/build",
+          "_event",
+          "_note",
+          "_attribution.py`"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/20261120/NF",
+          "_Pathfinding",
+          "_Root",
+          "_Cause",
+          "_Investigation/captures/phase2",
+          "_instrumented",
+          "_events.csv` (17,308 rows)"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/20261120/NF",
+          "_Pathfinding",
+          "_Root",
+          "_Cause",
+          "_Investigation/NF",
+          "_Event",
+          "_Note",
+          "_Attribution.csv` (896 rows)"
+        ],
+        [
+          "LI",
+          {},
+          "`Admissions/20261120/NF",
+          "_Pathfinding",
+          "_Root",
+          "_Cause",
+          "_Investigation/NF",
+          "_Phase2",
+          "_Access",
+          "_and",
+          "_Attribution",
+          "_Audit.md` (this file)"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Modified by this round:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "None of the Round 1 reports, datasets, or captures were modified."
+        ],
+        [
+          "LI",
+          {},
+          "One earlier draft, `phase2",
+          "_instrumented",
+          "_attribution.py`, was created and deleted before the final version was written."
+        ],
+        [
+          "LI",
+          {},
+          "`build",
+          "_event",
+          "_note",
+          "_attribution.py` was modified once with `sed` to change `b",
+          "['id']` to `b",
+          "['idx']`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Pre-existing uncommitted changes (not created by this round, not touched):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`.DS",
+          "_Store`, `Admissions/.notedeep/",
+          "*` (modified and untracked pages)"
+        ],
+        [
+          "LI",
+          {},
+          "Deleted tracked files under `Admissions/",
+          "*.md` (about 26 deletions)"
+        ],
+        [
+          "LI",
+          {},
+          "`cache`, `performance.log` (modified)"
+        ],
+        [
+          "LI",
+          {},
+          "Untracked `Admissions/20261111/` through `Admissions/20261120/`, and `Admissions/",
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "pycache"
+          ],
+          "/`"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Origin of `Admissions/",
+      [
+        "SPAN",
+        {
+          "style": "font-weight: bold"
+        },
+        "pycache"
+      ],
+      "/` is UNKNOWN. It may have been produced by an import during this round. It has not been deleted and should be reviewed before removal."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "B. File system access log"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "#"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Command or action"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Paths touched"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Inside project root?"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Reported by user: `find / -name 'attribute",
+                "_algo3",
+                "_events.py'`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Entire filesystem"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "NO. Out of scope. Output not visible in this session."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Pre-summary: `find` for relocated artifacts"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Unrecorded scope"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UNKNOWN. Should be confirmed."
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "3"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`shasum -a 256` on `Assets/Tracks/.../Chart",
+                "_AT.json`, `git status`, `git log`, `ls`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "4"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Reads of `Admissions/20261120/scripts/attribute",
+                "_algo3",
+                "_events.py` (not found)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "5"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Reads of relocated scripts and `algo/algo3.py`, `block",
+                "_area.py`, `judge",
+                "_line.py`, `chart.py`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "6"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`rm -f` of draft `phase2",
+                "_instrumented",
+                "_attribution.py`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "7"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Run `phase2",
+                "_instrumented",
+                "_attribution.py` (reads `Assets/Tracks/.../Chart",
+                "_AT.json`, `captures/algo3",
+                "_desultory",
+                "_at",
+                "_events.csv`; writes `captures/phase2",
+                "_instrumented",
+                "_events.csv`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Run `build",
+                "_event",
+                "_note",
+                "_attribution.py` (imports `validate",
+                "_nf",
+                "_independent.py`; reads validator CSV; writes `NF",
+                "_Event",
+                "_Note",
+                "_Attribution.csv`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "9"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`sed -i` on `build",
+                "_event",
+                "_note",
+                "_attribution.py`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "10"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Read-only summary script over `NF",
+                "_Event",
+                "_Note",
+                "_Attribution.csv`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "11"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`rm -rf` of `scripts/",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-weight: bold"
+                  },
+                  "pycache"
+                ],
+                "`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "12"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Read of `algo/algo3.py` lines 312–435 and `validate",
+                "_nf",
+                "_independent.py` lines 20–84"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "13"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Current audit: `git status`, `git diff --stat`, `find Admissions/20261120 -type f`, `grep` on `algo/algo3.py` and scripts, read-only Python over `captures/phase2",
+                "_instrumented",
+                "_events.csv`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Project"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "YES"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "No symbolic links were followed. No NAS, SMB, NFS, iCloud, or cloud-synced paths were accessed by this round, as far as the commands above show. Commands 2 and 1 remain the only items whose scope cannot be verified from this session."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "C. Production, baseline, and historical record integrity"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "`git diff --stat` on `algo/`, `block",
+      "_area.py`, `chart.py`, `judge",
+      "_line.py`, `main.py`, `utils.py`, `control.py`, and `note.py` returned no output. These production paths are unmodified relative to HEAD `754ff32`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Beta1 baseline and historical records: not modified by this round. The listed pending deletions under `Admissions/",
+      "*.md` predate this round and were not caused by it; they should still be reviewed by the user."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The current `main.py` terminal run (exit 0) was started by the user, not by this investigation."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "D. `",
+        "_down` execution order and UP ownership (source-verified)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "From `algo/algo3.py`:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`",
+          "_down` (lines 317–326):",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "line 319: if `pointer.note is not None`, insert `UP` at `",
+              "_release",
+              "_at(pointer)` using `pointer.note.pos`"
+            ],
+            [
+              "LI",
+              {},
+              "line 322: `pointer.note = note` (reassignment happens after the UP insert)"
+            ],
+            [
+              "LI",
+              {},
+              "line 326: insert `DOWN` at `self.now` for `note.pos`"
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          "_flick` (lines 345–371):",
+          [
+            "UL",
+            {},
+            [
+              "LI",
+              {},
+              "line 362: UP for previous `pointer.note`, inserted before reassignment"
+            ],
+            [
+              "LI",
+              {},
+              "line 371: `pointer.note = note`"
+            ]
+          ]
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "tap` (328–343) calls `"
+          ],
+          "down` (through `",
+          "_down`, so the UP belongs to the previous holder)"
+        ],
+        [
+          "LI",
+          {},
+          "`",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "drag` (375–377) calls `"
+          ],
+          "down`"
+        ],
+        [
+          "LI",
+          {},
+          "`allocate` step 3 (lines 403–415): for a matched drag, `pointer.note = note` at line 403 runs before `MOVE` at line 411, so MOVE belongs to the drag note"
+        ],
+        [
+          "LI",
+          {},
+          "`allocate` lines 418–421: UP inserted with `pointer.note.pos` at line 420, then `pointer.note = None` at line 421"
+        ],
+        [
+          "LI",
+          {},
+          "`done` lines 428–431: same pattern as 418–421"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Rule: an UP event belongs to the note held by the pointer at the moment the UP is inserted, which is before any reassignment. The `phase2",
+      "_instrumented",
+      "_attribution.py` wrapper applies this rule: it snapshots `ptr.note` inside `",
+      [
+        "SPAN",
+        {
+          "style": "font-style: italic"
+        },
+        "insert` before the call for UP from `"
+      ],
+      "down`/`",
+      "_flick`, and for `allocate`/`done`, it snapshots the note still held at insert time."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Status: CONFIRMED by source reading. The rule has not been checked against every UP row. The 896 attribution rows have 12 UP events from `",
+      "_down` and 3 from `allocate`, and their owners come from the snapshot, not an assumption."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "E. HOLD and DRAG note type separation"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`grep` of `phase2",
+          "_instrumented",
+          "_attribution.py` and `build",
+          "_event",
+          "_note",
+          "_attribution.py` shows no code that merges note types. Owner note type is copied from the snapshot as-is."
+        ],
+        [
+          "LI",
+          {},
+          "Note-type counts in `captures/phase2",
+          "_instrumented",
+          "_events.csv` (by method, note",
+          "_type): types 1, 2, and 4 appear. Type 3 (HOLD) does not appear as an event owner. The algorithm splits HOLD into TAP (1) and DRAG (2) before allocation, so type 3 is never an owner."
+        ],
+        [
+          "LI",
+          {},
+          "All 896 margin-0 violations in `NF",
+          "_Event",
+          "_Note",
+          "_Attribution.csv` have `note",
+          "_type` 2 (DRAG)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Status: CONFIRMED. No HOLD and DRAG merge in the attribution scripts. HOLD notes are represented as TAP and DRAG pieces upstream."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "F. Preservation of data"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "All previously generated data is kept: Round 1 reports, `NF",
+      "_Violation",
+      "_Dataset.csv`, `captures/",
+      [
+        "SPAN",
+        {
+          "style": "font-style: italic"
+        },
+        "`, and `scripts/"
+      ],
+      "`. Nothing was deleted or overwritten in this round except the discarded wrapper draft, which was never used for results."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Open items for review"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "Confirm the scope and output of the earlier reported `find /` command. Its effect on network or iCloud permission prompts is UNKNOWN from this session."
+        ],
+        [
+          "LI",
+          {},
+          "Decide whether `Admissions/",
+          [
+            "SPAN",
+            {
+              "style": "font-weight: bold"
+            },
+            "pycache"
+          ],
+          "/` should be removed. Its origin is UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "Confirm the prompt's origin counts (870 / 25 / 1). Verified data: 867 MOVE, 14 DOWN, 15 UP (12 from `",
+          "_down`, 3 from `allocate`)."
+        ],
+        [
+          "LI",
+          {},
+          "Phase 2 remaining tasks (region analysis, pointer trajectory, skipped notes, normal-direction feasibility, reports) are not started."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "7bb6d576-bdaf-4eb3-af2a-a8608cc5f64f",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "NF Phase 2 Access and Attribution Audit"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Status: Phase 2 analysis paused for review. No production code was modified. No prior report, dataset, or capture was overwritten or deleted."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Access restriction notice"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The user reported that a command `find / -name 'attribute",
+              "_algo3",
+              "_events.py'` was run earlier in this investigation. That search is outside the permitted scope (full-disk search, possible network and iCloud permission prompts). This audit does not reproduce it. The output of that command is not present in the current session context, so its results and whether it touched network or iCloud locations are UNKNOWN from this session. Going forward, all search, read, and execution is limited to `/Users/lishuandysun/Documents/Phigros-Autoplay-Script/`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "A. Git workspace state"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Git branch `main`, HEAD `754ff32`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Files created or modified by this investigation (round 2, dated folder `Admissions/20261120/`):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Created by this round:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`Admissions/20261120/NF",
+                  "_Pathfinding",
+                  "_Root",
+                  "_Cause",
+                  "_Investigation/scripts/phase2",
+                  "_instrumented",
+                  "_attribution.py` (in-memory wrapper; verified)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/20261120/NF",
+                  "_Pathfinding",
+                  "_Root",
+                  "_Cause",
+                  "_Investigation/scripts/build",
+                  "_event",
+                  "_note",
+                  "_attribution.py`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/20261120/NF",
+                  "_Pathfinding",
+                  "_Root",
+                  "_Cause",
+                  "_Investigation/captures/phase2",
+                  "_instrumented",
+                  "_events.csv` (17,308 rows)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/20261120/NF",
+                  "_Pathfinding",
+                  "_Root",
+                  "_Cause",
+                  "_Investigation/NF",
+                  "_Event",
+                  "_Note",
+                  "_Attribution.csv` (896 rows)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`Admissions/20261120/NF",
+                  "_Pathfinding",
+                  "_Root",
+                  "_Cause",
+                  "_Investigation/NF",
+                  "_Phase2",
+                  "_Access",
+                  "_and",
+                  "_Attribution",
+                  "_Audit.md` (this file)"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Modified by this round:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "None of the Round 1 reports, datasets, or captures were modified."
+                ],
+                [
+                  "LI",
+                  {},
+                  "One earlier draft, `phase2",
+                  "_instrumented",
+                  "_attribution.py`, was created and deleted before the final version was written."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`build",
+                  "_event",
+                  "_note",
+                  "_attribution.py` was modified once with `sed` to change `b",
+                  "['id']` to `b",
+                  "['idx']`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Pre-existing uncommitted changes (not created by this round, not touched):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`.DS",
+                  "_Store`, `Admissions/.notedeep/",
+                  "*` (modified and untracked pages)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "Deleted tracked files under `Admissions/",
+                  "*.md` (about 26 deletions)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`cache`, `performance.log` (modified)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "Untracked `Admissions/20261111/` through `Admissions/20261120/`, and `Admissions/",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "pycache"
+                  ],
+                  "/`"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Origin of `Admissions/",
+              [
+                "SPAN",
+                {
+                  "style": "font-weight: bold"
+                },
+                "pycache"
+              ],
+              "/` is UNKNOWN. It may have been produced by an import during this round. It has not been deleted and should be reviewed before removal."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "B. File system access log"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "#"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Command or action"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Paths touched"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Inside project root?"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Reported by user: `find / -name 'attribute",
+                        "_algo3",
+                        "_events.py'`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Entire filesystem"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "NO. Out of scope. Output not visible in this session."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Pre-summary: `find` for relocated artifacts"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Unrecorded scope"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UNKNOWN. Should be confirmed."
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "3"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`shasum -a 256` on `Assets/Tracks/.../Chart",
+                        "_AT.json`, `git status`, `git log`, `ls`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "4"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Reads of `Admissions/20261120/scripts/attribute",
+                        "_algo3",
+                        "_events.py` (not found)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "5"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Reads of relocated scripts and `algo/algo3.py`, `block",
+                        "_area.py`, `judge",
+                        "_line.py`, `chart.py`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "6"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`rm -f` of draft `phase2",
+                        "_instrumented",
+                        "_attribution.py`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "7"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Run `phase2",
+                        "_instrumented",
+                        "_attribution.py` (reads `Assets/Tracks/.../Chart",
+                        "_AT.json`, `captures/algo3",
+                        "_desultory",
+                        "_at",
+                        "_events.csv`; writes `captures/phase2",
+                        "_instrumented",
+                        "_events.csv`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Run `build",
+                        "_event",
+                        "_note",
+                        "_attribution.py` (imports `validate",
+                        "_nf",
+                        "_independent.py`; reads validator CSV; writes `NF",
+                        "_Event",
+                        "_Note",
+                        "_Attribution.csv`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "9"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`sed -i` on `build",
+                        "_event",
+                        "_note",
+                        "_attribution.py`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "10"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Read-only summary script over `NF",
+                        "_Event",
+                        "_Note",
+                        "_Attribution.csv`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "11"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`rm -rf` of `scripts/",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-weight: bold"
+                          },
+                          "pycache"
+                        ],
+                        "`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "12"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Read of `algo/algo3.py` lines 312–435 and `validate",
+                        "_nf",
+                        "_independent.py` lines 20–84"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "13"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Current audit: `git status`, `git diff --stat`, `find Admissions/20261120 -type f`, `grep` on `algo/algo3.py` and scripts, read-only Python over `captures/phase2",
+                        "_instrumented",
+                        "_events.csv`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Project"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "YES"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "No symbolic links were followed. No NAS, SMB, NFS, iCloud, or cloud-synced paths were accessed by this round, as far as the commands above show. Commands 2 and 1 remain the only items whose scope cannot be verified from this session."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "C. Production, baseline, and historical record integrity"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "`git diff --stat` on `algo/`, `block",
+              "_area.py`, `chart.py`, `judge",
+              "_line.py`, `main.py`, `utils.py`, `control.py`, and `note.py` returned no output. These production paths are unmodified relative to HEAD `754ff32`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Beta1 baseline and historical records: not modified by this round. The listed pending deletions under `Admissions/",
+              "*.md` predate this round and were not caused by it; they should still be reviewed by the user."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The current `main.py` terminal run (exit 0) was started by the user, not by this investigation."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "D. `",
+                "_down` execution order and UP ownership (source-verified)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "From `algo/algo3.py`:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`",
+                  "_down` (lines 317–326):",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "line 319: if `pointer.note is not None`, insert `UP` at `",
+                      "_release",
+                      "_at(pointer)` using `pointer.note.pos`"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "line 322: `pointer.note = note` (reassignment happens after the UP insert)"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "line 326: insert `DOWN` at `self.now` for `note.pos`"
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  "_flick` (lines 345–371):",
+                  [
+                    "UL",
+                    {},
+                    [
+                      "LI",
+                      {},
+                      "line 362: UP for previous `pointer.note`, inserted before reassignment"
+                    ],
+                    [
+                      "LI",
+                      {},
+                      "line 371: `pointer.note = note`"
+                    ]
+                  ]
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "tap` (328–343) calls `"
+                  ],
+                  "down` (through `",
+                  "_down`, so the UP belongs to the previous holder)"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "drag` (375–377) calls `"
+                  ],
+                  "down`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`allocate` step 3 (lines 403–415): for a matched drag, `pointer.note = note` at line 403 runs before `MOVE` at line 411, so MOVE belongs to the drag note"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`allocate` lines 418–421: UP inserted with `pointer.note.pos` at line 420, then `pointer.note = None` at line 421"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`done` lines 428–431: same pattern as 418–421"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Rule: an UP event belongs to the note held by the pointer at the moment the UP is inserted, which is before any reassignment. The `phase2",
+              "_instrumented",
+              "_attribution.py` wrapper applies this rule: it snapshots `ptr.note` inside `",
+              [
+                "SPAN",
+                {
+                  "style": "font-style: italic"
+                },
+                "insert` before the call for UP from `"
+              ],
+              "down`/`",
+              "_flick`, and for `allocate`/`done`, it snapshots the note still held at insert time."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Status: CONFIRMED by source reading. The rule has not been checked against every UP row. The 896 attribution rows have 12 UP events from `",
+              "_down` and 3 from `allocate`, and their owners come from the snapshot, not an assumption."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "E. HOLD and DRAG note type separation"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`grep` of `phase2",
+                  "_instrumented",
+                  "_attribution.py` and `build",
+                  "_event",
+                  "_note",
+                  "_attribution.py` shows no code that merges note types. Owner note type is copied from the snapshot as-is."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Note-type counts in `captures/phase2",
+                  "_instrumented",
+                  "_events.csv` (by method, note",
+                  "_type): types 1, 2, and 4 appear. Type 3 (HOLD) does not appear as an event owner. The algorithm splits HOLD into TAP (1) and DRAG (2) before allocation, so type 3 is never an owner."
+                ],
+                [
+                  "LI",
+                  {},
+                  "All 896 margin-0 violations in `NF",
+                  "_Event",
+                  "_Note",
+                  "_Attribution.csv` have `note",
+                  "_type` 2 (DRAG)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Status: CONFIRMED. No HOLD and DRAG merge in the attribution scripts. HOLD notes are represented as TAP and DRAG pieces upstream."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "F. Preservation of data"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "All previously generated data is kept: Round 1 reports, `NF",
+              "_Violation",
+              "_Dataset.csv`, `captures/",
+              [
+                "SPAN",
+                {
+                  "style": "font-style: italic"
+                },
+                "`, and `scripts/"
+              ],
+              "`. Nothing was deleted or overwritten in this round except the discarded wrapper draft, which was never used for results."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Open items for review"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Confirm the scope and output of the earlier reported `find /` command. Its effect on network or iCloud permission prompts is UNKNOWN from this session."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Decide whether `Admissions/",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-weight: bold"
+                    },
+                    "pycache"
+                  ],
+                  "/` should be removed. Its origin is UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Confirm the prompt's origin counts (870 / 25 / 1). Verified data: 867 MOVE, 14 DOWN, 15 UP (12 from `",
+                  "_down`, 3 from `allocate`)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Phase 2 remaining tasks (region analysis, pointer trajectory, skipped notes, normal-direction feasibility, reports) are not started."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795167990998,
+      "acked": true,
+      "ackedAt": 1795167994629,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

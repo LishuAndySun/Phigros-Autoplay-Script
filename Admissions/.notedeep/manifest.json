@@ -11,99 +11,332 @@
     },
     "9a07458f-7e00-448d-aa70-938a9a5f035e": {
       "path": "1211202605_ANALYSIS_REPORT.md",
-      "sort": 0
+      "sort": 0,
+      "deleted": true
     },
     "dd13910d-4956-4ed4-8d7d-219583995b0b": {
       "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
-      "sort": 1
+      "sort": 1,
+      "deleted": true
     },
     "fe1387a5-b557-4377-bd52-9535246465b6": {
       "path": "AUDIO_START_SIGNAL_INVESTIGATION.md",
-      "sort": 2
+      "sort": 2,
+      "deleted": true
     },
     "baafe286-a519-4b44-b1f3-45f438b1f314": {
       "path": "AutoStartCalibrationPlan.md",
-      "sort": 3
+      "sort": 3,
+      "deleted": true
     },
     "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e": {
       "path": "C08_EVENT_DEEP_ANALYSIS.md",
-      "sort": 4
+      "sort": 4,
+      "deleted": true
     },
     "2d0924d3-7d3b-4289-a89d-9d83a328e1cc": {
       "path": "ERROR_AUDIT_REPORT.md",
-      "sort": 5
+      "sort": 5,
+      "deleted": true
     },
     "df6868cd-63e5-4390-894f-17fe39d1bcfc": {
       "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
-      "sort": 6
+      "sort": 6,
+      "deleted": true
     },
     "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754": {
       "path": "PHASE2_FIX_REPORT.md",
-      "sort": 7
+      "sort": 7,
+      "deleted": true
     },
     "5bfbe26a-3832-41e0-9aa2-c49e657790d0": {
       "path": "Plan_AvoidNoiseField.md",
-      "sort": 8
+      "sort": 8,
+      "deleted": true
     },
     "67e3f243-dc43-4a7d-9f0d-caf01a4feb27": {
       "path": "ROUND3_AUDIO_CONTROL_ANALYSIS.md",
-      "sort": 9
+      "sort": 9,
+      "deleted": true
     },
     "2e5556de-752c-411f-9924-eea9c90aa8ae": {
       "path": "ROUND3_RETEST_COMPARISON.md",
-      "sort": 10
+      "sort": 10,
+      "deleted": true
     },
     "a42b4205-cf92-4322-bb23-596a09f7f80b": {
       "path": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
-      "sort": 11
+      "sort": 11,
+      "deleted": true
     },
     "a276c8c4-dffb-46e5-9901-18725c945acd": {
       "path": "UnityOutPortalStatus.md",
-      "sort": 12
+      "sort": 12,
+      "deleted": true
     },
     "4a29fd9c-3779-4a91-923e-4a515020fc69": {
       "path": "TrackPlayerbaseCallsiteInvestigation.md",
-      "sort": 12
+      "sort": 12,
+      "deleted": true
     },
     "6e253d00-7074-4286-baba-303fd805bf42": {
       "path": "android17_build_identity.md",
-      "sort": 1
+      "sort": 1,
+      "deleted": true
     },
     "c576e854-651b-49b2-b0ea-d4f0b84e3b8c": {
       "path": "android17_audio_creation_path.md",
-      "sort": 1
+      "sort": 1,
+      "deleted": true
     },
     "11768871-b672-4dd2-b290-a56afb40b317": {
       "path": "TrackPlayerBaseOpenSLESFollowup.md",
-      "sort": 15
+      "sort": 15,
+      "deleted": true
     },
     "7310e95d-527f-4047-94a6-91dc5f9fe0c0": {
       "path": "OpenSLESRelocationCallsiteAudit.md",
-      "sort": 9
+      "sort": 9,
+      "deleted": true
     },
     "a761444e-8a8b-47e6-857e-e92b2a75cd7d": {
       "path": "OpenSLESRealizeAndPlayStateAudit.md",
-      "sort": 9
+      "sort": 9,
+      "deleted": true
     },
     "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993": {
       "path": "OpenSLESDispatchAndRealizeCallerAudit.md",
-      "sort": 9
+      "sort": 9,
+      "deleted": true
     },
     "e4e7d287-3869-4ceb-90c0-053f0438f6ad": {
       "path": "OpenSLESRealizeDispatchTrace.md",
-      "sort": 11
+      "sort": 11,
+      "deleted": true
     },
     "881e6f8f-05ae-4746-86b4-a6d84f5f529d": {
       "path": "AudioPlaybackStartSignalAudit.md",
-      "sort": 5
+      "sort": 5,
+      "deleted": true
     },
     "053712cf-976c-47b2-a384-09f04f40cadb": {
       "path": "AudioPlaybackCaptureGameplayValidation.md",
-      "sort": 5
+      "sort": 5,
+      "deleted": true
     },
     "9408b76d-52ae-40f9-9a18-60baa5a66ccf": {
       "path": "FirstAudioPeakSubBlockAudit.md",
-      "sort": 10
+      "sort": 10,
+      "deleted": true
+    },
+    "ddcda366-8f20-4c93-86ae-20dde79978d8": {
+      "path": "20261111",
+      "sort": 0
+    },
+    "02c58139-790f-427a-925a-f1fb5c5a0b0f": {
+      "path": "20261111/AutoStartCalibrationPlan.md",
+      "sort": 0
+    },
+    "680540a6-e437-4f1d-828e-67b67841ab29": {
+      "path": "20261111/Plan_AvoidNoiseField.md",
+      "sort": 1
+    },
+    "0f44d959-4ab8-4714-89f2-7416c9ce1912": {
+      "path": "20261112",
+      "sort": 1
+    },
+    "1c9110e8-241e-4a7b-a437-241573496b94": {
+      "path": "20261112/1211202605_ANALYSIS_REPORT.md",
+      "sort": 0
+    },
+    "2ce0294e-adbd-4275-b6a9-06a4c5756edc": {
+      "path": "20261112/PHASE2_FIX_REPORT.md",
+      "sort": 1
+    },
+    "d9caae65-de07-4c42-a4c1-d7909ef29894": {
+      "path": "20261113",
+      "sort": 2
+    },
+    "da21e9a2-7acc-45a0-ba32-313e20c44dc2": {
+      "path": "20261113/AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+      "sort": 0
+    },
+    "c55cef74-e086-4f23-886e-30b7e5059f06": {
+      "path": "20261113/AUDIO_START_SIGNAL_INVESTIGATION.md",
+      "sort": 1
+    },
+    "e4030f5a-58c0-45b6-afcd-754c421cbbf5": {
+      "path": "20261113/C08_EVENT_DEEP_ANALYSIS.md",
+      "sort": 2
+    },
+    "0eda7854-4f96-4bcd-a140-ad6e49dcb75d": {
+      "path": "20261113/ERROR_AUDIT_REPORT.md",
+      "sort": 3
+    },
+    "4ed6e1e6-4c06-4dc6-a18f-6c5e45b745c6": {
+      "path": "20261113/MULTI_ROUND_OPERATION_CORRELATION.md",
+      "sort": 4
+    },
+    "79955ceb-fe15-4086-b0c7-a82ca50b46f3": {
+      "path": "20261113/ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+      "sort": 5
+    },
+    "c8c985fd-8cc6-46c7-94ff-6ee61b587aff": {
+      "path": "20261113/ROUND3_RETEST_COMPARISON.md",
+      "sort": 6
+    },
+    "b28ab0b4-049e-4513-94e3-c1961ad39d21": {
+      "path": "20261113/SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+      "sort": 7
+    },
+    "85407095-7efe-428e-b2a9-4b403ea58d16": {
+      "path": "20261114",
+      "sort": 3
+    },
+    "50913dd4-e5a2-42de-82fb-d6edc90bd002": {
+      "path": "20261114/android17_audio_creation_path.md",
+      "sort": 0
+    },
+    "04a84f08-eb84-4667-8950-b7dc526288fe": {
+      "path": "20261114/android17_build_identity.md",
+      "sort": 1
+    },
+    "b007b92c-012e-4359-94fc-034e86753961": {
+      "path": "20261114/TrackPlayerbaseCallsiteInvestigation.md",
+      "sort": 2
+    },
+    "bfba0805-a2e7-429b-ad48-cbb3a4612ef6": {
+      "path": "20261114/TrackPlayerBaseOpenSLESFollowup.md",
+      "sort": 3
+    },
+    "db62be5e-ffce-4ab4-9c10-caba2447b88d": {
+      "path": "20261114/UnityOutPortalStatus.md",
+      "sort": 4
+    },
+    "29866692-7aa9-4d6e-b381-3d9fe78d1181": {
+      "path": "20261115",
+      "sort": 4
+    },
+    "fa2f206c-1f42-4033-bcb6-79a7339c08c2": {
+      "path": "20261115/AudioPlaybackCaptureGameplayValidation.md",
+      "sort": 0
+    },
+    "b03aa838-0c8c-4540-897c-86a9477e50bb": {
+      "path": "20261115/AudioPlaybackStartSignalAudit.md",
+      "sort": 1
+    },
+    "3f09a044-1121-4cc0-bcef-35b360803549": {
+      "path": "20261115/FirstAudioPeakSubBlockAudit.md",
+      "sort": 2
+    },
+    "23b8b299-35bb-43ae-a7ab-2c20ac8143de": {
+      "path": "20261115/OpenSLESDispatchAndRealizeCallerAudit.md",
+      "sort": 3
+    },
+    "5906761a-1b57-4ed9-be59-e0543bcca2b1": {
+      "path": "20261115/OpenSLESRealizeAndPlayStateAudit.md",
+      "sort": 4
+    },
+    "35480c2b-bbaa-4b06-84d9-2ae09a557c0b": {
+      "path": "20261115/OpenSLESRealizeDispatchTrace.md",
+      "sort": 5
+    },
+    "bbcd9b56-66d3-4ed7-9b99-659105e53a6e": {
+      "path": "20261115/OpenSLESRelocationCallsiteAudit.md",
+      "sort": 6
+    },
+    "237cd599-19fc-41a8-9432-32ff6ce5f458": {
+      "path": "20261120",
+      "sort": 5
+    },
+    "590d135e-c30e-43fe-8370-e5fc23c7c7e0": {
+      "path": "20261120/P1_2_Touch_Dispatch_Coordinate_Trace_Audit.md",
+      "sort": 0
+    },
+    "73736cff-8cf0-453f-b1c7-f76b17ae016a": {
+      "path": "20261120/scripts",
+      "sort": 0,
+      "deleted": true
+    },
+    "38f00970-f1d9-426a-a8f5-f1ca79204130": {
+      "path": "__pycache__",
+      "sort": 0
+    },
+    "afdc141e-39b7-4f3e-9b68-2da9a0fd81b7": {
+      "path": "20261120/captures",
+      "sort": 0,
+      "deleted": true
+    },
+    "c7d6bec3-27c6-477c-8951-009b24c9032f": {
+      "path": "20261120/scripts/__pycache__",
+      "sort": 0,
+      "deleted": true
+    },
+    "4fc97a9d-c8ce-4745-ac51-9f931d1efb2f": {
+      "path": "20261120/NF_Execution_Path.md",
+      "sort": 2,
+      "deleted": true
+    },
+    "4035a5fb-7488-4b86-8c76-f47e68e415b7": {
+      "path": "20261120/NF_Validation_Results.md",
+      "sort": 3,
+      "deleted": true
+    },
+    "2579b416-dc13-4ee0-a158-8e3636a1acd6": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation.md",
+      "sort": 3,
+      "deleted": true
+    },
+    "d1151e82-9203-4035-953f-fcac55c29af2": {
+      "path": "20261120/untitled folder",
+      "sort": 2,
+      "deleted": true
+    },
+    "9f032d24-5e80-4a05-af03-fd2601672580": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation",
+      "sort": 1
+    },
+    "9ccc7ebb-4026-4e54-b32b-5fb88a0662d4": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/captures",
+      "sort": 0
+    },
+    "6d8a3d23-72de-4afc-8375-495014039368": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/scripts",
+      "sort": 1
+    },
+    "a3d6ae55-e90b-489b-befe-0101f4ed2c31": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Execution_Path.md",
+      "sort": 2
+    },
+    "76ce6006-d31c-4d61-bd10-ec471394b1a8": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Pathfinding_Root_Cause_Investigation.md",
+      "sort": 3
+    },
+    "328f42ab-7bc8-4077-925b-f56e684913d1": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Validation_Results.md",
+      "sort": 4
+    },
+    "396518e0-c7b5-474a-8589-a44972ce1c2e": {
+      "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Phase2_Access_and_Attribution_Audit.md",
+      "sort": 4,
+      "deleted": true
+    },
+    "f34685b0-fb1d-4e7b-b874-735e35da6b24": {
+      "path": "20261120/NF_Phase2_Access_and_Attribution_Audit.md",
+      "sort": 1,
+      "deleted": true
+    },
+    "a168dd63-eaa8-4e67-b092-e52f08f9a121": {
+      "path": "20261120/NF Phase 2 Continue",
+      "sort": 0
+    },
+    "15248543-5ff4-4931-a65a-c7a89ffbc974": {
+      "path": "20261120/NF Phase 2 Continue/NF_Phase2_Access_and_Attribution_Audit.md",
+      "sort": 0
+    },
+    "1a526695-da91-43d5-83e2-39e5d335cc31": {
+      "path": "20261120/NF Phase 2 Continue/Access_and_Integrity_Audit.md",
+      "sort": 0
     }
   },
   "name": "PhiAPS Admissions",

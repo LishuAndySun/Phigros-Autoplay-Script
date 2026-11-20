@@ -1,0 +1,7 @@
+nf_id,enable_s,disable_s,window_ms,half_w,half_h,center_phys_x,center_phys_y,center_screen_x,center_screen_y,move_keys,rot_keys,scale_keys,violation_events,first_violation_s,last_violation_s,first_violation_offset_ms,last_violation_gap_to_disable_ms,pointers,actions,origins
+69,64.158,66.163,2004.9,640.0,720.0,640.0,360.0,640.0,360.0,3,1,3,299,64.159,65.346,0.6,817.4,1000;1004;1005,DOWN;MOVE;UP,_down:type2;allocate:drag_continuation_or_release
+159,85.545,88.292,2747.5,27.18,359.42,638.67,359.42,638.67,360.58,2,2,3,236,85.776,88.24,231.4,52.1,1000;1001,MOVE,allocate:drag_continuation_or_release
+71,65.644,89.109,23465.4,192.0,180.0,256.0,216.0,256.0,504.0,35,8,32,101,74.851,86.728,9207.4,2380.9,1000;1001,DOWN;MOVE;UP,_down:type2;allocate:drag_continuation_or_release
+74,65.644,89.109,23465.4,192.0,180.0,1024.0,216.0,1024.0,504.0,28,6,14,92,79.901,86.728,14257.4,2380.9,1000;1001,DOWN;MOVE;UP,_down:type1;_down:type2;allocate:drag_continuation_or_release
+45,11.881,12.178,297.0,704.0,72.0,576.0,0.0,576.0,720.0,2,1,8,74,11.889,12.177,7.8,1.2,1000;1001,MOVE,allocate:drag_continuation_or_release
+4,10.405,10.656,250.6,704.0,72.0,576.0,0.0,576.0,720.0,2,2,11,62,10.409,10.649,3.7,6.9,1000;1001,MOVE,allocate:drag_continuation_or_release

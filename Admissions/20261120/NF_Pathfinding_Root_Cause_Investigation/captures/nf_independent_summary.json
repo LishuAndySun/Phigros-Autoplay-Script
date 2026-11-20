@@ -1,0 +1,14 @@
+{
+  "total_events": 17308,
+  "block_areas_parsed": 160,
+  "add_blocks": 143,
+  "DOWN_in_nf_margin0": 14,
+  "DOWN_total": 1592,
+  "MOVE_in_nf_margin0": 867,
+  "MOVE_total": 14124,
+  "UP_in_nf_margin0": 15,
+  "UP_total": 1592,
+  "DOWN_in_nf_margin30": 14,
+  "MOVE_in_nf_margin30": 1229,
+  "UP_in_nf_margin30": 18
+}

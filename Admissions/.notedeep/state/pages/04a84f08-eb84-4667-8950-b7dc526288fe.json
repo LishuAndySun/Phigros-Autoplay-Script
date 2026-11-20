@@ -1,0 +1,3143 @@
+{
+  "docId": "04a84f08-eb84-4667-8950-b7dc526288fe",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "Android Emulator Build Identity Audit"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Target: `emulator-5554`",
+      [
+        "BR",
+        {}
+      ],
+      "Audit time: 2026-11-14T12:44:47Z to 2026-11-14T12:45:18Z (UTC)",
+      [
+        "BR",
+        {}
+      ],
+      "Mode: read-only. Only `adb devices`, `adb shell getprop`, `find`, `ls`, `readelf -n`, `sha256sum`, `cat /proc/version`, `pidof`, and `grep /proc/<pid>/maps` were run. No install, update, restart, or configuration change was made. No experiment was started."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Labels: VERIFIED (read from the device in this audit), UNKNOWN (not determined)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "1. Connection"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:44:47Z):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "which adb"
+      ],
+      [
+        "DIV",
+        {},
+        "adb version"
+      ],
+      [
+        "DIV",
+        {},
+        "adb devices -l"
+      ],
+      [
+        "DIV",
+        {},
+        "adb -s emulator-5554 get-state"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "/Users/lishuandysun/Downloads/platform-tools/adb"
+      ],
+      [
+        "DIV",
+        {},
+        "Android Debug Bridge version 1.0.41"
+      ],
+      [
+        "DIV",
+        {},
+        "Version 37.0.1-15733141"
+      ],
+      [
+        "DIV",
+        {},
+        "List of devices attached"
+      ],
+      [
+        "DIV",
+        {},
+        "emulator-5554          device product:sdk_phone64_arm64 model:Android_SDK_built_for_arm64 device:emu64a transport_id:3"
+      ],
+      [
+        "DIV",
+        {},
+        "device"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: `emulator-5554` is connected and in the `device` state. The earlier audit (before this one) found it offline, so the emulator was restarted or reconnected between the two audits."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "2. Build Properties"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:45:02Z): `adb -s emulator-5554 shell getprop <name>` for each property."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Property"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Value"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.fingerprint"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Android/sdk",
+                "_phone64",
+                "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.version.release"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`17`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.version.sdk"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`37`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.id"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`CE2A.260420.051.A3`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.type"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`userdebug`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.tags"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`test-keys`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.product.cpu.abi"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`arm64-v8a`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.product.manufacturer"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`unknown`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.product.model"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Android SDK built for arm64`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.version.security",
+                "_patch"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`2026-08-05`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.build.version.incremental"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`16571990`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.system.build.fingerprint"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Android/generic",
+                "_system/generic:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.vendor.build.fingerprint"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Android/sdk",
+                "_phone64",
+                "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.product.name"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`sdk",
+                "_phone64",
+                "_arm64`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.product.device"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`emu64a`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.hardware"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`ranchu`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "ro.kernel.qemu"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`1`"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The build fingerprint is read directly from `ro.build.fingerprint`. It is not inferred from the Android version."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Kernel (`cat /proc/version`): `Linux version 6.12.81-android16-6-g4f69fc7b210c-ab16167562-4k ... #1 SMP PREEMPT Tue Aug 25 07:36:40 UTC 2026`"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The `adb` shell reports one fingerprint for the vendor and product partitions, and the same build ID and incremental number for the system partition."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "3. Audio Library Locations"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:45:02Z):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "find /system /apex /vendor /system_ext /product -name \"<name>\""
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output for the three requested names:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "/system/lib64/libOpenSLES.so"
+      ],
+      [
+        "DIV",
+        {},
+        "/system/lib64/libaudioclient.so"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "`libaudioflinger.so` was not found under those paths. A broad search (12:45:11Z) with `find / -xdev -name \"libaudioflinger",
+      "*\"` returned:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "/system/lib64/libaudioflinger_datapath.so"
+      ],
+      [
+        "DIV",
+        {},
+        "/system/lib64/libaudioflinger_fastpath.so"
+      ],
+      [
+        "DIV",
+        {},
+        "/system/lib64/libaudioflinger_timing.so"
+      ],
+      [
+        "DIV",
+        {},
+        "/system/lib64/libaudioflinger_utils.so"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: On this image, AudioFlinger code is split across `libaudioflinger",
+      "_",
+      "*.so` modules. There is no standalone `libaudioflinger.so`. The core AudioFlinger module that defines `createTrack",
+      "_l` was not located by name in this audit, so its build ID is UNKNOWN."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "4. Sizes, Modification Times, Build IDs, Hashes"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:45:02Z): `ls -l` on each library."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Library"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Path"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Size (bytes)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "mtime (device)"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libOpenSLES.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libOpenSLES.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "35896"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2026-10-12 14:13"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libaudioclient.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioclient.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "553160"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2026-10-12 13:49"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libaudioflinger",
+                "_datapath.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_datapath.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "51872"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2026-10-12 14:13"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libaudioflinger",
+                "_fastpath.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_fastpath.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "85528"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2026-10-12 14:13"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libaudioflinger",
+                "_timing.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_timing.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "35368"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2026-10-12 14:13"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "libaudioflinger",
+                "_utils.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "/system/lib64/libaudioflinger",
+                "_utils.so"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "52648"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "2026-10-12 14:13"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:45:11Z): `readelf -n <lib>` and `sha256sum <lib>`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output, `libOpenSLES.so`:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "Displaying notes found in: .note.gnu.build-id"
+      ],
+      [
+        "DIV",
+        {},
+        "  Owner                 Data size       Description"
+      ],
+      [
+        "DIV",
+        {},
+        "  GNU                  0x00000010       NT_GNU_BUILD_ID 4f9b436de4a0a3b0a1f1886a2c6e44d0"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output, `libaudioclient.so`:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "Displaying notes found in: .note.gnu.build-id"
+      ],
+      [
+        "DIV",
+        {},
+        "  Owner                 Data size       Description"
+      ],
+      [
+        "DIV",
+        {},
+        "  GNU                  0x00000010       NT_GNU_BUILD_ID d5e03623b0ca530f899f320ba7c9811d"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "SHA-256:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`libOpenSLES.so`: `771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc`"
+        ],
+        [
+          "LI",
+          {},
+          "`libaudioclient.so`: `0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1`"
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: GNU build IDs for both libraries are as listed above. Both libraries have `.note.android.ident` with API level 37."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Build IDs for `libaudioflinger",
+      "_",
+      "*.so`: UNKNOWN (not read in this audit)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "5. Symbols and Debug Information"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:45:11Z): `readelf -S` for debug sections."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "/system/lib64/libOpenSLES.so"
+      ],
+      [
+        "DIV",
+        {},
+        "  [23] .gnu_debugdata    PROGBITS   (size 0x110)"
+      ],
+      [
+        "DIV",
+        {},
+        "/system/lib64/libaudioclient.so"
+      ],
+      [
+        "DIV",
+        {},
+        "  [27] .gnu_debugdata    PROGBITS   (size 0x2848)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: Both libraries contain only `.gnu",
+      "_debugdata` (MiniDebugInfo, a compressed symbol table). No `.debug",
+      "_",
+      "*` sections and no `.gnu",
+      "_debuglink` were found. Full DWARF debug info is not present on the device."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "UNKNOWN: Whether matching symbol files are available from the AOSP symbol server or a build artifact. The AOSP source is needed for that. No local copy exists (see section 7)."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "6. Audioserver Process"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Command (12:45:18Z): `pidof audioserver` and `grep` on `/proc/<pid>/maps`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Output:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "509"
+      ],
+      [
+        "DIV",
+        {},
+        "grep: /proc/509/maps: Permission denied"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "VERIFIED: The audioserver PID is 509 now. The November 14 log (raw",
+      "_logs.txt, lines 23846 to 24615) shows AudioFlinger PID 506. The PID changed between the experiment and this audit, so audioserver was restarted after the experiment (or the device was rebooted). The mapped library list could not be read, because `/proc/509/maps` is not accessible to the shell user."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Consequence: this audit cannot confirm which library images audioserver had loaded during the experiment."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "7. Source Selection"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Local AOSP tree: not present in `~/aosp` or `~/android` (checked in the prior audit). Not re-checked here."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Matching source: the fingerprint is `Android/sdk",
+      "_phone64",
+      "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`. The build ID is `CE2A.260420.051.A3`, and the incremental number is `16571990`. An AOSP tag or manifest matching this build ID must be obtained. No such source is available locally, and no network lookup was done in this audit."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "8. Limitations"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "The fingerprint read on 12:45Z is the current device state. It is not proven to be the same image that ran during the November 14 experiment at 12:19Z (UTC). The PID change (506 to 509) shows a restart, but not a change of system image. Confirm with the emulator's AVD or image history, or re-check the fingerprint against the experiment's `sessions.json` device record."
+        ],
+        [
+          "LI",
+          {},
+          "The experiment's `sessions.json` device record uses the model string `Android SDK built for arm64` and Android 17. It does not record the fingerprint."
+        ],
+        [
+          "LI",
+          {},
+          "`libaudioflinger.so` was not present. The module that defines `createTrack",
+          "_l` is not identified."
+        ],
+        [
+          "LI",
+          {},
+          "`/proc/509/maps` is not readable, so loaded libraries cannot be checked."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "---"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "9. Result"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Fingerprint: `Android/sdk",
+          "_phone64",
+          "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys` (VERIFIED on the device at 12:45Z)."
+        ],
+        [
+          "LI",
+          {},
+          "libOpenSLES.so GNU build ID: `4f9b436de4a0a3b0a1f1886a2c6e44d0` (VERIFIED)."
+        ],
+        [
+          "LI",
+          {},
+          "libaudioclient.so GNU build ID: `d5e03623b0ca530f899f320ba7c9811d` (VERIFIED)."
+        ],
+        [
+          "LI",
+          {},
+          "libaudioflinger",
+          "_",
+          "*.so build IDs: UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "Matching AOSP source can be selected by build ID `CE2A.260420.051.A3` (incremental `16571990`). It is not available in the workspace, so it cannot be used yet."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "5aef410d-0989-48b2-91d1-3ec0fc45cc56",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "Android Emulator Build Identity Audit"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Target: `emulator-5554`",
+              [
+                "BR",
+                {}
+              ],
+              "Audit time: 2026-11-14T12:44:47Z to 2026-11-14T12:45:18Z (UTC)",
+              [
+                "BR",
+                {}
+              ],
+              "Mode: read-only. Only `adb devices`, `adb shell getprop`, `find`, `ls`, `readelf -n`, `sha256sum`, `cat /proc/version`, `pidof`, and `grep /proc/<pid>/maps` were run. No install, update, restart, or configuration change was made. No experiment was started."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Labels: VERIFIED (read from the device in this audit), UNKNOWN (not determined)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "1. Connection"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:44:47Z):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "which adb"
+              ],
+              [
+                "DIV",
+                {},
+                "adb version"
+              ],
+              [
+                "DIV",
+                {},
+                "adb devices -l"
+              ],
+              [
+                "DIV",
+                {},
+                "adb -s emulator-5554 get-state"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "/Users/lishuandysun/Downloads/platform-tools/adb"
+              ],
+              [
+                "DIV",
+                {},
+                "Android Debug Bridge version 1.0.41"
+              ],
+              [
+                "DIV",
+                {},
+                "Version 37.0.1-15733141"
+              ],
+              [
+                "DIV",
+                {},
+                "List of devices attached"
+              ],
+              [
+                "DIV",
+                {},
+                "emulator-5554          device product:sdk_phone64_arm64 model:Android_SDK_built_for_arm64 device:emu64a transport_id:3"
+              ],
+              [
+                "DIV",
+                {},
+                "device"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: `emulator-5554` is connected and in the `device` state. The earlier audit (before this one) found it offline, so the emulator was restarted or reconnected between the two audits."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "2. Build Properties"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:45:02Z): `adb -s emulator-5554 shell getprop <name>` for each property."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Property"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Value"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.fingerprint"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Android/sdk",
+                        "_phone64",
+                        "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.version.release"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`17`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.version.sdk"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`37`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.id"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`CE2A.260420.051.A3`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.type"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`userdebug`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.tags"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`test-keys`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.product.cpu.abi"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`arm64-v8a`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.product.manufacturer"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`unknown`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.product.model"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Android SDK built for arm64`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.version.security",
+                        "_patch"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`2026-08-05`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.build.version.incremental"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`16571990`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.system.build.fingerprint"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Android/generic",
+                        "_system/generic:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.vendor.build.fingerprint"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Android/sdk",
+                        "_phone64",
+                        "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.product.name"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`sdk",
+                        "_phone64",
+                        "_arm64`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.product.device"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`emu64a`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.hardware"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`ranchu`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "ro.kernel.qemu"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`1`"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The build fingerprint is read directly from `ro.build.fingerprint`. It is not inferred from the Android version."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Kernel (`cat /proc/version`): `Linux version 6.12.81-android16-6-g4f69fc7b210c-ab16167562-4k ... #1 SMP PREEMPT Tue Aug 25 07:36:40 UTC 2026`"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The `adb` shell reports one fingerprint for the vendor and product partitions, and the same build ID and incremental number for the system partition."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "3. Audio Library Locations"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:45:02Z):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "find /system /apex /vendor /system_ext /product -name \"<name>\""
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output for the three requested names:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "/system/lib64/libOpenSLES.so"
+              ],
+              [
+                "DIV",
+                {},
+                "/system/lib64/libaudioclient.so"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "`libaudioflinger.so` was not found under those paths. A broad search (12:45:11Z) with `find / -xdev -name \"libaudioflinger",
+              "*\"` returned:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "/system/lib64/libaudioflinger_datapath.so"
+              ],
+              [
+                "DIV",
+                {},
+                "/system/lib64/libaudioflinger_fastpath.so"
+              ],
+              [
+                "DIV",
+                {},
+                "/system/lib64/libaudioflinger_timing.so"
+              ],
+              [
+                "DIV",
+                {},
+                "/system/lib64/libaudioflinger_utils.so"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: On this image, AudioFlinger code is split across `libaudioflinger",
+              "_",
+              "*.so` modules. There is no standalone `libaudioflinger.so`. The core AudioFlinger module that defines `createTrack",
+              "_l` was not located by name in this audit, so its build ID is UNKNOWN."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "4. Sizes, Modification Times, Build IDs, Hashes"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:45:02Z): `ls -l` on each library."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Library"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Path"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Size (bytes)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "mtime (device)"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libOpenSLES.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libOpenSLES.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "35896"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2026-10-12 14:13"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libaudioclient.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioclient.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "553160"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2026-10-12 13:49"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libaudioflinger",
+                        "_datapath.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_datapath.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "51872"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2026-10-12 14:13"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libaudioflinger",
+                        "_fastpath.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_fastpath.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "85528"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2026-10-12 14:13"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libaudioflinger",
+                        "_timing.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_timing.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "35368"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2026-10-12 14:13"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "libaudioflinger",
+                        "_utils.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "/system/lib64/libaudioflinger",
+                        "_utils.so"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "52648"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "2026-10-12 14:13"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:45:11Z): `readelf -n <lib>` and `sha256sum <lib>`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output, `libOpenSLES.so`:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "Displaying notes found in: .note.gnu.build-id"
+              ],
+              [
+                "DIV",
+                {},
+                "  Owner                 Data size       Description"
+              ],
+              [
+                "DIV",
+                {},
+                "  GNU                  0x00000010       NT_GNU_BUILD_ID 4f9b436de4a0a3b0a1f1886a2c6e44d0"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output, `libaudioclient.so`:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "Displaying notes found in: .note.gnu.build-id"
+              ],
+              [
+                "DIV",
+                {},
+                "  Owner                 Data size       Description"
+              ],
+              [
+                "DIV",
+                {},
+                "  GNU                  0x00000010       NT_GNU_BUILD_ID d5e03623b0ca530f899f320ba7c9811d"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "SHA-256:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`libOpenSLES.so`: `771ca94c10f7103d0f4e9a966f847d03c83327ac8db6ff2bc528cd36d899bdcc`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libaudioclient.so`: `0189039cd976a25deb1cfed6210932540f07b9719b53958b6671f04841f8bea1`"
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: GNU build IDs for both libraries are as listed above. Both libraries have `.note.android.ident` with API level 37."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Build IDs for `libaudioflinger",
+              "_",
+              "*.so`: UNKNOWN (not read in this audit)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "5. Symbols and Debug Information"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:45:11Z): `readelf -S` for debug sections."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "/system/lib64/libOpenSLES.so"
+              ],
+              [
+                "DIV",
+                {},
+                "  [23] .gnu_debugdata    PROGBITS   (size 0x110)"
+              ],
+              [
+                "DIV",
+                {},
+                "/system/lib64/libaudioclient.so"
+              ],
+              [
+                "DIV",
+                {},
+                "  [27] .gnu_debugdata    PROGBITS   (size 0x2848)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: Both libraries contain only `.gnu",
+              "_debugdata` (MiniDebugInfo, a compressed symbol table). No `.debug",
+              "_",
+              "*` sections and no `.gnu",
+              "_debuglink` were found. Full DWARF debug info is not present on the device."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "UNKNOWN: Whether matching symbol files are available from the AOSP symbol server or a build artifact. The AOSP source is needed for that. No local copy exists (see section 7)."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "6. Audioserver Process"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Command (12:45:18Z): `pidof audioserver` and `grep` on `/proc/<pid>/maps`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Output:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "509"
+              ],
+              [
+                "DIV",
+                {},
+                "grep: /proc/509/maps: Permission denied"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "VERIFIED: The audioserver PID is 509 now. The November 14 log (raw",
+              "_logs.txt, lines 23846 to 24615) shows AudioFlinger PID 506. The PID changed between the experiment and this audit, so audioserver was restarted after the experiment (or the device was rebooted). The mapped library list could not be read, because `/proc/509/maps` is not accessible to the shell user."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Consequence: this audit cannot confirm which library images audioserver had loaded during the experiment."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "7. Source Selection"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Local AOSP tree: not present in `~/aosp` or `~/android` (checked in the prior audit). Not re-checked here."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Matching source: the fingerprint is `Android/sdk",
+              "_phone64",
+              "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys`. The build ID is `CE2A.260420.051.A3`, and the incremental number is `16571990`. An AOSP tag or manifest matching this build ID must be obtained. No such source is available locally, and no network lookup was done in this audit."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "8. Limitations"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "The fingerprint read on 12:45Z is the current device state. It is not proven to be the same image that ran during the November 14 experiment at 12:19Z (UTC). The PID change (506 to 509) shows a restart, but not a change of system image. Confirm with the emulator's AVD or image history, or re-check the fingerprint against the experiment's `sessions.json` device record."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The experiment's `sessions.json` device record uses the model string `Android SDK built for arm64` and Android 17. It does not record the fingerprint."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`libaudioflinger.so` was not present. The module that defines `createTrack",
+                  "_l` is not identified."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`/proc/509/maps` is not readable, so loaded libraries cannot be checked."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "---"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "9. Result"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Fingerprint: `Android/sdk",
+                  "_phone64",
+                  "_arm64/emu64a:17/CE2A.260420.051.A3/16571990:userdebug/test-keys` (VERIFIED on the device at 12:45Z)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "libOpenSLES.so GNU build ID: `4f9b436de4a0a3b0a1f1886a2c6e44d0` (VERIFIED)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "libaudioclient.so GNU build ID: `d5e03623b0ca530f899f320ba7c9811d` (VERIFIED)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "libaudioflinger",
+                  "_",
+                  "*.so build IDs: UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Matching AOSP source can be selected by build ID `CE2A.260420.051.A3` (incremental `16571990`). It is not available in the workspace, so it cannot be used yet."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795165938933,
+      "acked": true,
+      "ackedAt": 1795165971426,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

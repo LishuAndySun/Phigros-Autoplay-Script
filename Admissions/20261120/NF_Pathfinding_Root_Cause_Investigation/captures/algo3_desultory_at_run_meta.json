@@ -1,0 +1,12 @@
+{
+  "chart_path": "Assets/Tracks/DesultorySignals.technoplanet.0/Chart_AT.json",
+  "chart_sha256": "c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c",
+  "chart_bytes": 13096106,
+  "block_area_count": 160,
+  "judge_line_count": 24,
+  "event_count": 17308,
+  "timestamp_count": 11894,
+  "skipped_count": 54,
+  "solve_seconds": 23.94,
+  "python": "3.13.16"
+}

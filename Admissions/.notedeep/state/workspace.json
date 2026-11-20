@@ -6,172 +6,522 @@
     "name": "PhiAPS Admissions",
     "isPublic": false,
     "pagesById": {
+      "38f00970-f1d9-426a-a8f5-f1ca79204130": {
+        "path": "__pycache__",
+        "title": "__pycache__",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 0
+      },
+      "ddcda366-8f20-4c93-86ae-20dde79978d8": {
+        "path": "20261111",
+        "title": "20261111",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 0
+      },
+      "02c58139-790f-427a-925a-f1fb5c5a0b0f": {
+        "path": "20261111/AutoStartCalibrationPlan.md",
+        "title": "AutoStartCalibrationPlan",
+        "parentUuid": "ddcda366-8f20-4c93-86ae-20dde79978d8",
+        "deleted": false,
+        "sort": 0
+      },
+      "680540a6-e437-4f1d-828e-67b67841ab29": {
+        "path": "20261111/Plan_AvoidNoiseField.md",
+        "title": "Plan_AvoidNoiseField",
+        "parentUuid": "ddcda366-8f20-4c93-86ae-20dde79978d8",
+        "deleted": false,
+        "sort": 1
+      },
+      "0f44d959-4ab8-4714-89f2-7416c9ce1912": {
+        "path": "20261112",
+        "title": "20261112",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 1
+      },
+      "1c9110e8-241e-4a7b-a437-241573496b94": {
+        "path": "20261112/1211202605_ANALYSIS_REPORT.md",
+        "title": "1211202605_ANALYSIS_REPORT",
+        "parentUuid": "0f44d959-4ab8-4714-89f2-7416c9ce1912",
+        "deleted": false,
+        "sort": 0
+      },
+      "2ce0294e-adbd-4275-b6a9-06a4c5756edc": {
+        "path": "20261112/PHASE2_FIX_REPORT.md",
+        "title": "PHASE2_FIX_REPORT",
+        "parentUuid": "0f44d959-4ab8-4714-89f2-7416c9ce1912",
+        "deleted": false,
+        "sort": 1
+      },
+      "d9caae65-de07-4c42-a4c1-d7909ef29894": {
+        "path": "20261113",
+        "title": "20261113",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 2
+      },
+      "da21e9a2-7acc-45a0-ba32-313e20c44dc2": {
+        "path": "20261113/AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+        "title": "AUDIO_PLAYBACK_PIPELINE_AUDIT",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 0
+      },
+      "c55cef74-e086-4f23-886e-30b7e5059f06": {
+        "path": "20261113/AUDIO_START_SIGNAL_INVESTIGATION.md",
+        "title": "AUDIO_START_SIGNAL_INVESTIGATION",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 1
+      },
+      "e4030f5a-58c0-45b6-afcd-754c421cbbf5": {
+        "path": "20261113/C08_EVENT_DEEP_ANALYSIS.md",
+        "title": "C08_EVENT_DEEP_ANALYSIS",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 2
+      },
+      "0eda7854-4f96-4bcd-a140-ad6e49dcb75d": {
+        "path": "20261113/ERROR_AUDIT_REPORT.md",
+        "title": "ERROR_AUDIT_REPORT",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 3
+      },
+      "4ed6e1e6-4c06-4dc6-a18f-6c5e45b745c6": {
+        "path": "20261113/MULTI_ROUND_OPERATION_CORRELATION.md",
+        "title": "MULTI_ROUND_OPERATION_CORRELATION",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 4
+      },
+      "79955ceb-fe15-4086-b0c7-a82ca50b46f3": {
+        "path": "20261113/ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+        "title": "ROUND3_AUDIO_CONTROL_ANALYSIS",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 5
+      },
+      "c8c985fd-8cc6-46c7-94ff-6ee61b587aff": {
+        "path": "20261113/ROUND3_RETEST_COMPARISON.md",
+        "title": "ROUND3_RETEST_COMPARISON",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 6
+      },
+      "b28ab0b4-049e-4513-94e3-c1961ad39d21": {
+        "path": "20261113/SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+        "title": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS",
+        "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+        "deleted": false,
+        "sort": 7
+      },
+      "85407095-7efe-428e-b2a9-4b403ea58d16": {
+        "path": "20261114",
+        "title": "20261114",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 3
+      },
+      "50913dd4-e5a2-42de-82fb-d6edc90bd002": {
+        "path": "20261114/android17_audio_creation_path.md",
+        "title": "android17_audio_creation_path",
+        "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+        "deleted": false,
+        "sort": 0
+      },
+      "04a84f08-eb84-4667-8950-b7dc526288fe": {
+        "path": "20261114/android17_build_identity.md",
+        "title": "android17_build_identity",
+        "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+        "deleted": false,
+        "sort": 1
+      },
+      "b007b92c-012e-4359-94fc-034e86753961": {
+        "path": "20261114/TrackPlayerbaseCallsiteInvestigation.md",
+        "title": "TrackPlayerbaseCallsiteInvestigation",
+        "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+        "deleted": false,
+        "sort": 2
+      },
+      "bfba0805-a2e7-429b-ad48-cbb3a4612ef6": {
+        "path": "20261114/TrackPlayerBaseOpenSLESFollowup.md",
+        "title": "TrackPlayerBaseOpenSLESFollowup",
+        "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+        "deleted": false,
+        "sort": 3
+      },
+      "db62be5e-ffce-4ab4-9c10-caba2447b88d": {
+        "path": "20261114/UnityOutPortalStatus.md",
+        "title": "UnityOutPortalStatus",
+        "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+        "deleted": false,
+        "sort": 4
+      },
+      "29866692-7aa9-4d6e-b381-3d9fe78d1181": {
+        "path": "20261115",
+        "title": "20261115",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 4
+      },
+      "fa2f206c-1f42-4033-bcb6-79a7339c08c2": {
+        "path": "20261115/AudioPlaybackCaptureGameplayValidation.md",
+        "title": "AudioPlaybackCaptureGameplayValidation",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 0
+      },
+      "b03aa838-0c8c-4540-897c-86a9477e50bb": {
+        "path": "20261115/AudioPlaybackStartSignalAudit.md",
+        "title": "AudioPlaybackStartSignalAudit",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 1
+      },
+      "3f09a044-1121-4cc0-bcef-35b360803549": {
+        "path": "20261115/FirstAudioPeakSubBlockAudit.md",
+        "title": "FirstAudioPeakSubBlockAudit",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 2
+      },
+      "23b8b299-35bb-43ae-a7ab-2c20ac8143de": {
+        "path": "20261115/OpenSLESDispatchAndRealizeCallerAudit.md",
+        "title": "OpenSLESDispatchAndRealizeCallerAudit",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 3
+      },
+      "5906761a-1b57-4ed9-be59-e0543bcca2b1": {
+        "path": "20261115/OpenSLESRealizeAndPlayStateAudit.md",
+        "title": "OpenSLESRealizeAndPlayStateAudit",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 4
+      },
+      "35480c2b-bbaa-4b06-84d9-2ae09a557c0b": {
+        "path": "20261115/OpenSLESRealizeDispatchTrace.md",
+        "title": "OpenSLESRealizeDispatchTrace",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 5
+      },
+      "bbcd9b56-66d3-4ed7-9b99-659105e53a6e": {
+        "path": "20261115/OpenSLESRelocationCallsiteAudit.md",
+        "title": "OpenSLESRelocationCallsiteAudit",
+        "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+        "deleted": false,
+        "sort": 6
+      },
+      "237cd599-19fc-41a8-9432-32ff6ce5f458": {
+        "path": "20261120",
+        "title": "20261120",
+        "parentUuid": null,
+        "deleted": false,
+        "sort": 5
+      },
+      "afdc141e-39b7-4f3e-9b68-2da9a0fd81b7": {
+        "path": "20261120/captures",
+        "title": "captures",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 0
+      },
+      "a168dd63-eaa8-4e67-b092-e52f08f9a121": {
+        "path": "20261120/NF Phase 2 Continue",
+        "title": "NF Phase 2 Continue",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": false,
+        "sort": 0
+      },
+      "1a526695-da91-43d5-83e2-39e5d335cc31": {
+        "path": "20261120/NF Phase 2 Continue/Access_and_Integrity_Audit.md",
+        "title": "Access_and_Integrity_Audit",
+        "parentUuid": "a168dd63-eaa8-4e67-b092-e52f08f9a121",
+        "deleted": false,
+        "sort": 0
+      },
+      "15248543-5ff4-4931-a65a-c7a89ffbc974": {
+        "path": "20261120/NF Phase 2 Continue/NF_Phase2_Access_and_Attribution_Audit.md",
+        "title": "NF_Phase2_Access_and_Attribution_Audit",
+        "parentUuid": "a168dd63-eaa8-4e67-b092-e52f08f9a121",
+        "deleted": false,
+        "sort": 0
+      },
+      "4fc97a9d-c8ce-4745-ac51-9f931d1efb2f": {
+        "path": "20261120/NF_Execution_Path.md",
+        "title": "NF_Execution_Path",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 2
+      },
+      "9f032d24-5e80-4a05-af03-fd2601672580": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation",
+        "title": "NF_Pathfinding_Root_Cause_Investigation",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": false,
+        "sort": 1
+      },
+      "2579b416-dc13-4ee0-a158-8e3636a1acd6": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation.md",
+        "title": "NF_Pathfinding_Root_Cause_Investigation",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 3
+      },
+      "9ccc7ebb-4026-4e54-b32b-5fb88a0662d4": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/captures",
+        "title": "captures",
+        "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+        "deleted": false,
+        "sort": 0
+      },
+      "a3d6ae55-e90b-489b-befe-0101f4ed2c31": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Execution_Path.md",
+        "title": "NF_Execution_Path",
+        "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+        "deleted": false,
+        "sort": 2
+      },
+      "76ce6006-d31c-4d61-bd10-ec471394b1a8": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Pathfinding_Root_Cause_Investigation.md",
+        "title": "NF_Pathfinding_Root_Cause_Investigation",
+        "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+        "deleted": false,
+        "sort": 3
+      },
+      "396518e0-c7b5-474a-8589-a44972ce1c2e": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Phase2_Access_and_Attribution_Audit.md",
+        "title": "NF_Phase2_Access_and_Attribution_Audit",
+        "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+        "deleted": true,
+        "sort": 4
+      },
+      "328f42ab-7bc8-4077-925b-f56e684913d1": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Validation_Results.md",
+        "title": "NF_Validation_Results",
+        "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+        "deleted": false,
+        "sort": 4
+      },
+      "6d8a3d23-72de-4afc-8375-495014039368": {
+        "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/scripts",
+        "title": "scripts",
+        "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+        "deleted": false,
+        "sort": 1
+      },
+      "f34685b0-fb1d-4e7b-b874-735e35da6b24": {
+        "path": "20261120/NF_Phase2_Access_and_Attribution_Audit.md",
+        "title": "NF_Phase2_Access_and_Attribution_Audit",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 1
+      },
+      "4035a5fb-7488-4b86-8c76-f47e68e415b7": {
+        "path": "20261120/NF_Validation_Results.md",
+        "title": "NF_Validation_Results",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 3
+      },
+      "590d135e-c30e-43fe-8370-e5fc23c7c7e0": {
+        "path": "20261120/P1_2_Touch_Dispatch_Coordinate_Trace_Audit.md",
+        "title": "P1_2_Touch_Dispatch_Coordinate_Trace_Audit",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": false,
+        "sort": 0
+      },
+      "73736cff-8cf0-453f-b1c7-f76b17ae016a": {
+        "path": "20261120/scripts",
+        "title": "scripts",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 0
+      },
+      "c7d6bec3-27c6-477c-8951-009b24c9032f": {
+        "path": "20261120/scripts/__pycache__",
+        "title": "__pycache__",
+        "parentUuid": "73736cff-8cf0-453f-b1c7-f76b17ae016a",
+        "deleted": true,
+        "sort": 0
+      },
+      "d1151e82-9203-4035-953f-fcac55c29af2": {
+        "path": "20261120/untitled folder",
+        "title": "untitled folder",
+        "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+        "deleted": true,
+        "sort": 2
+      },
       "9a07458f-7e00-448d-aa70-938a9a5f035e": {
         "path": "1211202605_ANALYSIS_REPORT.md",
         "title": "1211202605_ANALYSIS_REPORT",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 0
       },
       "c576e854-651b-49b2-b0ea-d4f0b84e3b8c": {
         "path": "android17_audio_creation_path.md",
         "title": "android17_audio_creation_path",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 1
       },
       "6e253d00-7074-4286-baba-303fd805bf42": {
         "path": "android17_build_identity.md",
         "title": "android17_build_identity",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 1
       },
       "dd13910d-4956-4ed4-8d7d-219583995b0b": {
         "path": "AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
         "title": "AUDIO_PLAYBACK_PIPELINE_AUDIT",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 1
       },
       "fe1387a5-b557-4377-bd52-9535246465b6": {
         "path": "AUDIO_START_SIGNAL_INVESTIGATION.md",
         "title": "AUDIO_START_SIGNAL_INVESTIGATION",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 2
       },
       "053712cf-976c-47b2-a384-09f04f40cadb": {
         "path": "AudioPlaybackCaptureGameplayValidation.md",
         "title": "AudioPlaybackCaptureGameplayValidation",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 5
       },
       "881e6f8f-05ae-4746-86b4-a6d84f5f529d": {
         "path": "AudioPlaybackStartSignalAudit.md",
         "title": "AudioPlaybackStartSignalAudit",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 5
       },
       "baafe286-a519-4b44-b1f3-45f438b1f314": {
         "path": "AutoStartCalibrationPlan.md",
         "title": "AutoStartCalibrationPlan",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 3
       },
       "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e": {
         "path": "C08_EVENT_DEEP_ANALYSIS.md",
         "title": "C08_EVENT_DEEP_ANALYSIS",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 4
       },
       "2d0924d3-7d3b-4289-a89d-9d83a328e1cc": {
         "path": "ERROR_AUDIT_REPORT.md",
         "title": "ERROR_AUDIT_REPORT",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 5
       },
       "9408b76d-52ae-40f9-9a18-60baa5a66ccf": {
         "path": "FirstAudioPeakSubBlockAudit.md",
         "title": "FirstAudioPeakSubBlockAudit",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 10
       },
       "df6868cd-63e5-4390-894f-17fe39d1bcfc": {
         "path": "MULTI_ROUND_OPERATION_CORRELATION.md",
         "title": "MULTI_ROUND_OPERATION_CORRELATION",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 6
       },
       "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993": {
         "path": "OpenSLESDispatchAndRealizeCallerAudit.md",
         "title": "OpenSLESDispatchAndRealizeCallerAudit",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 9
       },
       "a761444e-8a8b-47e6-857e-e92b2a75cd7d": {
         "path": "OpenSLESRealizeAndPlayStateAudit.md",
         "title": "OpenSLESRealizeAndPlayStateAudit",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 9
       },
       "e4e7d287-3869-4ceb-90c0-053f0438f6ad": {
         "path": "OpenSLESRealizeDispatchTrace.md",
         "title": "OpenSLESRealizeDispatchTrace",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 11
       },
       "7310e95d-527f-4047-94a6-91dc5f9fe0c0": {
         "path": "OpenSLESRelocationCallsiteAudit.md",
         "title": "OpenSLESRelocationCallsiteAudit",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 9
       },
       "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754": {
         "path": "PHASE2_FIX_REPORT.md",
         "title": "PHASE2_FIX_REPORT",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 7
       },
       "5bfbe26a-3832-41e0-9aa2-c49e657790d0": {
         "path": "Plan_AvoidNoiseField.md",
         "title": "Plan_AvoidNoiseField",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 8
       },
       "67e3f243-dc43-4a7d-9f0d-caf01a4feb27": {
         "path": "ROUND3_AUDIO_CONTROL_ANALYSIS.md",
         "title": "ROUND3_AUDIO_CONTROL_ANALYSIS",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 9
       },
       "2e5556de-752c-411f-9924-eea9c90aa8ae": {
         "path": "ROUND3_RETEST_COMPARISON.md",
         "title": "ROUND3_RETEST_COMPARISON",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 10
       },
       "a42b4205-cf92-4322-bb23-596a09f7f80b": {
         "path": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
         "title": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 11
       },
       "4a29fd9c-3779-4a91-923e-4a515020fc69": {
         "path": "TrackPlayerbaseCallsiteInvestigation.md",
         "title": "TrackPlayerbaseCallsiteInvestigation",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 12
       },
       "11768871-b672-4dd2-b290-a56afb40b317": {
         "path": "TrackPlayerBaseOpenSLESFollowup.md",
         "title": "TrackPlayerBaseOpenSLESFollowup",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 15
       },
       "a276c8c4-dffb-46e5-9901-18725c945acd": {
         "path": "UnityOutPortalStatus.md",
         "title": "UnityOutPortalStatus",
         "parentUuid": null,
-        "deleted": false,
+        "deleted": true,
         "sort": 12
       },
       "9419e984-10d9-4235-8116-373c1f971880": {
@@ -183,9 +533,9 @@
       }
     }
   },
-  "localVersion": 16,
-  "remoteBaseVersion": 18,
-  "appliedOpsRemoteVersion": 18,
+  "localVersion": 24,
+  "remoteBaseVersion": 26,
+  "appliedOpsRemoteVersion": 26,
   "appliedOps": [
     {
       "id": "ac044b22-537e-491f-a67c-d6aff4efe94f",
@@ -733,6 +1083,1031 @@
       "acked": true,
       "ackedAt": 1794705335666,
       "remoteVersion": 18
+    },
+    {
+      "id": "56da04ec-7f90-4b29-ae44-e12f92f2244d",
+      "localVersion": 17,
+      "remoteBaseVersion": 18,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "02c58139-790f-427a-925a-f1fb5c5a0b0f"
+          ],
+          "oi": {
+            "path": "20261111/AutoStartCalibrationPlan.md",
+            "title": "AutoStartCalibrationPlan",
+            "parentUuid": "ddcda366-8f20-4c93-86ae-20dde79978d8",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "04a84f08-eb84-4667-8950-b7dc526288fe"
+          ],
+          "oi": {
+            "path": "20261114/android17_build_identity.md",
+            "title": "android17_build_identity",
+            "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "053712cf-976c-47b2-a384-09f04f40cadb",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "0eda7854-4f96-4bcd-a140-ad6e49dcb75d"
+          ],
+          "oi": {
+            "path": "20261113/ERROR_AUDIT_REPORT.md",
+            "title": "ERROR_AUDIT_REPORT",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "0f44d959-4ab8-4714-89f2-7416c9ce1912"
+          ],
+          "oi": {
+            "path": "20261112",
+            "title": "20261112",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "11768871-b672-4dd2-b290-a56afb40b317",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "13b838f6-01ab-4cc6-8bb0-5f1bf4d70993",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "1706f6a9-1a33-43fa-a2d1-f332e1abdf9e",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "1c9110e8-241e-4a7b-a437-241573496b94"
+          ],
+          "oi": {
+            "path": "20261112/1211202605_ANALYSIS_REPORT.md",
+            "title": "1211202605_ANALYSIS_REPORT",
+            "parentUuid": "0f44d959-4ab8-4714-89f2-7416c9ce1912",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "23b8b299-35bb-43ae-a7ab-2c20ac8143de"
+          ],
+          "oi": {
+            "path": "20261115/OpenSLESDispatchAndRealizeCallerAudit.md",
+            "title": "OpenSLESDispatchAndRealizeCallerAudit",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "29866692-7aa9-4d6e-b381-3d9fe78d1181"
+          ],
+          "oi": {
+            "path": "20261115",
+            "title": "20261115",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "2ce0294e-adbd-4275-b6a9-06a4c5756edc"
+          ],
+          "oi": {
+            "path": "20261112/PHASE2_FIX_REPORT.md",
+            "title": "PHASE2_FIX_REPORT",
+            "parentUuid": "0f44d959-4ab8-4714-89f2-7416c9ce1912",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "2d0924d3-7d3b-4289-a89d-9d83a328e1cc",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "2e5556de-752c-411f-9924-eea9c90aa8ae",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "35480c2b-bbaa-4b06-84d9-2ae09a557c0b"
+          ],
+          "oi": {
+            "path": "20261115/OpenSLESRealizeDispatchTrace.md",
+            "title": "OpenSLESRealizeDispatchTrace",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 5
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "3f09a044-1121-4cc0-bcef-35b360803549"
+          ],
+          "oi": {
+            "path": "20261115/FirstAudioPeakSubBlockAudit.md",
+            "title": "FirstAudioPeakSubBlockAudit",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 2
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "4a29fd9c-3779-4a91-923e-4a515020fc69",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "4ed6e1e6-4c06-4dc6-a18f-6c5e45b745c6"
+          ],
+          "oi": {
+            "path": "20261113/MULTI_ROUND_OPERATION_CORRELATION.md",
+            "title": "MULTI_ROUND_OPERATION_CORRELATION",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "50913dd4-e5a2-42de-82fb-d6edc90bd002"
+          ],
+          "oi": {
+            "path": "20261114/android17_audio_creation_path.md",
+            "title": "android17_audio_creation_path",
+            "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "5906761a-1b57-4ed9-be59-e0543bcca2b1"
+          ],
+          "oi": {
+            "path": "20261115/OpenSLESRealizeAndPlayStateAudit.md",
+            "title": "OpenSLESRealizeAndPlayStateAudit",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "5bfbe26a-3832-41e0-9aa2-c49e657790d0",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "67e3f243-dc43-4a7d-9f0d-caf01a4feb27",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "680540a6-e437-4f1d-828e-67b67841ab29"
+          ],
+          "oi": {
+            "path": "20261111/Plan_AvoidNoiseField.md",
+            "title": "Plan_AvoidNoiseField",
+            "parentUuid": "ddcda366-8f20-4c93-86ae-20dde79978d8",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "6e253d00-7074-4286-baba-303fd805bf42",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "7310e95d-527f-4047-94a6-91dc5f9fe0c0",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "79955ceb-fe15-4086-b0c7-a82ca50b46f3"
+          ],
+          "oi": {
+            "path": "20261113/ROUND3_AUDIO_CONTROL_ANALYSIS.md",
+            "title": "ROUND3_AUDIO_CONTROL_ANALYSIS",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 5
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "85407095-7efe-428e-b2a9-4b403ea58d16"
+          ],
+          "oi": {
+            "path": "20261114",
+            "title": "20261114",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "881e6f8f-05ae-4746-86b4-a6d84f5f529d",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "9408b76d-52ae-40f9-9a18-60baa5a66ccf",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "9a07458f-7e00-448d-aa70-938a9a5f035e",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "a276c8c4-dffb-46e5-9901-18725c945acd",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "a42b4205-cf92-4322-bb23-596a09f7f80b",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "a761444e-8a8b-47e6-857e-e92b2a75cd7d",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "b007b92c-012e-4359-94fc-034e86753961"
+          ],
+          "oi": {
+            "path": "20261114/TrackPlayerbaseCallsiteInvestigation.md",
+            "title": "TrackPlayerbaseCallsiteInvestigation",
+            "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+            "deleted": false,
+            "sort": 2
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "b03aa838-0c8c-4540-897c-86a9477e50bb"
+          ],
+          "oi": {
+            "path": "20261115/AudioPlaybackStartSignalAudit.md",
+            "title": "AudioPlaybackStartSignalAudit",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "b28ab0b4-049e-4513-94e3-c1961ad39d21"
+          ],
+          "oi": {
+            "path": "20261113/SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md",
+            "title": "SONG_SELECT_LOG_ACTIVITY_ANALYSIS",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 7
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "baafe286-a519-4b44-b1f3-45f438b1f314",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "bbcd9b56-66d3-4ed7-9b99-659105e53a6e"
+          ],
+          "oi": {
+            "path": "20261115/OpenSLESRelocationCallsiteAudit.md",
+            "title": "OpenSLESRelocationCallsiteAudit",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 6
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "bfba0805-a2e7-429b-ad48-cbb3a4612ef6"
+          ],
+          "oi": {
+            "path": "20261114/TrackPlayerBaseOpenSLESFollowup.md",
+            "title": "TrackPlayerBaseOpenSLESFollowup",
+            "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "c55cef74-e086-4f23-886e-30b7e5059f06"
+          ],
+          "oi": {
+            "path": "20261113/AUDIO_START_SIGNAL_INVESTIGATION.md",
+            "title": "AUDIO_START_SIGNAL_INVESTIGATION",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "c576e854-651b-49b2-b0ea-d4f0b84e3b8c",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "c8c985fd-8cc6-46c7-94ff-6ee61b587aff"
+          ],
+          "oi": {
+            "path": "20261113/ROUND3_RETEST_COMPARISON.md",
+            "title": "ROUND3_RETEST_COMPARISON",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 6
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "d9caae65-de07-4c42-a4c1-d7909ef29894"
+          ],
+          "oi": {
+            "path": "20261113",
+            "title": "20261113",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 2
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "da21e9a2-7acc-45a0-ba32-313e20c44dc2"
+          ],
+          "oi": {
+            "path": "20261113/AUDIO_PLAYBACK_PIPELINE_AUDIT.md",
+            "title": "AUDIO_PLAYBACK_PIPELINE_AUDIT",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "db62be5e-ffce-4ab4-9c10-caba2447b88d"
+          ],
+          "oi": {
+            "path": "20261114/UnityOutPortalStatus.md",
+            "title": "UnityOutPortalStatus",
+            "parentUuid": "85407095-7efe-428e-b2a9-4b403ea58d16",
+            "deleted": false,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "dd13910d-4956-4ed4-8d7d-219583995b0b",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "ddcda366-8f20-4c93-86ae-20dde79978d8"
+          ],
+          "oi": {
+            "path": "20261111",
+            "title": "20261111",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "df6868cd-63e5-4390-894f-17fe39d1bcfc",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "e4030f5a-58c0-45b6-afcd-754c421cbbf5"
+          ],
+          "oi": {
+            "path": "20261113/C08_EVENT_DEEP_ANALYSIS.md",
+            "title": "C08_EVENT_DEEP_ANALYSIS",
+            "parentUuid": "d9caae65-de07-4c42-a4c1-d7909ef29894",
+            "deleted": false,
+            "sort": 2
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "e4e7d287-3869-4ceb-90c0-053f0438f6ad",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "ec11d2a0-6c4e-4404-b50e-cd1c99a3e754",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "fa2f206c-1f42-4033-bcb6-79a7339c08c2"
+          ],
+          "oi": {
+            "path": "20261115/AudioPlaybackCaptureGameplayValidation.md",
+            "title": "AudioPlaybackCaptureGameplayValidation",
+            "parentUuid": "29866692-7aa9-4d6e-b381-3d9fe78d1181",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "fe1387a5-b557-4377-bd52-9535246465b6",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795165938832,
+      "acked": true,
+      "ackedAt": 1795165941243,
+      "remoteVersion": 19
+    },
+    {
+      "id": "196c510b-2c7d-4999-a42c-052c3bef6814",
+      "localVersion": 18,
+      "remoteBaseVersion": 19,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "237cd599-19fc-41a8-9432-32ff6ce5f458"
+          ],
+          "oi": {
+            "path": "20261120",
+            "title": "20261120",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 5
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "590d135e-c30e-43fe-8370-e5fc23c7c7e0"
+          ],
+          "oi": {
+            "path": "20261120/P1_2_Touch_Dispatch_Coordinate_Trace_Audit.md",
+            "title": "P1_2_Touch_Dispatch_Coordinate_Trace_Audit",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 0
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795166082826,
+      "acked": true,
+      "ackedAt": 1795166085165,
+      "remoteVersion": 20
+    },
+    {
+      "id": "4c3a79b6-9da4-4180-a45b-8040cc28be43",
+      "localVersion": 19,
+      "remoteBaseVersion": 20,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "38f00970-f1d9-426a-a8f5-f1ca79204130"
+          ],
+          "oi": {
+            "path": "__pycache__",
+            "title": "__pycache__",
+            "parentUuid": null,
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "73736cff-8cf0-453f-b1c7-f76b17ae016a"
+          ],
+          "oi": {
+            "path": "20261120/scripts",
+            "title": "scripts",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "afdc141e-39b7-4f3e-9b68-2da9a0fd81b7"
+          ],
+          "oi": {
+            "path": "20261120/captures",
+            "title": "captures",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "c7d6bec3-27c6-477c-8951-009b24c9032f"
+          ],
+          "oi": {
+            "path": "20261120/scripts/__pycache__",
+            "title": "__pycache__",
+            "parentUuid": "73736cff-8cf0-453f-b1c7-f76b17ae016a",
+            "deleted": false,
+            "sort": 0
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795166896926,
+      "acked": true,
+      "ackedAt": 1795166902654,
+      "remoteVersion": 21
+    },
+    {
+      "id": "29f4a377-591f-43ef-8e67-9e8ef0a7257e",
+      "localVersion": 20,
+      "remoteBaseVersion": 21,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "2579b416-dc13-4ee0-a158-8e3636a1acd6"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation.md",
+            "title": "NF_Pathfinding_Root_Cause_Investigation",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "4035a5fb-7488-4b86-8c76-f47e68e415b7"
+          ],
+          "oi": {
+            "path": "20261120/NF_Validation_Results.md",
+            "title": "NF_Validation_Results",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "4fc97a9d-c8ce-4745-ac51-9f931d1efb2f"
+          ],
+          "oi": {
+            "path": "20261120/NF_Execution_Path.md",
+            "title": "NF_Execution_Path",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 2
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "c7d6bec3-27c6-477c-8951-009b24c9032f",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795166994922,
+      "acked": true,
+      "ackedAt": 1795166996964,
+      "remoteVersion": 22
+    },
+    {
+      "id": "4e7ada1b-ce0f-4322-989e-ef5eee349326",
+      "localVersion": 21,
+      "remoteBaseVersion": 22,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "2579b416-dc13-4ee0-a158-8e3636a1acd6",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "328f42ab-7bc8-4077-925b-f56e684913d1"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Validation_Results.md",
+            "title": "NF_Validation_Results",
+            "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+            "deleted": false,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "4035a5fb-7488-4b86-8c76-f47e68e415b7",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "4fc97a9d-c8ce-4745-ac51-9f931d1efb2f",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "6d8a3d23-72de-4afc-8375-495014039368"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/scripts",
+            "title": "scripts",
+            "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "73736cff-8cf0-453f-b1c7-f76b17ae016a",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "76ce6006-d31c-4d61-bd10-ec471394b1a8"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Pathfinding_Root_Cause_Investigation.md",
+            "title": "NF_Pathfinding_Root_Cause_Investigation",
+            "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+            "deleted": false,
+            "sort": 3
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "9ccc7ebb-4026-4e54-b32b-5fb88a0662d4"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/captures",
+            "title": "captures",
+            "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "9f032d24-5e80-4a05-af03-fd2601672580"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation",
+            "title": "NF_Pathfinding_Root_Cause_Investigation",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 1
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "a3d6ae55-e90b-489b-befe-0101f4ed2c31"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Execution_Path.md",
+            "title": "NF_Execution_Path",
+            "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+            "deleted": false,
+            "sort": 2
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "afdc141e-39b7-4f3e-9b68-2da9a0fd81b7",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        },
+        {
+          "p": [
+            "pagesById",
+            "d1151e82-9203-4035-953f-fcac55c29af2"
+          ],
+          "oi": {
+            "path": "20261120/untitled folder",
+            "title": "untitled folder",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": true,
+            "sort": 2
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795167329844,
+      "acked": true,
+      "ackedAt": 1795167333726,
+      "remoteVersion": 23
+    },
+    {
+      "id": "157d5d06-22e0-467c-87c3-e61641169228",
+      "localVersion": 22,
+      "remoteBaseVersion": 23,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "396518e0-c7b5-474a-8589-a44972ce1c2e"
+          ],
+          "oi": {
+            "path": "20261120/NF_Pathfinding_Root_Cause_Investigation/NF_Phase2_Access_and_Attribution_Audit.md",
+            "title": "NF_Phase2_Access_and_Attribution_Audit",
+            "parentUuid": "9f032d24-5e80-4a05-af03-fd2601672580",
+            "deleted": true,
+            "sort": 4
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "f34685b0-fb1d-4e7b-b874-735e35da6b24"
+          ],
+          "oi": {
+            "path": "20261120/NF_Phase2_Access_and_Attribution_Audit.md",
+            "title": "NF_Phase2_Access_and_Attribution_Audit",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 1
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795167838940,
+      "acked": true,
+      "ackedAt": 1795167841036,
+      "remoteVersion": 24
+    },
+    {
+      "id": "dc30035d-72d7-4322-9025-55249aad9bf5",
+      "localVersion": 23,
+      "remoteBaseVersion": 24,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "15248543-5ff4-4931-a65a-c7a89ffbc974"
+          ],
+          "oi": {
+            "path": "20261120/NF Phase 2 Continue/NF_Phase2_Access_and_Attribution_Audit.md",
+            "title": "NF_Phase2_Access_and_Attribution_Audit",
+            "parentUuid": "a168dd63-eaa8-4e67-b092-e52f08f9a121",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "a168dd63-eaa8-4e67-b092-e52f08f9a121"
+          ],
+          "oi": {
+            "path": "20261120/NF Phase 2 Continue",
+            "title": "NF Phase 2 Continue",
+            "parentUuid": "237cd599-19fc-41a8-9432-32ff6ce5f458",
+            "deleted": false,
+            "sort": 0
+          }
+        },
+        {
+          "p": [
+            "pagesById",
+            "f34685b0-fb1d-4e7b-b874-735e35da6b24",
+            "deleted"
+          ],
+          "oi": true,
+          "od": false
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795167990942,
+      "acked": true,
+      "ackedAt": 1795167993460,
+      "remoteVersion": 25
+    },
+    {
+      "id": "c2115cf6-b07b-406c-ae0e-6d80c19cdeca",
+      "localVersion": 24,
+      "remoteBaseVersion": 25,
+      "ops": [
+        {
+          "p": [
+            "pagesById",
+            "1a526695-da91-43d5-83e2-39e5d335cc31"
+          ],
+          "oi": {
+            "path": "20261120/NF Phase 2 Continue/Access_and_Integrity_Audit.md",
+            "title": "Access_and_Integrity_Audit",
+            "parentUuid": "a168dd63-eaa8-4e67-b092-e52f08f9a121",
+            "deleted": false,
+            "sort": 0
+          }
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795168211936,
+      "acked": true,
+      "ackedAt": 1795168214201,
+      "remoteVersion": 26
     }
   ],
   "pendingOps": []

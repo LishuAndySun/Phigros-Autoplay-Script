@@ -1,0 +1,2715 @@
+{
+  "docId": "4fc97a9d-c8ce-4745-ac51-9f931d1efb2f",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "NF Execution Path (Algo3, DesultorySignals AT)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Scope: `algo/algo3.py` as it exists, unmodified. Node labels name functions. \"NF-checked\" means the function calls `BlockAreas.search",
+      "_point` or `blocked` before emitting a position."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "mermaid"
+      },
+      [
+        "DIV",
+        {},
+        "flowchart TD"
+      ],
+      [
+        "DIV",
+        {},
+        "    A[Chart.from_dict] -->|blockAreaList| B[BlockAreas NF intervals]"
+      ],
+      [
+        "DIV",
+        {},
+        "    B --> C[solve: note loop]"
+      ],
+      [
+        "DIV",
+        {},
+        "    C --> D{note type}"
+      ],
+      [
+        "DIV",
+        {},
+        "    D -->|TAP type 1| E[_tap: find_clear_press, NF-checked]"
+      ],
+      [
+        "DIV",
+        {},
+        "    D -->|FLICK type 4| F[_flick: find_clear_flick, NF-checked trajectory]"
+      ],
+      [
+        "DIV",
+        {},
+        "    D -->|DRAG type 2| G[_drag: calls _down, no NF check]"
+      ],
+      [
+        "DIV",
+        {},
+        "    D -->|HOLD type 3| H[solve HOLD branch: TAP at onset, per-ms DRAG via line.pos_of, no NF check]"
+      ],
+      [
+        "DIV",
+        {},
+        "    E --> I[Frame.add: recalc_pos, no NF check]"
+      ],
+      [
+        "DIV",
+        {},
+        "    F --> I"
+      ],
+      [
+        "DIV",
+        {},
+        "    G --> I"
+      ],
+      [
+        "DIV",
+        {},
+        "    H --> I"
+      ],
+      [
+        "DIV",
+        {},
+        "    I --> J[allocate: DOWN, UP at release_at]"
+      ],
+      [
+        "DIV",
+        {},
+        "    J --> K[allocate step 3: MOVE every 8 ms for matched DRAG pointers, no NF check]"
+      ],
+      [
+        "DIV",
+        {},
+        "    K --> L[done: emit remaining UP]"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Path details"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Stage"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Function"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "NF check"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Evidence"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Chart load"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Chart.from",
+                "_dict`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "n/a"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "builds `BlockAreas(d.get('blockAreaList', ",
+                "[]))`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Interval test"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`BlockAreas.blocked` / `BlockArea.contains`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "the check itself"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`BUCKET=0.5 s`, `USE",
+                "_SUBTRACT=False`, `margin",
+                "_at(t)=30`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "TAP placement"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                "_tap` via `find",
+                "_clear",
+                "_press`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "yes, margin per `margin",
+                "_at`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "sets `note.pos=found` before `",
+                "_down`"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "FLICK placement"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                "_flick` via `find",
+                "_clear",
+                "_flick` / `flick",
+                "_path",
+                "_clear`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "yes, whole path"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "MOVE every 5 ms, `note.pos` = endpoint"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Position clamp"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`Frame.add` → `utils.recalc",
+                "_pos`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "no"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "moves off-screen points to the screen edge; not NF-aware"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "HOLD onset"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`solve` HOLD branch"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "no"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "emits TAP at onset without a placement search"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "HOLD body"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`solve` HOLD branch via `judge",
+                "_line.pos",
+                "_of`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "no"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "per-ms DRAG, no judge-line constraint"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DRAG"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-style: italic"
+                  },
+                  "drag` → `"
+                ],
+                "down`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "no"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "\"no NF check\" in source"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Continuation"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`allocate` step 3"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "no"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "MOVE every `drag",
+                "_step=8` ms for matched DRAG pointers"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Release"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-style: italic"
+                  },
+                  "down` inserts UP at `"
+                ],
+                "release",
+                "_at`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "no"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UP for previous note emitted before the next DOWN"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Execution-path verification"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Attribution by `origin",
+      "_method` (wrapper verified identical to the unmodified capture, 17,308 events):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "origin"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "action"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "total"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "violations m0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "violations m30"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-style: italic"
+                  },
+                  "tap` (`"
+                ],
+                "down:type1`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1260"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                [
+                  "SPAN",
+                  {
+                    "style": "font-style: italic"
+                  },
+                  "tap` (`"
+                ],
+                "down:type1`)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UP"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1207"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "3"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                "_flick`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DOWN / MOVE / UP"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "112 / 2240 / 95"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0 / 0 / 0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0 / 0 / 0"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                "_down:type2` (DRAG/HOLD onset)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "DOWN"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "220"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "14"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "14"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`",
+                "_down:type2` (DRAG/HOLD release)"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UP"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "176"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "11"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "11"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`allocate:drag",
+                "_continuation",
+                "_or",
+                "_release`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "MOVE"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "11884"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "867"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "1229"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`allocate:drag",
+                "_continuation",
+                "_or",
+                "_release`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UP"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "110"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "3"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "4"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "`done`"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "UP"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "4"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0"
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Source-based reading: every violating event originates from a path that performs no NF check (`",
+      [
+        "SPAN",
+        {
+          "style": "font-style: italic"
+        },
+        "drag`, HOLD branch, `allocate` step 3, or UP for these pointers). The two NF-checked paths (`"
+      ],
+      "tap`, `",
+      [
+        "SPAN",
+        {
+          "style": "font-style: italic"
+        },
+        "flick`) produce no violations for DOWN, MOVE or UP except one TAP-origin UP (82763 ms, pointer 1000), which closes a HOLD and is attributed to `"
+      ],
+      "down:type1` only by the note type recorded at `",
+      "_down`."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Status"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Confirmed by data: origin attribution, counts above."
+        ],
+        [
+          "LI",
+          {},
+          "Confirmed by source: which paths call an NF check."
+        ],
+        [
+          "LI",
+          {},
+          "Not confirmed: device behaviour; whether the in-game judge reports these positions as misses."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "68ed8a56-0182-4a11-b8df-77e8ee1e9fcc",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "NF Execution Path (Algo3, DesultorySignals AT)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Scope: `algo/algo3.py` as it exists, unmodified. Node labels name functions. \"NF-checked\" means the function calls `BlockAreas.search",
+              "_point` or `blocked` before emitting a position."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "mermaid"
+              },
+              [
+                "DIV",
+                {},
+                "flowchart TD"
+              ],
+              [
+                "DIV",
+                {},
+                "    A[Chart.from_dict] -->|blockAreaList| B[BlockAreas NF intervals]"
+              ],
+              [
+                "DIV",
+                {},
+                "    B --> C[solve: note loop]"
+              ],
+              [
+                "DIV",
+                {},
+                "    C --> D{note type}"
+              ],
+              [
+                "DIV",
+                {},
+                "    D -->|TAP type 1| E[_tap: find_clear_press, NF-checked]"
+              ],
+              [
+                "DIV",
+                {},
+                "    D -->|FLICK type 4| F[_flick: find_clear_flick, NF-checked trajectory]"
+              ],
+              [
+                "DIV",
+                {},
+                "    D -->|DRAG type 2| G[_drag: calls _down, no NF check]"
+              ],
+              [
+                "DIV",
+                {},
+                "    D -->|HOLD type 3| H[solve HOLD branch: TAP at onset, per-ms DRAG via line.pos_of, no NF check]"
+              ],
+              [
+                "DIV",
+                {},
+                "    E --> I[Frame.add: recalc_pos, no NF check]"
+              ],
+              [
+                "DIV",
+                {},
+                "    F --> I"
+              ],
+              [
+                "DIV",
+                {},
+                "    G --> I"
+              ],
+              [
+                "DIV",
+                {},
+                "    H --> I"
+              ],
+              [
+                "DIV",
+                {},
+                "    I --> J[allocate: DOWN, UP at release_at]"
+              ],
+              [
+                "DIV",
+                {},
+                "    J --> K[allocate step 3: MOVE every 8 ms for matched DRAG pointers, no NF check]"
+              ],
+              [
+                "DIV",
+                {},
+                "    K --> L[done: emit remaining UP]"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Path details"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Stage"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Function"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "NF check"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Evidence"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Chart load"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Chart.from",
+                        "_dict`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "n/a"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "builds `BlockAreas(d.get('blockAreaList', ",
+                        "[]))`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Interval test"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`BlockAreas.blocked` / `BlockArea.contains`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "the check itself"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`BUCKET=0.5 s`, `USE",
+                        "_SUBTRACT=False`, `margin",
+                        "_at(t)=30`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "TAP placement"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        "_tap` via `find",
+                        "_clear",
+                        "_press`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "yes, margin per `margin",
+                        "_at`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "sets `note.pos=found` before `",
+                        "_down`"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "FLICK placement"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        "_flick` via `find",
+                        "_clear",
+                        "_flick` / `flick",
+                        "_path",
+                        "_clear`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "yes, whole path"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "MOVE every 5 ms, `note.pos` = endpoint"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Position clamp"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`Frame.add` → `utils.recalc",
+                        "_pos`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "no"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "moves off-screen points to the screen edge; not NF-aware"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "HOLD onset"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`solve` HOLD branch"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "no"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "emits TAP at onset without a placement search"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "HOLD body"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`solve` HOLD branch via `judge",
+                        "_line.pos",
+                        "_of`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "no"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "per-ms DRAG, no judge-line constraint"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DRAG"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-style: italic"
+                          },
+                          "drag` → `"
+                        ],
+                        "down`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "no"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "\"no NF check\" in source"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Continuation"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`allocate` step 3"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "no"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "MOVE every `drag",
+                        "_step=8` ms for matched DRAG pointers"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Release"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-style: italic"
+                          },
+                          "down` inserts UP at `"
+                        ],
+                        "release",
+                        "_at`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "no"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UP for previous note emitted before the next DOWN"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Execution-path verification"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Attribution by `origin",
+              "_method` (wrapper verified identical to the unmodified capture, 17,308 events):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "origin"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "action"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "total"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "violations m0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "violations m30"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-style: italic"
+                          },
+                          "tap` (`"
+                        ],
+                        "down:type1`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1260"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        [
+                          "SPAN",
+                          {
+                            "style": "font-style: italic"
+                          },
+                          "tap` (`"
+                        ],
+                        "down:type1`)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UP"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1207"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "3"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        "_flick`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DOWN / MOVE / UP"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "112 / 2240 / 95"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0 / 0 / 0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0 / 0 / 0"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        "_down:type2` (DRAG/HOLD onset)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "DOWN"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "220"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "14"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "14"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`",
+                        "_down:type2` (DRAG/HOLD release)"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UP"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "176"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "11"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "11"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`allocate:drag",
+                        "_continuation",
+                        "_or",
+                        "_release`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "MOVE"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "11884"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "867"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "1229"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`allocate:drag",
+                        "_continuation",
+                        "_or",
+                        "_release`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UP"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "110"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "3"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "4"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "`done`"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "UP"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "4"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0"
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Source-based reading: every violating event originates from a path that performs no NF check (`",
+              [
+                "SPAN",
+                {
+                  "style": "font-style: italic"
+                },
+                "drag`, HOLD branch, `allocate` step 3, or UP for these pointers). The two NF-checked paths (`"
+              ],
+              "tap`, `",
+              [
+                "SPAN",
+                {
+                  "style": "font-style: italic"
+                },
+                "flick`) produce no violations for DOWN, MOVE or UP except one TAP-origin UP (82763 ms, pointer 1000), which closes a HOLD and is attributed to `"
+              ],
+              "down:type1` only by the note type recorded at `",
+              "_down`."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Status"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Confirmed by data: origin attribution, counts above."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Confirmed by source: which paths call an NF check."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Not confirmed: device behaviour; whether the in-game judge reports these positions as misses."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795166994973,
+      "acked": true,
+      "ackedAt": 1795166997691,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

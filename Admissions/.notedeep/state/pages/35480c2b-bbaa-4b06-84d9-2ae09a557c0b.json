@@ -1,0 +1,1933 @@
+{
+  "docId": "35480c2b-bbaa-4b06-84d9-2ae09a557c0b",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "OpenSL ES Realize Dispatch Trace"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Read-only static analysis. No PhiAPS source or experiment data was modified. No APK or Phigros native library was inspected. No experiments were run and no packages were installed. The emulator was not started and ADB was not used. AOSP main was not used as evidence."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Inputs"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Library: `libwilhelm.so` from the Android 17 (API 37) scratch copy at `$TMPDIR/android17",
+          "_libs/libwilhelm.so`."
+        ],
+        [
+          "LI",
+          {},
+          "SHA-256 prefix checked this turn: `9a630485f4e8e13e`. The full digest was checked in the prior turn and matched the recorded value."
+        ],
+        [
+          "LI",
+          {},
+          "Companion libraries were hash-checked in the prior turn: `libaudioclient.so`, `libOpenSLES.so`, `libaudiobase.so`."
+        ],
+        [
+          "LI",
+          {},
+          "Output path `Admissions/OpenSLESRealizeDispatchTrace.md` was confirmed absent before this report was written."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Library facts"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`.symtab` is absent. `llvm-nm` returns no symbols."
+        ],
+        [
+          "LI",
+          {},
+          "`.gnu",
+          "_debugdata` was decompressed to `/tmp/wil",
+          "_debugdata.elf`. It is used only as a labeling aid, not as proof of function boundaries."
+        ],
+        [
+          "LI",
+          {},
+          "`.relr.dyn` decodes to 757 targets. `.rela.dyn` (APS2) decodes to 359 entries, matching the declared count, with the end position equal to the section end."
+        ],
+        [
+          "LI",
+          {},
+          "`.data.rel.ro` covers 0x40000–0x43c68."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task A: Function at 0x310dc"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Disassembly, 0x310dc–0x310e4:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "code",
+        "data-lang": "plaintext"
+      },
+      [
+        "DIV",
+        {},
+        "310dc: b 0x207b4"
+      ],
+      [
+        "DIV",
+        {},
+        "310e0: mov w0, wzr"
+      ],
+      [
+        "DIV",
+        {},
+        "310e4: ret"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "The instruction at 0x310dc is a single unconditional branch to 0x207b4. The preceding `ret` at 0x310d8 ends the previous function."
+        ],
+        [
+          "LI",
+          {},
+          "Debug-table symbol `",
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "Z20CAudioPlayer"
+          ],
+          [
+            "SPAN",
+            {
+              "style": "font-style: italic"
+            },
+            "_RealizePvj` covers 0x310dc with size 0x4 (end 0x310e0). The next debug symbol, `"
+          ],
+          "Z19CAudioPlayer",
+          "_ResumePvj`, starts at 0x310e0."
+        ],
+        [
+          "LI",
+          {},
+          "The debug table is not part of the stripped library's loadable tables. Its boundaries are SUPPORTED only; they are not independently verified against a symbol table."
+        ],
+        [
+          "LI",
+          {},
+          "0x207b4 is labeled `",
+          "_Z27android",
+          "_audioPlayer",
+          "_realizeP19CAudioPlayer",
+          "_structj` (size 0xe54) in the debug table. This is a label, not evidence of the interface."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdict for Q1 (what is at 0x310dc): VERIFIED that the instruction is a single-instruction tail jump to 0x207b4. SUPPORTED that the block is a 4-byte wrapper with debug name `CAudioPlayer",
+      "_Realize`. UNKNOWN that the name is authoritative."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task B: Slot 0x41fc0 and its readers"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "RELR neighborhood (index 390 of 757):"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "table"
+      },
+      [
+        "TABLE",
+        {},
+        [
+          "TBODY",
+          {},
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Slot"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Value"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "Note"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41f78"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x313c4"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41f80"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x313cc"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41f88"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x31560"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41f90"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0xf440"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "not a function-pointer-like target"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fa0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0xfa8b"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fa8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0xa099"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fc0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x310dc"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "target of this trace"
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fc8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x310e0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fd0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x310e8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fd8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x31114"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ],
+          [
+            "TR",
+            {},
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0x41fe0"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                "0xf4b8"
+              ]
+            ],
+            [
+              "TD",
+              {},
+              [
+                "DIV",
+                {
+                  "data-btype": "basic"
+                },
+                [
+                  "BR",
+                  {}
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "The run is non-uniform. Values such as 0xf440 and 0xa099 are not clearly function entries. RELR-stored values are therefore not treated as proof that this is a dispatch table."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Reader search:"
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "ADRP-pair scan over `/tmp/wil",
+          "_text",
+          "_full.s` with a 4-instruction window. 112 ADRP-pair references were found into pages 0x40000–0x43000. None resolves into 0x41f80–0x42020."
+        ],
+        [
+          "LI",
+          {},
+          "Literal `ldr` search: 0 literal loads into 0x41f80–0x42020."
+        ],
+        [
+          "LI",
+          {},
+          "A second pass computed effective addresses for all 78 ADRP consumers in pages 0x40000–0x41000. None falls in 0x41f00–0x42100."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdict for Q2 (who invokes the entry at 0x41fc0): UNKNOWN. No static reader was found. The slot may be filled at runtime, reached through a base register whose address is built outside the 4-instruction window, or unused in this build. These possibilities are not distinguished by this analysis."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task C: Comparison with slot 0x43278"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Slot 0x43278 holds 0x34e58 (RELR, verified in the prior turn)."
+        ],
+        [
+          "LI",
+          {},
+          "The ADRP scan found 0 references into 0x43260–0x43290."
+        ],
+        [
+          "LI",
+          {},
+          "Neighborhood values (0x34b90, 0x34e10, 0x34e34, 0x34e58, 0x35158, 0x35370, 0x35394) do not match the 0x41fc0 run. Neither table is assumed to be the same table."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdict for Q3 (whether the 0x41fc0 table is the same mechanism as 0x43278): UNKNOWN."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task D: Direct branches and indirect calls"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "Direct `b` to 0x207b4: one site, at 0x310dc (VERIFIED in the prior turn)."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl` to 0x207b4: none found (prior turn)."
+        ],
+        [
+          "LI",
+          {},
+          "Direct `bl`/`b` to 0x310dc, 0x310e0, 0x310e8, 0x31114: none found in the grep of `/tmp/wil",
+          "_text",
+          "_full.s` this turn."
+        ],
+        [
+          "LI",
+          {},
+          "Indirect calls: 218 `blr` sites in `.text`. None was linked to a load from the 0x41fc0 region, because no code addresses that region (see Task B)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "basic"
+      },
+      "Verdict for Q4 (whether a verified indirect path reaches 0x310dc through 0x41fc0): UNKNOWN."
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Task E: Verdicts"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "OL",
+        {},
+        [
+          "LI",
+          {},
+          "What is at 0x310dc? VERIFIED: a single `b 0x207b4` tail jump. SUPPORTED: a 4-byte wrapper labeled `CAudioPlayer",
+          "_Realize` by the debug table."
+        ],
+        [
+          "LI",
+          {},
+          "Who invokes the entry at 0x41fc0? UNKNOWN. No static reader was found."
+        ],
+        [
+          "LI",
+          {},
+          "Does 0x41fc0 represent the OpenSL ES Realize interface? HYPOTHESIS. The debug label `CAudioPlayer",
+          "_Realize` and the 0x207b4 label suggest it, but symbol names are not sufficient evidence. No reader or interface table layout was found to confirm it."
+        ],
+        [
+          "LI",
+          {},
+          "Is there a verified indirect dispatch path through 0x41fc0 to 0x310dc? UNKNOWN."
+        ],
+        [
+          "LI",
+          {},
+          "Is there a verified path from CreateAudioPlayer to Realize (0x207b4)? UNKNOWN. The verified chain is CreateAudioPlayer to `android",
+          "_audioPlayer",
+          "_create` to TrackPlayerBase (prior reports). No verified path to 0x207b4 was found. The only direct branch to 0x207b4 is the wrapper at 0x310dc, which has no verified caller."
+        ],
+        [
+          "LI",
+          {},
+          "Does gameplay execute Realize? UNKNOWN. This static analysis does not cover runtime behavior, and no runtime evidence was collected."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Limitations"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`libwilhelm.so` is stripped. Function boundaries rely on the decompressed debug table, which is not authoritative."
+        ],
+        [
+          "LI",
+          {},
+          "The reader search is limited to ADRP-pair and literal forms within a 4-instruction window. Computed or multi-step address formation may be missed."
+        ],
+        [
+          "LI",
+          {},
+          "RELR and APS2 decoding were validated against declared counts and section ends. Other relocation types were not analyzed."
+        ],
+        [
+          "LI",
+          {},
+          "No runtime tracing was performed. A verified dispatch chain requires runtime or additional structural evidence."
+        ],
+        [
+          "LI",
+          {},
+          "The scratch decoder `decode",
+          "_relocs.py` fails with an IndexError on this APS2 table and was not used."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "f480c509-5c4e-4e38-9a53-7f6c4490fc72",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "OpenSL ES Realize Dispatch Trace"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Read-only static analysis. No PhiAPS source or experiment data was modified. No APK or Phigros native library was inspected. No experiments were run and no packages were installed. The emulator was not started and ADB was not used. AOSP main was not used as evidence."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Inputs"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Library: `libwilhelm.so` from the Android 17 (API 37) scratch copy at `$TMPDIR/android17",
+                  "_libs/libwilhelm.so`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "SHA-256 prefix checked this turn: `9a630485f4e8e13e`. The full digest was checked in the prior turn and matched the recorded value."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Companion libraries were hash-checked in the prior turn: `libaudioclient.so`, `libOpenSLES.so`, `libaudiobase.so`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Output path `Admissions/OpenSLESRealizeDispatchTrace.md` was confirmed absent before this report was written."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Library facts"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`.symtab` is absent. `llvm-nm` returns no symbols."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`.gnu",
+                  "_debugdata` was decompressed to `/tmp/wil",
+                  "_debugdata.elf`. It is used only as a labeling aid, not as proof of function boundaries."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`.relr.dyn` decodes to 757 targets. `.rela.dyn` (APS2) decodes to 359 entries, matching the declared count, with the end position equal to the section end."
+                ],
+                [
+                  "LI",
+                  {},
+                  "`.data.rel.ro` covers 0x40000–0x43c68."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task A: Function at 0x310dc"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Disassembly, 0x310dc–0x310e4:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "code",
+                "data-lang": "plaintext"
+              },
+              [
+                "DIV",
+                {},
+                "310dc: b 0x207b4"
+              ],
+              [
+                "DIV",
+                {},
+                "310e0: mov w0, wzr"
+              ],
+              [
+                "DIV",
+                {},
+                "310e4: ret"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "The instruction at 0x310dc is a single unconditional branch to 0x207b4. The preceding `ret` at 0x310d8 ends the previous function."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Debug-table symbol `",
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "Z20CAudioPlayer"
+                  ],
+                  [
+                    "SPAN",
+                    {
+                      "style": "font-style: italic"
+                    },
+                    "_RealizePvj` covers 0x310dc with size 0x4 (end 0x310e0). The next debug symbol, `"
+                  ],
+                  "Z19CAudioPlayer",
+                  "_ResumePvj`, starts at 0x310e0."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The debug table is not part of the stripped library's loadable tables. Its boundaries are SUPPORTED only; they are not independently verified against a symbol table."
+                ],
+                [
+                  "LI",
+                  {},
+                  "0x207b4 is labeled `",
+                  "_Z27android",
+                  "_audioPlayer",
+                  "_realizeP19CAudioPlayer",
+                  "_structj` (size 0xe54) in the debug table. This is a label, not evidence of the interface."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdict for Q1 (what is at 0x310dc): VERIFIED that the instruction is a single-instruction tail jump to 0x207b4. SUPPORTED that the block is a 4-byte wrapper with debug name `CAudioPlayer",
+              "_Realize`. UNKNOWN that the name is authoritative."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task B: Slot 0x41fc0 and its readers"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "RELR neighborhood (index 390 of 757):"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "table"
+              },
+              [
+                "TABLE",
+                {},
+                [
+                  "TBODY",
+                  {},
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Slot"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Value"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "Note"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41f78"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x313c4"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41f80"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x313cc"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41f88"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x31560"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41f90"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0xf440"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "not a function-pointer-like target"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fa0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0xfa8b"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fa8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0xa099"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fc0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x310dc"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "target of this trace"
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fc8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x310e0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fd0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x310e8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fd8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x31114"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ],
+                  [
+                    "TR",
+                    {},
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0x41fe0"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        "0xf4b8"
+                      ]
+                    ],
+                    [
+                      "TD",
+                      {},
+                      [
+                        "DIV",
+                        {
+                          "data-btype": "basic"
+                        },
+                        [
+                          "BR",
+                          {}
+                        ]
+                      ]
+                    ]
+                  ]
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "The run is non-uniform. Values such as 0xf440 and 0xa099 are not clearly function entries. RELR-stored values are therefore not treated as proof that this is a dispatch table."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Reader search:"
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "ADRP-pair scan over `/tmp/wil",
+                  "_text",
+                  "_full.s` with a 4-instruction window. 112 ADRP-pair references were found into pages 0x40000–0x43000. None resolves into 0x41f80–0x42020."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Literal `ldr` search: 0 literal loads into 0x41f80–0x42020."
+                ],
+                [
+                  "LI",
+                  {},
+                  "A second pass computed effective addresses for all 78 ADRP consumers in pages 0x40000–0x41000. None falls in 0x41f00–0x42100."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdict for Q2 (who invokes the entry at 0x41fc0): UNKNOWN. No static reader was found. The slot may be filled at runtime, reached through a base register whose address is built outside the 4-instruction window, or unused in this build. These possibilities are not distinguished by this analysis."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task C: Comparison with slot 0x43278"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Slot 0x43278 holds 0x34e58 (RELR, verified in the prior turn)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The ADRP scan found 0 references into 0x43260–0x43290."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Neighborhood values (0x34b90, 0x34e10, 0x34e34, 0x34e58, 0x35158, 0x35370, 0x35394) do not match the 0x41fc0 run. Neither table is assumed to be the same table."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdict for Q3 (whether the 0x41fc0 table is the same mechanism as 0x43278): UNKNOWN."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task D: Direct branches and indirect calls"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "Direct `b` to 0x207b4: one site, at 0x310dc (VERIFIED in the prior turn)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl` to 0x207b4: none found (prior turn)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Direct `bl`/`b` to 0x310dc, 0x310e0, 0x310e8, 0x31114: none found in the grep of `/tmp/wil",
+                  "_text",
+                  "_full.s` this turn."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Indirect calls: 218 `blr` sites in `.text`. None was linked to a load from the 0x41fc0 region, because no code addresses that region (see Task B)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "basic"
+              },
+              "Verdict for Q4 (whether a verified indirect path reaches 0x310dc through 0x41fc0): UNKNOWN."
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Task E: Verdicts"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "OL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "What is at 0x310dc? VERIFIED: a single `b 0x207b4` tail jump. SUPPORTED: a 4-byte wrapper labeled `CAudioPlayer",
+                  "_Realize` by the debug table."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Who invokes the entry at 0x41fc0? UNKNOWN. No static reader was found."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Does 0x41fc0 represent the OpenSL ES Realize interface? HYPOTHESIS. The debug label `CAudioPlayer",
+                  "_Realize` and the 0x207b4 label suggest it, but symbol names are not sufficient evidence. No reader or interface table layout was found to confirm it."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is there a verified indirect dispatch path through 0x41fc0 to 0x310dc? UNKNOWN."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Is there a verified path from CreateAudioPlayer to Realize (0x207b4)? UNKNOWN. The verified chain is CreateAudioPlayer to `android",
+                  "_audioPlayer",
+                  "_create` to TrackPlayerBase (prior reports). No verified path to 0x207b4 was found. The only direct branch to 0x207b4 is the wrapper at 0x310dc, which has no verified caller."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Does gameplay execute Realize? UNKNOWN. This static analysis does not cover runtime behavior, and no runtime evidence was collected."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Limitations"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`libwilhelm.so` is stripped. Function boundaries rely on the decompressed debug table, which is not authoritative."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The reader search is limited to ADRP-pair and literal forms within a 4-instruction window. Computed or multi-step address formation may be missed."
+                ],
+                [
+                  "LI",
+                  {},
+                  "RELR and APS2 decoding were validated against declared counts and section ends. Other relocation types were not analyzed."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No runtime tracing was performed. A verified dispatch chain requires runtime or additional structural evidence."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The scratch decoder `decode",
+                  "_relocs.py` fails with an IndexError on this APS2 table and was not used."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795165938968,
+      "acked": true,
+      "ackedAt": 1795165985568,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

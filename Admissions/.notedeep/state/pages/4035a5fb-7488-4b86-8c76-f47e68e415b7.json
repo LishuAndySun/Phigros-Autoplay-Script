@@ -1,0 +1,609 @@
+{
+  "docId": "4035a5fb-7488-4b86-8c76-f47e68e415b7",
+  "snapshot": [
+    "DIV",
+    {
+      "class": "direct-editor",
+      "contenteditable": "true"
+    },
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H1",
+        {},
+        "NF Validation Results (DesultorySignals AT)"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Chart"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "File: `Assets/Tracks/DesultorySignals.technoplanet.0/Chart",
+          "_AT.json`"
+        ],
+        [
+          "LI",
+          {},
+          "SHA-256: `c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c`"
+        ],
+        [
+          "LI",
+          {},
+          "Size: 13,096,106 bytes; 160 blockAreas; 24 judge lines. Loads via `Chart.from",
+          "_dict`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Capture"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`scripts/capture",
+          "_algo3",
+          "_desultory",
+          "_at.py` runs unmodified `solve()`."
+        ],
+        [
+          "LI",
+          {},
+          "17,308 events; 11,894 distinct timestamps; 54 skipped notes (type 1: 34 RELOCATION",
+          "_LIMIT",
+          "_EXCEEDED, 16 NO",
+          "_VALID",
+          "_POSITION; type 4: 3 NO",
+          "_VALID",
+          "_POSITION, 1 RELOCATION",
+          "_LIMIT",
+          "_EXCEEDED)."
+        ],
+        [
+          "LI",
+          {},
+          "Runtime 23.94 s."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Independent validator"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`scripts/validate",
+          "_nf",
+          "_independent.py` imports no production modules."
+        ],
+        [
+          "LI",
+          {},
+          "Method: for each event, test membership in any NF block active at `t` with `inside(b, x, y, t, margin)`."
+        ],
+        [
+          "LI",
+          {},
+          "Results: margin 0 → 896 violations (DOWN 14, MOVE 867, UP 15). Margin 30 → 1261 violations (DOWN 14, MOVE 1229, UP 18)."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Production cross-check"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`scripts/crosscheck",
+          "_nf",
+          "_production.py` compares `BlockAreas.blocked` against the independent check for every event."
+        ],
+        [
+          "LI",
+          {},
+          "Margin 0: 17,308 agree, 0 disagree. Margin 30: 17,308 agree, 0 disagree."
+        ],
+        [
+          "LI",
+          {},
+          "Output: `captures/nf",
+          "_crosscheck",
+          "_summary.json`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Attribution"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`scripts/attribute",
+          "_algo3",
+          "_events.py` wraps the same run in memory. Output identical to the capture (True)."
+        ],
+        [
+          "LI",
+          {},
+          "Joins use the key (timestamp, pointer, action, x, y). A zip join was rejected: it misaligned 10,454 rows."
+        ],
+        [
+          "LI",
+          {},
+          "17,308 joined, 0 missing, 0 duplicate keys."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Dataset"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "`NF",
+          "_Violation",
+          "_Dataset.csv`: 896 rows at margin 0 plus header."
+        ],
+        [
+          "LI",
+          {},
+          "Built by `scripts/build",
+          "_violation",
+          "_dataset.py`; stats in `captures/nf",
+          "_violation",
+          "_stats.json`."
+        ]
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "line"
+      },
+      [
+        "H2",
+        {},
+        "Limits"
+      ]
+    ],
+    [
+      "DIV",
+      {
+        "data-btype": "list"
+      },
+      [
+        "UL",
+        {},
+        [
+          "LI",
+          {},
+          "The independent validator and production share the same coordinate convention (NF y up, `(x, 720-y)`) and the same margin definition. A convention error would affect both equally; the cross-check does not detect it."
+        ],
+        [
+          "LI",
+          {},
+          "The margin gap (896 at m0 vs 1261 at m30) is the margin-30 band around NF edges; the production check agrees at both margins."
+        ],
+        [
+          "LI",
+          {},
+          "No device acknowledgement exists for touch packets; device-side effect is UNKNOWN."
+        ]
+      ]
+    ]
+  ],
+  "localVersion": 1,
+  "remoteBaseVersion": 1,
+  "appliedOpsRemoteVersion": 1,
+  "appliedOps": [
+    {
+      "id": "0e5d7646-5ca8-41a7-acf1-40ffeb608859",
+      "localVersion": 1,
+      "remoteBaseVersion": 0,
+      "ops": [
+        {
+          "p": [],
+          "oi": [
+            "DIV",
+            {
+              "class": "direct-editor",
+              "contenteditable": "true"
+            },
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H1",
+                {},
+                "NF Validation Results (DesultorySignals AT)"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Chart"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "File: `Assets/Tracks/DesultorySignals.technoplanet.0/Chart",
+                  "_AT.json`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "SHA-256: `c9807022245ac1ae9299760422518d124dcffbdbbef448a0c4ade515265b517c`"
+                ],
+                [
+                  "LI",
+                  {},
+                  "Size: 13,096,106 bytes; 160 blockAreas; 24 judge lines. Loads via `Chart.from",
+                  "_dict`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Capture"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`scripts/capture",
+                  "_algo3",
+                  "_desultory",
+                  "_at.py` runs unmodified `solve()`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "17,308 events; 11,894 distinct timestamps; 54 skipped notes (type 1: 34 RELOCATION",
+                  "_LIMIT",
+                  "_EXCEEDED, 16 NO",
+                  "_VALID",
+                  "_POSITION; type 4: 3 NO",
+                  "_VALID",
+                  "_POSITION, 1 RELOCATION",
+                  "_LIMIT",
+                  "_EXCEEDED)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Runtime 23.94 s."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Independent validator"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`scripts/validate",
+                  "_nf",
+                  "_independent.py` imports no production modules."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Method: for each event, test membership in any NF block active at `t` with `inside(b, x, y, t, margin)`."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Results: margin 0 → 896 violations (DOWN 14, MOVE 867, UP 15). Margin 30 → 1261 violations (DOWN 14, MOVE 1229, UP 18)."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Production cross-check"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`scripts/crosscheck",
+                  "_nf",
+                  "_production.py` compares `BlockAreas.blocked` against the independent check for every event."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Margin 0: 17,308 agree, 0 disagree. Margin 30: 17,308 agree, 0 disagree."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Output: `captures/nf",
+                  "_crosscheck",
+                  "_summary.json`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Attribution"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`scripts/attribute",
+                  "_algo3",
+                  "_events.py` wraps the same run in memory. Output identical to the capture (True)."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Joins use the key (timestamp, pointer, action, x, y). A zip join was rejected: it misaligned 10,454 rows."
+                ],
+                [
+                  "LI",
+                  {},
+                  "17,308 joined, 0 missing, 0 duplicate keys."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Dataset"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "`NF",
+                  "_Violation",
+                  "_Dataset.csv`: 896 rows at margin 0 plus header."
+                ],
+                [
+                  "LI",
+                  {},
+                  "Built by `scripts/build",
+                  "_violation",
+                  "_dataset.py`; stats in `captures/nf",
+                  "_violation",
+                  "_stats.json`."
+                ]
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "line"
+              },
+              [
+                "H2",
+                {},
+                "Limits"
+              ]
+            ],
+            [
+              "DIV",
+              {
+                "data-btype": "list"
+              },
+              [
+                "UL",
+                {},
+                [
+                  "LI",
+                  {},
+                  "The independent validator and production share the same coordinate convention (NF y up, `(x, 720-y)`) and the same margin definition. A convention error would affect both equally; the cross-check does not detect it."
+                ],
+                [
+                  "LI",
+                  {},
+                  "The margin gap (896 at m0 vs 1261 at m30) is the margin-30 band around NF edges; the production check agrees at both margins."
+                ],
+                [
+                  "LI",
+                  {},
+                  "No device acknowledgement exists for touch packets; device-side effect is UNKNOWN."
+                ]
+              ]
+            ]
+          ],
+          "od": null
+        }
+      ],
+      "source": "filesystem",
+      "ts": 1795166994978,
+      "acked": true,
+      "ackedAt": 1795166998919,
+      "remoteVersion": 1
+    }
+  ],
+  "pendingOps": []
+}

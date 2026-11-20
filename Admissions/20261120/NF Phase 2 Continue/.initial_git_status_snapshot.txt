@@ -1,0 +1,85 @@
+ M .DS_Store
+ M Admissions/.notedeep/manifest.json
+ M Admissions/.notedeep/state/sync-index.json
+ M Admissions/.notedeep/state/workspace.json
+ D Admissions/1211202605_ANALYSIS_REPORT.md
+ D Admissions/AUDIO_PLAYBACK_PIPELINE_AUDIT.md
+ D Admissions/AUDIO_START_SIGNAL_INVESTIGATION.md
+ D Admissions/AudioPlaybackCaptureGameplayValidation.md
+ D Admissions/AudioPlaybackStartSignalAudit.md
+ D Admissions/AutoStartCalibrationPlan.md
+ D Admissions/C08_EVENT_DEEP_ANALYSIS.md
+ D Admissions/ERROR_AUDIT_REPORT.md
+ D Admissions/FirstAudioPeakSubBlockAudit.md
+ D Admissions/MULTI_ROUND_OPERATION_CORRELATION.md
+ D Admissions/OpenSLESDispatchAndRealizeCallerAudit.md
+ D Admissions/OpenSLESRealizeAndPlayStateAudit.md
+ D Admissions/OpenSLESRealizeDispatchTrace.md
+ D Admissions/OpenSLESRelocationCallsiteAudit.md
+ D Admissions/PHASE2_FIX_REPORT.md
+ D Admissions/Plan_AvoidNoiseField.md
+ D Admissions/ROUND3_AUDIO_CONTROL_ANALYSIS.md
+ D Admissions/ROUND3_RETEST_COMPARISON.md
+ D Admissions/SONG_SELECT_LOG_ACTIVITY_ANALYSIS.md
+ D Admissions/TrackPlayerBaseOpenSLESFollowup.md
+ D Admissions/TrackPlayerbaseCallsiteInvestigation.md
+ D Admissions/UnityOutPortalStatus.md
+ D Admissions/android17_audio_creation_path.md
+ D Admissions/android17_build_identity.md
+ M cache
+ M performance.log
+?? Admissions/.DS_Store
+?? Admissions/.notedeep/state/pages/02c58139-790f-427a-925a-f1fb5c5a0b0f.json
+?? Admissions/.notedeep/state/pages/04a84f08-eb84-4667-8950-b7dc526288fe.json
+?? Admissions/.notedeep/state/pages/0eda7854-4f96-4bcd-a140-ad6e49dcb75d.json
+?? Admissions/.notedeep/state/pages/0f44d959-4ab8-4714-89f2-7416c9ce1912.json
+?? Admissions/.notedeep/state/pages/15248543-5ff4-4931-a65a-c7a89ffbc974.json
+?? Admissions/.notedeep/state/pages/1c9110e8-241e-4a7b-a437-241573496b94.json
+?? Admissions/.notedeep/state/pages/237cd599-19fc-41a8-9432-32ff6ce5f458.json
+?? Admissions/.notedeep/state/pages/23b8b299-35bb-43ae-a7ab-2c20ac8143de.json
+?? Admissions/.notedeep/state/pages/2579b416-dc13-4ee0-a158-8e3636a1acd6.json
+?? Admissions/.notedeep/state/pages/29866692-7aa9-4d6e-b381-3d9fe78d1181.json
+?? Admissions/.notedeep/state/pages/2ce0294e-adbd-4275-b6a9-06a4c5756edc.json
+?? Admissions/.notedeep/state/pages/328f42ab-7bc8-4077-925b-f56e684913d1.json
+?? Admissions/.notedeep/state/pages/35480c2b-bbaa-4b06-84d9-2ae09a557c0b.json
+?? Admissions/.notedeep/state/pages/38f00970-f1d9-426a-a8f5-f1ca79204130.json
+?? Admissions/.notedeep/state/pages/3f09a044-1121-4cc0-bcef-35b360803549.json
+?? Admissions/.notedeep/state/pages/4035a5fb-7488-4b86-8c76-f47e68e415b7.json
+?? Admissions/.notedeep/state/pages/4ed6e1e6-4c06-4dc6-a18f-6c5e45b745c6.json
+?? Admissions/.notedeep/state/pages/4fc97a9d-c8ce-4745-ac51-9f931d1efb2f.json
+?? Admissions/.notedeep/state/pages/50913dd4-e5a2-42de-82fb-d6edc90bd002.json
+?? Admissions/.notedeep/state/pages/5906761a-1b57-4ed9-be59-e0543bcca2b1.json
+?? Admissions/.notedeep/state/pages/590d135e-c30e-43fe-8370-e5fc23c7c7e0.json
+?? Admissions/.notedeep/state/pages/680540a6-e437-4f1d-828e-67b67841ab29.json
+?? Admissions/.notedeep/state/pages/6d8a3d23-72de-4afc-8375-495014039368.json
+?? Admissions/.notedeep/state/pages/73736cff-8cf0-453f-b1c7-f76b17ae016a.json
+?? Admissions/.notedeep/state/pages/76ce6006-d31c-4d61-bd10-ec471394b1a8.json
+?? Admissions/.notedeep/state/pages/79955ceb-fe15-4086-b0c7-a82ca50b46f3.json
+?? Admissions/.notedeep/state/pages/85407095-7efe-428e-b2a9-4b403ea58d16.json
+?? Admissions/.notedeep/state/pages/9ccc7ebb-4026-4e54-b32b-5fb88a0662d4.json
+?? Admissions/.notedeep/state/pages/9f032d24-5e80-4a05-af03-fd2601672580.json
+?? Admissions/.notedeep/state/pages/a168dd63-eaa8-4e67-b092-e52f08f9a121.json
+?? Admissions/.notedeep/state/pages/a3d6ae55-e90b-489b-befe-0101f4ed2c31.json
+?? Admissions/.notedeep/state/pages/afdc141e-39b7-4f3e-9b68-2da9a0fd81b7.json
+?? Admissions/.notedeep/state/pages/b007b92c-012e-4359-94fc-034e86753961.json
+?? Admissions/.notedeep/state/pages/b03aa838-0c8c-4540-897c-86a9477e50bb.json
+?? Admissions/.notedeep/state/pages/b28ab0b4-049e-4513-94e3-c1961ad39d21.json
+?? Admissions/.notedeep/state/pages/bbcd9b56-66d3-4ed7-9b99-659105e53a6e.json
+?? Admissions/.notedeep/state/pages/bfba0805-a2e7-429b-ad48-cbb3a4612ef6.json
+?? Admissions/.notedeep/state/pages/c55cef74-e086-4f23-886e-30b7e5059f06.json
+?? Admissions/.notedeep/state/pages/c7d6bec3-27c6-477c-8951-009b24c9032f.json
+?? Admissions/.notedeep/state/pages/c8c985fd-8cc6-46c7-94ff-6ee61b587aff.json
+?? Admissions/.notedeep/state/pages/d9caae65-de07-4c42-a4c1-d7909ef29894.json
+?? Admissions/.notedeep/state/pages/da21e9a2-7acc-45a0-ba32-313e20c44dc2.json
+?? Admissions/.notedeep/state/pages/db62be5e-ffce-4ab4-9c10-caba2447b88d.json
+?? Admissions/.notedeep/state/pages/ddcda366-8f20-4c93-86ae-20dde79978d8.json
+?? Admissions/.notedeep/state/pages/e4030f5a-58c0-45b6-afcd-754c421cbbf5.json
+?? Admissions/.notedeep/state/pages/f34685b0-fb1d-4e7b-b874-735e35da6b24.json
+?? Admissions/.notedeep/state/pages/fa2f206c-1f42-4033-bcb6-79a7339c08c2.json
+?? Admissions/20261111/
+?? Admissions/20261112/
+?? Admissions/20261113/
+?? Admissions/20261114/
+?? Admissions/20261115/
+?? Admissions/20261120/
+?? Admissions/__pycache__/
