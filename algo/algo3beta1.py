@@ -480,9 +480,9 @@ class PointerAllocator:
                 indices = [i for i in range(cell_count) if matches & (1 << i)]
                 if previous is not None:
                     # Prefer the side that continues the previous movement direction.
-                    prev_projection = ((previous[0] - tx) * tangent_x
-                                       + (previous[1] - ty) * tangent_y)
-                    preferred = 1 if prev_projection >= 0 else -1
+                    movement_projection = ((tx - previous[0]) * tangent_x
+                                            + (ty - previous[1]) * tangent_y)
+                    preferred = 1 if movement_projection >= 0 else -1
                     indices.sort(key=lambda i: (0 if (offsets[i] * preferred) >= 0 else 1,
                                                 abs(offsets[i])))
                 else:
