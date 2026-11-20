@@ -407,12 +407,17 @@ class PointerAllocator:
         pointer.age = flick_start - flick_end  # 负值：滑动期间该指针不可被分配
         return True
 
-    def _drag(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas):
-        """拖动按压的新起点：经局部绕行后按下"""
-        self._down(pointer, note, self._drag_pos(note, blocks, None))
+    def _drag(self, pointer: Pointer, note: SimpleNote, blocks: BlockAreas) -> bool:
+        """Start a DRAG only when a safe initial position exists."""
+        pos = self._drag_pos(note, blocks, None)
+        if pos is None:
+            self._skip(note, PlacementFailure.NO_VALID_POSITION)
+            return False
+        self._down(pointer, note, pos)
+        return True
 
     def _drag_pos(self, note: SimpleNote, blocks: BlockAreas,
-                  prev: Optional[tuple[int, float, float]]) -> tuple[float, float]:
+                  prev: Optional[tuple[int, float, float]]) -> Optional[tuple[float, float]]:
         """Choose the nearest locally reachable NF-clear point without a full-screen sort."""
         tx, ty = note.pos
         previous = (prev[1], prev[2]) if prev is not None else None
@@ -434,10 +439,9 @@ class PointerAllocator:
             self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
             return previous
 
-        # No safe continuation exists within the bounded search. Keep the failure explicit;
-        # caller-side telemetry can distinguish this from a successful avoidance.
+        # No safe continuation exists. Do not emit a point inside an NF region.
         self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
-        return tx, ty
+        return None
 
     def allocate(self, frame: Frame):
         # 更新pointer age
@@ -466,9 +470,10 @@ class PointerAllocator:
                 pointer.age = 0
                 if self.now - pointer.sent_at >= drag_step:
                     pos = self._drag_pos(note, frame.blocks, self.last_pos.get(pointer.id))
-                    self._insert(self.now, TouchEvent(pos, TouchAction.MOVE, pointer.id))
-                    pointer.sent_at = self.now
-                    self.last_pos[pointer.id] = (self.now, pos[0], pos[1])
+                    if pos is not None:
+                        self._insert(self.now, TouchEvent(pos, TouchAction.MOVE, pointer.id))
+                        pointer.sent_at = self.now
+                        self.last_pos[pointer.id] = (self.now, pos[0], pos[1])
                 continue
             pointer = self.alloc(note)
             if pointer is None:
