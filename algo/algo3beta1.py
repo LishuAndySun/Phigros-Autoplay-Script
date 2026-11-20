@@ -418,28 +418,38 @@ class PointerAllocator:
 
     def _drag_pos(self, note: SimpleNote, blocks: BlockAreas,
                   prev: Optional[tuple[int, float, float]]) -> Optional[tuple[float, float]]:
-        """Choose the nearest locally reachable NF-clear point without a full-screen sort."""
+        """Find a locally reachable DRAG point outside NF and outside the judge-line band."""
         tx, ty = note.pos
         previous = (prev[1], prev[2]) if prev is not None else None
 
-        # nearby_points yields candidates by increasing radius, avoiding an O(screen log screen)
-        # sort on every DRAG frame. The bounded search also prevents large HOLD teleports.
-        for x, y in nearby_points(tx, ty, max_radius=DRAG_MAX_RELOCATION,
-                                  step=DRAG_SEARCH_STEP):
+        def candidate_clear(x: float, y: float) -> bool:
             if not _point_clear(blocks, self.now, x, y):
+                return False
+            if note.line is not None:
+                try:
+                    if point_line_distance((x, y), note.line) < MIN_DIST:
+                        return False
+                except ValueError:
+                    return False
+            return True
+
+        # Search the full configured relocation radius, not the old 80 px local cap.
+        # Candidate order remains near-to-far; no full-screen sorting is performed.
+        for x, y in nearby_points(tx, ty, max_radius=MAX_RELOCATION_DISTANCE,
+                                  step=DRAG_SEARCH_STEP):
+            if not candidate_clear(x, y):
                 continue
             if prev is not None and not _segment_clear(
                     blocks, prev[0], previous, self.now, (x, y)):
                 continue
             return x, y
 
-        # If no new point is reachable, keep the previous touch stationary only when it
-        # remains clear at this timestamp. Never silently move through an NF region.
-        if previous is not None and _point_clear(blocks, self.now, previous[0], previous[1]):
+        # A stationary continuation is valid only if it still satisfies both constraints.
+        if previous is not None and candidate_clear(previous[0], previous[1]):
             self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
             return previous
 
-        # No safe continuation exists. Do not emit a point inside an NF region.
+        # Never emit the raw judge-line target as an unsafe fallback.
         self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
         return None
 
