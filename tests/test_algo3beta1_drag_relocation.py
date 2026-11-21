@@ -20,6 +20,16 @@ class WideHorizontalBand:
         return abs(y - 360) < 20
 
 
+class PreferredSideBlocked:
+    def blocked(self, x, y, time, margin):
+        return y >= 360
+
+
+class MovingBlock:
+    def blocked(self, x, y, time, margin):
+        return time >= 1.01 and 356 < y < 377
+
+
 class DragRelocationTests(unittest.TestCase):
     def test_drag_relocates_only_along_judge_line_normal(self):
         allocator = beta.PointerAllocator(max_pointers_count=1, max_pointers=1)
@@ -42,6 +52,13 @@ class DragRelocationTests(unittest.TestCase):
 
         self.assertEqual(allocator._drag_pos(note, WideHorizontalBand(), (999, 640, 368)), (640, 384))
 
+    def test_drag_falls_back_to_opposite_normal_side(self):
+        allocator = beta.PointerAllocator(max_pointers_count=1, max_pointers=1)
+        allocator.now = 1000
+        note = beta.SimpleNote(Note.DRAG, 1000, (640, 360), 0)
+
+        self.assertEqual(allocator._drag_pos(note, PreferredSideBlocked(), None), (640, 352))
+
     def test_final_guard_does_not_insert_move_after_backdated_up(self):
         allocator = beta.PointerAllocator(max_pointers_count=1, max_pointers=1)
         allocator.now = 1100
@@ -61,6 +78,25 @@ class DragRelocationTests(unittest.TestCase):
         self.assertTrue(all(time < up_time for time, action in sequence if action == TouchAction.MOVE))
         self.assertEqual(sequence[0], (1000, TouchAction.DOWN))
         self.assertEqual(sequence[-1], (1050, TouchAction.UP))
+
+    def test_guard_escapes_moving_nf_on_opposite_normal_side(self):
+        allocator = beta.PointerAllocator(max_pointers_count=1, max_pointers=1)
+        allocator.now = 1100
+        allocator.blocks = MovingBlock()
+        pointer_id = allocator.pointers[0].id
+        allocator.events = {
+            1000: [TouchEvent((640, 360), TouchAction.DOWN, pointer_id)],
+            1100: [TouchEvent((640, 360), TouchAction.UP, pointer_id)],
+        }
+        allocator.tags[(pointer_id, 1000)] = (Note.TAP, 0)
+
+        allocator._guard_static(allocator.blocks)
+
+        moves = [(time, event.pos) for time, events in allocator.events.items()
+                 for event in events if event.action == TouchAction.MOVE]
+        self.assertTrue(moves)
+        self.assertLess(moves[0][1][1], 360)
+        self.assertEqual(allocator.guard_failures, 0)
 
 
 if __name__ == '__main__':

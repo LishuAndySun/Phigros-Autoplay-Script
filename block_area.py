@@ -1,6 +1,8 @@
 """噪域(blockAreaList)的时变矩形判定与触点避让"""
 import math
+from bisect import bisect_right
 from enum import Enum
+from functools import lru_cache
 from typing import Optional, Sequence
 
 SCREEN_W = 1280
@@ -11,7 +13,7 @@ STEP = 4  # 避让时沿判定线法向搜索的步长(像素)
 MAX_STEPS = math.ceil(math.hypot(SCREEN_W, SCREEN_H) / STEP)
 MAX_RADIUS = math.hypot(SCREEN_W, SCREEN_H)
 MARGIN = 30  # 避让用的安全边距(像素)，向噪域外侧额外扩张
-USE_SUBTRACT = False  # 游戏中挖空块不生效，设为 True 才启用挖空
+USE_SUBTRACT = True
 
 # 判定线半宽：判定线以 line.pos() 为中心、沿角度方向向两侧各延伸 SCREEN_W/2
 JUDGE_LINE_HALF_WIDTH = SCREEN_W / 2
@@ -107,23 +109,124 @@ class BlockArea:
         self.scales = sorted((e['time'], (e['anchor']['x'] * SCREEN_W, e['anchor']['y'] * SCREEN_H,
                                           e['scale']['x'], e['scale']['y']))
                              for e in d.get('scaleEvents', []))
+        self._moves = sorted(d.get('moveEvents', []), key=lambda event: event['time'])
+        self._rotations = sorted(d.get('rotateEvents', []), key=lambda event: event['time'])
+        self._scales = sorted(d.get('scaleEvents', []), key=lambda event: event['time'])
+        self._move_times = [event['time'] for event in self._moves]
+        self._rotation_times = [event['time'] for event in self._rotations]
+        self._scale_times = [event['time'] for event in self._scales]
+
+    @staticmethod
+    def _ease(kind: int, progress: float) -> float:
+        progress = min(1.0, max(0.0, progress))
+        def family_value(family: int, value: float) -> float:
+            if family == 0:
+                return 1 - math.cos(value * math.pi / 2)
+            if family == 1:
+                return value * value
+            if family == 2:
+                return value ** 3
+            if family == 3:
+                return value ** 4
+            if family == 4:
+                return value ** 5
+            if family == 5:
+                return 2 ** (10 * (value - 1))
+            if family == 6:
+                return 1 - math.sqrt(max(0.0, 1 - value * value))
+            if family == 7:
+                return (2.70158 * value - 1.70158) * value * value
+            if family == 8:
+                return -(2 ** (10 * value - 10)) * math.sin((value * 10 - 10.75) * (2 * math.pi / 3))
+            x = 1 - value
+            if x < 1 / 2.75:
+                bounce = 7.5625 * x * x
+            elif x < 2 / 2.75:
+                bounce = 7.5625 * (x - 1.5 / 2.75) ** 2 + .75
+            elif x < 2.5 / 2.75:
+                bounce = 7.5625 * (x - 2.25 / 2.75) ** 2 + .9375
+            else:
+                bounce = 7.5625 * (x - 2.625 / 2.75) ** 2 + .984375
+            return 1 - bounce
+
+        def sample(value: float) -> float:
+            if kind == 0:
+                return 0.0
+            if kind == 1:
+                return 1.0
+            if kind == 2:
+                return value
+            family, mode = divmod(kind - 3, 3)
+            if not 0 <= family <= 9:
+                return value
+            if mode == 0:
+                return family_value(family, value)
+            if mode == 1:
+                return 1 - family_value(family, 1 - value)
+            doubled = value * 2
+            if doubled < 1:
+                return family_value(family, doubled) / 2
+            return 1 - family_value(family, 2 - doubled) / 2
+        lower = min(99, int(progress * 100))
+        fraction = progress * 100 - lower
+        return sample(lower / 100) * (1 - fraction) + sample((lower + 1) / 100) * fraction
+
+    @classmethod
+    def _value(cls, events, index, t, field, axis=None, default=0.0):
+        if index < 0:
+            return default
+        current = events[index]
+        value = current[field] if axis is None else current[field][axis]
+        if index + 1 == len(events):
+            return value
+        following = events[index + 1]
+        target = following[field] if axis is None else following[field][axis]
+        progress = (t - current['time']) / (following['time'] - current['time'])
+        kind = current.get('easeType' if axis is None else 'easeType' + axis.upper(), 0)
+        return value + (target - value) * cls._ease(kind, progress)
+
+    @lru_cache(maxsize=8192)
+    def geometry(self, t: float):
+        scale_index = bisect_right(self._scale_times, t) - 1
+        rotation_index = bisect_right(self._rotation_times, t) - 1
+        move_index = bisect_right(self._move_times, t) - 1
+        scale_x = self._value(self._scales, scale_index, t, 'scale', 'x', 1.0)
+        scale_y = self._value(self._scales, scale_index, t, 'scale', 'y', 1.0)
+        angle = self._value(self._rotations, rotation_index, t, 'rotation')
+        center_x, center_y = self.base_center
+        for index in range(scale_index + 1):
+            if index + 1 == len(self._scales):
+                break
+            event = self._scales[index]
+            target = self._scales[index + 1]['scale'] if index < scale_index else {'x': scale_x, 'y': scale_y}
+            anchor_x, anchor_y = event['anchor']['x'] * SCREEN_W, event['anchor']['y'] * SCREEN_H
+            ratio_x = target['x'] / event['scale']['x'] if abs(event['scale']['x']) > 1e-40 else 1.0
+            ratio_y = target['y'] / event['scale']['y'] if abs(event['scale']['y']) > 1e-40 else 1.0
+            center_x = anchor_x + (center_x - anchor_x) * ratio_x
+            center_y = anchor_y + (center_y - anchor_y) * ratio_y
+        for index in range(rotation_index + 1):
+            if index + 1 == len(self._rotations):
+                break
+            event = self._rotations[index]
+            target = self._rotations[index + 1]['rotation'] if index < rotation_index else angle
+            delta = math.radians(target - event['rotation'])
+            anchor_x, anchor_y = event['anchor']['x'] * SCREEN_W, event['anchor']['y'] * SCREEN_H
+            delta_x, delta_y = center_x - anchor_x, center_y - anchor_y
+            center_x = anchor_x + delta_x * math.cos(delta) - delta_y * math.sin(delta)
+            center_y = anchor_y + delta_x * math.sin(delta) + delta_y * math.cos(delta)
+        if move_index >= 0:
+            center_x += self._value(self._moves, move_index, t, 'endPosition', 'x') * SCREEN_W - self.base_center[0]
+            center_y += self._value(self._moves, move_index, t, 'endPosition', 'y') * SCREEN_H - self.base_center[1]
+        return center_x, center_y, abs(self.half_w * scale_x), abs(self.half_h * scale_y), math.radians(angle)
 
     def contains(self, x: float, y: float, t: float, margin: float = 0.0) -> bool:
-        px, py = x, SCREEN_H - y
-        mx, my = _interp(self.moves, t, (0.0, 0.0))
-        px, py = px - mx, py - my
-        rx, ry, rotation = _interp(self.rotations, t, (*self.base_center, 0.0))
-        theta = math.radians(rotation)
-        dx, dy = px - rx, py - ry
-        c, s = math.cos(theta), math.sin(theta)
-        px, py = rx + dx * c + dy * s, ry - dx * s + dy * c
-        sx_anchor, sy_anchor, sx, sy = _interp(self.scales, t, (*self.base_center, 1.0, 1.0))
-        if abs(sx) < 1e-9 or abs(sy) < 1e-9:
+        center_x, center_y, half_w, half_h, angle = self.geometry(t)
+        if min(half_w, half_h) < 1e-9 or min(half_w + margin, half_h + margin) < 0:
             return False
-        px = sx_anchor + (px - sx_anchor) / sx
-        py = sy_anchor + (py - sy_anchor) / sy
-        lx, ly = px - self.base_center[0], py - self.base_center[1]
-        return abs(lx) <= self.half_w + margin and abs(ly) <= self.half_h + margin
+        delta_x, delta_y = x - center_x, SCREEN_H - y - center_y
+        local_x = delta_x * math.cos(angle) + delta_y * math.sin(angle)
+        local_y = -delta_x * math.sin(angle) + delta_y * math.cos(angle)
+        return abs(local_x) <= half_w + margin and abs(local_y) <= half_h + margin
 
 
 class BlockAreas:
@@ -142,14 +245,25 @@ class BlockAreas:
 
     @staticmethod
     def _hit(index: dict[int, list[BlockArea]], x: float, y: float, t: float, margin: float) -> bool:
-        return any(b.enable <= t <= b.disable and b.contains(x, y, t, margin)
+        return any(b.enable <= t < b.disable and b.contains(x, y, t, margin)
                    for b in index.get(int(t // BUCKET), ()))
 
     def blocked(self, x: float, y: float, t: float, margin: float = 0.0) -> bool:
-        """噪域 = 普通块的并集 减去 挖空块(isSubtract)的并集"""
-        if not self._hit(self.add, x, y, t, margin):
-            return False
-        return not (USE_SUBTRACT and self._hit(self.sub, x, y, t, margin))
+        """普通块并集与反转块命中次数的奇偶性异或。"""
+        margin = max(0.0, margin)
+        normal_outer = self._hit(self.add, x, y, t, margin)
+        normal_inner = self._hit(self.add, x, y, t, -margin)
+        parity = False
+        if USE_SUBTRACT:
+            for block in self.sub.get(int(t // BUCKET), ()):
+                if not block.enable <= t < block.disable:
+                    continue
+                outer = block.contains(x, y, t, margin)
+                inner = block.contains(x, y, t, -margin)
+                if outer != inner:
+                    return True
+                parity ^= inner
+        return not normal_inner if parity else normal_outer
 
     def search_point(self,
                      pos: tuple[float, float],

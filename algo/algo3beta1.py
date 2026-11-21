@@ -426,10 +426,13 @@ class PointerAllocator:
         nx, ny = -math.sin(note.angle), math.cos(note.angle)
         projection = 0.0 if previous is None else (previous[0] - tx) * nx + (previous[1] - ty) * ny
         preferred_side = -1 if projection < 0 else 1
-        for distance in range(0, int(DRAG_MAX_RELOCATION // DRAG_SEARCH_STEP) + 1):
-            offset = 0 if distance == 0 else preferred_side * distance
-            x = tx + offset * DRAG_SEARCH_STEP * nx
-            y = ty + offset * DRAG_SEARCH_STEP * ny
+        max_steps = int(DRAG_MAX_RELOCATION // DRAG_SEARCH_STEP)
+        candidates = ((0, 0), *((side * distance, side)
+                      for distance in range(1, max_steps + 1)
+                      for side in (preferred_side, -preferred_side)))
+        for offset_steps, _ in candidates:
+            x = tx + offset_steps * DRAG_SEARCH_STEP * nx
+            y = ty + offset_steps * DRAG_SEARCH_STEP * ny
             if _point_clear(blocks, self.now, x, y):
                 return x, y
         self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
@@ -457,12 +460,19 @@ class PointerAllocator:
                     continue
                 nx, ny = -math.sin(angle), math.cos(angle)
                 x, y = event.pos
+                origin_x, origin_y = event.pos
+                side_projection = (x - origin_x) * nx + (y - origin_y) * ny
+                preferred_side = -1 if side_projection < 0 else 1
                 for scan_time in range(timestamp + 1, next_time):
                     if _point_clear(blocks, scan_time, x, y):
                         continue
                     hold_end = min(next_time - 1, scan_time + GUARD_HOLD_MS)
-                    for candidate_x, candidate_y in _normal_candidates(
-                            *event.pos, nx, ny, 1, DRAG_MAX_RELOCATION, DRAG_SEARCH_STEP):
+                    candidates = _normal_candidates(origin_x, origin_y, nx, ny, preferred_side,
+                                                    DRAG_MAX_RELOCATION, DRAG_SEARCH_STEP)
+                    candidates = iter(list(candidates) + list(_normal_candidates(
+                        origin_x, origin_y, nx, ny, -preferred_side,
+                        DRAG_MAX_RELOCATION, DRAG_SEARCH_STEP))[1:])
+                    for candidate_x, candidate_y in candidates:
                         if all(_point_clear(blocks, check_time, candidate_x, candidate_y)
                                for check_time in range(scan_time, hold_end + 1)):
                             x, y = candidate_x, candidate_y
