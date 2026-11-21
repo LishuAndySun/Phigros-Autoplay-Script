@@ -260,6 +260,8 @@ class PointerAllocator:
         self.tags: dict[tuple[int, int], tuple[int, float]] = {}  # (pointer, DOWN ms) -> (note type, normal angle)
         self.last_pos: dict[int, tuple[int, float, float]] = {}  # pointer id -> (ms, x, y) of last sent event
         self.drag_failures: list[tuple[int, int, float, float, int]] = []  # (ms, note type, x, y, pointer id)
+        self.guard_moves = 0
+        self.guard_failures = 0
         self.created_count = 0
         self.reuse_count = 0
         self.allocation_failures = 0
@@ -418,85 +420,65 @@ class PointerAllocator:
 
     def _drag_pos(self, note: SimpleNote, blocks: BlockAreas,
                   prev: Optional[tuple[int, float, float]]) -> Optional[tuple[float, float]]:
-        """Use a judge-line-aligned binary mask to find the nearest NF-free DRAG point.
-
-        The original hit path is preserved along the judge-line tangent. NF cells are
-        encoded as 1, inverted into a safe-cell mask, then intersected with an expanding
-        target mask. Unlike the old relocation code, this does not push HOLD points
-        away from the judge line using MIN_DIST.
-        """
+        """Find a safe target on the current judge-line normal."""
         tx, ty = note.pos
-
-        if note.line is not None:
-            (x1, y1), (x2, y2) = note.line
-            dx, dy = x2 - x1, y2 - y1
-            length = math.hypot(dx, dy)
-            if length > 1e-9:
-                tangent_x, tangent_y = dx / length, dy / length
-            else:
-                tangent_x, tangent_y = math.cos(note.angle), math.sin(note.angle)
-        else:
-            tangent_x, tangent_y = math.cos(note.angle), math.sin(note.angle)
-
-        step = DRAG_MASK_STEP
-        radius = min(DRAG_MASK_RADIUS, MAX_RELOCATION_DISTANCE)
-        count = int(radius // step)
-        offsets = list(range(-count, count + 1))
-        cell_count = len(offsets)
-        full_mask = (1 << cell_count) - 1
-        nf_mask = 0
-        valid_mask = 0
         previous = (prev[1], prev[2]) if prev is not None else None
-
-        # Rasterize the candidate strip into a one-dimensional binary NF mask.
-        for index, offset in enumerate(offsets):
-            x = tx + tangent_x * offset * step
-            y = ty + tangent_y * offset * step
-            if not (0 <= x <= 1280 and 0 <= y <= 720):
-                nf_mask |= 1 << index
-                continue
-            if blocks.blocked(x, y, self.now / 1000, margin_at(self.now / 1000)):
-                nf_mask |= 1 << index
-                continue
-            if previous is not None and not _segment_clear(
-                    blocks, prev[0], previous, self.now, (x, y)):
-                nf_mask |= 1 << index
-                continue
-            valid_mask |= 1 << index
-
-        # Bitwise complement is bounded to the candidate strip. Keep a separate
-        # valid mask so out-of-screen and unreachable cells cannot become candidates.
-        safe_mask = (full_mask ^ nf_mask) & valid_mask
-        if safe_mask == 0:
-            self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
-            return None
-
-        # Start with the exact target cell, then expand symmetrically along the line.
-        # The first non-empty intersection is the closest reachable safe cell.
-        target_mask = 1 << count
-        for _ in range(count + 1):
-            matches = target_mask & safe_mask
-            if matches:
-                indices = [i for i in range(cell_count) if matches & (1 << i)]
-                if previous is not None:
-                    # Prefer the side that continues the previous movement direction.
-                    movement_projection = ((tx - previous[0]) * tangent_x
-                                            + (ty - previous[1]) * tangent_y)
-                    preferred = 1 if movement_projection >= 0 else -1
-                    indices.sort(key=lambda i: (0 if (offsets[i] * preferred) >= 0 else 1,
-                                                abs(offsets[i])))
-                else:
-                    indices.sort(key=lambda i: abs(offsets[i]))
-                index = indices[0]
-                offset = offsets[index] * step
-                return tx + tangent_x * offset, ty + tangent_y * offset
-            target_mask = ((target_mask << 1) | (target_mask >> 1)) & full_mask
-
+        nx, ny = -math.sin(note.angle), math.cos(note.angle)
+        projection = 0.0 if previous is None else (previous[0] - tx) * nx + (previous[1] - ty) * ny
+        preferred_side = -1 if projection < 0 else 1
+        for distance in range(0, int(DRAG_MAX_RELOCATION // DRAG_SEARCH_STEP) + 1):
+            offset = 0 if distance == 0 else preferred_side * distance
+            x = tx + offset * DRAG_SEARCH_STEP * nx
+            y = ty + offset * DRAG_SEARCH_STEP * ny
+            if _point_clear(blocks, self.now, x, y):
+                return x, y
         self.drag_failures.append((self.now, note.note_type, tx, ty, -1))
         return None
 
+    def _guard_static(self, blocks: BlockAreas):
+        """Guard only intervals that remain pressed in the final event sequence."""
+        sequences: dict[int, list[tuple[int, TouchEvent]]] = {}
+        for timestamp, events in sorted(self.events.items()):
+            for event in events:
+                sequences.setdefault(event.pointer, []).append((timestamp, event))
+        for pointer_id, sequence in sequences.items():
+            angle = 0.0
+            note_type = None
+            for index, (timestamp, event) in enumerate(sequence):
+                if event.action == TouchAction.DOWN:
+                    note_type, angle = self.tags[(pointer_id, timestamp)]
+                if event.action == TouchAction.UP:
+                    note_type = None
+                    continue
+                if note_type is None or index + 1 == len(sequence):
+                    continue
+                next_time, next_event = sequence[index + 1]
+                if note_type == Note.FLICK and timestamp < next_time and next_time - timestamp <= flick_step:
+                    continue
+                nx, ny = -math.sin(angle), math.cos(angle)
+                x, y = event.pos
+                for scan_time in range(timestamp + 1, next_time):
+                    if _point_clear(blocks, scan_time, x, y):
+                        continue
+                    hold_end = min(next_time - 1, scan_time + GUARD_HOLD_MS)
+                    for candidate_x, candidate_y in _normal_candidates(
+                            *event.pos, nx, ny, 1, DRAG_MAX_RELOCATION, DRAG_SEARCH_STEP):
+                        if all(_point_clear(blocks, check_time, candidate_x, candidate_y)
+                               for check_time in range(scan_time, hold_end + 1)):
+                            x, y = candidate_x, candidate_y
+                            self._insert(scan_time, TouchEvent((x, y), TouchAction.MOVE, pointer_id))
+                            self.guard_moves += 1
+                            break
+                    else:
+                        self.guard_failures += 1
+                if next_event.action == TouchAction.UP:
+                    self.events[next_time] = [
+                        TouchEvent((x, y), item.action, item.pointer) if item is next_event else item
+                        for item in self.events[next_time]]
+
     def allocate(self, frame: Frame):
         # 更新pointer age
+        self.blocks = frame.blocks
         self.now = frame.timestamp
         if self.last_timestamp is not None:
             for pointer in self.pointers:
@@ -550,11 +532,25 @@ class PointerAllocator:
             if pointer.note is not None:
                 self._insert(self.now - pointer.age + 1, TouchEvent(self._last_xy(pointer), TouchAction.UP, pointer.id))
                 pointer.note = None
+        if self.last_timestamp is not None:
+            self._guard_static(self.blocks)
         return self.events
 
 
-DRAG_MASK_STEP = 4  # Binary-mask grid resolution along the judge line
-DRAG_MASK_RADIUS = 200.0  # Search both directions along the judge-line tangent
+DRAG_SEARCH_STEP = 8  # Candidate spacing along the judge-line normal (px)
+DRAG_MAX_RELOCATION = 200.0  # Max normal-direction offset from the judge-line target (px)
+GUARD_SCAN_STEP_MS = 2  # Static-position NF scan step between events
+GUARD_HOLD_MS = 30  # A guard move must stay clear this long
+GUARD_MAX_RELOCATION = 800.0  # Guard may move farther: holding inside NF is worse than a long hop
+
+
+def _normal_candidates(x: float, y: float, nx: float, ny: float, side: int,
+                       max_relocation: float, step: float):
+    """Yield (x, y) offsets along the normal by increasing distance; side wins ties."""
+    yield x, y
+    for i in range(1, int(max_relocation // step) + 1):
+        for s in (side, -side):
+            yield x + s * i * step * nx, y + s * i * step * ny
 
 
 def _point_clear(blocks: BlockAreas, t_ms: int, x: float, y: float) -> bool:

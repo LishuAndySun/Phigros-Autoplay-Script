@@ -1,0 +1,31 @@
+[
+  {
+    "algo": "algo3",
+    "down_events": 1592,
+    "move_events": 14124,
+    "skipped_notes": 0,
+    "skip_reasons": {},
+    "nf_violations": 13224,
+    "violation_kinds": {
+      "SEGMENT": 11963,
+      "MOVE": 1229,
+      "DOWN": 14,
+      "UP": 18
+    }
+  },
+  {
+    "algo": "algo3beta1",
+    "down_events": 1578,
+    "move_events": 13147,
+    "skipped_notes": 160,
+    "skip_reasons": {
+      "NO_VALID_POSITION": 125,
+      "RELOCATION_LIMIT_EXCEEDED": 35
+    },
+    "nf_violations": 7589,
+    "violation_kinds": {
+      "SEGMENT": 7585,
+      "UP": 4
+    }
+  }
+]
