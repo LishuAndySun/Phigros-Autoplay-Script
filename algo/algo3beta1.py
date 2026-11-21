@@ -548,7 +548,7 @@ class PointerAllocator:
 
 
 DRAG_SEARCH_STEP = 8  # Candidate spacing along the judge-line normal (px)
-DRAG_MAX_RELOCATION = 200.0  # Max normal-direction offset from the judge-line target (px)
+DRAG_MAX_RELOCATION = 800.0  # Max normal-direction offset from the judge-line target (px)
 GUARD_SCAN_STEP_MS = 2  # Static-position NF scan step between events
 GUARD_HOLD_MS = 30  # A guard move must stay clear this long
 GUARD_MAX_RELOCATION = 800.0  # Guard may move farther: holding inside NF is worse than a long hop
