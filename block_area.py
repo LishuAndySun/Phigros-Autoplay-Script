@@ -18,7 +18,7 @@ USE_SUBTRACT = True
 # 判定线半宽：判定线以 line.pos() 为中心、沿角度方向向两侧各延伸 SCREEN_W/2
 JUDGE_LINE_HALF_WIDTH = SCREEN_W / 2
 MIN_DIST = 80.0  # 触点到判定线的垂直距离下限(像素)
-MAX_RELOCATION_DISTANCE = 200.0  # 触点相对原始目标的迁移距离上限(像素)，不允许无限远兜底
+MAX_RELOCATION_DISTANCE = 800.0  # 触点相对原始目标的迁移距离上限(像素)，不允许无限远兜底
 
 
 class PlacementFailure(Enum):
